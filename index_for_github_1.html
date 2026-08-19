@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NHS England RTT Dashboard — Acute Trusts</title>
+<style>
+  :root {
+    color-scheme: light;
+    --surface-1:      #fbfbfe;
+    --surface-2:      #ffffff;
+    --page-plane:     #e9e7f6;
+    --text-primary:   #14141f;
+    --text-secondary: #55536b;
+    --text-muted:     #92909f;
+    --gridline:       #e6e5f0;
+    --baseline:       #cac8db;
+    --border:         rgba(79,70,229,0.28);
+    --series-1:       #4f46e5;   /* indigo/purple - brand primary, per user reference */
+    --series-1-wash:  rgba(79,70,229,0.10);
+    --series-1-soft:  rgba(79,70,229,0.16);
+    --seq-100:        #e0defb;
+    --seq-450:        #4f46e5;
+    --hover-wash:     rgba(79,70,229,0.08);
+    --hover-text:     #4338ca;
+    --status-good:    #16a34a;
+    --status-warning: #d97706;
+    --status-serious: #ea580c;
+    --status-critical:#dc2626;
+    --status-good-wash:     rgba(22,163,74,0.12);
+    --status-critical-wash: rgba(220,38,38,0.12);
+    --card-radius: 14px;
+    --shadow-card: 0 1px 2px rgba(20,20,20,0.04), 0 4px 14px rgba(20,20,20,0.05);
+    --shadow-pop:  0 10px 30px rgba(20,20,20,0.14);
+    /* Categorical palette (regions) - validated set (adjacent-pair CVD/contrast pass), indigo slot 1 swapped for brand */
+    --cat-1: #4f46e5; --cat-2: #eb6834; --cat-3: #1baf7a; --cat-4: #eda100;
+    --cat-5: #e87ba4; --cat-6: #008300; --cat-7: #4a3aa7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface-1:      #18181f;
+      --surface-2:      #201f2b;
+      --page-plane:     #0d0d13;
+      --text-primary:   #ffffff;
+      --text-secondary: #c7c5d9;
+      --text-muted:     #928fa8;
+      --gridline:       #2c2b3a;
+      --baseline:       #3a394c;
+      --border:         rgba(129,140,248,0.35);
+      --series-1:       #818cf8;
+      --series-1-wash:  rgba(129,140,248,0.16);
+      --series-1-soft:  rgba(129,140,248,0.22);
+      --seq-100:        #332d7a;
+      --seq-450:        #818cf8;
+      --hover-wash:     rgba(129,140,248,0.14);
+      --hover-text:     #c7d2fe;
+      --status-good:    #4ade80;
+      --status-critical:#f87171;
+      --status-good-wash:     rgba(74,222,128,0.16);
+      --status-critical-wash: rgba(248,113,113,0.16);
+      --shadow-card: 0 1px 2px rgba(0,0,0,0.3), 0 4px 14px rgba(0,0,0,0.35);
+      --shadow-pop:  0 10px 30px rgba(0,0,0,0.5);
+      /* Categorical palette (regions) - validated set, indigo slot swapped for brand */
+      --cat-1: #6d63ec; --cat-2: #d95926; --cat-3: #199e70; --cat-4: #c98500;
+      --cat-5: #d55181; --cat-6: #008300; --cat-7: #9085e9;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface-1:      #18181f;
+    --surface-2:      #201f2b;
+    --page-plane:     #0d0d13;
+    --text-primary:   #ffffff;
+    --text-secondary: #c7c5d9;
+    --text-muted:     #928fa8;
+    --gridline:       #2c2b3a;
+    --baseline:       #3a394c;
+    --border:         rgba(129,140,248,0.35);
+    --series-1:       #818cf8;
+    --series-1-wash:  rgba(129,140,248,0.16);
+    --series-1-soft:  rgba(129,140,248,0.22);
+    --seq-100:        #332d7a;
+    --seq-450:        #818cf8;
+    --hover-wash:     rgba(129,140,248,0.14);
+    --hover-text:     #c7d2fe;
+    --status-good:    #4ade80;
+    --status-critical:#f87171;
+    --status-good-wash:     rgba(74,222,128,0.16);
+    --status-critical-wash: rgba(248,113,113,0.16);
+    --shadow-card: 0 1px 2px rgba(0,0,0,0.3), 0 4px 14px rgba(0,0,0,0.35);
+    --shadow-pop:  0 10px 30px rgba(0,0,0,0.5);
+    --cat-1: #6d63ec; --cat-2: #d95926; --cat-3: #199e70; --cat-4: #c98500;
+    --cat-5: #d55181; --cat-6: #008300; --cat-7: #9085e9;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--page-plane);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color .25s ease, color .25s ease;
+  }
+  body { padding: 28px 20px 64px; }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+
+  /* Smooth, professional motion - theme switches and re-renders cross-fade
+     rather than snap, and cards ease in on first paint instead of popping in. */
+  header.page-head, .kpi-tile, .kpi-hero, .trend-card, .card, .table-card,
+  table.trust-table td, table.trust-table th, .geo-tile, .kpi-filter-pill,
+  .filter-btn, .search-box, .narrative-card, .theme-toggle {
+    transition: background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease, transform .15s ease;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  section { animation: fadeInUp .45s ease both; }
+  section:nth-of-type(2) { animation-delay: .04s; }
+  section:nth-of-type(3) { animation-delay: .08s; }
+  section:nth-of-type(4) { animation-delay: .12s; }
+  section:nth-of-type(5) { animation-delay: .16s; }
+  .kpi-hero { animation: fadeInUp .4s ease both; }
+  .kpi-row .kpi-tile { animation: fadeInUp .4s ease both; }
+  .kpi-row .kpi-tile:nth-child(1) { animation-delay: .06s; }
+  .kpi-row .kpi-tile:nth-child(2) { animation-delay: .11s; }
+  .kpi-row .kpi-tile:nth-child(3) { animation-delay: .16s; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  header.page-head {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; margin-bottom: 22px; flex-wrap: wrap;
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--card-radius);
+    box-shadow: var(--shadow-card);
+    padding: 20px 24px;
+  }
+  .brand-mark {
+    width: 4px; align-self: stretch; background: var(--series-1); border-radius: 3px; margin-right: 16px;
+    flex-shrink: 0;
+  }
+  .page-head-inner { display: flex; align-items: center; }
+  h1 { font-size: 21px; font-weight: 700; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .subtitle { color: var(--text-secondary); font-size: 13px; margin: 0; }
+  .subtitle a { color: var(--series-1); text-decoration: none; font-weight: 600; }
+  .subtitle a:hover { text-decoration: underline; }
+
+  .theme-toggle {
+    border: 1px solid var(--border); background: var(--surface-1); color: var(--text-secondary);
+    border-radius: 8px; padding: 7px 13px; font-size: 12.5px; cursor: pointer;
+    font-family: inherit; font-weight: 500;
+  }
+  .theme-toggle:hover { color: var(--text-primary); border-color: var(--series-1); }
+
+  .meta-row {
+    display: flex; gap: 20px; flex-wrap: wrap; font-size: 12.5px; color: var(--text-muted);
+    margin: 0 2px 26px;
+  }
+  .meta-row strong { color: var(--text-secondary); font-weight: 600; }
+
+  section { margin-bottom: 32px; }
+  h2 {
+    font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--text-muted); font-weight: 700; margin: 0 0 12px;
+  }
+
+  /* Narrative headline - a plain-English summary of the month, generated from the data */
+  .narrative-card {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--card-radius);
+    box-shadow: var(--shadow-card);
+    padding: 16px 22px; margin: 0 0 26px; display: flex; align-items: flex-start; gap: 12px;
+  }
+  .narrative-mark { width: 3px; align-self: stretch; background: var(--series-1); border-radius: 2px; flex-shrink: 0; margin-top: 2px; }
+  .narrative-text { font-size: 14.5px; line-height: 1.55; color: var(--text-primary); font-weight: 500; }
+  .narrative-text strong { font-weight: 700; }
+
+  /* KPI hero + secondary row */
+  .kpi-hero {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--card-radius);
+    box-shadow: var(--shadow-card);
+    padding: 26px 28px; position: relative; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    margin-bottom: 14px;
+  }
+  .kpi-hero-main { display: flex; flex-direction: column; align-items: center; }
+  .kpi-hero-label { font-size: 13px; color: var(--text-secondary); font-weight: 600; margin-bottom: 8px; }
+  .kpi-hero-value { font-size: 54px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; color: var(--text-primary); }
+  .kpi-hero-row { display: flex; align-items: baseline; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .kpi-hero-sub { font-size: 12.5px; color: var(--text-muted); margin-top: 10px; }
+
+  .kpi-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+  }
+  @media (max-width: 720px) { .kpi-row { grid-template-columns: repeat(1, 1fr); } }
+  .kpi-tile {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--card-radius);
+    box-shadow: var(--shadow-card);
+    padding: 20px 20px 18px; position: relative; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+  }
+  .kpi-label { font-size: 12.5px; color: var(--text-secondary); margin-bottom: 10px; font-weight: 500; }
+  .kpi-value { font-size: 31px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.1; }
+  .kpi-delta {
+    display: inline-flex; align-items: center; gap: 4px; margin-top: 8px;
+    font-size: 12px; font-weight: 700; padding: 3px 11px; border-radius: 999px;
+  }
+  .kpi-delta:empty { display: none; }
+  .kpi-delta.is-good { color: var(--status-good); background: var(--status-good-wash); }
+  .kpi-delta.is-bad  { color: var(--status-critical); background: var(--status-critical-wash); }
+  .kpi-delta .arrow { font-size: 9px; }
+  .kpi-sub { font-size: 12px; color: var(--text-muted); margin-top: 9px; }
+
+  /* Trend section */
+  .trend-card, .card {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--card-radius);
+    box-shadow: var(--shadow-card);
+    padding: 20px 22px 14px;
+  }
+  .chart-title { font-size: 13.5px; font-weight: 650; color: var(--text-primary); margin-bottom: 2px; }
+  .chart-note { font-size: 11.5px; color: var(--text-muted); margin-bottom: 12px; }
+  svg.linechart { width: 100%; height: 170px; overflow: visible; }
+  svg.linechart-tall { height: 240px; }
+  .lc-axis-label { font-size: 10px; fill: var(--text-muted); font-family: inherit; }
+  .lc-gridline { stroke: var(--gridline); stroke-width: 1; }
+  .lc-area { fill: var(--series-1); opacity: 0.08; }
+  .lc-line { fill: none; stroke: var(--series-1); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .lc-dot { fill: var(--series-1); stroke: var(--surface-2); stroke-width: 2; }
+  .lc-dot-hit { fill: transparent; cursor: pointer; }
+  .lc-target-line { stroke: var(--text-muted); stroke-width: 1.25; stroke-dasharray: 4,3; opacity: .6; }
+  .lc-target-label { font-size: 9.5px; fill: var(--text-muted); font-family: inherit; font-weight: 600; }
+
+  /* Scatter chart: median wait vs waiting-list size, size-adjusted */
+  .scatter-dot { cursor: pointer; }
+  .scatter-hit { fill: transparent; cursor: pointer; }
+  .scatter-fit-line { stroke: var(--text-muted); stroke-width: 1.5; stroke-dasharray: 5,4; opacity: .7; }
+  .scatter-tooltip { white-space: normal; text-align: left; min-width: 170px; line-height: 1.55; }
+  .scatter-tooltip .tt-title { font-weight: 700; margin-bottom: 3px; }
+  .scatter-legend {
+    display: flex; gap: 20px; flex-wrap: wrap; align-items: center; margin-top: 14px; padding-top: 12px;
+    border-top: 1px solid var(--gridline); font-size: 11.5px; color: var(--text-muted);
+  }
+  .scatter-legend-item { display: flex; align-items: center; gap: 6px; }
+  .scatter-legend-swatch { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+  .rank-lists { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 4px; }
+  @media (max-width: 720px) { .rank-lists { grid-template-columns: 1fr; } }
+  .rank-list-header {
+    font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 999px; display: inline-block; margin-bottom: 10px;
+  }
+  .rank-list-header.good { color: var(--status-good); background: var(--status-good-wash); }
+  .rank-list-header.bad  { color: var(--status-critical); background: var(--status-critical-wash); }
+  .rank-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--gridline); }
+  .rank-row:last-child { border-bottom: none; }
+  .rank-row-main { flex: 1; min-width: 0; }
+  .rank-row-name { font-size: 13px; font-weight: 650; color: var(--text-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rank-row-stat { font-size: 11.5px; color: var(--text-muted); margin-top: 1px; }
+  .rank-row-delta { font-size: 12.5px; font-weight: 700; font-variant-numeric: tabular-nums; flex-shrink: 0; }
+  .rank-row-delta.is-good { color: var(--status-good); }
+  .rank-row-delta.is-bad  { color: var(--status-critical); }
+  .lc-tooltip {
+    position: absolute; pointer-events: none; background: var(--text-primary); color: var(--surface-1);
+    font-size: 11.5px; padding: 5px 8px; border-radius: 6px; opacity: 0; transition: opacity .1s;
+    white-space: nowrap; transform: translate(-50%, -130%); z-index: 5;
+  }
+  .lc-wrap { position: relative; }
+
+  /* Table controls / filters */
+  .table-controls {
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+    margin-bottom: 12px; flex-wrap: wrap;
+  }
+  .filter-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .search-box {
+    min-width: 200px; max-width: 280px;
+    border: 1px solid var(--border); background: var(--surface-2); color: var(--text-primary);
+    border-radius: 8px; padding: 8px 12px; font-size: 13px; font-family: inherit;
+  }
+  .search-box::placeholder { color: var(--text-muted); }
+  .result-count { font-size: 12px; color: var(--text-muted); white-space: nowrap; padding-top: 8px; }
+
+  .filter-control { position: relative; }
+  .filter-btn {
+    border: 1px solid var(--border); background: var(--surface-2); color: var(--text-primary);
+    border-radius: 8px; padding: 8px 12px; font-size: 12.5px; cursor: pointer; font-family: inherit;
+    display: flex; align-items: center; gap: 7px; white-space: nowrap; font-weight: 500;
+  }
+  .filter-btn:hover { border-color: var(--series-1); }
+  .filter-btn.active { border-color: var(--series-1); color: var(--series-1); background: var(--series-1-wash); }
+  .filter-btn .chev { font-size: 9px; opacity: 0.6; }
+  .filter-btn .count-badge {
+    background: var(--series-1); color: #fff; border-radius: 999px; font-size: 10.5px; font-weight: 700;
+    padding: 1px 6px; line-height: 1.4;
+  }
+  .filter-popover {
+    position: absolute; top: calc(100% + 8px); left: 0; z-index: 30; width: 260px;
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+    box-shadow: var(--shadow-pop); padding: 12px;
+  }
+  .filter-popover[hidden] { display: none; }
+  .filter-popover-actions {
+    display: flex; justify-content: space-between; margin-bottom: 9px; padding-bottom: 9px;
+    border-bottom: 1px solid var(--gridline);
+  }
+  .filter-popover-actions button {
+    background: none; border: none; color: var(--series-1); font-size: 12px; cursor: pointer;
+    padding: 0; font-family: inherit; font-weight: 600;
+  }
+  .filter-search {
+    width: 100%; margin-bottom: 9px; border: 1px solid var(--border); border-radius: 6px;
+    padding: 7px 9px; font-size: 12.5px; background: var(--surface-1); color: var(--text-primary);
+    font-family: inherit;
+  }
+  .filter-options { max-height: 260px; overflow-y: auto; display: flex; flex-direction: column; gap: 1px; }
+  .filter-option {
+    display: flex; align-items: center; gap: 9px; padding: 6px 7px; border-radius: 6px;
+    font-size: 12.5px; cursor: pointer; color: var(--text-secondary);
+  }
+  .filter-option:hover { background: var(--series-1-wash); color: var(--text-primary); }
+  .filter-option input { margin: 0; accent-color: var(--series-1); width: 14px; height: 14px; flex-shrink: 0; }
+  .filter-empty { font-size: 12px; color: var(--text-muted); padding: 8px 4px; text-align: center; }
+  .clear-filters-btn {
+    font-size: 12px; color: var(--series-1); cursor: pointer; background: none; border: none;
+    font-family: inherit; padding: 8px 0 0; font-weight: 600;
+  }
+
+  .table-card {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--card-radius);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+  .table-scroll { overflow: auto; max-height: 620px; padding-bottom: 12px; }
+  table.trust-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 760px; }
+  table.trust-table th, table.trust-table td {
+    padding: 10px 14px; text-align: center; border-bottom: 1px solid var(--gridline);
+    white-space: nowrap;
+  }
+  table.trust-table thead th {
+    position: sticky; top: 0; background: var(--surface-2); z-index: 2;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted);
+    font-weight: 700; cursor: pointer; user-select: none;
+    box-shadow: inset 0 -1px 0 var(--baseline);
+  }
+  table.trust-table thead th:hover { color: var(--text-primary); }
+  table.trust-table thead th .arrow { font-size: 10px; margin-left: 3px; opacity: 0.6; }
+  table.trust-table tbody tr:nth-child(even) { background: var(--surface-1); }
+  table.trust-table tbody tr:hover { background: var(--hover-wash); }
+  table.trust-table tbody tr:hover td { color: var(--hover-text); }
+  table.trust-table tbody tr:hover td.trust-name { color: var(--hover-text); }
+  table.trust-table tbody tr:hover .meter-value { color: var(--hover-text); }
+  table.trust-table td.trust-name { font-weight: 550; color: var(--text-primary); text-align: left; }
+  .rank-badge {
+    display: inline-flex; align-items: center; justify-content: center; min-width: 17px; height: 17px;
+    border-radius: 5px; background: var(--series-1-wash); color: var(--series-1); font-size: 10px;
+    font-weight: 800; margin-right: 7px; padding: 0 3px; vertical-align: middle;
+  }
+  td.num { font-variant-numeric: tabular-nums; color: var(--text-secondary); }
+  .meter-cell { display: flex; align-items: center; gap: 8px; justify-content: center; }
+  .meter-track {
+    width: 60px; height: 6px; border-radius: 3px; background: var(--gridline); overflow: hidden;
+    flex-shrink: 0;
+  }
+  .meter-fill { height: 100%; background: var(--series-1); border-radius: 3px; }
+  .meter-value { font-variant-numeric: tabular-nums; width: 42px; text-align: left; color: var(--text-secondary); }
+
+  table.trust-table th.col-text, table.trust-table td.col-text { text-align: left; }
+
+  /* Region geographic tile map (schematic cartogram, sequential fill) */
+  .geo-map-wrap { position: relative; display: flex; gap: 52px; align-items: center; justify-content: space-evenly; padding: 18px 12px 10px; }
+  @media (max-width: 760px) { .geo-map-wrap { flex-wrap: wrap; justify-content: center; } }
+  .geo-tile-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 128px);
+    grid-template-rows: repeat(5, 74px);
+    grid-template-areas:
+      "nw  .    ney"
+      "nw  mid  ney"
+      "sw  mid  eng"
+      "sw  lon  eng"
+      ".   se   se";
+    gap: 18px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 560px) {
+    .geo-tile-grid { grid-template-columns: repeat(3, 28vw); grid-template-rows: repeat(5, 17vw); gap: 10px; }
+  }
+  .geo-tile {
+    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    padding: 4px; border: 1px solid var(--border); cursor: pointer;
+    transition: transform .12s ease, box-shadow .12s ease, outline-color .12s ease;
+    outline: 2px solid transparent; outline-offset: 2px;
+  }
+  .geo-tile:hover { transform: scale(1.045); box-shadow: var(--shadow-card); z-index: 3; }
+  .geo-tile.is-selected { outline-color: var(--text-primary); }
+  .geo-tile-label { background: var(--surface-2); border-radius: 8px; padding: 7px 9px; text-align: center; line-height: 1.3; box-shadow: 0 1px 3px rgba(0,0,0,0.14); }
+  .geo-tile-label .gt-name { font-size: 10px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.02em; }
+  .geo-tile-label .gt-val { font-size: 17px; font-weight: 700; color: var(--text-primary); margin-top: 2px; }
+  .geo-legend-col { display: flex; flex-direction: column; gap: 8px; padding-top: 4px; min-width: 180px; max-width: 300px; flex: 0 1 300px; }
+  .geo-legend-title { font-size: 11.5px; color: var(--text-muted); font-weight: 650; }
+  .geo-legend-bar { width: 100%; height: 10px; border-radius: 5px; background: linear-gradient(to right, var(--seq-100), var(--seq-450)); }
+  .geo-legend-scale { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+  .geo-legend-note { font-size: 11.5px; color: var(--text-muted); line-height: 1.55; margin-top: 4px; }
+
+  /* KPI region slicer */
+  .kpi-filter-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .kpi-filter-label { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+  .kpi-filter-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .kpi-filter-pill {
+    border: 1px solid var(--border); background: var(--surface-2); color: var(--text-secondary);
+    border-radius: 999px; padding: 5px 13px; font-size: 12px; font-weight: 600; cursor: pointer;
+    font-family: inherit;
+  }
+  .kpi-filter-pill:hover { border-color: var(--series-1); color: var(--text-primary); }
+  .kpi-filter-pill.active { background: var(--series-1); border-color: var(--series-1); color: #fff; }
+  .kpi-filter-context { color: var(--text-muted); font-weight: 500; text-transform: none; letter-spacing: 0; }
+
+  footer {
+    margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--gridline);
+    font-size: 11.5px; color: var(--text-muted); line-height: 1.6;
+  }
+  footer a { color: var(--series-1); }
+  footer .credit { margin-top: 6px; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="page-head">
+    <div class="page-head-inner">
+      <div class="brand-mark"></div>
+      <div>
+        <h1>NHS England RTT — Acute Trust Waiting Times</h1>
+        <p class="subtitle">Referral to treatment (consultant-led) waiting times, England's acute NHS trusts · Source: <a href="#" id="sourceLink" target="_blank" rel="noopener">NHS England statistics</a></p>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" type="button">Toggle dark mode</button>
+  </header>
+
+  <div class="meta-row">
+    <span>Data period: <strong id="metaPeriod">—</strong></span>
+    <span>Trusts covered: <strong id="metaTrustCount">—</strong></span>
+    <span>Dashboard last refreshed: <strong id="metaGenerated">—</strong></span>
+  </div>
+
+  <div class="narrative-card">
+    <div class="narrative-mark"></div>
+    <div class="narrative-text" id="narrativeText">—</div>
+  </div>
+
+  <section>
+    <h2>England's acute trusts, headline figures<span class="kpi-filter-context" id="kpiFilterContext"></span></h2>
+    <div class="kpi-filter-row">
+      <span class="kpi-filter-label">Show figures for:</span>
+      <div class="kpi-filter-pills" id="kpiRegionSlicer"></div>
+    </div>
+
+    <div class="kpi-hero">
+      <div class="kpi-hero-main">
+        <div class="kpi-hero-label">Waiting within 18 weeks — the NHS constitutional standard</div>
+        <div class="kpi-hero-row">
+          <div class="kpi-hero-value" id="kpiPct18">—</div>
+          <div class="kpi-delta" id="kpiPct18Delta"></div>
+        </div>
+        <div class="kpi-hero-sub" id="kpiHeroSub">vs. 92% target</div>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi-tile">
+        <div class="kpi-label">Total waiting list (incomplete pathways)</div>
+        <div class="kpi-value" id="kpiWaitingList">—</div>
+        <div class="kpi-delta" id="kpiWaitingListDelta"></div>
+        <div class="kpi-sub" id="kpiWaitingListSub">Across acute trusts only</div>
+      </div>
+      <div class="kpi-tile">
+        <div class="kpi-label">Median wait</div>
+        <div class="kpi-value" id="kpiMedian">—</div>
+        <div class="kpi-delta" id="kpiMedianDelta"></div>
+        <div class="kpi-sub">Weeks, estimated from banded data</div>
+      </div>
+      <div class="kpi-tile">
+        <div class="kpi-label">Waiting over 52 weeks</div>
+        <div class="kpi-value" id="kpi52wk">—</div>
+        <div class="kpi-delta" id="kpi52wkDelta"></div>
+        <div class="kpi-sub">Long-wait breaches</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>National trend — acute trusts</h2>
+    <div class="trend-card">
+      <div class="chart-title">% seen within 18 weeks</div>
+      <div class="chart-note" id="trendNote1">Builds up as each month is added.</div>
+      <div class="lc-wrap"><svg class="linechart linechart-tall" id="chartPct18"></svg><div class="lc-tooltip" id="ttPct18"></div></div>
+    </div>
+    <div class="trend-card" style="margin-top: 16px;">
+      <div class="chart-title">Waiting list size</div>
+      <div class="chart-note" id="trendNote2">Builds up as each month is added.</div>
+      <div class="lc-wrap"><svg class="linechart linechart-tall" id="chartWaitlist"></svg><div class="lc-tooltip" id="ttWaitlist"></div></div>
+    </div>
+  </section>
+
+  <section id="regionSection" style="display:none;">
+    <h2>Median wait by region</h2>
+    <div class="trend-card">
+      <div class="chart-title" id="geoMapTitle">Median wait (weeks) by NHS England region</div>
+      <div class="chart-note" id="geoMapNote"></div>
+      <div class="geo-map-wrap">
+        <div class="geo-tile-grid" id="geoTileGrid"></div>
+        <div class="geo-legend-col">
+          <div class="geo-legend-title">Median wait (weeks)</div>
+          <div class="geo-legend-bar"></div>
+          <div class="geo-legend-scale"><span id="geoLegendMin">—</span><span id="geoLegendMax">—</span></div>
+          <div class="geo-legend-note">Schematic tile layout, arranged by approximate geography — not to scale or precise boundaries. Click a region below for its full breakdown; click it again to clear.</div>
+        </div>
+      </div>
+
+      <div class="table-card" style="margin-top: 20px;">
+        <div class="table-scroll">
+          <table class="trust-table" id="regionDetailTable">
+            <thead>
+              <tr>
+                <th class="col-text">Region</th>
+                <th>Waiting list</th>
+                <th>Within 18 weeks</th>
+                <th>Median wait (wks)</th>
+                <th>Over 52 weeks</th>
+                <th>Trusts</th>
+              </tr>
+            </thead>
+            <tbody id="regionDetailBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="scatterSection" style="display:none;">
+    <h2>Median wait vs waiting-list size</h2>
+    <div class="trend-card">
+      <div class="chart-title">Is a longer wait explained by a bigger waiting list?</div>
+      <div class="chart-note" id="scatterNote"></div>
+      <div class="lc-wrap"><svg class="linechart" id="chartScatter" style="height:300px;"></svg><div class="lc-tooltip scatter-tooltip" id="ttScatter"></div></div>
+      <div class="scatter-legend">
+        <div class="scatter-legend-item"><span class="scatter-legend-swatch" style="background:var(--status-good)"></span>Waiting less than expected for its size</div>
+        <div class="scatter-legend-item"><span class="scatter-legend-swatch" style="background:var(--status-critical)"></span>Waiting more than expected for its size</div>
+        <div class="scatter-legend-item">- - - Expected wait, fitted across all acute trusts</div>
+      </div>
+    </div>
+
+    <div class="trend-card" style="margin-top: 16px;">
+      <div class="chart-title">Furthest from expected wait, adjusted for waiting-list size</div>
+      <div class="chart-note" id="rankNote">Not a raw leaderboard — ranked by distance from the fitted line above, so trusts of very different sizes aren't compared head-to-head.</div>
+      <div class="rank-lists">
+        <div class="rank-list">
+          <div class="rank-list-header good">Waiting less than expected</div>
+          <div id="rankBelowList"></div>
+        </div>
+        <div class="rank-list">
+          <div class="rank-list-header bad">Waiting more than expected</div>
+          <div id="rankAboveList"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Compare acute trusts</h2>
+    <div class="table-controls">
+      <div class="filter-row">
+        <input class="search-box" id="searchBox" type="text" placeholder="Search trust or region…">
+        <div class="filter-control" id="regionFilterControl">
+          <button class="filter-btn" id="regionFilterBtn" type="button">
+            <span id="regionFilterLabel">All regions</span><span class="chev">▾</span>
+          </button>
+          <div class="filter-popover" id="regionFilterPopover" hidden>
+            <div class="filter-popover-actions">
+              <button type="button" data-action="all">Select all</button>
+              <button type="button" data-action="none">Clear</button>
+            </div>
+            <div class="filter-options" id="regionFilterOptions"></div>
+          </div>
+        </div>
+        <div class="filter-control" id="trustFilterControl">
+          <button class="filter-btn" id="trustFilterBtn" type="button">
+            <span id="trustFilterLabel">All trusts</span><span class="chev">▾</span>
+          </button>
+          <div class="filter-popover" id="trustFilterPopover" hidden>
+            <div class="filter-popover-actions">
+              <button type="button" data-action="all">Select all</button>
+              <button type="button" data-action="none">Clear</button>
+            </div>
+            <input class="filter-search" id="trustFilterSearch" type="text" placeholder="Search trusts…">
+            <div class="filter-options" id="trustFilterOptions"></div>
+          </div>
+        </div>
+        <button class="clear-filters-btn" id="clearFiltersBtn" type="button" style="display:none;">Clear all filters</button>
+      </div>
+      <span class="result-count" id="resultCount"></span>
+    </div>
+    <div class="table-card">
+      <div class="table-scroll">
+        <table class="trust-table" id="trustTable">
+          <thead>
+            <tr>
+              <th class="col-text" data-key="name" data-type="text">Trust</th>
+              <th class="col-text" data-key="region" data-type="text">Region</th>
+              <th data-key="waiting_list" data-type="num">Waiting list</th>
+              <th data-key="pct_within_18wk" data-type="num">Within 18 weeks</th>
+              <th data-key="median_weeks" data-type="num">Median wait (wks)</th>
+              <th data-key="over_52wk" data-type="num">Over 52 weeks</th>
+            </tr>
+          </thead>
+          <tbody id="trustTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built from NHS England's monthly Referral to Treatment (RTT) "Full CSV" data extract, filtered to Incomplete Pathways
+    (the current waiting list) for the ~135 acute NHS trusts in England (a maintained reference list, since NHS's raw data
+    doesn't tag provider type — mergers/renames may occasionally need a manual update). Median wait is estimated by linear
+    interpolation across NHS's published weekly waiting bands. Regions are NHS England's 7 administrative regions, matched
+    to each trust by name. This dashboard refreshes automatically each month after NHS England publishes new figures.</p>
+    <p class="credit">Dashboard created by Fahd Rehman.</p>
+  </footer>
+
+</div>
+
+<script>
+function renderDashboard(DATA) {
+  const sourceLink = document.getElementById("sourceLink");
+  if (sourceLink && DATA.source_url) sourceLink.href = DATA.source_url;
+
+function fmtInt(n) {
+  if (n === null || n === undefined) return "—";
+  return Math.round(n).toLocaleString("en-GB");
+}
+function fmtCompact(n) {
+  if (n === null || n === undefined) return "—";
+  if (n >= 1000000) return (n/1000000).toFixed(2) + "M";
+  if (n >= 1000) return (n/1000).toFixed(1) + "K";
+  return Math.round(n).toString();
+}
+function fmtPct(n) {
+  if (n === null || n === undefined) return "—";
+  return n.toFixed(1) + "%";
+}
+function fmtWeeks(n) {
+  if (n === null || n === undefined) return "—";
+  return n.toFixed(1);
+}
+function monthLabel(period) {
+  const [y, m] = period.split("-");
+  const d = new Date(parseInt(y), parseInt(m) - 1, 1);
+  return d.toLocaleString("en-GB", { month: "short", year: "2-digit" });
+}
+
+// ---- Header / meta ----
+document.getElementById("metaPeriod").textContent = DATA.period_display || DATA.period;
+document.getElementById("metaTrustCount").textContent = DATA.trusts.length + " acute trusts";
+(function() {
+  const d = new Date(DATA.generated_at);
+  const opts = { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" };
+  document.getElementById("metaGenerated").textContent = isNaN(d) ? DATA.generated_at : d.toLocaleString("en-GB", opts);
+})();
+
+// ---- History (national) - defined early, several sections below depend on it ----
+const history = (DATA.history || []).slice().sort((a, b) => a.period.localeCompare(b.period));
+
+// ---- Narrative headline - a plain-English summary generated from the data ----
+function renderNarrative() {
+  const el = document.getElementById("narrativeText");
+  const curr = DATA.national_acute;
+  const periodDisplay = DATA.period_display || DATA.period;
+  if (history.length < 2) {
+    el.innerHTML = `<strong>${fmtPct(curr.pct_within_18wk)}</strong> of patients started treatment within 18 weeks in ${periodDisplay}, with a total waiting list of <strong>${fmtCompact(curr.waiting_list)}</strong> across England's acute trusts.`;
+    return;
+  }
+  const prev = history[history.length - 2];
+  const pctDiff = curr.pct_within_18wk - prev.pct_within_18wk;
+  const pctPhrase = Math.abs(pctDiff) < 0.05 ? "unchanged on the month" : `${pctDiff > 0 ? "up" : "down"} ${Math.abs(pctDiff).toFixed(1)}pp on ${monthLabel(prev.period)}`;
+  const wlDiff = curr.waiting_list - prev.waiting_list;
+  const wlWord = Math.abs(wlDiff) < curr.waiting_list * 0.0005 ? "held steady at" : (wlDiff > 0 ? "rose to" : "fell to");
+  el.innerHTML = `<strong>${fmtPct(curr.pct_within_18wk)}</strong> of patients started treatment within 18 weeks in ${periodDisplay}, ${pctPhrase}. The total waiting list ${wlWord} <strong>${fmtCompact(curr.waiting_list)}</strong>, with <strong>${fmtInt(curr.over_52wk)}</strong> people now waiting over a year.`;
+}
+renderNarrative();
+
+// ---- Small shared helpers: number count-up + inline sparklines ----
+function animateValue(el, toValue, fmtFn, suffix) {
+  suffix = suffix || "";
+  if (toValue === null || toValue === undefined || isNaN(toValue)) { el.textContent = fmtFn(toValue) + suffix; return; }
+  const fromValue = parseFloat(el.dataset.rawValue);
+  const start = (fromValue === undefined || isNaN(fromValue)) ? toValue : fromValue;
+  el.dataset.rawValue = toValue;
+  const duration = 500;
+  const t0 = performance.now();
+  function tick(now) {
+    const p = Math.min(1, (now - t0) / duration);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const v = start + (toValue - start) * eased;
+    el.textContent = fmtFn(v) + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+// ---- KPIs (with month-on-month delta + region slicer) ----
+function renderKpiDelta(elId, curr, prev, prevLabel, fmtDiff, higherIsGood) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  if (curr === null || curr === undefined || prev === null || prev === undefined) {
+    el.textContent = "";
+    return;
+  }
+  const diff = curr - prev;
+  const isFlat = Math.abs(diff) < 1e-9;
+  const isUp = diff > 0;
+  const isGood = isFlat ? true : (higherIsGood ? isUp : !isUp);
+  el.classList.remove("is-good", "is-bad");
+  el.classList.add(isGood ? "is-good" : "is-bad");
+  const arrow = isFlat ? "•" : (isUp ? "▲" : "▼");
+  el.innerHTML = `<span class="arrow">${arrow}</span> ${fmtDiff(diff)} vs ${prevLabel}`;
+}
+
+function getRegionHistorySeries(regionName) {
+  const rh = (DATA.region_history || []).slice().sort((a, b) => a.period.localeCompare(b.period));
+  return rh.map(entry => {
+    const r = (entry.regions || []).find(x => x.region === regionName);
+    return { period: entry.period, ...(r || {}) };
+  });
+}
+
+const DELTA_FMT = {
+  pct: d => `${d > 0 ? "+" : ""}${d.toFixed(1)}pp`,
+  compact: d => `${d >= 0 ? "+" : "-"}${fmtCompact(Math.abs(d))}`,
+  weeks: d => `${d > 0 ? "+" : ""}${d.toFixed(1)} wks`,
+  int: d => `${d >= 0 ? "+" : "-"}${fmtInt(Math.abs(d))}`,
+};
+
+function updateKpiTiles(regionName) {
+  const isAll = !regionName;
+  document.getElementById("kpiFilterContext").textContent = isAll ? "" : `— ${regionName}`;
+
+  let curr, prev, prevLabel;
+  if (isAll) {
+    curr = DATA.national_acute;
+    if (history.length >= 2) {
+      prev = history[history.length - 2];
+      prevLabel = monthLabel(prev.period);
+    }
+    document.getElementById("kpiWaitingListSub").textContent = "Across acute trusts only";
+  } else {
+    curr = (DATA.regions || []).find(r => r.region === regionName) || {};
+    const series = getRegionHistorySeries(regionName);
+    if (series.length >= 2 && series[series.length - 1].waiting_list !== undefined) {
+      prev = series[series.length - 2];
+      prevLabel = prev.period ? monthLabel(prev.period) : undefined;
+    }
+    document.getElementById("kpiWaitingListSub").textContent = `Across ${regionName} acute trusts`;
+  }
+
+  animateValue(document.getElementById("kpiPct18"), curr.pct_within_18wk, v => v === undefined || v === null || isNaN(v) ? "—" : v.toFixed(1) + "%");
+  animateValue(document.getElementById("kpiWaitingList"), curr.waiting_list, v => v === undefined || v === null || isNaN(v) ? "—" : fmtCompact(v));
+  animateValue(document.getElementById("kpiMedian"), curr.median_weeks, v => v === undefined || v === null || isNaN(v) ? "—" : v.toFixed(1), " wks");
+  animateValue(document.getElementById("kpi52wk"), curr.over_52wk, v => v === undefined || v === null || isNaN(v) ? "—" : fmtInt(v));
+
+  if (curr.pct_within_18wk !== undefined && curr.pct_within_18wk !== null) {
+    const gap = 92 - curr.pct_within_18wk;
+    document.getElementById("kpiHeroSub").textContent = gap > 0.05
+      ? `${gap.toFixed(1)}pp below the 92% NHS target`
+      : "meets the 92% NHS target";
+  }
+
+  if (prev && prev.waiting_list !== undefined) {
+    renderKpiDelta("kpiPct18Delta", curr.pct_within_18wk, prev.pct_within_18wk, prevLabel, DELTA_FMT.pct, true);
+    renderKpiDelta("kpiWaitingListDelta", curr.waiting_list, prev.waiting_list, prevLabel, DELTA_FMT.compact, false);
+    renderKpiDelta("kpiMedianDelta", curr.median_weeks, prev.median_weeks, prevLabel, DELTA_FMT.weeks, false);
+    renderKpiDelta("kpi52wkDelta", curr.over_52wk, prev.over_52wk, prevLabel, DELTA_FMT.int, false);
+  } else {
+    ["kpiPct18Delta", "kpiWaitingListDelta", "kpiMedianDelta", "kpi52wkDelta"].forEach(id => {
+      document.getElementById(id).textContent = "";
+    });
+  }
+}
+
+function renderKpiSlicer() {
+  const regionNames = (DATA.regions || []).map(r => r.region).filter(Boolean).sort();
+  const container = document.getElementById("kpiRegionSlicer");
+  if (!regionNames.length) { container.closest(".kpi-filter-row").style.display = "none"; return; }
+  const options = [{ key: "", label: "All regions" }, ...regionNames.map(name => ({ key: name, label: name }))];
+  container.innerHTML = options.map((o, i) => `
+    <button type="button" class="kpi-filter-pill${i === 0 ? " active" : ""}" data-region="${o.key.replace(/"/g, "&quot;")}">${o.label}</button>
+  `).join("");
+  container.querySelectorAll(".kpi-filter-pill").forEach(btn => {
+    btn.addEventListener("click", () => {
+      container.querySelectorAll(".kpi-filter-pill").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      updateKpiTiles(btn.dataset.region || null);
+    });
+  });
+}
+renderKpiSlicer();
+updateKpiTiles(null);
+
+// ---- Region geographic tile map (schematic cartogram, sequential fill) ----
+const REGION_SLUGS = {
+  "North West": "nw",
+  "North East and Yorkshire": "ney",
+  "Midlands": "mid",
+  "East of England": "eng",
+  "London": "lon",
+  "South West": "sw",
+  "South East": "se",
+};
+const REGION_SHORT_LABELS = {
+  "North West": "North West",
+  "North East and Yorkshire": "North East & Yorks.",
+  "Midlands": "Midlands",
+  "East of England": "East of England",
+  "London": "London",
+  "South West": "South West",
+  "South East": "South East",
+};
+
+function lerpColor(hexA, hexB, t) {
+  const a = hexA.trim().replace("#", "").match(/\w\w/g).map(x => parseInt(x, 16));
+  const b = hexB.trim().replace("#", "").match(/\w\w/g).map(x => parseInt(x, 16));
+  const c = a.map((v, i) => Math.round(v + (b[i] - v) * t));
+  return `rgb(${c[0]}, ${c[1]}, ${c[2]})`;
+}
+
+let selectedMapRegion = null;
+
+function renderRegionMap() {
+  const regions = DATA.regions || [];
+  const section = document.getElementById("regionSection");
+  const grid = document.getElementById("geoTileGrid");
+  if (!regions.length) { section.style.display = "none"; grid.innerHTML = ""; return; }
+  section.style.display = "";
+
+  const vals = regions.map(r => r.median_weeks).filter(v => v !== null && v !== undefined);
+  const vMin = Math.min(...vals), vMax = Math.max(...vals);
+  const span = vMax - vMin || 1;
+
+  const cs = getComputedStyle(document.documentElement);
+  const seqLo = cs.getPropertyValue("--seq-100").trim();
+  const seqHi = cs.getPropertyValue("--seq-450").trim();
+
+  document.getElementById("geoMapTitle").textContent = `Median wait (weeks) by NHS England region — ${DATA.period_display || DATA.period}`;
+  document.getElementById("geoMapNote").textContent = `${regions.length} regions, latest reporting month`;
+  document.getElementById("geoLegendMin").textContent = fmtWeeks(vMin) + " wks";
+  document.getElementById("geoLegendMax").textContent = fmtWeeks(vMax) + " wks";
+
+  grid.innerHTML = regions.map(r => {
+    const slug = REGION_SLUGS[r.region];
+    if (!slug) return "";
+    const t = (r.median_weeks - vMin) / span;
+    const fill = lerpColor(seqLo, seqHi, t);
+    const label = REGION_SHORT_LABELS[r.region] || r.region;
+    return `
+    <div class="geo-tile" style="grid-area:${slug}; background:${fill};" data-region="${r.region.replace(/"/g, "&quot;")}">
+      <div class="geo-tile-label">
+        <div class="gt-name">${label}</div>
+        <div class="gt-val">${fmtWeeks(r.median_weeks)}</div>
+      </div>
+    </div>`;
+  }).join("");
+
+  grid.querySelectorAll(".geo-tile").forEach(tile => {
+    tile.addEventListener("click", () => selectMapRegion(tile.dataset.region));
+  });
+}
+renderRegionMap();
+
+// ---- Region detail table (beneath the map) - driven purely by clicking a tile ----
+function selectMapRegion(regionName) {
+  // Clicking the already-selected tile clears the selection back to "All regions".
+  selectedMapRegion = (regionName && regionName !== selectedMapRegion) ? regionName : null;
+  document.querySelectorAll(".geo-tile").forEach(t => {
+    t.classList.toggle("is-selected", t.dataset.region === selectedMapRegion);
+  });
+  renderRegionDetailRow();
+}
+
+function renderRegionDetailRow() {
+  const tbody = document.getElementById("regionDetailBody");
+  const regions = DATA.regions || [];
+  const isAll = !selectedMapRegion;
+  const r = isAll ? { region: "All regions (England)", ...DATA.national_acute, trust_count: regions.reduce((s, x) => s + (x.trust_count || 0), 0) }
+                  : regions.find(x => x.region === selectedMapRegion);
+  if (!r) { tbody.innerHTML = ""; return; }
+  const trustWord = r.trust_count === 1 ? "trust" : "trusts";
+  tbody.innerHTML = `
+    <tr>
+      <td class="trust-name">${r.region}</td>
+      <td class="num">${fmtInt(r.waiting_list)}</td>
+      <td>
+        <div class="meter-cell">
+          <div class="meter-track"><div class="meter-fill" style="width:${Math.max(0, Math.min(100, r.pct_within_18wk || 0))}%"></div></div>
+          <span class="meter-value">${fmtPct(r.pct_within_18wk)}</span>
+        </div>
+      </td>
+      <td class="num">${fmtWeeks(r.median_weeks)}</td>
+      <td class="num">${fmtInt(r.over_52wk)}</td>
+      <td class="num">${r.trust_count} ${trustWord}</td>
+    </tr>`;
+}
+
+renderRegionDetailRow();
+
+// ---- Trend line charts ----
+// minSpan sets a floor on the visible y-axis range so a small real change
+// doesn't get zoomed-in until it *looks* like a dramatic swing - the chart
+// stays honest about how big the change actually is.
+function drawLineChart(svgEl, points, valueFmt, minSpan, target) {
+  const tall = svgEl.classList.contains("linechart-tall");
+  const w = tall ? 1100 : 520, h = tall ? 240 : 160;
+  const padL = tall ? 56 : 46, padR = tall ? 22 : 16, padT = tall ? 18 : 14, padB = tall ? 32 : 26;
+  svgEl.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  svgEl.innerHTML = "";
+
+  if (!points.length) return;
+
+  const vals = points.map(p => p.value);
+  let vMin = Math.min(...vals), vMax = Math.max(...vals);
+  const dataSpan = vMax - vMin;
+  if (dataSpan < minSpan) {
+    const mid = (vMax + vMin) / 2;
+    vMin = mid - minSpan / 2;
+    vMax = mid + minSpan / 2;
+  }
+  const pad = (vMax - vMin) * 0.12;
+  vMin -= pad; vMax += pad;
+  // A target far outside the data's own range (e.g. 92% vs an actual ~65%) is shown
+  // as a small off-scale note rather than stretching the axis to fit it - that keeps
+  // month-to-month movement legible instead of flattening it near the bottom.
+  const targetOffScale = target && (target.value > vMax || target.value < vMin);
+
+  const plotW = w - padL - padR, plotH = h - padT - padB;
+  const xFor = i => points.length === 1 ? padL + plotW / 2 : padL + (i / (points.length - 1)) * plotW;
+  const yFor = v => padT + plotH - ((v - vMin) / (vMax - vMin)) * plotH;
+
+  const ns = "http://www.w3.org/2000/svg";
+  // gridlines (3 horizontal)
+  for (let g = 0; g <= 2; g++) {
+    const gy = padT + (g / 2) * plotH;
+    const line = document.createElementNS(ns, "line");
+    line.setAttribute("x1", padL); line.setAttribute("x2", w - padR);
+    line.setAttribute("y1", gy); line.setAttribute("y2", gy);
+    line.setAttribute("class", "lc-gridline");
+    svgEl.appendChild(line);
+    const label = document.createElementNS(ns, "text");
+    label.setAttribute("x", padL - 8); label.setAttribute("y", gy + 3);
+    label.setAttribute("text-anchor", "end"); label.setAttribute("class", "lc-axis-label");
+    const val = vMax - (g / 2) * (vMax - vMin);
+    label.textContent = valueFmt(val);
+    svgEl.appendChild(label);
+  }
+
+  // x-axis labels
+  points.forEach((p, i) => {
+    if (points.length > 8 && i % Math.ceil(points.length / 6) !== 0 && i !== points.length - 1) return;
+    const label = document.createElementNS(ns, "text");
+    label.setAttribute("x", xFor(i)); label.setAttribute("y", h - 6);
+    label.setAttribute("text-anchor", "middle"); label.setAttribute("class", "lc-axis-label");
+    label.textContent = p.label;
+    svgEl.appendChild(label);
+  });
+
+  // target reference line (e.g. the 92% NHS constitutional standard)
+  if (target && !targetOffScale) {
+    const ty = yFor(target.value);
+    const tline = document.createElementNS(ns, "line");
+    tline.setAttribute("x1", padL); tline.setAttribute("x2", w - padR);
+    tline.setAttribute("y1", ty); tline.setAttribute("y2", ty);
+    tline.setAttribute("class", "lc-target-line");
+    svgEl.appendChild(tline);
+    const tlabel = document.createElementNS(ns, "text");
+    tlabel.setAttribute("x", w - padR); tlabel.setAttribute("y", ty - 4);
+    tlabel.setAttribute("text-anchor", "end"); tlabel.setAttribute("class", "lc-target-label");
+    tlabel.textContent = target.label;
+    svgEl.appendChild(tlabel);
+  } else if (target && targetOffScale) {
+    const above = target.value > vMax;
+    const ty = above ? padT + 3 : h - padB - 3;
+    const arrow = above ? "↑" : "↓";
+    const tlabel = document.createElementNS(ns, "text");
+    tlabel.setAttribute("x", w - padR); tlabel.setAttribute("y", ty + (above ? 9 : -5));
+    tlabel.setAttribute("text-anchor", "end"); tlabel.setAttribute("class", "lc-target-label");
+    tlabel.textContent = `${arrow} ${target.label} - off scale`;
+    svgEl.appendChild(tlabel);
+  }
+
+  // soft area fill under the line - anchors the eye to the baseline so the
+  // slope reads as "a change of this size", not just "a steep line"
+  if (points.length > 1) {
+    const baseline = padT + plotH;
+    const areaD = points.map((p, i) => `${i === 0 ? "M" : "L"} ${xFor(i)} ${yFor(p.value)}`).join(" ")
+      + ` L ${xFor(points.length - 1)} ${baseline} L ${xFor(0)} ${baseline} Z`;
+    const area = document.createElementNS(ns, "path");
+    area.setAttribute("d", areaD); area.setAttribute("class", "lc-area");
+    svgEl.appendChild(area);
+  }
+
+  // line
+  if (points.length > 1) {
+    const d = points.map((p, i) => `${i === 0 ? "M" : "L"} ${xFor(i)} ${yFor(p.value)}`).join(" ");
+    const path = document.createElementNS(ns, "path");
+    path.setAttribute("d", d); path.setAttribute("class", "lc-line");
+    svgEl.appendChild(path);
+  }
+
+  // dots + hit targets
+  points.forEach((p, i) => {
+    const cx = xFor(i), cy = yFor(p.value);
+    const dot = document.createElementNS(ns, "circle");
+    dot.setAttribute("cx", cx); dot.setAttribute("cy", cy); dot.setAttribute("r", 4);
+    dot.setAttribute("class", "lc-dot");
+    svgEl.appendChild(dot);
+
+    const hit = document.createElementNS(ns, "circle");
+    hit.setAttribute("cx", cx); hit.setAttribute("cy", cy); hit.setAttribute("r", 12);
+    hit.setAttribute("class", "lc-dot-hit");
+    hit.dataset.value = valueFmt(p.value);
+    hit.dataset.label = p.label;
+    hit.dataset.cx = cx; hit.dataset.cy = cy;
+    svgEl.appendChild(hit);
+  });
+}
+
+function wireTooltip(svgEl, ttEl) {
+  svgEl.addEventListener("mousemove", (e) => {
+    const target = e.target.closest(".lc-dot-hit");
+    if (!target) { ttEl.style.opacity = 0; return; }
+    const rect = svgEl.getBoundingClientRect();
+    const scaleX = rect.width / svgEl.viewBox.baseVal.width;
+    const scaleY = rect.height / svgEl.viewBox.baseVal.height;
+    ttEl.textContent = `${target.dataset.label}: ${target.dataset.value}`;
+    ttEl.style.left = (parseFloat(target.dataset.cx) * scaleX) + "px";
+    ttEl.style.top = (parseFloat(target.dataset.cy) * scaleY) + "px";
+    ttEl.style.opacity = 1;
+  });
+  svgEl.addEventListener("mouseleave", () => { ttEl.style.opacity = 0; });
+}
+
+const pct18Points = history.map(h => ({ label: monthLabel(h.period), value: h.pct_within_18wk }));
+const waitlistPoints = history.map(h => ({ label: monthLabel(h.period), value: h.waiting_list }));
+const waitlistMax = Math.max(...waitlistPoints.map(p => p.value), 1);
+
+// Floors: at least 20 percentage points of visible range for the % chart,
+// at least 12% of the largest value seen for the waiting-list chart - small
+// real fluctuations stay visually small instead of filling the whole chart.
+drawLineChart(document.getElementById("chartPct18"), pct18Points, v => v.toFixed(1) + "%", 3, { value: 92, label: "92% target" });
+drawLineChart(document.getElementById("chartWaitlist"), waitlistPoints, v => fmtCompact(v), waitlistMax * 0.03);
+wireTooltip(document.getElementById("chartPct18"), document.getElementById("ttPct18"));
+wireTooltip(document.getElementById("chartWaitlist"), document.getElementById("ttWaitlist"));
+
+if (history.length < 2) {
+  const note = history.length === 1 ? "Only one month tracked so far — the trend line will build as future months are added." : "No history yet.";
+  document.getElementById("trendNote1").textContent = note;
+  document.getElementById("trendNote2").textContent = note;
+} else {
+  document.getElementById("trendNote1").textContent = `${history.length} months tracked`;
+  document.getElementById("trendNote2").textContent = `${history.length} months tracked`;
+}
+
+// ---- Median wait vs waiting-list size: log-linear fit + size-adjusted ranking ----
+// Raw comparisons across trusts are unfair - a small specialist trust and a huge
+// general acute trust aren't operating at the same scale. Fitting median wait
+// against ln(waiting list) gives an "expected wait for a trust this size"; ranking
+// by the residual (actual minus expected) surfaces genuine over/under-performance
+// instead of just re-discovering which trusts happen to be biggest.
+function renderScatterAnalysis() {
+  const section = document.getElementById("scatterSection");
+  const pts = DATA.trusts.filter(t => t.waiting_list > 0 && t.median_weeks !== null && t.median_weeks !== undefined);
+  if (pts.length < 8) { section.style.display = "none"; return; }
+  section.style.display = "";
+
+  const xs = pts.map(t => Math.log(t.waiting_list));
+  const ys = pts.map(t => t.median_weeks);
+  const n = xs.length;
+  const mx = xs.reduce((s, v) => s + v, 0) / n;
+  const my = ys.reduce((s, v) => s + v, 0) / n;
+  let sxy = 0, sxx = 0, syy = 0;
+  for (let i = 0; i < n; i++) {
+    sxy += (xs[i] - mx) * (ys[i] - my);
+    sxx += (xs[i] - mx) ** 2;
+    syy += (ys[i] - my) ** 2;
+  }
+  const b = sxy / sxx;
+  const a = my - b * mx;
+  const r2 = (sxy * sxy) / (sxx * syy);
+  const predict = wl => a + b * Math.log(wl);
+
+  const withResid = pts.map(t => ({ ...t, expected: predict(t.waiting_list), residual: t.median_weeks - predict(t.waiting_list) }));
+  const maxAbsResid = Math.max(...withResid.map(t => Math.abs(t.residual)), 0.1);
+
+  document.getElementById("scatterNote").textContent =
+    `Across ${n} acute trusts, waiting-list size explains about ${Math.round(r2 * 100)}% of the variation in median wait (r² = ${r2.toFixed(2)}). Bigger backlogs structurally take longer to clear - the dashed line is the expected wait for a trust of a given size, fitted across all of them.`;
+
+  const svgEl = document.getElementById("chartScatter");
+  const tooltipEl = document.getElementById("ttScatter");
+  const w = 1080, h = 300, padL = 52, padR = 20, padT = 16, padB = 38;
+  svgEl.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  svgEl.innerHTML = "";
+  const ns = "http://www.w3.org/2000/svg";
+
+  let xMin = Math.min(...xs), xMax = Math.max(...xs);
+  const xPad = (xMax - xMin) * 0.06;
+  xMin -= xPad; xMax += xPad;
+  const yMin = 0, yMax = Math.max(...ys) * 1.12;
+
+  const plotW = w - padL - padR, plotH = h - padT - padB;
+  const xFor = lx => padL + ((lx - xMin) / (xMax - xMin)) * plotW;
+  const yFor = v => padT + plotH - ((v - yMin) / (yMax - yMin)) * plotH;
+
+  for (let g = 0; g <= 3; g++) {
+    const gy = padT + (g / 3) * plotH;
+    const line = document.createElementNS(ns, "line");
+    line.setAttribute("x1", padL); line.setAttribute("x2", w - padR);
+    line.setAttribute("y1", gy); line.setAttribute("y2", gy);
+    line.setAttribute("class", "lc-gridline");
+    svgEl.appendChild(line);
+    const label = document.createElementNS(ns, "text");
+    label.setAttribute("x", padL - 8); label.setAttribute("y", gy + 3);
+    label.setAttribute("text-anchor", "end"); label.setAttribute("class", "lc-axis-label");
+    label.textContent = Math.round(yMax - (g / 3) * (yMax - yMin)) + " wks";
+    svgEl.appendChild(label);
+  }
+
+  const rawMinWl = Math.exp(Math.min(...xs)), rawMaxWl = Math.exp(Math.max(...xs));
+  [1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000, 300000, 400000]
+    .filter(v => v >= rawMinWl * 0.8 && v <= rawMaxWl * 1.2)
+    .forEach(v => {
+      const lx = Math.log(v);
+      if (lx < xMin || lx > xMax) return;
+      const label = document.createElementNS(ns, "text");
+      label.setAttribute("x", xFor(lx)); label.setAttribute("y", h - padB + 16);
+      label.setAttribute("text-anchor", "middle"); label.setAttribute("class", "lc-axis-label");
+      label.textContent = fmtCompact(v);
+      svgEl.appendChild(label);
+    });
+  const xAxisTitle = document.createElementNS(ns, "text");
+  xAxisTitle.setAttribute("x", padL + plotW / 2); xAxisTitle.setAttribute("y", h - 2);
+  xAxisTitle.setAttribute("text-anchor", "middle"); xAxisTitle.setAttribute("class", "lc-axis-label");
+  xAxisTitle.textContent = "Waiting list (log scale)";
+  svgEl.appendChild(xAxisTitle);
+
+  const clampY = v => Math.max(yMin, Math.min(yMax, v));
+  const fitLine = document.createElementNS(ns, "line");
+  fitLine.setAttribute("x1", xFor(xMin)); fitLine.setAttribute("y1", yFor(clampY(predict(Math.exp(xMin)))));
+  fitLine.setAttribute("x2", xFor(xMax)); fitLine.setAttribute("y2", yFor(clampY(predict(Math.exp(xMax)))));
+  fitLine.setAttribute("class", "scatter-fit-line");
+  svgEl.appendChild(fitLine);
+
+  const cs = getComputedStyle(document.documentElement);
+  const goodHex = cs.getPropertyValue("--status-good").trim();
+  const badHex = cs.getPropertyValue("--status-critical").trim();
+
+  withResid.forEach(t => {
+    const cx = xFor(Math.log(t.waiting_list)), cy = yFor(clampY(t.median_weeks));
+    const tt = Math.max(0, Math.min(1, 0.5 + 0.5 * (t.residual / maxAbsResid)));
+    const color = lerpColor(goodHex, badHex, tt);
+    const dot = document.createElementNS(ns, "circle");
+    dot.setAttribute("cx", cx); dot.setAttribute("cy", cy); dot.setAttribute("r", 3.5);
+    dot.setAttribute("class", "scatter-dot");
+    dot.setAttribute("fill", color); dot.setAttribute("opacity", "0.8");
+    svgEl.appendChild(dot);
+
+    const hit = document.createElementNS(ns, "circle");
+    hit.setAttribute("cx", cx); hit.setAttribute("cy", cy); hit.setAttribute("r", 9);
+    hit.setAttribute("class", "scatter-hit");
+    svgEl.appendChild(hit);
+    hit.addEventListener("mousemove", (e) => {
+      const rect = svgEl.getBoundingClientRect();
+      const scaleX = rect.width / svgEl.viewBox.baseVal.width;
+      const scaleY = rect.height / svgEl.viewBox.baseVal.height;
+      tooltipEl.innerHTML = `<div class="tt-title">${properCase(t.name)}</div>` +
+        `<div>${t.region || "—"}</div>` +
+        `<div>Waiting list: <strong>${fmtInt(t.waiting_list)}</strong></div>` +
+        `<div>Median wait: <strong>${fmtWeeks(t.median_weeks)} wks</strong></div>` +
+        `<div>Expected for this size: <strong>${fmtWeeks(t.expected)} wks</strong></div>` +
+        `<div>Difference: <strong>${t.residual > 0 ? "+" : ""}${t.residual.toFixed(1)} wks</strong></div>`;
+      tooltipEl.style.left = (cx * scaleX) + "px";
+      tooltipEl.style.top = (cy * scaleY) + "px";
+      tooltipEl.style.opacity = 1;
+    });
+    hit.addEventListener("mouseleave", () => { tooltipEl.style.opacity = 0; });
+  });
+
+  const sorted = withResid.slice().sort((x, y) => x.residual - y.residual);
+  const below = sorted.slice(0, 5);
+  const above = sorted.slice(-5).reverse();
+
+  function renderRankList(elId, list, isGood) {
+    document.getElementById(elId).innerHTML = list.map((t, i) => `
+      <div class="rank-row">
+        <span class="rank-badge">${i + 1}</span>
+        <div class="rank-row-main">
+          <div class="rank-row-name">${properCase(t.name)}</div>
+          <div class="rank-row-stat">${fmtWeeks(t.median_weeks)} wks actual vs ${fmtWeeks(t.expected)} wks expected · ${t.region || "—"}</div>
+        </div>
+        <div class="rank-row-delta ${isGood ? "is-good" : "is-bad"}">${t.residual > 0 ? "+" : ""}${t.residual.toFixed(1)} wks</div>
+      </div>
+    `).join("");
+  }
+  renderRankList("rankBelowList", below, true);
+  renderRankList("rankAboveList", above, false);
+}
+renderScatterAnalysis();
+
+// ---- Trust table ----
+let trusts = DATA.trusts.slice();
+let sortKey = "waiting_list", sortDir = -1;
+let filterText = "";
+let selectedRegions = new Set();   // empty = no filter (show all)
+let selectedTrustNames = new Set(); // empty = no filter (show all)
+
+function properCase(name) {
+  return name.replace(/\w\S*/g, t => t.charAt(0) + t.slice(1).toLowerCase())
+    .replace(/\bNhs\b/g, "NHS").replace(/\bUcl\b/g, "UCL");
+}
+
+// ---- Generic multi-select popover filter ----
+function setupMultiSelectFilter({ btnId, labelId, popoverId, optionsId, searchId, items, getSelected, onChange, noun }) {
+  const btn = document.getElementById(btnId);
+  const label = document.getElementById(labelId);
+  const popover = document.getElementById(popoverId);
+  const optionsEl = document.getElementById(optionsId);
+  const searchEl = searchId ? document.getElementById(searchId) : null;
+  let searchTerm = "";
+
+  function renderOptions() {
+    const selected = getSelected();
+    const visible = searchTerm
+      ? items.filter(i => i.toLowerCase().includes(searchTerm.toLowerCase()))
+      : items;
+    if (!visible.length) {
+      optionsEl.innerHTML = `<div class="filter-empty">No matches</div>`;
+      return;
+    }
+    optionsEl.innerHTML = visible.map(item => `
+      <label class="filter-option">
+        <input type="checkbox" data-item="${item.replace(/"/g, "&quot;")}" ${selected.has(item) ? "checked" : ""}>
+        <span>${properCase ? (noun === "trust" ? properCase(item) : item) : item}</span>
+      </label>
+    `).join("");
+    optionsEl.querySelectorAll("input[type=checkbox]").forEach(cb => {
+      cb.addEventListener("change", () => {
+        const val = cb.dataset.item;
+        if (cb.checked) selected.add(val); else selected.delete(val);
+        onChange();
+        updateLabel();
+      });
+    });
+  }
+
+  function updateLabel() {
+    const selected = getSelected();
+    if (selected.size === 0) {
+      label.textContent = `All ${noun}s`;
+      btn.classList.remove("active");
+    } else {
+      label.textContent = `${selected.size} ${noun}${selected.size === 1 ? "" : "s"}`;
+      btn.classList.add("active");
+    }
+  }
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isHidden = popover.hasAttribute("hidden");
+    document.querySelectorAll(".filter-popover").forEach(p => p.setAttribute("hidden", ""));
+    if (isHidden) { popover.removeAttribute("hidden"); renderOptions(); if (searchEl) searchEl.focus(); }
+  });
+
+  popover.querySelector('[data-action="all"]').addEventListener("click", () => {
+    items.forEach(i => getSelected().add(i));
+    renderOptions(); updateLabel(); onChange();
+  });
+  popover.querySelector('[data-action="none"]').addEventListener("click", () => {
+    getSelected().clear();
+    renderOptions(); updateLabel(); onChange();
+  });
+
+  if (searchEl) {
+    searchEl.addEventListener("input", (e) => { searchTerm = e.target.value; renderOptions(); });
+    searchEl.addEventListener("click", (e) => e.stopPropagation());
+  }
+  popover.addEventListener("click", (e) => e.stopPropagation());
+
+  updateLabel();
+  return { renderOptions, updateLabel };
+}
+
+document.addEventListener("click", () => {
+  document.querySelectorAll(".filter-popover").forEach(p => p.setAttribute("hidden", ""));
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") document.querySelectorAll(".filter-popover").forEach(p => p.setAttribute("hidden", ""));
+});
+
+const allRegionNames = Array.from(new Set(trusts.map(t => t.region).filter(Boolean))).sort();
+const allTrustNames = trusts.map(t => t.name).sort((a, b) => properCase(a).localeCompare(properCase(b)));
+
+function updateClearFiltersVisibility() {
+  const anyActive = filterText || selectedRegions.size || selectedTrustNames.size;
+  document.getElementById("clearFiltersBtn").style.display = anyActive ? "" : "none";
+}
+
+setupMultiSelectFilter({
+  btnId: "regionFilterBtn", labelId: "regionFilterLabel", popoverId: "regionFilterPopover",
+  optionsId: "regionFilterOptions", items: allRegionNames, getSelected: () => selectedRegions,
+  onChange: () => { renderTable(); updateClearFiltersVisibility(); }, noun: "region",
+});
+setupMultiSelectFilter({
+  btnId: "trustFilterBtn", labelId: "trustFilterLabel", popoverId: "trustFilterPopover",
+  optionsId: "trustFilterOptions", searchId: "trustFilterSearch", items: allTrustNames,
+  getSelected: () => selectedTrustNames,
+  onChange: () => { renderTable(); updateClearFiltersVisibility(); }, noun: "trust",
+});
+
+document.getElementById("clearFiltersBtn").addEventListener("click", () => {
+  filterText = ""; selectedRegions.clear(); selectedTrustNames.clear();
+  document.getElementById("searchBox").value = "";
+  document.querySelectorAll(".filter-popover").forEach(p => p.setAttribute("hidden", ""));
+  document.getElementById("regionFilterLabel").textContent = "All regions";
+  document.getElementById("trustFilterLabel").textContent = "All trusts";
+  document.getElementById("regionFilterBtn").classList.remove("active");
+  document.getElementById("trustFilterBtn").classList.remove("active");
+  renderTable(); updateClearFiltersVisibility();
+});
+
+function renderTable() {
+  const tbody = document.getElementById("trustTableBody");
+  const needle = filterText.toLowerCase();
+  let rows = trusts.filter(t => {
+    if (needle && !(t.name.toLowerCase().includes(needle) || (t.region || "").toLowerCase().includes(needle))) return false;
+    if (selectedRegions.size && !selectedRegions.has(t.region)) return false;
+    if (selectedTrustNames.size && !selectedTrustNames.has(t.name)) return false;
+    return true;
+  });
+
+  rows.sort((a, b) => {
+    let av = a[sortKey], bv = b[sortKey];
+    if (typeof av === "string") { av = av.toLowerCase(); bv = bv.toLowerCase(); }
+    const isTextKey = sortKey === "name" || sortKey === "region";
+    if (av === null || av === undefined) av = isTextKey ? "" : -Infinity;
+    if (bv === null || bv === undefined) bv = isTextKey ? "" : -Infinity;
+    if (av < bv) return -1 * sortDir;
+    if (av > bv) return 1 * sortDir;
+    return 0;
+  });
+
+  document.getElementById("resultCount").textContent = `${rows.length} of ${trusts.length} trusts`;
+
+  tbody.innerHTML = rows.map((t, i) => `
+    <tr>
+      <td class="trust-name">${properCase(t.name)}</td>
+      <td class="col-text">${t.region || "—"}</td>
+      <td class="num">${fmtInt(t.waiting_list)}</td>
+      <td>
+        <div class="meter-cell">
+          <div class="meter-track"><div class="meter-fill" style="width:${Math.max(0, Math.min(100, t.pct_within_18wk || 0))}%"></div></div>
+          <span class="meter-value">${fmtPct(t.pct_within_18wk)}</span>
+        </div>
+      </td>
+      <td class="num">${fmtWeeks(t.median_weeks)}</td>
+      <td class="num">${fmtInt(t.over_52wk)}</td>
+    </tr>
+  `).join("");
+
+  document.querySelectorAll("#trustTable thead th").forEach(th => {
+    const arrow = th.querySelector(".arrow");
+    if (arrow) arrow.remove();
+    if (th.dataset.key === sortKey) {
+      th.insertAdjacentHTML("beforeend", `<span class="arrow">${sortDir === 1 ? "▲" : "▼"}</span>`);
+    }
+  });
+}
+
+document.querySelectorAll("#trustTable thead th").forEach(th => {
+  th.addEventListener("click", () => {
+    const key = th.dataset.key;
+    if (sortKey === key) { sortDir *= -1; }
+    else { sortKey = key; sortDir = th.dataset.type === "text" ? 1 : -1; }
+    renderTable();
+  });
+});
+
+document.getElementById("searchBox").addEventListener("input", (e) => {
+  filterText = e.target.value;
+  renderTable();
+  updateClearFiltersVisibility();
+});
+
+renderTable();
+updateClearFiltersVisibility();
+
+// ---- Theme toggle - a clean two-state switch (light <-> dark), label always
+// names the mode a click will switch TO, so it reads correctly either way ----
+const themeToggle = document.getElementById("themeToggle");
+function effectiveTheme() {
+  const attr = document.documentElement.getAttribute("data-theme");
+  if (attr) return attr;
+  return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+function updateThemeToggleLabel() {
+  themeToggle.textContent = effectiveTheme() === "dark" ? "Toggle light mode" : "Toggle dark mode";
+}
+themeToggle.addEventListener("click", () => {
+  const next = effectiveTheme() === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  updateThemeToggleLabel();
+});
+updateThemeToggleLabel();
+}
+
+const DATA_URL = "https://raw.githubusercontent.com/fahdrehman/NHS-rtt-dashboard-data/main/data/rtt_summary.json";
+
+fetch(DATA_URL, { cache: "no-store" })
+  .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+  .then(renderDashboard)
+  .catch(err => {
+    document.querySelector(".wrap").insertAdjacentHTML("afterbegin",
+      `<div style="background:var(--status-critical);color:#fff;padding:10px 16px;border-radius:8px;margin-bottom:16px;font-size:13px;">Could not load the latest data (${err.message}). Try refreshing the page in a minute.</div>`);
+    console.error("Dashboard data load failed:", err);
+  });
+</script>
+</body>
+</html>
