@@ -78,13 +78,21 @@ def download_full_extract(csv_zip_url):
     resp.raise_for_status()
     frames = []
     with zipfile.ZipFile(io.BytesIO(resp.content)) as zf:
-        for name in zf.namelist():
-            if name.lower().endswith(".csv"):
-                with zf.open(name) as f:
-                    frames.append(pd.read_csv(f, low_memory=False))
+        names = [n for n in zf.namelist() if n.lower().endswith(".csv")]
+        print(f"DEBUG: zip contains {len(names)} csv file(s): {names}", file=sys.stderr)
+        for name in names:
+            with zf.open(name) as f:
+                frame = pd.read_csv(f, low_memory=False)
+            total_col = next((c for c in frame.columns if c.strip().lower() == "total"), None)
+            print(f"DEBUG: {name} -> {len(frame)} rows"
+                  + (f", Total column sum = {frame[total_col].sum():,.0f}" if total_col else ", no Total column"),
+                  file=sys.stderr)
+            frames.append(frame)
     if not frames:
         raise RuntimeError("No CSV found inside the RTT full extract zip")
-    return pd.concat(frames, ignore_index=True)
+    combined = pd.concat(frames, ignore_index=True)
+    print(f"DEBUG: combined shape = {combined.shape}, columns = {list(combined.columns)}", file=sys.stderr)
+    return combined
 
 
 def normalise_columns(df):
