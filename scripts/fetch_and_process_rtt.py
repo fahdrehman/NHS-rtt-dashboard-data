@@ -185,6 +185,20 @@ def compute_metrics(df, band_cols, acute_names_norm):
     raw_total = float(df[band_cols].sum(axis=1).sum())
     print(f"DEBUG: raw sum of band columns across all Incomplete Pathways rows (pre-group) = {raw_total:,.0f}", file=sys.stderr)
 
+    if "Total" in df.columns:
+        total_col_sum = pd.to_numeric(df["Total"], errors="coerce").fillna(0.0).sum()
+        print(f"DEBUG: sum of 'Total' column for Incomplete Pathways rows only = {total_col_sum:,.0f}", file=sys.stderr)
+        sample = df.head(5)[["Provider Org Code", "Commissioner Org Code", "Treatment Function Code", "Total"] + band_cols[:5]]
+        print("DEBUG: sample rows (Total column vs first few band columns):", file=sys.stderr)
+        print(sample.to_string(), file=sys.stderr)
+        row_band_sum = df[band_cols].sum(axis=1)
+        row_total_numeric = pd.to_numeric(df["Total"], errors="coerce").fillna(0.0)
+        mismatch = (row_band_sum.round(2) != row_total_numeric.round(2)).sum()
+        print(f"DEBUG: rows where band-sum != Total column: {mismatch} of {len(df)}", file=sys.stderr)
+        print(f"DEBUG: ratio raw_band_total / total_col_sum = {raw_total / total_col_sum if total_col_sum else float('nan'):.3f}", file=sys.stderr)
+    else:
+        print("DEBUG: no 'Total' column present after filtering", file=sys.stderr)
+
     for c in band_cols:
         df[c] = pd.to_numeric(df[c], errors="coerce").fillna(0.0)
 
