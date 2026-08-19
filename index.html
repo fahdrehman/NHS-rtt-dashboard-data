@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NHS England RTT Dashboard — Acute Trusts</title>
+<style>
+  :root {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --surface-2:      #ffffff;
+    --page-plane:     #f4f5f7;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted:     #898781;
+    --gridline:       #e1e0d9;
+    --baseline:       #c3c2b7;
+    --border:         rgba(11,11,11,0.09);
+    --series-1:       #2a78d6;   /* blue - sequential/primary, pending brand match */
+    --series-1-wash:  rgba(42,120,214,0.10);
+    --series-1-soft:  rgba(42,120,214,0.14);
+    --seq-100:        #cde2fb;
+    --seq-450:        #2a78d6;
+    --status-good:    #0ca30c;
+    --status-warning: #fab219;
+    --status-serious: #ec835a;
+    --status-critical:#d03b3b;
+    --card-radius: 14px;
+    --shadow-card: 0 1px 2px rgba(20,20,20,0.04), 0 4px 14px rgba(20,20,20,0.05);
+    --shadow-pop:  0 10px 30px rgba(20,20,20,0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --surface-2:      #202020;
+      --page-plane:     #0d0d0d;
+      --text-primary:   #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted:     #898781;
+      --gridline:       #2c2c2a;
+      --baseline:       #383835;
+      --border:         rgba(255,255,255,0.10);
+      --series-1:       #3987e5;
+      --series-1-wash:  rgba(57,135,229,0.14);
+      --series-1-soft:  rgba(57,135,229,0.20);
+      --seq-100:        #184f95;
+      --seq-450:        #3987e5;
+      --shadow-card: 0 1px 2px rgba(0,0,0,0.3), 0 4px 14px rgba(0,0,0,0.35);
+      --shadow-pop:  0 10px 30px rgba(0,0,0,0.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --surface-2:      #202020;
+    --page-plane:     #0d0d0d;
+    --text-primary:   #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted:     #898781;
+    --gridline:       #2c2c2a;
+    --baseline:       #383835;
+    --border:         rgba(255,255,255,0.10);
+    --series-1:       #3987e5;
+    --series-1-wash:  rgba(57,135,229,0.14);
+    --series-1-soft:  rgba(57,135,229,0.20);
+    --seq-100:        #184f95;
+    --seq-450:        #3987e5;
+    --shadow-card: 0 1px 2px rgba(0,0,0,0.3), 0 4px 14px rgba(0,0,0,0.35);
+    --shadow-pop:  0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--page-plane);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  body { padding: 28px 20px 64px; }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+
+  header.page-head {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; margin-bottom: 22px; flex-wrap: wrap;
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--card-radius);
+    box-shadow: var(--shadow-card);
+    padding: 20px 24px;
+  }
+  .brand-mark {
+    width: 4px; align-self: stretch; background: var(--series-1); border-radius: 3px; margin-right: 16px;
+    flex-shrink: 0;
+  }
+  .page-head-inner { display: flex; align-items: center; }
+  h1 { font-size: 21px; font-weight: 700; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .subtitle { color: var(--text-secondary); font-size: 13px; margin: 0; }
+  .subtitle a { color: var(--series-1); text-decoration: none; font-weight: 600; }
+  .subtitle a:hover { text-decoration: underline; }
+
+  .theme-toggle {
+    border: 1px solid var(--border); background: var(--surface-1); color: var(--text-secondary);
+    border-radius: 8px; padding: 7px 13px; font-size: 12.5px; cursor: pointer;
+    font-family: inherit; font-weight: 500;
+  }
+  .theme-toggle:hover { color: var(--text-primary); border-color: var(--series-1); }
+
+  .meta-row {
+    display: flex; gap: 20px; flex-wrap: wrap; font-size: 12.5px; color: var(--text-muted);
+    margin: 0 2px 26px;
+  }
+  .meta-row strong { color: var(--text-secondary); font-weight: 600; }
+
+  section { margin-bottom: 32px; }
+  h2 {
+    font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--text-muted); font-weight: 700; margin: 0 0 12px;
+  }
+
+  /* KPI row */
+  .kpi-row {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+  }
+  @media (max-width: 860px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+  .kpi-tile {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--card-radius);
+    box-shadow: var(--shadow-card);
+    padding: 18px 20px; position: relative; overflow: hidden;
+  }
+  .kpi-tile::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--series-1);
+    opacity: 0.85;
+  }
+  .kpi-label { font-size: 12.5px; color: var(--text-secondary); margin-bottom: 10px; font-weight: 500; }
+  .kpi-value { font-size: 31px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.1; }
+  .kpi-sub { font-size: 12px; color: var(--text-muted); margin-top: 7px; }
+
+  /* Trend section */
+  .trend-card, .card {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--card-radius);
+    box-shadow: var(--shadow-card);
+    padding: 20px 22px 14px;
+  }
+  .trend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 860px) { .trend-grid { grid-template-columns: 1fr; } }
+  .chart-title { font-size: 13.5px; font-weight: 650; color: var(--text-primary); margin-bottom: 2px; }
+  .chart-note { font-size: 11.5px; color: var(--text-muted); margin-bottom: 12px; }
+  svg.linechart { width: 100%; height: 170px; overflow: visible; }
+  .lc-axis-label { font-size: 10px; fill: var(--text-muted); font-family: inherit; }
+  .lc-gridline { stroke: var(--gridline); stroke-width: 1; }
+  .lc-area { fill: var(--series-1); opacity: 0.08; }
+  .lc-line { fill: none; stroke: var(--series-1); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .lc-dot { fill: var(--series-1); stroke: var(--surface-2); stroke-width: 2; }
+  .lc-dot-hit { fill: transparent; cursor: pointer; }
+  .lc-tooltip {
+    position: absolute; pointer-events: none; background: var(--text-primary); color: var(--surface-1);
+    font-size: 11.5px; padding: 5px 8px; border-radius: 6px; opacity: 0; transition: opacity .1s;
+    white-space: nowrap; transform: translate(-50%, -130%); z-index: 5;
+  }
+  .lc-wrap { position: relative; }
+
+  /* Table controls / filters */
+  .table-controls {
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+    margin-bottom: 12px; flex-wrap: wrap;
+  }
+  .filter-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .search-box {
+    min-width: 200px; max-width: 280px;
+    border: 1px solid var(--border); background: var(--surface-2); color: var(--text-primary);
+    border-radius: 8px; padding: 8px 12px; font-size: 13px; font-family: inherit;
+  }
+  .search-box::placeholder { color: var(--text-muted); }
+  .result-count { font-size: 12px; color: var(--text-muted); white-space: nowrap; padding-top: 8px; }
+
+  .filter-control { position: relative; }
+  .filter-btn {
+    border: 1px solid var(--border); background: var(--surface-2); color: var(--text-primary);
+    border-radius: 8px; padding: 8px 12px; font-size: 12.5px; cursor: pointer; font-family: inherit;
+    display: flex; align-items: center; gap: 7px; white-space: nowrap; font-weight: 500;
+  }
+  .filter-btn:hover { border-color: var(--series-1); }
+  .filter-btn.active { border-color: var(--series-1); color: var(--series-1); background: var(--series-1-wash); }
+  .filter-btn .chev { font-size: 9px; opacity: 0.6; }
+  .filter-btn .count-badge {
+    background: var(--series-1); color: #fff; border-radius: 999px; font-size: 10.5px; font-weight: 700;
+    padding: 1px 6px; line-height: 1.4;
+  }
+  .filter-popover {
+    position: absolute; top: calc(100% + 8px); left: 0; z-index: 30; width: 260px;
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+    box-shadow: var(--shadow-pop); padding: 12px;
+  }
+  .filter-popover[hidden] { display: none; }
+  .filter-popover-actions {
+    display: flex; justify-content: space-between; margin-bottom: 9px; padding-bottom: 9px;
+    border-bottom: 1px solid var(--gridline);
+  }
+  .filter-popover-actions button {
+    background: none; border: none; color: var(--series-1); font-size: 12px; cursor: pointer;
+    padding: 0; font-family: inherit; font-weight: 600;
+  }
+  .filter-search {
+    width: 100%; margin-bottom: 9px; border: 1px solid var(--border); border-radius: 6px;
+    padding: 7px 9px; font-size: 12.5px; background: var(--surface-1); color: var(--text-primary);
+    font-family: inherit;
+  }
+  .filter-options { max-height: 260px; overflow-y: auto; display: flex; flex-direction: column; gap: 1px; }
+  .filter-option {
+    display: flex; align-items: center; gap: 9px; padding: 6px 7px; border-radius: 6px;
+    font-size: 12.5px; cursor: pointer; color: var(--text-secondary);
+  }
+  .filter-option:hover { background: var(--series-1-wash); color: var(--text-primary); }
+  .filter-option input { margin: 0; accent-color: var(--series-1); width: 14px; height: 14px; flex-shrink: 0; }
+  .filter-empty { font-size: 12px; color: var(--text-muted); padding: 8px 4px; text-align: center; }
+  .clear-filters-btn {
+    font-size: 12px; color: var(--series-1); cursor: pointer; background: none; border: none;
+    font-family: inherit; padding: 8px 0 0; font-weight: 600;
+  }
+
+  .table-card {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--card-radius);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+  .table-scroll { overflow: auto; max-height: 620px; }
+  table.trust-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 760px; }
+  table.trust-table th, table.trust-table td {
+    padding: 10px 14px; text-align: right; border-bottom: 1px solid var(--gridline);
+    white-space: nowrap;
+  }
+  table.trust-table th:first-child, table.trust-table td:first-child { text-align: left; }
+  table.trust-table thead th {
+    position: sticky; top: 0; background: var(--surface-2); z-index: 2;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted);
+    font-weight: 700; cursor: pointer; user-select: none;
+    box-shadow: inset 0 -1px 0 var(--baseline);
+  }
+  table.trust-table thead th:hover { color: var(--text-primary); }
+  table.trust-table thead th .arrow { font-size: 10px; margin-left: 3px; opacity: 0.6; }
+  table.trust-table tbody tr:hover { background: var(--series-1-wash); }
+  table.trust-table td.trust-name { font-weight: 550; color: var(--text-primary); text-align: left; }
+  td.num { font-variant-numeric: tabular-nums; color: var(--text-secondary); }
+  .meter-cell { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
+  .meter-track {
+    width: 60px; height: 6px; border-radius: 3px; background: var(--gridline); overflow: hidden;
+    flex-shrink: 0;
+  }
+  .meter-fill { height: 100%; background: var(--series-1); border-radius: 3px; }
+  .meter-value { font-variant-numeric: tabular-nums; width: 42px; text-align: right; color: var(--text-secondary); }
+
+  table.trust-table th.col-text, table.trust-table td.col-text { text-align: left; }
+
+  /* Region bar chart */
+  .region-bars { display: flex; flex-direction: column; gap: 3px; padding: 6px 0 10px; }
+  .region-bar-row { display: flex; align-items: center; gap: 12px; padding: 6px 0; }
+  .region-bar-label {
+    width: 172px; flex-shrink: 0; font-size: 12.5px; color: var(--text-secondary);
+    text-align: right; padding-right: 2px; font-weight: 500;
+  }
+  .region-bar-track { flex: 1; height: 18px; background: var(--gridline); border-radius: 4px; overflow: hidden; }
+  .region-bar-fill { height: 100%; background: var(--series-1); border-radius: 0 4px 4px 0; min-width: 3px; }
+  .region-bar-value {
+    width: 58px; flex-shrink: 0; font-variant-numeric: tabular-nums; font-size: 12.5px;
+    color: var(--text-primary); font-weight: 650;
+  }
+
+  footer {
+    margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--gridline);
+    font-size: 11.5px; color: var(--text-muted); line-height: 1.6;
+  }
+  footer a { color: var(--series-1); }
+  footer .credit { margin-top: 6px; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="page-head">
+    <div class="page-head-inner">
+      <div class="brand-mark"></div>
+      <div>
+        <h1>NHS England RTT — Acute Trust Waiting Times</h1>
+        <p class="subtitle">Referral to treatment (consultant-led) waiting times, England's acute NHS trusts · Source: <a href="https://www.england.nhs.uk/statistics/statistical-work-areas/rtt-waiting-times/" id="sourceLink" target="_blank" rel="noopener">NHS England statistics</a></p>
+      </div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" type="button">Toggle dark mode</button>
+  </header>
+
+  <div class="meta-row">
+    <span>Data period: <strong id="metaPeriod">—</strong></span>
+    <span>Trusts covered: <strong id="metaTrustCount">—</strong></span>
+    <span>Dashboard last refreshed: <strong id="metaGenerated">—</strong></span>
+  </div>
+
+  <section>
+    <h2>England's acute trusts, headline figures</h2>
+    <div class="kpi-row">
+      <div class="kpi-tile">
+        <div class="kpi-label">Waiting within 18 weeks</div>
+        <div class="kpi-value" id="kpiPct18">—</div>
+        <div class="kpi-sub">NHS constitutional standard: 92%</div>
+      </div>
+      <div class="kpi-tile">
+        <div class="kpi-label">Total waiting list (incomplete pathways)</div>
+        <div class="kpi-value" id="kpiWaitingList">—</div>
+        <div class="kpi-sub">Across acute trusts only</div>
+      </div>
+      <div class="kpi-tile">
+        <div class="kpi-label">Median wait</div>
+        <div class="kpi-value" id="kpiMedian">—</div>
+        <div class="kpi-sub">Weeks, estimated from banded data</div>
+      </div>
+      <div class="kpi-tile">
+        <div class="kpi-label">Waiting over 52 weeks</div>
+        <div class="kpi-value" id="kpi52wk">—</div>
+        <div class="kpi-sub">Long-wait breaches</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>National trend — acute trusts</h2>
+    <div class="trend-card">
+      <div class="trend-grid">
+        <div>
+          <div class="chart-title">% seen within 18 weeks</div>
+          <div class="chart-note" id="trendNote1">Builds up as each month is added.</div>
+          <div class="lc-wrap"><svg class="linechart" id="chartPct18"></svg><div class="lc-tooltip" id="ttPct18"></div></div>
+        </div>
+        <div>
+          <div class="chart-title">Waiting list size</div>
+          <div class="chart-note" id="trendNote2">Builds up as each month is added.</div>
+          <div class="lc-wrap"><svg class="linechart" id="chartWaitlist"></svg><div class="lc-tooltip" id="ttWaitlist"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="regionSection" style="display:none;">
+    <h2>Average wait time by region</h2>
+    <div class="trend-card">
+      <div class="chart-title">Median wait (weeks), acute trusts grouped by NHS England region</div>
+      <div class="chart-note" id="regionNote"></div>
+      <div class="region-bars" id="regionBars"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Compare acute trusts</h2>
+    <div class="table-controls">
+      <div class="filter-row">
+        <input class="search-box" id="searchBox" type="text" placeholder="Search trust or region…">
+        <div class="filter-control" id="regionFilterControl">
+          <button class="filter-btn" id="regionFilterBtn" type="button">
+            <span id="regionFilterLabel">All regions</span><span class="chev">▾</span>
+          </button>
+          <div class="filter-popover" id="regionFilterPopover" hidden>
+            <div class="filter-popover-actions">
+              <button type="button" data-action="all">Select all</button>
+              <button type="button" data-action="none">Clear</button>
+            </div>
+            <div class="filter-options" id="regionFilterOptions"></div>
+          </div>
+        </div>
+        <div class="filter-control" id="trustFilterControl">
+          <button class="filter-btn" id="trustFilterBtn" type="button">
+            <span id="trustFilterLabel">All trusts</span><span class="chev">▾</span>
+          </button>
+          <div class="filter-popover" id="trustFilterPopover" hidden>
+            <div class="filter-popover-actions">
+              <button type="button" data-action="all">Select all</button>
+              <button type="button" data-action="none">Clear</button>
+            </div>
+            <input class="filter-search" id="trustFilterSearch" type="text" placeholder="Search trusts…">
+            <div class="filter-options" id="trustFilterOptions"></div>
+          </div>
+        </div>
+        <button class="clear-filters-btn" id="clearFiltersBtn" type="button" style="display:none;">Clear all filters</button>
+      </div>
+      <span class="result-count" id="resultCount"></span>
+    </div>
+    <div class="table-card">
+      <div class="table-scroll">
+        <table class="trust-table" id="trustTable">
+          <thead>
+            <tr>
+              <th class="col-text" data-key="name" data-type="text">Trust</th>
+              <th class="col-text" data-key="region" data-type="text">Region</th>
+              <th data-key="waiting_list" data-type="num">Waiting list</th>
+              <th data-key="pct_within_18wk" data-type="num">Within 18 weeks</th>
+              <th data-key="median_weeks" data-type="num">Median wait (wks)</th>
+              <th data-key="over_52wk" data-type="num">Over 52 weeks</th>
+            </tr>
+          </thead>
+          <tbody id="trustTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built from NHS England's monthly Referral to Treatment (RTT) "Full CSV" data extract, filtered to Incomplete Pathways
+    (the current waiting list) for the ~135 acute NHS trusts in England (a maintained reference list, since NHS's raw data
+    doesn't tag provider type — mergers/renames may occasionally need a manual update). Median wait is estimated by linear
+    interpolation across NHS's published weekly waiting bands. Regions are NHS England's 7 administrative regions, matched
+    to each trust by name. This dashboard refreshes automatically each month after NHS England publishes new figures.</p>
+    <p class="credit">Dashboard created by Fahd Rehman.</p>
+  </footer>
+
+</div>
+
+<script>
+const DATA_URL = "https://raw.githubusercontent.com/fahdrehman/NHS-rtt-dashboard-data/main/data/rtt_summary.json";
+
+function renderDashboard(DATA) {
+  const sourceLink = document.getElementById("sourceLink");
+  if (sourceLink && DATA.source_url) sourceLink.href = DATA.source_url;
+
+function fmtInt(n) {
+  if (n === null || n === undefined) return "—";
+  return Math.round(n).toLocaleString("en-GB");
+}
+function fmtCompact(n) {
+  if (n === null || n === undefined) return "—";
+  if (n >= 1000000) return (n/1000000).toFixed(2) + "M";
+  if (n >= 1000) return (n/1000).toFixed(1) + "K";
+  return Math.round(n).toString();
+}
+function fmtPct(n) {
+  if (n === null || n === undefined) return "—";
+  return n.toFixed(1) + "%";
+}
+function fmtWeeks(n) {
+  if (n === null || n === undefined) return "—";
+  return n.toFixed(1);
+}
+
+// ---- Header / meta ----
+document.getElementById("metaPeriod").textContent = DATA.period_display || DATA.period;
+document.getElementById("metaTrustCount").textContent = DATA.trusts.length + " acute trusts";
+(function() {
+  const d = new Date(DATA.generated_at);
+  const opts = { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" };
+  document.getElementById("metaGenerated").textContent = isNaN(d) ? DATA.generated_at : d.toLocaleString("en-GB", opts);
+})();
+
+// ---- KPIs ----
+const acute = DATA.national_acute;
+document.getElementById("kpiPct18").textContent = fmtPct(acute.pct_within_18wk);
+document.getElementById("kpiWaitingList").textContent = fmtCompact(acute.waiting_list);
+document.getElementById("kpiMedian").textContent = fmtWeeks(acute.median_weeks) + " wks";
+document.getElementById("kpi52wk").textContent = fmtInt(acute.over_52wk);
+
+// ---- Region bar chart ----
+function renderRegionBars(regions) {
+  const section = document.getElementById("regionSection");
+  if (!regions || !regions.length) { section.style.display = "none"; return; }
+  section.style.display = "";
+  const sorted = regions.slice().sort((a, b) => (b.median_weeks || 0) - (a.median_weeks || 0));
+  const maxVal = Math.max(...sorted.map(r => r.median_weeks || 0), 0.001);
+  const totalTrusts = regions.reduce((s, r) => s + (r.trust_count || 0), 0);
+  document.getElementById("regionNote").textContent = `${regions.length} regions, ${totalTrusts} trusts`;
+  document.getElementById("regionBars").innerHTML = sorted.map(r => {
+    const pct = Math.max(2, ((r.median_weeks || 0) / maxVal) * 100);
+    const trustWord = r.trust_count === 1 ? "trust" : "trusts";
+    return `
+    <div class="region-bar-row" title="${r.trust_count} ${trustWord} in this region">
+      <div class="region-bar-label">${r.region}</div>
+      <div class="region-bar-track"><div class="region-bar-fill" style="width:${pct}%"></div></div>
+      <div class="region-bar-value">${fmtWeeks(r.median_weeks)} wks</div>
+    </div>`;
+  }).join("");
+}
+renderRegionBars(DATA.regions);
+
+// ---- Trend line charts ----
+// minSpan sets a floor on the visible y-axis range so a small real change
+// doesn't get zoomed-in until it *looks* like a dramatic swing - the chart
+// stays honest about how big the change actually is.
+function drawLineChart(svgEl, points, valueFmt, minSpan) {
+  const w = 520, h = 160, padL = 46, padR = 16, padT = 14, padB = 26;
+  svgEl.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  svgEl.innerHTML = "";
+
+  if (!points.length) return;
+
+  const vals = points.map(p => p.value);
+  let vMin = Math.min(...vals), vMax = Math.max(...vals);
+  const dataSpan = vMax - vMin;
+  if (dataSpan < minSpan) {
+    const mid = (vMax + vMin) / 2;
+    vMin = mid - minSpan / 2;
+    vMax = mid + minSpan / 2;
+  }
+  const pad = (vMax - vMin) * 0.15;
+  vMin -= pad; vMax += pad;
+
+  const plotW = w - padL - padR, plotH = h - padT - padB;
+  const xFor = i => points.length === 1 ? padL + plotW / 2 : padL + (i / (points.length - 1)) * plotW;
+  const yFor = v => padT + plotH - ((v - vMin) / (vMax - vMin)) * plotH;
+
+  const ns = "http://www.w3.org/2000/svg";
+  // gridlines (3 horizontal)
+  for (let g = 0; g <= 2; g++) {
+    const gy = padT + (g / 2) * plotH;
+    const line = document.createElementNS(ns, "line");
+    line.setAttribute("x1", padL); line.setAttribute("x2", w - padR);
+    line.setAttribute("y1", gy); line.setAttribute("y2", gy);
+    line.setAttribute("class", "lc-gridline");
+    svgEl.appendChild(line);
+    const label = document.createElementNS(ns, "text");
+    label.setAttribute("x", padL - 8); label.setAttribute("y", gy + 3);
+    label.setAttribute("text-anchor", "end"); label.setAttribute("class", "lc-axis-label");
+    const val = vMax - (g / 2) * (vMax - vMin);
+    label.textContent = valueFmt(val);
+    svgEl.appendChild(label);
+  }
+
+  // x-axis labels
+  points.forEach((p, i) => {
+    if (points.length > 8 && i % Math.ceil(points.length / 6) !== 0 && i !== points.length - 1) return;
+    const label = document.createElementNS(ns, "text");
+    label.setAttribute("x", xFor(i)); label.setAttribute("y", h - 6);
+    label.setAttribute("text-anchor", "middle"); label.setAttribute("class", "lc-axis-label");
+    label.textContent = p.label;
+    svgEl.appendChild(label);
+  });
+
+  // soft area fill under the line - anchors the eye to the baseline so the
+  // slope reads as "a change of this size", not just "a steep line"
+  if (points.length > 1) {
+    const baseline = padT + plotH;
+    const areaD = points.map((p, i) => `${i === 0 ? "M" : "L"} ${xFor(i)} ${yFor(p.value)}`).join(" ")
+      + ` L ${xFor(points.length - 1)} ${baseline} L ${xFor(0)} ${baseline} Z`;
+    const area = document.createElementNS(ns, "path");
+    area.setAttribute("d", areaD); area.setAttribute("class", "lc-area");
+    svgEl.appendChild(area);
+  }
+
+  // line
+  if (points.length > 1) {
+    const d = points.map((p, i) => `${i === 0 ? "M" : "L"} ${xFor(i)} ${yFor(p.value)}`).join(" ");
+    const path = document.createElementNS(ns, "path");
+    path.setAttribute("d", d); path.setAttribute("class", "lc-line");
+    svgEl.appendChild(path);
+  }
+
+  // dots + hit targets
+  points.forEach((p, i) => {
+    const cx = xFor(i), cy = yFor(p.value);
+    const dot = document.createElementNS(ns, "circle");
+    dot.setAttribute("cx", cx); dot.setAttribute("cy", cy); dot.setAttribute("r", 4);
+    dot.setAttribute("class", "lc-dot");
+    svgEl.appendChild(dot);
+
+    const hit = document.createElementNS(ns, "circle");
+    hit.setAttribute("cx", cx); hit.setAttribute("cy", cy); hit.setAttribute("r", 12);
+    hit.setAttribute("class", "lc-dot-hit");
+    hit.dataset.value = valueFmt(p.value);
+    hit.dataset.label = p.label;
+    hit.dataset.cx = cx; hit.dataset.cy = cy;
+    svgEl.appendChild(hit);
+  });
+}
+
+function wireTooltip(svgEl, ttEl) {
+  svgEl.addEventListener("mousemove", (e) => {
+    const target = e.target.closest(".lc-dot-hit");
+    if (!target) { ttEl.style.opacity = 0; return; }
+    const rect = svgEl.getBoundingClientRect();
+    const scaleX = rect.width / svgEl.viewBox.baseVal.width;
+    const scaleY = rect.height / svgEl.viewBox.baseVal.height;
+    ttEl.textContent = `${target.dataset.label}: ${target.dataset.value}`;
+    ttEl.style.left = (parseFloat(target.dataset.cx) * scaleX) + "px";
+    ttEl.style.top = (parseFloat(target.dataset.cy) * scaleY) + "px";
+    ttEl.style.opacity = 1;
+  });
+  svgEl.addEventListener("mouseleave", () => { ttEl.style.opacity = 0; });
+}
+
+function monthLabel(period) {
+  const [y, m] = period.split("-");
+  const d = new Date(parseInt(y), parseInt(m) - 1, 1);
+  return d.toLocaleString("en-GB", { month: "short", year: "2-digit" });
+}
+
+const history = (DATA.history || []).slice().sort((a, b) => a.period.localeCompare(b.period));
+const pct18Points = history.map(h => ({ label: monthLabel(h.period), value: h.pct_within_18wk }));
+const waitlistPoints = history.map(h => ({ label: monthLabel(h.period), value: h.waiting_list }));
+const waitlistMax = Math.max(...waitlistPoints.map(p => p.value), 1);
+
+// Floors: at least 20 percentage points of visible range for the % chart,
+// at least 12% of the largest value seen for the waiting-list chart - small
+// real fluctuations stay visually small instead of filling the whole chart.
+drawLineChart(document.getElementById("chartPct18"), pct18Points, v => v.toFixed(1) + "%", 20);
+drawLineChart(document.getElementById("chartWaitlist"), waitlistPoints, v => fmtCompact(v), waitlistMax * 0.12);
+wireTooltip(document.getElementById("chartPct18"), document.getElementById("ttPct18"));
+wireTooltip(document.getElementById("chartWaitlist"), document.getElementById("ttWaitlist"));
+
+if (history.length < 2) {
+  const note = history.length === 1 ? "Only one month tracked so far — the trend line will build as future months are added." : "No history yet.";
+  document.getElementById("trendNote1").textContent = note;
+  document.getElementById("trendNote2").textContent = note;
+} else {
+  document.getElementById("trendNote1").textContent = `${history.length} months tracked`;
+  document.getElementById("trendNote2").textContent = `${history.length} months tracked`;
+}
+
+// ---- Trust table ----
+let trusts = DATA.trusts.slice();
+let sortKey = "waiting_list", sortDir = -1;
+let filterText = "";
+let selectedRegions = new Set();   // empty = no filter (show all)
+let selectedTrustNames = new Set(); // empty = no filter (show all)
+
+function properCase(name) {
+  return name.replace(/\w\S*/g, t => t.charAt(0) + t.slice(1).toLowerCase())
+    .replace(/\bNhs\b/g, "NHS").replace(/\bUcl\b/g, "UCL");
+}
+
+// ---- Generic multi-select popover filter ----
+function setupMultiSelectFilter({ btnId, labelId, popoverId, optionsId, searchId, items, getSelected, onChange, noun }) {
+  const btn = document.getElementById(btnId);
+  const label = document.getElementById(labelId);
+  const popover = document.getElementById(popoverId);
+  const optionsEl = document.getElementById(optionsId);
+  const searchEl = searchId ? document.getElementById(searchId) : null;
+  let searchTerm = "";
+
+  function renderOptions() {
+    const selected = getSelected();
+    const visible = searchTerm
+      ? items.filter(i => i.toLowerCase().includes(searchTerm.toLowerCase()))
+      : items;
+    if (!visible.length) {
+      optionsEl.innerHTML = `<div class="filter-empty">No matches</div>`;
+      return;
+    }
+    optionsEl.innerHTML = visible.map(item => `
+      <label class="filter-option">
+        <input type="checkbox" data-item="${item.replace(/"/g, "&quot;")}" ${selected.has(item) ? "checked" : ""}>
+        <span>${properCase ? (noun === "trust" ? properCase(item) : item) : item}</span>
+      </label>
+    `).join("");
+    optionsEl.querySelectorAll("input[type=checkbox]").forEach(cb => {
+      cb.addEventListener("change", () => {
+        const val = cb.dataset.item;
+        if (cb.checked) selected.add(val); else selected.delete(val);
+        onChange();
+        updateLabel();
+      });
+    });
+  }
+
+  function updateLabel() {
+    const selected = getSelected();
+    if (selected.size === 0) {
+      label.textContent = `All ${noun}s`;
+      btn.classList.remove("active");
+    } else {
+      label.textContent = `${selected.size} ${noun}${selected.size === 1 ? "" : "s"}`;
+      btn.classList.add("active");
+    }
+  }
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isHidden = popover.hasAttribute("hidden");
+    document.querySelectorAll(".filter-popover").forEach(p => p.setAttribute("hidden", ""));
+    if (isHidden) { popover.removeAttribute("hidden"); renderOptions(); if (searchEl) searchEl.focus(); }
+  });
+
+  popover.querySelector('[data-action="all"]').addEventListener("click", () => {
+    items.forEach(i => getSelected().add(i));
+    renderOptions(); updateLabel(); onChange();
+  });
+  popover.querySelector('[data-action="none"]').addEventListener("click", () => {
+    getSelected().clear();
+    renderOptions(); updateLabel(); onChange();
+  });
+
+  if (searchEl) {
+    searchEl.addEventListener("input", (e) => { searchTerm = e.target.value; renderOptions(); });
+    searchEl.addEventListener("click", (e) => e.stopPropagation());
+  }
+  popover.addEventListener("click", (e) => e.stopPropagation());
+
+  updateLabel();
+  return { renderOptions, updateLabel };
+}
+
+document.addEventListener("click", () => {
+  document.querySelectorAll(".filter-popover").forEach(p => p.setAttribute("hidden", ""));
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") document.querySelectorAll(".filter-popover").forEach(p => p.setAttribute("hidden", ""));
+});
+
+const allRegionNames = Array.from(new Set(trusts.map(t => t.region).filter(Boolean))).sort();
+const allTrustNames = trusts.map(t => t.name).sort((a, b) => properCase(a).localeCompare(properCase(b)));
+
+function updateClearFiltersVisibility() {
+  const anyActive = filterText || selectedRegions.size || selectedTrustNames.size;
+  document.getElementById("clearFiltersBtn").style.display = anyActive ? "" : "none";
+}
+
+setupMultiSelectFilter({
+  btnId: "regionFilterBtn", labelId: "regionFilterLabel", popoverId: "regionFilterPopover",
+  optionsId: "regionFilterOptions", items: allRegionNames, getSelected: () => selectedRegions,
+  onChange: () => { renderTable(); updateClearFiltersVisibility(); }, noun: "region",
+});
+setupMultiSelectFilter({
+  btnId: "trustFilterBtn", labelId: "trustFilterLabel", popoverId: "trustFilterPopover",
+  optionsId: "trustFilterOptions", searchId: "trustFilterSearch", items: allTrustNames,
+  getSelected: () => selectedTrustNames,
+  onChange: () => { renderTable(); updateClearFiltersVisibility(); }, noun: "trust",
+});
+
+document.getElementById("clearFiltersBtn").addEventListener("click", () => {
+  filterText = ""; selectedRegions.clear(); selectedTrustNames.clear();
+  document.getElementById("searchBox").value = "";
+  document.querySelectorAll(".filter-popover").forEach(p => p.setAttribute("hidden", ""));
+  document.getElementById("regionFilterLabel").textContent = "All regions";
+  document.getElementById("trustFilterLabel").textContent = "All trusts";
+  document.getElementById("regionFilterBtn").classList.remove("active");
+  document.getElementById("trustFilterBtn").classList.remove("active");
+  renderTable(); updateClearFiltersVisibility();
+});
+
+function renderTable() {
+  const tbody = document.getElementById("trustTableBody");
+  const needle = filterText.toLowerCase();
+  let rows = trusts.filter(t => {
+    if (needle && !(t.name.toLowerCase().includes(needle) || (t.region || "").toLowerCase().includes(needle))) return false;
+    if (selectedRegions.size && !selectedRegions.has(t.region)) return false;
+    if (selectedTrustNames.size && !selectedTrustNames.has(t.name)) return false;
+    return true;
+  });
+
+  rows.sort((a, b) => {
+    let av = a[sortKey], bv = b[sortKey];
+    if (typeof av === "string") { av = av.toLowerCase(); bv = bv.toLowerCase(); }
+    const isTextKey = sortKey === "name" || sortKey === "region";
+    if (av === null || av === undefined) av = isTextKey ? "" : -Infinity;
+    if (bv === null || bv === undefined) bv = isTextKey ? "" : -Infinity;
+    if (av < bv) return -1 * sortDir;
+    if (av > bv) return 1 * sortDir;
+    return 0;
+  });
+
+  document.getElementById("resultCount").textContent = `${rows.length} of ${trusts.length} trusts`;
+
+  tbody.innerHTML = rows.map(t => `
+    <tr>
+      <td class="trust-name">${properCase(t.name)}</td>
+      <td class="col-text">${t.region || "—"}</td>
+      <td class="num">${fmtInt(t.waiting_list)}</td>
+      <td>
+        <div class="meter-cell">
+          <div class="meter-track"><div class="meter-fill" style="width:${Math.max(0, Math.min(100, t.pct_within_18wk || 0))}%"></div></div>
+          <span class="meter-value">${fmtPct(t.pct_within_18wk)}</span>
+        </div>
+      </td>
+      <td class="num">${fmtWeeks(t.median_weeks)}</td>
+      <td class="num">${fmtInt(t.over_52wk)}</td>
+    </tr>
+  `).join("");
+
+  document.querySelectorAll("#trustTable thead th").forEach(th => {
+    const arrow = th.querySelector(".arrow");
+    if (arrow) arrow.remove();
+    if (th.dataset.key === sortKey) {
+      th.insertAdjacentHTML("beforeend", `<span class="arrow">${sortDir === 1 ? "▲" : "▼"}</span>`);
+    }
+  });
+}
+
+document.querySelectorAll("#trustTable thead th").forEach(th => {
+  th.addEventListener("click", () => {
+    const key = th.dataset.key;
+    if (sortKey === key) { sortDir *= -1; }
+    else { sortKey = key; sortDir = th.dataset.type === "text" ? 1 : -1; }
+    renderTable();
+  });
+});
+
+document.getElementById("searchBox").addEventListener("input", (e) => {
+  filterText = e.target.value;
+  renderTable();
+  updateClearFiltersVisibility();
+});
+
+renderTable();
+updateClearFiltersVisibility();
+
+// ---- Theme toggle ----
+const themeToggle = document.getElementById("themeToggle");
+themeToggle.addEventListener("click", () => {
+  const root = document.documentElement;
+  const current = root.getAttribute("data-theme");
+  if (current === "dark") { root.setAttribute("data-theme", "light"); }
+  else if (current === "light") { root.removeAttribute("data-theme"); }
+  else { root.setAttribute("data-theme", "dark"); }
+});
+}
+
+fetch(DATA_URL, { cache: "no-store" })
+  .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+  .then(renderDashboard)
+  .catch(err => {
+    document.querySelector(".wrap").insertAdjacentHTML("afterbegin",
+      `<div style="background:var(--status-critical);color:#fff;padding:10px 16px;border-radius:8px;margin-bottom:16px;font-size:13px;">Could not load the latest data (${err.message}). Try refreshing the page in a minute.</div>`);
+    console.error("Dashboard data load failed:", err);
+  });
+</script>
+</body>
+</html>
