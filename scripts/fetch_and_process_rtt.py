@@ -157,47 +157,26 @@ def normalise_name(name):
 
 
 def compute_metrics(df, band_cols, acute_names_norm):
-    if "Period" in df.columns:
-        print("DEBUG: Period value counts (all rows):", file=sys.stderr)
-        print(df["Period"].astype(str).str.strip().value_counts().to_string(), file=sys.stderr)
-    else:
-        print("DEBUG: no 'Period' column found", file=sys.stderr)
-
-    print("DEBUG: RTT Part Description value counts (all rows):", file=sys.stderr)
-    print(df["RTT Part Description"].astype(str).str.strip().value_counts().to_string(), file=sys.stderr)
-
     df = df[df["RTT Part Description"].astype(str).str.strip()
             .str.lower() == "incomplete pathways"].copy()
-    print(f"DEBUG: after filtering to Incomplete Pathways: {len(df)} rows", file=sys.stderr)
 
-    key_cols = ["Provider Org Code", "Commissioner Org Code", "Treatment Function Code"]
-    dupe_count = int(df.duplicated(subset=key_cols, keep=False).sum())
-    print(f"DEBUG: rows sharing the same {key_cols} combo (potential duplicates): {dupe_count} of {len(df)}", file=sys.stderr)
-    if dupe_count:
-        example_keys = df[df.duplicated(subset=key_cols, keep=False)][key_cols].drop_duplicates().head(3)
-        print("DEBUG: example duplicated key combos:", file=sys.stderr)
-        print(example_keys.to_string(), file=sys.stderr)
-        example_full = df.merge(example_keys, on=key_cols)[key_cols + ["RTT Part Type", "Total"]] if "Total" in df.columns else None
-        if example_full is not None:
-            print("DEBUG: full rows for first duplicated combo:", file=sys.stderr)
-            print(example_full.head(6).to_string(), file=sys.stderr)
+    # NHS's RTT extract includes a "Treatment Function Code" 999 row per
+    # provider+commissioner, which is a pre-computed rollup ("Total") across
+    # that provider+commissioner's actual specialty rows - not a real
+    # specialty. Left in, it silently doubles every total. Drop it here so
+    # we only sum genuine per-specialty rows.
+    is_rollup = (
+        df["Treatment Function Code"].astype(str).str.contains(r"999", na=False)
+        | df["Treatment Function Name"].astype(str).str.strip().str.lower().eq("total")
+    )
+    print(f"DEBUG: dropping {int(is_rollup.sum())} Treatment Function 'Total' rollup rows "
+          f"(of {len(df)}) to avoid double-counting", file=sys.stderr)
+    df = df[~is_rollup].copy()
 
-    raw_total = float(df[band_cols].sum(axis=1).sum())
-    print(f"DEBUG: raw sum of band columns across all Incomplete Pathways rows (pre-group) = {raw_total:,.0f}", file=sys.stderr)
+    print(f"DEBUG: after filtering to Incomplete Pathways (excl. rollup rows): {len(df)} rows", file=sys.stderr)
 
-    if "Total" in df.columns:
-        total_col_sum = pd.to_numeric(df["Total"], errors="coerce").fillna(0.0).sum()
-        print(f"DEBUG: sum of 'Total' column for Incomplete Pathways rows only = {total_col_sum:,.0f}", file=sys.stderr)
-        sample = df.head(5)[["Provider Org Code", "Commissioner Org Code", "Treatment Function Code", "Total"] + band_cols[:5]]
-        print("DEBUG: sample rows (Total column vs first few band columns):", file=sys.stderr)
-        print(sample.to_string(), file=sys.stderr)
-        row_band_sum = df[band_cols].sum(axis=1)
-        row_total_numeric = pd.to_numeric(df["Total"], errors="coerce").fillna(0.0)
-        mismatch = (row_band_sum.round(2) != row_total_numeric.round(2)).sum()
-        print(f"DEBUG: rows where band-sum != Total column: {mismatch} of {len(df)}", file=sys.stderr)
-        print(f"DEBUG: ratio raw_band_total / total_col_sum = {raw_total / total_col_sum if total_col_sum else float('nan'):.3f}", file=sys.stderr)
-    else:
-        print("DEBUG: no 'Total' column present after filtering", file=sys.stderr)
+    raw_total = float(df[band_cols].apply(pd.to_numeric, errors="coerce").fillna(0.0).sum(axis=1).sum())
+    print(f"DEBUG: raw sum of band columns (pre-group, rollup rows excluded) = {raw_total:,.0f}", file=sys.stderr)
 
     for c in band_cols:
         df[c] = pd.to_numeric(df[c], errors="coerce").fillna(0.0)
