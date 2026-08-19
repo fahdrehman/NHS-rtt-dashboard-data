@@ -157,8 +157,27 @@ def normalise_name(name):
 
 
 def compute_metrics(df, band_cols, acute_names_norm):
+    print("DEBUG: RTT Part Description value counts (all rows):", file=sys.stderr)
+    print(df["RTT Part Description"].astype(str).str.strip().value_counts().to_string(), file=sys.stderr)
+
     df = df[df["RTT Part Description"].astype(str).str.strip()
             .str.lower() == "incomplete pathways"].copy()
+    print(f"DEBUG: after filtering to Incomplete Pathways: {len(df)} rows", file=sys.stderr)
+
+    key_cols = ["Provider Org Code", "Commissioner Org Code", "Treatment Function Code"]
+    dupe_count = int(df.duplicated(subset=key_cols, keep=False).sum())
+    print(f"DEBUG: rows sharing the same {key_cols} combo (potential duplicates): {dupe_count} of {len(df)}", file=sys.stderr)
+    if dupe_count:
+        example_keys = df[df.duplicated(subset=key_cols, keep=False)][key_cols].drop_duplicates().head(3)
+        print("DEBUG: example duplicated key combos:", file=sys.stderr)
+        print(example_keys.to_string(), file=sys.stderr)
+        example_full = df.merge(example_keys, on=key_cols)[key_cols + ["RTT Part Type", "Total"]] if "Total" in df.columns else None
+        if example_full is not None:
+            print("DEBUG: full rows for first duplicated combo:", file=sys.stderr)
+            print(example_full.head(6).to_string(), file=sys.stderr)
+
+    raw_total = float(df[band_cols].sum(axis=1).sum())
+    print(f"DEBUG: raw sum of band columns across all Incomplete Pathways rows (pre-group) = {raw_total:,.0f}", file=sys.stderr)
 
     for c in band_cols:
         df[c] = pd.to_numeric(df[c], errors="coerce").fillna(0.0)
