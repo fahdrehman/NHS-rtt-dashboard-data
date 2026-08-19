@@ -157,6 +157,12 @@ def normalise_name(name):
 
 
 def compute_metrics(df, band_cols, acute_names_norm):
+    if "Period" in df.columns:
+        print("DEBUG: Period value counts (all rows):", file=sys.stderr)
+        print(df["Period"].astype(str).str.strip().value_counts().to_string(), file=sys.stderr)
+    else:
+        print("DEBUG: no 'Period' column found", file=sys.stderr)
+
     print("DEBUG: RTT Part Description value counts (all rows):", file=sys.stderr)
     print(df["RTT Part Description"].astype(str).str.strip().value_counts().to_string(), file=sys.stderr)
 
