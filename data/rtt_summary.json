@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-08-25T08:36:50.405306+00:00",
-  "period": "2026-06",
-  "period_display": "June 2026",
-  "source_url": "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2026/08/Full-CSV-data-file-Jun26-ZIP-3M-6jPlxd.zip",
+  "generated_at": "2026-09-15T13:08:40.160744+00:00",
+  "period": "2026-07",
+  "period_display": "July 2026",
+  "source_url": "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2026/09/Full-CSV-data-file-Jul26-ZIP-4M-97ylx5.zip",
   "national_all_providers": {
-    "waiting_list": 7178718,
-    "pct_within_18wk": 65.8,
-    "over_52wk": 106621,
-    "median_weeks": 11.9
+    "waiting_list": 7162692,
+    "pct_within_18wk": 65.3,
+    "over_52wk": 111429,
+    "median_weeks": 12.0
   },
   "national_acute": {
-    "waiting_list": 6292585,
-    "pct_within_18wk": 64.9,
-    "over_52wk": 96693,
+    "waiting_list": 6187616,
+    "pct_within_18wk": 64.3,
+    "over_52wk": 100075,
     "median_weeks": 12.3
   },
   "trusts": [
@@ -20,1078 +20,1051 @@
       "code": "R0A",
       "name": "MANCHESTER UNIVERSITY NHS FOUNDATION TRUST",
       "region": "North West",
-      "waiting_list": 166898,
-      "pct_within_18wk": 63.8,
-      "over_52wk": 1437,
-      "median_weeks": 13.1
+      "waiting_list": 167649,
+      "pct_within_18wk": 63.9,
+      "over_52wk": 1390,
+      "median_weeks": 12.7
     },
     {
       "code": "RAJ",
       "name": "MID AND SOUTH ESSEX NHS FOUNDATION TRUST",
       "region": "East of England",
-      "waiting_list": 165626,
-      "pct_within_18wk": 49.7,
-      "over_52wk": 12487,
+      "waiting_list": 165420,
+      "pct_within_18wk": 49.8,
+      "over_52wk": 13104,
       "median_weeks": 18.1
     },
     {
       "code": "RAL",
       "name": "ROYAL FREE LONDON NHS FOUNDATION TRUST",
       "region": "London",
-      "waiting_list": 139530,
-      "pct_within_18wk": 63.2,
-      "over_52wk": 1590,
-      "median_weeks": 13.2
+      "waiting_list": 139727,
+      "pct_within_18wk": 62.7,
+      "over_52wk": 1548,
+      "median_weeks": 13.1
     },
     {
       "code": "RM3",
       "name": "NORTHERN CARE ALLIANCE NHS FOUNDATION TRUST",
       "region": "North West",
-      "waiting_list": 133909,
-      "pct_within_18wk": 57.2,
-      "over_52wk": 3613,
-      "median_weeks": 15.2
+      "waiting_list": 134561,
+      "pct_within_18wk": 55.9,
+      "over_52wk": 3777,
+      "median_weeks": 15.0
     },
     {
       "code": "R1H",
       "name": "BARTS HEALTH NHS TRUST",
       "region": "London",
-      "waiting_list": 121533,
-      "pct_within_18wk": 63.9,
-      "over_52wk": 1095,
-      "median_weeks": 12.9
+      "waiting_list": 121618,
+      "pct_within_18wk": 63.8,
+      "over_52wk": 1030,
+      "median_weeks": 12.5
     },
     {
       "code": "RYR",
       "name": "UNIVERSITY HOSPITALS SUSSEX NHS FOUNDATION TRUST",
       "region": "South East",
-      "waiting_list": 116136,
-      "pct_within_18wk": 53.2,
-      "over_52wk": 4638,
-      "median_weeks": 16.5
+      "waiting_list": 117217,
+      "pct_within_18wk": 53.1,
+      "over_52wk": 5121,
+      "median_weeks": 16.2
     },
     {
       "code": "RWE",
       "name": "UNIVERSITY HOSPITALS OF LEICESTER NHS TRUST",
       "region": "Midlands",
-      "waiting_list": 115279,
-      "pct_within_18wk": 60.1,
-      "over_52wk": 2402,
-      "median_weeks": 14.0
+      "waiting_list": 116558,
+      "pct_within_18wk": 60.0,
+      "over_52wk": 2407,
+      "median_weeks": 13.7
     },
     {
       "code": "RJ1",
       "name": "GUY'S AND ST THOMAS' NHS FOUNDATION TRUST",
       "region": "London",
-      "waiting_list": 110502,
-      "pct_within_18wk": 68.7,
-      "over_52wk": 634,
-      "median_weeks": 10.9
+      "waiting_list": 109056,
+      "pct_within_18wk": 68.2,
+      "over_52wk": 723,
+      "median_weeks": 11.0
     },
     {
       "code": "RTG",
       "name": "UNIVERSITY HOSPITALS OF DERBY AND BURTON NHS FOUNDATION TRUST",
       "region": "Midlands",
-      "waiting_list": 96379,
-      "pct_within_18wk": 61.4,
-      "over_52wk": 1782,
-      "median_weeks": 13.4
+      "waiting_list": 99108,
+      "pct_within_18wk": 60.7,
+      "over_52wk": 2039,
+      "median_weeks": 13.2
+    },
+    {
+      "code": "RDE",
+      "name": "EAST SUFFOLK AND NORTH ESSEX NHS FOUNDATION TRUST",
+      "region": "East of England",
+      "waiting_list": 95757,
+      "pct_within_18wk": 59.7,
+      "over_52wk": 497,
+      "median_weeks": 13.8
     },
     {
       "code": "RRK",
       "name": "UNIVERSITY HOSPITALS BIRMINGHAM NHS FOUNDATION TRUST",
       "region": "Midlands",
-      "waiting_list": 93337,
-      "pct_within_18wk": 68.9,
-      "over_52wk": 262,
+      "waiting_list": 94792,
+      "pct_within_18wk": 67.2,
+      "over_52wk": 230,
       "median_weeks": 11.6
     },
     {
       "code": "RTH",
       "name": "OXFORD UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
       "region": "South East",
-      "waiting_list": 90587,
+      "waiting_list": 90597,
       "pct_within_18wk": 62.5,
-      "over_52wk": 1714,
-      "median_weeks": 13.3
+      "over_52wk": 1504,
+      "median_weeks": 12.9
     },
     {
       "code": "RJZ",
       "name": "KING'S COLLEGE HOSPITAL NHS FOUNDATION TRUST",
       "region": "London",
-      "waiting_list": 89950,
-      "pct_within_18wk": 67.5,
-      "over_52wk": 1708,
-      "median_weeks": 11.6
-    },
-    {
-      "code": "RDE",
-      "name": "EAST SUFFOLK AND NORTH ESSEX NHS FOUNDATION TRUST",
-      "region": "East of England",
-      "waiting_list": 89788,
-      "pct_within_18wk": 61.5,
-      "over_52wk": 63,
-      "median_weeks": 13.7
-    },
-    {
-      "code": "RTD",
-      "name": "THE NEWCASTLE UPON TYNE HOSPITALS NHS FOUNDATION TRUST",
-      "region": "North East and Yorkshire",
-      "waiting_list": 86942,
-      "pct_within_18wk": 74.6,
-      "over_52wk": 703,
-      "median_weeks": 9.4
+      "waiting_list": 89928,
+      "pct_within_18wk": 66.8,
+      "over_52wk": 1890,
+      "median_weeks": 11.8
     },
     {
       "code": "RR8",
       "name": "LEEDS TEACHING HOSPITALS NHS TRUST",
       "region": "North East and Yorkshire",
-      "waiting_list": 85753,
-      "pct_within_18wk": 68.4,
-      "over_52wk": 1402,
-      "median_weeks": 10.6
+      "waiting_list": 88602,
+      "pct_within_18wk": 67.8,
+      "over_52wk": 1471,
+      "median_weeks": 10.7
+    },
+    {
+      "code": "RTD",
+      "name": "THE NEWCASTLE UPON TYNE HOSPITALS NHS FOUNDATION TRUST",
+      "region": "North East and Yorkshire",
+      "waiting_list": 88477,
+      "pct_within_18wk": 73.9,
+      "over_52wk": 743,
+      "median_weeks": 9.6
     },
     {
       "code": "RWA",
       "name": "HULL UNIVERSITY TEACHING HOSPITALS NHS TRUST",
       "region": "North East and Yorkshire",
-      "waiting_list": 84186,
-      "pct_within_18wk": 56.8,
-      "over_52wk": 3188,
-      "median_weeks": 15.1
-    },
-    {
-      "code": "RYJ",
-      "name": "IMPERIAL COLLEGE HEALTHCARE NHS TRUST",
-      "region": "London",
-      "waiting_list": 84008,
-      "pct_within_18wk": 70.6,
-      "over_52wk": 28,
-      "median_weeks": 10.7
+      "waiting_list": 85759,
+      "pct_within_18wk": 56.0,
+      "over_52wk": 3331,
+      "median_weeks": 14.9
     },
     {
       "code": "RC9",
       "name": "BEDFORDSHIRE HOSPITALS NHS FOUNDATION TRUST",
       "region": "East of England",
-      "waiting_list": 82592,
+      "waiting_list": 85541,
       "pct_within_18wk": 59.1,
-      "over_52wk": 731,
-      "median_weeks": 14.6
-    },
-    {
-      "code": "RVV",
-      "name": "EAST KENT HOSPITALS UNIVERSITY NHS FOUNDATION TRUST",
-      "region": "South East",
-      "waiting_list": 82404,
-      "pct_within_18wk": 56.1,
-      "over_52wk": 2462,
-      "median_weeks": 15.5
+      "over_52wk": 998,
+      "median_weeks": 14.2
     },
     {
       "code": "RBN",
       "name": "MERSEY AND WEST LANCASHIRE TEACHING HOSPITALS NHS TRUST",
       "region": "North West",
-      "waiting_list": 81973,
-      "pct_within_18wk": 66.6,
-      "over_52wk": 1558,
+      "waiting_list": 84465,
+      "pct_within_18wk": 66.5,
+      "over_52wk": 1766,
       "median_weeks": 11.8
+    },
+    {
+      "code": "RYJ",
+      "name": "IMPERIAL COLLEGE HEALTHCARE NHS TRUST",
+      "region": "London",
+      "waiting_list": 83496,
+      "pct_within_18wk": 69.9,
+      "over_52wk": 26,
+      "median_weeks": 11.1
+    },
+    {
+      "code": "RVV",
+      "name": "EAST KENT HOSPITALS UNIVERSITY NHS FOUNDATION TRUST",
+      "region": "South East",
+      "waiting_list": 83107,
+      "pct_within_18wk": 55.2,
+      "over_52wk": 2648,
+      "median_weeks": 15.5
     },
     {
       "code": "R1K",
       "name": "LONDON NORTH WEST UNIVERSITY HEALTHCARE NHS TRUST",
       "region": "London",
-      "waiting_list": 81282,
-      "pct_within_18wk": 65.3,
-      "over_52wk": 543,
-      "median_weeks": 12.4
-    },
-    {
-      "code": "RX1",
-      "name": "NOTTINGHAM UNIVERSITY HOSPITALS NHS TRUST",
-      "region": "Midlands",
-      "waiting_list": 80092,
-      "pct_within_18wk": 67.2,
-      "over_52wk": 1702,
-      "median_weeks": 12.3
+      "waiting_list": 80601,
+      "pct_within_18wk": 66.1,
+      "over_52wk": 580,
+      "median_weeks": 12.0
     },
     {
       "code": "RRV",
       "name": "UNIVERSITY COLLEGE LONDON HOSPITALS NHS FOUNDATION TRUST",
       "region": "London",
-      "waiting_list": 77928,
-      "pct_within_18wk": 65.0,
-      "over_52wk": 890,
-      "median_weeks": 11.9
+      "waiting_list": 78841,
+      "pct_within_18wk": 65.3,
+      "over_52wk": 780,
+      "median_weeks": 11.8
+    },
+    {
+      "code": "RX1",
+      "name": "NOTTINGHAM UNIVERSITY HOSPITALS NHS TRUST",
+      "region": "Midlands",
+      "waiting_list": 78304,
+      "pct_within_18wk": 61.5,
+      "over_52wk": 1899,
+      "median_weeks": 14.0
     },
     {
       "code": "RGN",
       "name": "NORTH WEST ANGLIA NHS FOUNDATION TRUST",
       "region": "East of England",
-      "waiting_list": 76043,
-      "pct_within_18wk": 60.2,
-      "over_52wk": 330,
-      "median_weeks": 14.0
+      "waiting_list": 76053,
+      "pct_within_18wk": 59.6,
+      "over_52wk": 399,
+      "median_weeks": 13.6
     },
     {
       "code": "RH8",
       "name": "ROYAL DEVON UNIVERSITY HEALTHCARE NHS FOUNDATION TRUST",
       "region": "South West",
-      "waiting_list": 74068,
-      "pct_within_18wk": 63.6,
-      "over_52wk": 1538,
+      "waiting_list": 75545,
+      "pct_within_18wk": 63.3,
+      "over_52wk": 1616,
       "median_weeks": 12.4
-    },
-    {
-      "code": "RQM",
-      "name": "CHELSEA AND WESTMINSTER HOSPITAL NHS FOUNDATION TRUST",
-      "region": "London",
-      "waiting_list": 73615,
-      "pct_within_18wk": 67.9,
-      "over_52wk": 917,
-      "median_weeks": 12.6
-    },
-    {
-      "code": "RKB",
-      "name": "UNIVERSITY HOSPITALS COVENTRY AND WARWICKSHIRE NHS TRUST",
-      "region": "Midlands",
-      "waiting_list": 72193,
-      "pct_within_18wk": 57.9,
-      "over_52wk": 2279,
-      "median_weeks": 14.9
     },
     {
       "code": "RJE",
       "name": "UNIVERSITY HOSPITALS OF NORTH MIDLANDS NHS TRUST",
       "region": "Midlands",
-      "waiting_list": 72150,
-      "pct_within_18wk": 63.0,
-      "over_52wk": 1366,
-      "median_weeks": 13.1
+      "waiting_list": 74375,
+      "pct_within_18wk": 61.4,
+      "over_52wk": 1521,
+      "median_weeks": 13.0
+    },
+    {
+      "code": "RQM",
+      "name": "CHELSEA AND WESTMINSTER HOSPITAL NHS FOUNDATION TRUST",
+      "region": "London",
+      "waiting_list": 73258,
+      "pct_within_18wk": 68.1,
+      "over_52wk": 913,
+      "median_weeks": 12.1
     },
     {
       "code": "RL4",
       "name": "THE ROYAL WOLVERHAMPTON NHS TRUST",
       "region": "Midlands",
-      "waiting_list": 72008,
-      "pct_within_18wk": 62.1,
-      "over_52wk": 1214,
-      "median_weeks": 13.4
-    },
-    {
-      "code": "RM1",
-      "name": "NORFOLK AND NORWICH UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
-      "region": "East of England",
-      "waiting_list": 70643,
-      "pct_within_18wk": 62.4,
-      "over_52wk": 1888,
-      "median_weeks": 13.5
-    },
-    {
-      "code": "RWD",
-      "name": "UNITED LINCOLNSHIRE TEACHING HOSPITALS NHS TRUST",
-      "region": "Midlands",
-      "waiting_list": 70211,
-      "pct_within_18wk": 61.9,
-      "over_52wk": 1113,
-      "median_weeks": 13.9
-    },
-    {
-      "code": "RTE",
-      "name": "GLOUCESTERSHIRE HOSPITALS NHS FOUNDATION TRUST",
-      "region": "South West",
-      "waiting_list": 69868,
-      "pct_within_18wk": 73.5,
-      "over_52wk": 15,
-      "median_weeks": 10.3
+      "waiting_list": 70399,
+      "pct_within_18wk": 63.9,
+      "over_52wk": 1038,
+      "median_weeks": 12.7
     },
     {
       "code": "RJ7",
       "name": "ST GEORGE'S UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
       "region": "London",
-      "waiting_list": 69329,
-      "pct_within_18wk": 64.8,
-      "over_52wk": 570,
-      "median_weeks": 11.9
+      "waiting_list": 70262,
+      "pct_within_18wk": 64.6,
+      "over_52wk": 710,
+      "median_weeks": 12.2
+    },
+    {
+      "code": "RWD",
+      "name": "UNITED LINCOLNSHIRE TEACHING HOSPITALS NHS TRUST",
+      "region": "Midlands",
+      "waiting_list": 69786,
+      "pct_within_18wk": 62.3,
+      "over_52wk": 1064,
+      "median_weeks": 13.4
+    },
+    {
+      "code": "RTE",
+      "name": "GLOUCESTERSHIRE HOSPITALS NHS FOUNDATION TRUST",
+      "region": "South West",
+      "waiting_list": 69444,
+      "pct_within_18wk": 72.0,
+      "over_52wk": 25,
+      "median_weeks": 10.8
+    },
+    {
+      "code": "RKB",
+      "name": "UNIVERSITY HOSPITALS COVENTRY AND WARWICKSHIRE NHS TRUST",
+      "region": "Midlands",
+      "waiting_list": 68683,
+      "pct_within_18wk": 58.3,
+      "over_52wk": 2570,
+      "median_weeks": 14.3
     },
     {
       "code": "RF4",
       "name": "BARKING, HAVERING AND REDBRIDGE UNIVERSITY HOSPITALS NHS TRUST",
       "region": "London",
-      "waiting_list": 68898,
-      "pct_within_18wk": 68.7,
-      "over_52wk": 1034,
-      "median_weeks": 11.1
+      "waiting_list": 67654,
+      "pct_within_18wk": 68.6,
+      "over_52wk": 1243,
+      "median_weeks": 11.4
     },
     {
       "code": "R0D",
       "name": "UNIVERSITY HOSPITALS DORSET NHS FOUNDATION TRUST",
       "region": "South West",
-      "waiting_list": 67378,
-      "pct_within_18wk": 67.6,
-      "over_52wk": 672,
-      "median_weeks": 12.2
+      "waiting_list": 67365,
+      "pct_within_18wk": 66.8,
+      "over_52wk": 773,
+      "median_weeks": 12.1
     },
     {
       "code": "RXK",
       "name": "SANDWELL AND WEST BIRMINGHAM HOSPITALS NHS TRUST",
       "region": "Midlands",
-      "waiting_list": 66744,
+      "waiting_list": 67233,
+      "pct_within_18wk": 60.4,
+      "over_52wk": 368,
+      "median_weeks": 13.9
+    },
+    {
+      "code": "RM1",
+      "name": "NORFOLK AND NORWICH UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
+      "region": "East of England",
+      "waiting_list": 66449,
       "pct_within_18wk": 61.8,
-      "over_52wk": 291,
-      "median_weeks": 14.0
+      "over_52wk": 1877,
+      "median_weeks": 13.4
     },
     {
       "code": "RDU",
       "name": "FRIMLEY HEALTH NHS FOUNDATION TRUST",
       "region": "South East",
-      "waiting_list": 66289,
-      "pct_within_18wk": 62.0,
-      "over_52wk": 873,
-      "median_weeks": 13.1
+      "waiting_list": 65983,
+      "pct_within_18wk": 61.4,
+      "over_52wk": 936,
+      "median_weeks": 12.9
     },
     {
       "code": "RHM",
       "name": "UNIVERSITY HOSPITAL SOUTHAMPTON NHS FOUNDATION TRUST",
       "region": "South East",
-      "waiting_list": 63326,
-      "pct_within_18wk": 65.3,
-      "over_52wk": 1397,
-      "median_weeks": 11.7
+      "waiting_list": 64407,
+      "pct_within_18wk": 64.6,
+      "over_52wk": 1585,
+      "median_weeks": 11.8
     },
     {
       "code": "REM",
       "name": "LIVERPOOL UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
       "region": "North West",
-      "waiting_list": 62986,
-      "pct_within_18wk": 61.4,
-      "over_52wk": 773,
+      "waiting_list": 63031,
+      "pct_within_18wk": 60.7,
+      "over_52wk": 736,
       "median_weeks": 13.7
-    },
-    {
-      "code": "RXN",
-      "name": "LANCASHIRE TEACHING HOSPITALS NHS FOUNDATION TRUST",
-      "region": "North West",
-      "waiting_list": 60692,
-      "pct_within_18wk": 58.7,
-      "over_52wk": 666,
-      "median_weeks": 14.9
     },
     {
       "code": "R0B",
       "name": "SOUTH TYNESIDE AND SUNDERLAND NHS FOUNDATION TRUST",
       "region": "North East and Yorkshire",
-      "waiting_list": 59937,
-      "pct_within_18wk": 76.9,
-      "over_52wk": 0,
-      "median_weeks": 8.7
+      "waiting_list": 61880,
+      "pct_within_18wk": 75.8,
+      "over_52wk": 1,
+      "median_weeks": 8.8
+    },
+    {
+      "code": "RXN",
+      "name": "LANCASHIRE TEACHING HOSPITALS NHS FOUNDATION TRUST",
+      "region": "North West",
+      "waiting_list": 61033,
+      "pct_within_18wk": 58.9,
+      "over_52wk": 362,
+      "median_weeks": 14.2
     },
     {
       "code": "RGT",
       "name": "CAMBRIDGE UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
       "region": "East of England",
-      "waiting_list": 59372,
-      "pct_within_18wk": 65.0,
-      "over_52wk": 922,
+      "waiting_list": 60206,
+      "pct_within_18wk": 65.3,
+      "over_52wk": 838,
       "median_weeks": 11.5
     },
     {
       "code": "RWP",
       "name": "WORCESTERSHIRE ACUTE HOSPITALS NHS TRUST",
       "region": "Midlands",
-      "waiting_list": 58515,
-      "pct_within_18wk": 62.9,
-      "over_52wk": 611,
-      "median_weeks": 13.2
+      "waiting_list": 58986,
+      "pct_within_18wk": 61.7,
+      "over_52wk": 575,
+      "median_weeks": 13.4
     },
     {
       "code": "RHU",
       "name": "PORTSMOUTH HOSPITALS UNIVERSITY NHS TRUST",
       "region": "South East",
-      "waiting_list": 57558,
-      "pct_within_18wk": 61.1,
-      "over_52wk": 2072,
-      "median_weeks": 13.3
+      "waiting_list": 58058,
+      "pct_within_18wk": 61.0,
+      "over_52wk": 2045,
+      "median_weeks": 12.9
     },
     {
       "code": "RTR",
       "name": "SOUTH TEES HOSPITALS NHS FOUNDATION TRUST",
       "region": "North East and Yorkshire",
-      "waiting_list": 57203,
-      "pct_within_18wk": 66.5,
-      "over_52wk": 707,
-      "median_weeks": 11.7
+      "waiting_list": 57822,
+      "pct_within_18wk": 65.8,
+      "over_52wk": 741,
+      "median_weeks": 12.0
     },
     {
       "code": "RVR",
       "name": "EPSOM AND ST HELIER UNIVERSITY HOSPITALS NHS TRUST",
       "region": "London",
-      "waiting_list": 57011,
+      "waiting_list": 56820,
       "pct_within_18wk": 66.9,
-      "over_52wk": 514,
-      "median_weeks": 11.4
+      "over_52wk": 510,
+      "median_weeks": 11.5
     },
     {
       "code": "RCB",
       "name": "YORK AND SCARBOROUGH TEACHING HOSPITALS NHS FOUNDATION TRUST",
       "region": "North East and Yorkshire",
-      "waiting_list": 56474,
-      "pct_within_18wk": 59.0,
-      "over_52wk": 1087,
+      "waiting_list": 56760,
+      "pct_within_18wk": 58.5,
+      "over_52wk": 1163,
       "median_weeks": 14.0
-    },
-    {
-      "code": "RXC",
-      "name": "EAST SUSSEX HEALTHCARE NHS TRUST",
-      "region": "South East",
-      "waiting_list": 55945,
-      "pct_within_18wk": 68.5,
-      "over_52wk": 369,
-      "median_weeks": 10.7
     },
     {
       "code": "RXF",
       "name": "MID YORKSHIRE TEACHING NHS TRUST",
       "region": "North East and Yorkshire",
-      "waiting_list": 55551,
-      "pct_within_18wk": 65.5,
-      "over_52wk": 319,
-      "median_weeks": 11.9
+      "waiting_list": 56479,
+      "pct_within_18wk": 66.0,
+      "over_52wk": 308,
+      "median_weeks": 11.5
     },
     {
-      "code": "RP5",
-      "name": "DONCASTER AND BASSETLAW TEACHING HOSPITALS NHS FOUNDATION TRUST",
-      "region": "North East and Yorkshire",
-      "waiting_list": 54327,
-      "pct_within_18wk": 64.1,
-      "over_52wk": 1445,
-      "median_weeks": 12.2
+      "code": "RXC",
+      "name": "EAST SUSSEX HEALTHCARE NHS TRUST",
+      "region": "South East",
+      "waiting_list": 56051,
+      "pct_within_18wk": 69.0,
+      "over_52wk": 352,
+      "median_weeks": 10.7
     },
     {
       "code": "RTK",
       "name": "ASHFORD AND ST PETER'S HOSPITALS NHS FOUNDATION TRUST",
       "region": "South East",
-      "waiting_list": 54116,
-      "pct_within_18wk": 62.6,
-      "over_52wk": 735,
-      "median_weeks": 13.3
+      "waiting_list": 54977,
+      "pct_within_18wk": 61.8,
+      "over_52wk": 906,
+      "median_weeks": 13.6
+    },
+    {
+      "code": "RP5",
+      "name": "DONCASTER AND BASSETLAW TEACHING HOSPITALS NHS FOUNDATION TRUST",
+      "region": "North East and Yorkshire",
+      "waiting_list": 54941,
+      "pct_within_18wk": 63.6,
+      "over_52wk": 1626,
+      "median_weeks": 12.3
     },
     {
       "code": "RH5",
       "name": "SOMERSET NHS FOUNDATION TRUST",
       "region": "South West",
-      "waiting_list": 53524,
-      "pct_within_18wk": 65.2,
-      "over_52wk": 1310,
-      "median_weeks": 11.7
+      "waiting_list": 54854,
+      "pct_within_18wk": 64.9,
+      "over_52wk": 1474,
+      "median_weeks": 11.5
     },
     {
       "code": "RXP",
       "name": "COUNTY DURHAM AND DARLINGTON NHS FOUNDATION TRUST",
       "region": "North East and Yorkshire",
-      "waiting_list": 53479,
-      "pct_within_18wk": 65.5,
-      "over_52wk": 943,
-      "median_weeks": 11.7
-    },
-    {
-      "code": "RA7",
-      "name": "UNIVERSITY HOSPITALS BRISTOL AND WESTON NHS FOUNDATION TRUST",
-      "region": "South West",
-      "waiting_list": 50868,
-      "pct_within_18wk": 68.9,
-      "over_52wk": 442,
-      "median_weeks": 10.7
-    },
-    {
-      "code": "RWF",
-      "name": "MAIDSTONE AND TUNBRIDGE WELLS NHS TRUST",
-      "region": "South East",
-      "waiting_list": 50748,
-      "pct_within_18wk": 73.5,
-      "over_52wk": 11,
-      "median_weeks": 10.2
+      "waiting_list": 54409,
+      "pct_within_18wk": 65.4,
+      "over_52wk": 1199,
+      "median_weeks": 11.6
     },
     {
       "code": "RTP",
       "name": "SURREY AND SUSSEX HEALTHCARE NHS TRUST",
       "region": "South East",
-      "waiting_list": 50672,
-      "pct_within_18wk": 66.0,
-      "over_52wk": 1025,
-      "median_weeks": 11.7
+      "waiting_list": 51721,
+      "pct_within_18wk": 65.2,
+      "over_52wk": 1137,
+      "median_weeks": 12.1
+    },
+    {
+      "code": "RWF",
+      "name": "MAIDSTONE AND TUNBRIDGE WELLS NHS TRUST",
+      "region": "South East",
+      "waiting_list": 50736,
+      "pct_within_18wk": 73.0,
+      "over_52wk": 2,
+      "median_weeks": 10.9
     },
     {
       "code": "RN5",
       "name": "HAMPSHIRE HOSPITALS NHS FOUNDATION TRUST",
       "region": "South East",
-      "waiting_list": 50470,
-      "pct_within_18wk": 65.1,
-      "over_52wk": 1293,
-      "median_weeks": 11.5
-    },
-    {
-      "code": "RXQ",
-      "name": "BUCKINGHAMSHIRE HEALTHCARE NHS TRUST",
-      "region": "South East",
-      "waiting_list": 47773,
-      "pct_within_18wk": 64.2,
-      "over_52wk": 50,
-      "median_weeks": 13.4
-    },
-    {
-      "code": "RK9",
-      "name": "UNIVERSITY HOSPITALS PLYMOUTH NHS TRUST",
-      "region": "South West",
-      "waiting_list": 47271,
-      "pct_within_18wk": 67.4,
-      "over_52wk": 717,
-      "median_weeks": 11.1
+      "waiting_list": 49240,
+      "pct_within_18wk": 64.9,
+      "over_52wk": 1273,
+      "median_weeks": 11.9
     },
     {
       "code": "RNA",
       "name": "THE DUDLEY GROUP NHS FOUNDATION TRUST",
       "region": "Midlands",
-      "waiting_list": 47261,
-      "pct_within_18wk": 65.0,
-      "over_52wk": 24,
-      "median_weeks": 11.9
+      "waiting_list": 48052,
+      "pct_within_18wk": 63.9,
+      "over_52wk": 17,
+      "median_weeks": 12.5
+    },
+    {
+      "code": "RXQ",
+      "name": "BUCKINGHAMSHIRE HEALTHCARE NHS TRUST",
+      "region": "South East",
+      "waiting_list": 47659,
+      "pct_within_18wk": 63.7,
+      "over_52wk": 46,
+      "median_weeks": 13.3
     },
     {
       "code": "RXR",
       "name": "EAST LANCASHIRE HOSPITALS NHS TRUST",
       "region": "North West",
-      "waiting_list": 47178,
-      "pct_within_18wk": 72.0,
-      "over_52wk": 224,
-      "median_weeks": 9.5
-    },
-    {
-      "code": "RBL",
-      "name": "WIRRAL UNIVERSITY TEACHING HOSPITAL NHS FOUNDATION TRUST",
-      "region": "North West",
-      "waiting_list": 45369,
-      "pct_within_18wk": 65.4,
-      "over_52wk": 322,
-      "median_weeks": 12.0
+      "waiting_list": 47031,
+      "pct_within_18wk": 72.1,
+      "over_52wk": 223,
+      "median_weeks": 9.0
     },
     {
       "code": "RWG",
       "name": "WEST HERTFORDSHIRE TEACHING HOSPITALS NHS TRUST",
       "region": "East of England",
-      "waiting_list": 44946,
-      "pct_within_18wk": 69.9,
-      "over_52wk": 350,
-      "median_weeks": 11.6
+      "waiting_list": 44482,
+      "pct_within_18wk": 70.1,
+      "over_52wk": 374,
+      "median_weeks": 11.7
     },
     {
       "code": "REF",
       "name": "ROYAL CORNWALL HOSPITALS NHS TRUST",
       "region": "South West",
-      "waiting_list": 43280,
-      "pct_within_18wk": 74.3,
-      "over_52wk": 463,
-      "median_weeks": 8.8
+      "waiting_list": 44275,
+      "pct_within_18wk": 74.0,
+      "over_52wk": 487,
+      "median_weeks": 8.9
+    },
+    {
+      "code": "RBL",
+      "name": "WIRRAL UNIVERSITY TEACHING HOSPITAL NHS FOUNDATION TRUST",
+      "region": "North West",
+      "waiting_list": 44108,
+      "pct_within_18wk": 65.2,
+      "over_52wk": 308,
+      "median_weeks": 11.8
     },
     {
       "code": "RN3",
       "name": "GREAT WESTERN HOSPITALS NHS FOUNDATION TRUST",
       "region": "South West",
-      "waiting_list": 42881,
-      "pct_within_18wk": 56.9,
-      "over_52wk": 1091,
-      "median_weeks": 15.1
-    },
-    {
-      "code": "RVJ",
-      "name": "NORTH BRISTOL NHS TRUST",
-      "region": "South West",
-      "waiting_list": 42365,
-      "pct_within_18wk": 71.5,
-      "over_52wk": 55,
-      "median_weeks": 9.8
+      "waiting_list": 42820,
+      "pct_within_18wk": 57.9,
+      "over_52wk": 1082,
+      "median_weeks": 14.3
     },
     {
       "code": "RJL",
       "name": "NORTHERN LINCOLNSHIRE AND GOOLE NHS FOUNDATION TRUST",
       "region": "North East and Yorkshire",
-      "waiting_list": 42014,
-      "pct_within_18wk": 61.6,
-      "over_52wk": 1218,
-      "median_weeks": 13.3
-    },
-    {
-      "code": "RXL",
-      "name": "BLACKPOOL TEACHING HOSPITALS NHS FOUNDATION TRUST",
-      "region": "North West",
-      "waiting_list": 40413,
-      "pct_within_18wk": 59.2,
-      "over_52wk": 1101,
-      "median_weeks": 14.4
+      "waiting_list": 42583,
+      "pct_within_18wk": 59.8,
+      "over_52wk": 1408,
+      "median_weeks": 13.4
     },
     {
       "code": "RP6",
       "name": "MOORFIELDS EYE HOSPITAL NHS FOUNDATION TRUST",
       "region": "London",
-      "waiting_list": 39641,
-      "pct_within_18wk": 84.9,
-      "over_52wk": 13,
+      "waiting_list": 41904,
+      "pct_within_18wk": 84.7,
+      "over_52wk": 21,
       "median_weeks": 7.4
-    },
-    {
-      "code": "RTF",
-      "name": "NORTHUMBRIA HEALTHCARE NHS FOUNDATION TRUST",
-      "region": "North East and Yorkshire",
-      "waiting_list": 39619,
-      "pct_within_18wk": 83.9,
-      "over_52wk": 0,
-      "median_weeks": 9.1
     },
     {
       "code": "RD1",
       "name": "ROYAL UNITED HOSPITALS BATH NHS FOUNDATION TRUST",
       "region": "South West",
-      "waiting_list": 39606,
-      "pct_within_18wk": 70.4,
-      "over_52wk": 133,
+      "waiting_list": 41031,
+      "pct_within_18wk": 70.6,
+      "over_52wk": 155,
       "median_weeks": 11.5
+    },
+    {
+      "code": "RXL",
+      "name": "BLACKPOOL TEACHING HOSPITALS NHS FOUNDATION TRUST",
+      "region": "North West",
+      "waiting_list": 40794,
+      "pct_within_18wk": 57.8,
+      "over_52wk": 1123,
+      "median_weeks": 14.3
     },
     {
       "code": "RNS",
       "name": "NORTHAMPTON GENERAL HOSPITAL NHS TRUST",
       "region": "Midlands",
-      "waiting_list": 39604,
-      "pct_within_18wk": 61.3,
-      "over_52wk": 374,
-      "median_weeks": 14.3
+      "waiting_list": 39940,
+      "pct_within_18wk": 60.6,
+      "over_52wk": 293,
+      "median_weeks": 13.9
+    },
+    {
+      "code": "RTF",
+      "name": "NORTHUMBRIA HEALTHCARE NHS FOUNDATION TRUST",
+      "region": "North East and Yorkshire",
+      "waiting_list": 39442,
+      "pct_within_18wk": 83.9,
+      "over_52wk": 0,
+      "median_weeks": 9.0
     },
     {
       "code": "RQW",
       "name": "THE PRINCESS ALEXANDRA HOSPITAL NHS TRUST",
       "region": "East of England",
-      "waiting_list": 38558,
-      "pct_within_18wk": 68.7,
-      "over_52wk": 433,
-      "median_weeks": 11.5
-    },
-    {
-      "code": "RMC",
-      "name": "BOLTON NHS FOUNDATION TRUST",
-      "region": "North West",
-      "waiting_list": 37808,
-      "pct_within_18wk": 61.0,
-      "over_52wk": 444,
-      "median_weeks": 13.8
-    },
-    {
-      "code": "RJ6",
-      "name": "CROYDON HEALTH SERVICES NHS TRUST",
-      "region": "London",
-      "waiting_list": 37031,
-      "pct_within_18wk": 72.6,
-      "over_52wk": 721,
-      "median_weeks": 10.5
+      "waiting_list": 38992,
+      "pct_within_18wk": 68.5,
+      "over_52wk": 427,
+      "median_weeks": 11.8
     },
     {
       "code": "RD8",
       "name": "MILTON KEYNES UNIVERSITY HOSPITAL NHS FOUNDATION TRUST",
       "region": "East of England",
-      "waiting_list": 36206,
-      "pct_within_18wk": 61.0,
-      "over_52wk": 977,
-      "median_weeks": 14.2
+      "waiting_list": 37528,
+      "pct_within_18wk": 58.8,
+      "over_52wk": 982,
+      "median_weeks": 14.5
     },
     {
-      "code": "RWY",
-      "name": "CALDERDALE AND HUDDERSFIELD NHS FOUNDATION TRUST",
-      "region": "North East and Yorkshire",
-      "waiting_list": 35682,
-      "pct_within_18wk": 75.5,
-      "over_52wk": 8,
-      "median_weeks": 9.4
+      "code": "RJ6",
+      "name": "CROYDON HEALTH SERVICES NHS TRUST",
+      "region": "London",
+      "waiting_list": 37338,
+      "pct_within_18wk": 72.9,
+      "over_52wk": 711,
+      "median_weeks": 10.7
+    },
+    {
+      "code": "RMC",
+      "name": "BOLTON NHS FOUNDATION TRUST",
+      "region": "North West",
+      "waiting_list": 37306,
+      "pct_within_18wk": 61.0,
+      "over_52wk": 580,
+      "median_weeks": 13.5
     },
     {
       "code": "RTX",
       "name": "UNIVERSITY HOSPITALS OF MORECAMBE BAY NHS FOUNDATION TRUST",
       "region": "North West",
-      "waiting_list": 35626,
-      "pct_within_18wk": 70.7,
-      "over_52wk": 666,
-      "median_weeks": 10.2
-    },
-    {
-      "code": "RHW",
-      "name": "ROYAL BERKSHIRE NHS FOUNDATION TRUST",
-      "region": "South East",
-      "waiting_list": 35155,
-      "pct_within_18wk": 84.4,
-      "over_52wk": 27,
-      "median_weeks": 9.2
-    },
-    {
-      "code": "RPA",
-      "name": "MEDWAY NHS FOUNDATION TRUST",
-      "region": "South East",
-      "waiting_list": 34991,
-      "pct_within_18wk": 60.8,
-      "over_52wk": 558,
-      "median_weeks": 14.2
+      "waiting_list": 36259,
+      "pct_within_18wk": 68.6,
+      "over_52wk": 688,
+      "median_weeks": 10.5
     },
     {
       "code": "RNN",
       "name": "NORTH CUMBRIA INTEGRATED CARE NHS FOUNDATION TRUST",
       "region": "North East and Yorkshire",
-      "waiting_list": 34908,
-      "pct_within_18wk": 66.9,
-      "over_52wk": 397,
-      "median_weeks": 11.9
+      "waiting_list": 35424,
+      "pct_within_18wk": 66.1,
+      "over_52wk": 386,
+      "median_weeks": 12.1
+    },
+    {
+      "code": "RPA",
+      "name": "MEDWAY NHS FOUNDATION TRUST",
+      "region": "South East",
+      "waiting_list": 35231,
+      "pct_within_18wk": 58.0,
+      "over_52wk": 727,
+      "median_weeks": 14.6
+    },
+    {
+      "code": "RHW",
+      "name": "ROYAL BERKSHIRE NHS FOUNDATION TRUST",
+      "region": "South East",
+      "waiting_list": 34892,
+      "pct_within_18wk": 83.3,
+      "over_52wk": 34,
+      "median_weeks": 9.6
+    },
+    {
+      "code": "RWY",
+      "name": "CALDERDALE AND HUDDERSFIELD NHS FOUNDATION TRUST",
+      "region": "North East and Yorkshire",
+      "waiting_list": 34861,
+      "pct_within_18wk": 76.2,
+      "over_52wk": 8,
+      "median_weeks": 9.2
     },
     {
       "code": "RWJ",
       "name": "STOCKPORT NHS FOUNDATION TRUST",
       "region": "North West",
-      "waiting_list": 34544,
+      "waiting_list": 34684,
       "pct_within_18wk": 62.2,
-      "over_52wk": 160,
-      "median_weeks": 13.3
-    },
-    {
-      "code": "RGR",
-      "name": "WEST SUFFOLK NHS FOUNDATION TRUST",
-      "region": "East of England",
-      "waiting_list": 33330,
-      "pct_within_18wk": 65.6,
-      "over_52wk": 564,
-      "median_weeks": 12.0
-    },
-    {
-      "code": "RAS",
-      "name": "THE HILLINGDON HOSPITALS NHS FOUNDATION TRUST",
-      "region": "London",
-      "waiting_list": 33277,
-      "pct_within_18wk": 64.2,
-      "over_52wk": 113,
-      "median_weeks": 12.9
+      "over_52wk": 146,
+      "median_weeks": 12.7
     },
     {
       "code": "RK5",
       "name": "SHERWOOD FOREST HOSPITALS NHS FOUNDATION TRUST",
       "region": "Midlands",
-      "waiting_list": 32753,
-      "pct_within_18wk": 64.8,
-      "over_52wk": 399,
+      "waiting_list": 33453,
+      "pct_within_18wk": 64.0,
+      "over_52wk": 475,
       "median_weeks": 12.3
+    },
+    {
+      "code": "RGR",
+      "name": "WEST SUFFOLK NHS FOUNDATION TRUST",
+      "region": "East of England",
+      "waiting_list": 33152,
+      "pct_within_18wk": 65.7,
+      "over_52wk": 574,
+      "median_weeks": 12.2
+    },
+    {
+      "code": "RAS",
+      "name": "THE HILLINGDON HOSPITALS NHS FOUNDATION TRUST",
+      "region": "London",
+      "waiting_list": 32942,
+      "pct_within_18wk": 63.8,
+      "over_52wk": 108,
+      "median_weeks": 12.5
     },
     {
       "code": "RJR",
       "name": "COUNTESS OF CHESTER HOSPITAL NHS FOUNDATION TRUST",
       "region": "North West",
-      "waiting_list": 32730,
-      "pct_within_18wk": 67.5,
-      "over_52wk": 237,
-      "median_weeks": 11.6
+      "waiting_list": 32138,
+      "pct_within_18wk": 67.6,
+      "over_52wk": 239,
+      "median_weeks": 11.2
     },
     {
       "code": "RAE",
       "name": "BRADFORD TEACHING HOSPITALS NHS FOUNDATION TRUST",
       "region": "North East and Yorkshire",
-      "waiting_list": 31606,
-      "pct_within_18wk": 69.3,
-      "over_52wk": 55,
-      "median_weeks": 10.9
-    },
-    {
-      "code": "RGP",
-      "name": "JAMES PAGET UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
-      "region": "East of England",
-      "waiting_list": 31349,
-      "pct_within_18wk": 60.1,
-      "over_52wk": 1089,
-      "median_weeks": 13.9
+      "waiting_list": 31412,
+      "pct_within_18wk": 68.5,
+      "over_52wk": 44,
+      "median_weeks": 11.3
     },
     {
       "code": "RJC",
       "name": "SOUTH WARWICKSHIRE UNIVERSITY NHS FOUNDATION TRUST",
       "region": "Midlands",
-      "waiting_list": 31289,
-      "pct_within_18wk": 69.3,
-      "over_52wk": 264,
-      "median_weeks": 10.7
-    },
-    {
-      "code": "RN7",
-      "name": "DARTFORD AND GRAVESHAM NHS TRUST",
-      "region": "South East",
-      "waiting_list": 30461,
-      "pct_within_18wk": 61.0,
-      "over_52wk": 846,
-      "median_weeks": 13.6
-    },
-    {
-      "code": "RNZ",
-      "name": "SALISBURY NHS FOUNDATION TRUST",
-      "region": "South West",
-      "waiting_list": 29733,
-      "pct_within_18wk": 72.5,
-      "over_52wk": 84,
-      "median_weeks": 10.7
-    },
-    {
-      "code": "RFR",
-      "name": "THE ROTHERHAM NHS FOUNDATION TRUST",
-      "region": "North East and Yorkshire",
-      "waiting_list": 29599,
-      "pct_within_18wk": 70.6,
-      "over_52wk": 400,
-      "median_weeks": 10.8
-    },
-    {
-      "code": "RBK",
-      "name": "WALSALL HEALTHCARE NHS TRUST",
-      "region": "Midlands",
-      "waiting_list": 27966,
-      "pct_within_18wk": 74.8,
-      "over_52wk": 4,
-      "median_weeks": 9.5
+      "waiting_list": 31237,
+      "pct_within_18wk": 68.3,
+      "over_52wk": 312,
+      "median_weeks": 11.3
     },
     {
       "code": "RNQ",
       "name": "KETTERING GENERAL HOSPITAL NHS FOUNDATION TRUST",
       "region": "Midlands",
-      "waiting_list": 27712,
-      "pct_within_18wk": 65.6,
-      "over_52wk": 72,
-      "median_weeks": 12.3
+      "waiting_list": 31176,
+      "pct_within_18wk": 67.6,
+      "over_52wk": 84,
+      "median_weeks": 11.7
+    },
+    {
+      "code": "RGP",
+      "name": "JAMES PAGET UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
+      "region": "East of England",
+      "waiting_list": 31065,
+      "pct_within_18wk": 60.7,
+      "over_52wk": 959,
+      "median_weeks": 13.4
+    },
+    {
+      "code": "RN7",
+      "name": "DARTFORD AND GRAVESHAM NHS TRUST",
+      "region": "South East",
+      "waiting_list": 29972,
+      "pct_within_18wk": 60.1,
+      "over_52wk": 851,
+      "median_weeks": 13.5
+    },
+    {
+      "code": "RNZ",
+      "name": "SALISBURY NHS FOUNDATION TRUST",
+      "region": "South West",
+      "waiting_list": 29788,
+      "pct_within_18wk": 71.0,
+      "over_52wk": 118,
+      "median_weeks": 11.0
+    },
+    {
+      "code": "RFR",
+      "name": "THE ROTHERHAM NHS FOUNDATION TRUST",
+      "region": "North East and Yorkshire",
+      "waiting_list": 29510,
+      "pct_within_18wk": 69.0,
+      "over_52wk": 444,
+      "median_weeks": 11.1
+    },
+    {
+      "code": "RBK",
+      "name": "WALSALL HEALTHCARE NHS TRUST",
+      "region": "Midlands",
+      "waiting_list": 27855,
+      "pct_within_18wk": 73.8,
+      "over_52wk": 15,
+      "median_weeks": 9.8
     },
     {
       "code": "RLQ",
       "name": "WYE VALLEY NHS TRUST",
       "region": "Midlands",
-      "waiting_list": 27486,
-      "pct_within_18wk": 63.8,
-      "over_52wk": 638,
-      "median_weeks": 12.9
+      "waiting_list": 27798,
+      "pct_within_18wk": 63.3,
+      "over_52wk": 740,
+      "median_weeks": 12.6
     },
     {
       "code": "RFS",
       "name": "CHESTERFIELD ROYAL HOSPITAL NHS FOUNDATION TRUST",
       "region": "Midlands",
-      "waiting_list": 27020,
-      "pct_within_18wk": 62.9,
-      "over_52wk": 568,
-      "median_weeks": 12.6
+      "waiting_list": 26876,
+      "pct_within_18wk": 63.2,
+      "over_52wk": 509,
+      "median_weeks": 12.2
     },
     {
       "code": "RQX",
       "name": "HOMERTON HEALTHCARE NHS FOUNDATION TRUST",
       "region": "London",
-      "waiting_list": 26863,
-      "pct_within_18wk": 75.4,
-      "over_52wk": 164,
+      "waiting_list": 26141,
+      "pct_within_18wk": 73.6,
+      "over_52wk": 122,
       "median_weeks": 9.2
     },
     {
       "code": "RCX",
       "name": "THE QUEEN ELIZABETH HOSPITAL, KING'S LYNN, NHS FOUNDATION TRUST",
       "region": "East of England",
-      "waiting_list": 25086,
-      "pct_within_18wk": 62.8,
-      "over_52wk": 373,
-      "median_weeks": 13.0
+      "waiting_list": 24150,
+      "pct_within_18wk": 64.3,
+      "over_52wk": 277,
+      "median_weeks": 12.0
     },
     {
       "code": "RVW",
       "name": "NORTH TEES AND HARTLEPOOL NHS FOUNDATION TRUST",
       "region": "North East and Yorkshire",
-      "waiting_list": 23080,
-      "pct_within_18wk": 71.5,
-      "over_52wk": 230,
+      "waiting_list": 23668,
+      "pct_within_18wk": 71.2,
+      "over_52wk": 173,
       "median_weeks": 10.5
-    },
-    {
-      "code": "RKE",
-      "name": "WHITTINGTON HEALTH NHS TRUST",
-      "region": "London",
-      "waiting_list": 22839,
-      "pct_within_18wk": 68.3,
-      "over_52wk": 81,
-      "median_weeks": 11.3
     },
     {
       "code": "RBD",
       "name": "DORSET COUNTY HOSPITAL NHS FOUNDATION TRUST",
       "region": "South West",
-      "waiting_list": 22644,
-      "pct_within_18wk": 60.5,
-      "over_52wk": 399,
+      "waiting_list": 23380,
+      "pct_within_18wk": 60.0,
+      "over_52wk": 379,
+      "median_weeks": 13.7
+    },
+    {
+      "code": "RKE",
+      "name": "WHITTINGTON HEALTH NHS TRUST",
+      "region": "London",
+      "waiting_list": 22907,
+      "pct_within_18wk": 68.3,
+      "over_52wk": 83,
+      "median_weeks": 11.1
+    },
+    {
+      "code": "RQ3",
+      "name": "BIRMINGHAM WOMEN'S AND CHILDREN'S NHS FOUNDATION TRUST",
+      "region": "Midlands",
+      "waiting_list": 22274,
+      "pct_within_18wk": 65.7,
+      "over_52wk": 113,
+      "median_weeks": 11.7
+    },
+    {
+      "code": "RPC",
+      "name": "QUEEN VICTORIA HOSPITAL NHS FOUNDATION TRUST",
+      "region": "South East",
+      "waiting_list": 21977,
+      "pct_within_18wk": 61.0,
+      "over_52wk": 223,
       "median_weeks": 13.8
     },
     {
       "code": "RFF",
       "name": "BARNSLEY HOSPITAL NHS FOUNDATION TRUST",
       "region": "North East and Yorkshire",
-      "waiting_list": 21978,
-      "pct_within_18wk": 71.2,
-      "over_52wk": 99,
-      "median_weeks": 10.5
-    },
-    {
-      "code": "RPC",
-      "name": "QUEEN VICTORIA HOSPITAL NHS FOUNDATION TRUST",
-      "region": "South East",
-      "waiting_list": 21893,
-      "pct_within_18wk": 62.3,
-      "over_52wk": 228,
-      "median_weeks": 13.8
-    },
-    {
-      "code": "RQ3",
-      "name": "BIRMINGHAM WOMEN'S AND CHILDREN'S NHS FOUNDATION TRUST",
-      "region": "Midlands",
-      "waiting_list": 21543,
-      "pct_within_18wk": 65.9,
-      "over_52wk": 105,
-      "median_weeks": 12.4
+      "waiting_list": 21760,
+      "pct_within_18wk": 70.6,
+      "over_52wk": 112,
+      "median_weeks": 10.7
     },
     {
       "code": "RCD",
       "name": "HARROGATE AND DISTRICT NHS FOUNDATION TRUST",
       "region": "North East and Yorkshire",
-      "waiting_list": 21377,
-      "pct_within_18wk": 75.9,
-      "over_52wk": 3,
-      "median_weeks": 9.2
+      "waiting_list": 21345,
+      "pct_within_18wk": 73.6,
+      "over_52wk": 12,
+      "median_weeks": 9.5
     },
     {
       "code": "RLT",
       "name": "GEORGE ELIOT HOSPITAL NHS TRUST",
       "region": "Midlands",
-      "waiting_list": 19369,
-      "pct_within_18wk": 64.5,
-      "over_52wk": 101,
-      "median_weeks": 12.3
-    },
-    {
-      "code": "RJN",
-      "name": "EAST CHESHIRE NHS TRUST",
-      "region": "North West",
-      "waiting_list": 17182,
-      "pct_within_18wk": 60.6,
-      "over_52wk": 414,
-      "median_weeks": 14.1
+      "waiting_list": 19328,
+      "pct_within_18wk": 64.3,
+      "over_52wk": 98,
+      "median_weeks": 12.1
     },
     {
       "code": "RBS",
       "name": "ALDER HEY CHILDREN'S NHS FOUNDATION TRUST",
       "region": "North West",
-      "waiting_list": 17095,
-      "pct_within_18wk": 69.2,
-      "over_52wk": 227,
-      "median_weeks": 11.3
+      "waiting_list": 17351,
+      "pct_within_18wk": 67.7,
+      "over_52wk": 197,
+      "median_weeks": 11.5
     },
     {
       "code": "RMP",
       "name": "TAMESIDE AND GLOSSOP INTEGRATED CARE NHS FOUNDATION TRUST",
       "region": "North West",
-      "waiting_list": 16793,
-      "pct_within_18wk": 78.3,
+      "waiting_list": 16714,
+      "pct_within_18wk": 78.2,
       "over_52wk": 0,
-      "median_weeks": 8.7
+      "median_weeks": 8.5
     },
     {
-      "code": "RET",
-      "name": "THE WALTON CENTRE NHS FOUNDATION TRUST",
+      "code": "RJN",
+      "name": "EAST CHESHIRE NHS TRUST",
       "region": "North West",
-      "waiting_list": 14881,
-      "pct_within_18wk": 66.4,
-      "over_52wk": 262,
-      "median_weeks": 11.4
+      "waiting_list": 16489,
+      "pct_within_18wk": 62.4,
+      "over_52wk": 304,
+      "median_weeks": 13.2
     },
     {
       "code": "RCF",
       "name": "AIREDALE NHS FOUNDATION TRUST",
       "region": "North East and Yorkshire",
-      "waiting_list": 14155,
-      "pct_within_18wk": 71.0,
-      "over_52wk": 63,
-      "median_weeks": 10.3
+      "waiting_list": 14618,
+      "pct_within_18wk": 71.4,
+      "over_52wk": 46,
+      "median_weeks": 10.0
+    },
+    {
+      "code": "RET",
+      "name": "THE WALTON CENTRE NHS FOUNDATION TRUST",
+      "region": "North West",
+      "waiting_list": 14567,
+      "pct_within_18wk": 66.8,
+      "over_52wk": 214,
+      "median_weeks": 11.4
     },
     {
       "code": "R1F",
       "name": "ISLE OF WIGHT NHS TRUST",
       "region": "South East",
-      "waiting_list": 12768,
-      "pct_within_18wk": 64.2,
-      "over_52wk": 98,
-      "median_weeks": 11.8
-    },
-    {
-      "code": "REP",
-      "name": "LIVERPOOL WOMEN'S NHS FOUNDATION TRUST",
-      "region": "North West",
-      "waiting_list": 11700,
-      "pct_within_18wk": 63.8,
-      "over_52wk": 171,
-      "median_weeks": 13.0
+      "waiting_list": 12927,
+      "pct_within_18wk": 65.8,
+      "over_52wk": 81,
+      "median_weeks": 11.5
     },
     {
       "code": "RR7",
       "name": "GATESHEAD HEALTH NHS FOUNDATION TRUST",
       "region": "North East and Yorkshire",
-      "waiting_list": 11492,
-      "pct_within_18wk": 78.2,
-      "over_52wk": 2,
-      "median_weeks": 8.2
+      "waiting_list": 11674,
+      "pct_within_18wk": 77.2,
+      "over_52wk": 5,
+      "median_weeks": 8.3
+    },
+    {
+      "code": "REP",
+      "name": "LIVERPOOL WOMEN'S NHS FOUNDATION TRUST",
+      "region": "North West",
+      "waiting_list": 11643,
+      "pct_within_18wk": 63.9,
+      "over_52wk": 103,
+      "median_weeks": 12.8
     },
     {
       "code": "RCU",
       "name": "SHEFFIELD CHILDREN'S NHS FOUNDATION TRUST",
       "region": "North East and Yorkshire",
-      "waiting_list": 11355,
-      "pct_within_18wk": 74.3,
-      "over_52wk": 143,
-      "median_weeks": 9.4
+      "waiting_list": 11619,
+      "pct_within_18wk": 72.7,
+      "over_52wk": 136,
+      "median_weeks": 9.9
     },
     {
       "code": "RAN",
       "name": "ROYAL NATIONAL ORTHOPAEDIC HOSPITAL NHS TRUST",
       "region": "London",
-      "waiting_list": 8908,
-      "pct_within_18wk": 75.9,
-      "over_52wk": 9,
-      "median_weeks": 8.6
+      "waiting_list": 8961,
+      "pct_within_18wk": 77.0,
+      "over_52wk": 11,
+      "median_weeks": 8.5
     },
     {
       "code": "RP4",
       "name": "GREAT ORMOND STREET HOSPITAL FOR CHILDREN NHS FOUNDATION TRUST",
       "region": "London",
-      "waiting_list": 8382,
-      "pct_within_18wk": 73.2,
-      "over_52wk": 232,
-      "median_weeks": 10.3
+      "waiting_list": 8433,
+      "pct_within_18wk": 72.1,
+      "over_52wk": 236,
+      "median_weeks": 10.9
     },
     {
       "code": "RGM",
       "name": "ROYAL PAPWORTH HOSPITAL NHS FOUNDATION TRUST",
       "region": "East of England",
-      "waiting_list": 5670,
-      "pct_within_18wk": 80.3,
-      "over_52wk": 32,
-      "median_weeks": 8.0
+      "waiting_list": 5921,
+      "pct_within_18wk": 80.5,
+      "over_52wk": 37,
+      "median_weeks": 8.2
     },
     {
       "code": "RBQ",
       "name": "LIVERPOOL HEART AND CHEST HOSPITAL NHS FOUNDATION TRUST",
       "region": "North West",
-      "waiting_list": 5667,
-      "pct_within_18wk": 78.5,
-      "over_52wk": 25,
-      "median_weeks": 8.6
+      "waiting_list": 5591,
+      "pct_within_18wk": 78.1,
+      "over_52wk": 27,
+      "median_weeks": 8.5
     },
     {
       "code": "RBV",
       "name": "THE CHRISTIE NHS FOUNDATION TRUST",
       "region": "North West",
-      "waiting_list": 3125,
+      "waiting_list": 3368,
       "pct_within_18wk": 97.3,
       "over_52wk": 0,
       "median_weeks": 3.8
@@ -1100,68 +1073,68 @@
       "code": "RPY",
       "name": "THE ROYAL MARSDEN NHS FOUNDATION TRUST",
       "region": "London",
-      "waiting_list": 1874,
-      "pct_within_18wk": 94.1,
+      "waiting_list": 1719,
+      "pct_within_18wk": 93.3,
       "over_52wk": 0,
-      "median_weeks": 3.7
+      "median_weeks": 4.3
     }
   ],
   "regions": [
     {
       "region": "East of England",
       "trust_count": 13,
-      "waiting_list": 759209,
-      "pct_within_18wk": 60.0,
-      "over_52wk": 20239,
-      "median_weeks": 14.1
+      "waiting_list": 764716,
+      "pct_within_18wk": 59.7,
+      "over_52wk": 21343,
+      "median_weeks": 13.8
     },
     {
       "region": "London",
       "trust_count": 19,
-      "waiting_list": 1152401,
-      "pct_within_18wk": 67.6,
-      "over_52wk": 10856,
+      "waiting_list": 1151606,
+      "pct_within_18wk": 67.4,
+      "over_52wk": 11245,
       "median_weeks": 11.5
     },
     {
       "region": "Midlands",
       "trust_count": 20,
-      "waiting_list": 1098911,
-      "pct_within_18wk": 63.5,
-      "over_52wk": 15571,
-      "median_weeks": 13.1
+      "waiting_list": 1106213,
+      "pct_within_18wk": 62.7,
+      "over_52wk": 16367,
+      "median_weeks": 13.0
     },
     {
       "region": "North East and Yorkshire",
       "trust_count": 21,
-      "waiting_list": 910717,
-      "pct_within_18wk": 68.4,
-      "over_52wk": 12412,
-      "median_weeks": 11.0
+      "waiting_list": 923045,
+      "pct_within_18wk": 67.8,
+      "over_52wk": 13357,
+      "median_weeks": 11.2
     },
     {
       "region": "North West",
       "trust_count": 19,
-      "waiting_list": 866569,
-      "pct_within_18wk": 63.7,
-      "over_52wk": 12300,
-      "median_weeks": 12.9
+      "waiting_list": 868782,
+      "pct_within_18wk": 63.3,
+      "over_52wk": 12183,
+      "median_weeks": 12.6
     },
     {
       "region": "South East",
       "trust_count": 17,
-      "waiting_list": 921292,
-      "pct_within_18wk": 63.0,
-      "over_52wk": 18396,
+      "waiting_list": 924752,
+      "pct_within_18wk": 62.4,
+      "over_52wk": 19471,
       "median_weeks": 13.0
     },
     {
       "region": "South West",
-      "trust_count": 12,
-      "waiting_list": 583486,
-      "pct_within_18wk": 67.8,
-      "over_52wk": 6919,
-      "median_weeks": 11.3
+      "trust_count": 9,
+      "waiting_list": 448502,
+      "pct_within_18wk": 66.9,
+      "over_52wk": 6109,
+      "median_weeks": 11.6
     }
   ],
   "history": [
@@ -1191,6 +1164,13 @@
       "waiting_list": 6292585,
       "pct_within_18wk": 64.9,
       "over_52wk": 96693,
+      "median_weeks": 12.3
+    },
+    {
+      "period": "2026-07",
+      "waiting_list": 6187616,
+      "pct_within_18wk": 64.3,
+      "over_52wk": 100075,
       "median_weeks": 12.3
     }
   ]
