@@ -726,6 +726,40 @@ h1 .dot { -webkit-text-fill-color: var(--brand-text); }
 @media (prefers-reduced-motion: reduce) { .page-glow span, h1 { animation: none; } }
 
 /* Missing months in trend charts */
+/* Phones: simpler versions of the size chart and the all-trusts table */
+.scatter-mobile, .mobile-list, .mobile-sort, .mobile-more { display: none; }
+@media (max-width: 640px) {
+  .scatter-desktop { display: none !important; }
+  .scatter-mobile { display: block; }
+  #trustTable, #tableSection .table-card, #regionFilterControl, #trustFilterControl { display: none !important; }
+  .mobile-sort { display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; color: var(--text-secondary); }
+  .mobile-sort select {
+    font: inherit; font-weight: 700; color: var(--text-primary); background: var(--surface-2);
+    border: 1px solid var(--border); border-radius: 999px; padding: 7px 12px;
+  }
+  .mobile-list { display: grid; gap: 10px; }
+  .mobile-more:not([hidden]) { display: flex; margin: 14px auto 0; }
+  .table-controls .search-box { max-width: none; flex: 1 1 100%; }
+}
+.mcard {
+  border: 1px solid var(--border); border-radius: 14px; padding: 13px 14px; background: var(--surface-2);
+  display: grid; gap: 10px; cursor: pointer;
+}
+.mcard.is-pinned { border-color: var(--brand); background: var(--brand-wash); }
+.mcard-head { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.mcard-name { font-weight: 700; font-size: 14px; line-height: 1.3; color: var(--text-primary); min-width: 0; }
+.mcard-region { font-size: 11.5px; color: var(--text-muted); font-weight: 600; white-space: nowrap; }
+.mcard-figs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.mcard-figs small { display: block; font-size: 10.5px; color: var(--text-muted); font-weight: 600; margin-bottom: 2px; }
+.mcard-figs b { font-family: var(--font-display); font-variation-settings: "SOFT" 100, "WONK" 0; font-weight: 600; font-size: 17px; font-variant-numeric: tabular-nums; color: var(--text-primary); }
+.mcard-figs .change-cell { display: block; font-size: 11px; margin-top: 2px; }
+.mbar { display: flex; height: 16px; border-radius: 999px; overflow: hidden; margin: 14px 0 10px; background: var(--gridline); }
+.mbar span { display: block; height: 100%; }
+.mbar-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; font-size: 12.5px; color: var(--text-secondary); }
+.mbar-legend div { display: flex; align-items: center; gap: 7px; }
+.mbar-legend i { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; display: inline-block; }
+.mbar-legend b { color: var(--text-primary); font-variant-numeric: tabular-nums; }
+.mobile-note { font-size: 12.5px; color: var(--text-secondary); line-height: 1.55; margin: 12px 0 0; }
 .lc-target-halo { paint-order: stroke; stroke: var(--surface-2); stroke-width: 4px; stroke-linejoin: round; }
 .lc-missing-line { stroke: var(--status-critical); stroke-width: 2; stroke-dasharray: 4,4; fill: none; }
 .lc-missing-dot { fill: var(--surface-2); stroke: var(--status-critical); stroke-width: 2; }
@@ -964,15 +998,16 @@ h1 .dot { -webkit-text-fill-color: var(--brand-text); }
     <div class="trend-card">
       <div class="chart-title">Is a longer wait explained by a bigger waiting list?</div>
       <div class="chart-note" id="scatterNote" hidden></div>
-      <div class="lc-wrap"><svg class="linechart" id="chartScatter" style="height:300px;"></svg><div class="lc-tooltip scatter-tooltip" id="ttScatter"></div></div>
-      <div class="scatter-legend">
+      <div class="scatter-mobile" id="scatterMobile"></div>
+      <div class="lc-wrap scatter-desktop"><svg class="linechart" id="chartScatter" style="height:300px;"></svg><div class="lc-tooltip scatter-tooltip" id="ttScatter"></div></div>
+      <div class="scatter-legend scatter-desktop">
         <div class="scatter-legend-item"><span class="scatter-legend-swatch" style="background:var(--status-good)"></span>Clearly shorter wait than expected</div>
         <div class="scatter-legend-item"><span class="scatter-legend-swatch" style="background:var(--status-critical)"></span>Clearly longer wait than expected</div>
         <div class="scatter-legend-item"><span class="scatter-legend-swatch" style="background:var(--baseline)"></span>Within the normal range</div>
         <div class="scatter-legend-item"><span class="scatter-legend-swatch" style="background:transparent;border:1.5px solid var(--text-muted)"></span>Specialist trust (not compared)</div>
         <div class="scatter-legend-item">- - - Expected wait, with the normal range shaded</div>
       </div>
-      <div class="explainer" id="scatterExplainer"></div>
+      <div class="explainer scatter-desktop" id="scatterExplainer"></div>
     </div>
 
     <div class="trend-card" style="margin-top: 16px;">
@@ -1023,6 +1058,16 @@ h1 .dot { -webkit-text-fill-color: var(--brand-text); }
             <div class="filter-options" id="trustFilterOptions"></div>
           </div>
         </div>
+        <label class="mobile-sort" for="mobileSort">Sort by
+          <select id="mobileSort">
+            <option value="waiting_list:-1">Most people waiting</option>
+            <option value="pct_within_18wk:-1">Highest % under 18 weeks</option>
+            <option value="pct_within_18wk:1">Lowest % under 18 weeks</option>
+            <option value="pct_change:-1">Biggest improvement</option>
+            <option value="median_weeks:-1">Longest median wait</option>
+            <option value="name:1">Name (A to Z)</option>
+          </select>
+        </label>
         <button class="clear-filters-btn" id="clearFiltersBtn" type="button" style="display:none;">Clear all filters</button>
       </div>
       <span class="result-count" id="resultCount"></span>
@@ -1049,6 +1094,8 @@ h1 .dot { -webkit-text-fill-color: var(--brand-text); }
         </table>
       </div>
     </div>
+    <div class="mobile-list" id="mobileList"></div>
+    <button class="filter-btn mobile-more" id="mobileMore" type="button" hidden>Show more trusts</button>
       </div>
     </details>
   </section>
@@ -1808,6 +1855,20 @@ function renderScatterAnalysis() {
         <div class="rank-row-delta ${isGood ? "is-good" : "is-bad"}">${t.residual > 0 ? "+" : ""}${t.residual.toFixed(1)} wks</div>
       </div>`).join("");
   }
+  // Phones get a simple count of where trusts fall instead of the scatter.
+  const counts = [
+    { label: "Clearly shorter wait", n: general.filter(t => t.flag === "shorter").length, colour: "var(--status-good)" },
+    { label: "Within the normal range", n: general.filter(t => !t.flag).length, colour: "var(--baseline)" },
+    { label: "Clearly longer wait", n: general.filter(t => t.flag === "longer").length, colour: "var(--status-critical)" },
+    { label: "Specialist (not compared)", n: pts.filter(isSpecialist).length, colour: "var(--text-muted)" },
+  ];
+  const totalN = counts.reduce((a, c) => a + c.n, 0) || 1;
+  document.getElementById("scatterMobile").innerHTML =
+    `<div class="mbar" role="img" aria-label="${counts.map(c => `${c.n} ${c.label.toLowerCase()}`).join(", ")}">` +
+    counts.map(c => c.n ? `<span style="width:${(100 * c.n / totalN).toFixed(2)}%;background:${c.colour}"></span>` : "").join("") + `</div>` +
+    `<div class="mbar-legend">${counts.map(c => `<div><i style="background:${c.colour}"></i><span><b>${c.n}</b> ${c.label}</span></div>`).join("")}</div>` +
+    `<p class="mobile-note">Each trust's median wait is compared with what you'd expect for a trust with that many people waiting. The trusts outside the normal range are listed below. The full chart is easier to read on a laptop or PC.</p>`;
+
   renderRankList("rankBelowList", flagged.filter(t => t.flag === "shorter").sort((x, y) => x.residual - y.residual), true);
   renderRankList("rankAboveList", flagged.filter(t => t.flag === "longer").sort((x, y) => y.residual - x.residual), false);
 }
@@ -1940,6 +2001,35 @@ document.getElementById("clearFiltersBtn").addEventListener("click", () => {
   renderTable(); updateClearFiltersVisibility();
 });
 
+let mobileShown = 20;
+function renderMobileList(rows) {
+  const list = document.getElementById("mobileList");
+  const shown = rows.slice(0, mobileShown);
+  list.innerHTML = shown.map(t => `
+    <div class="mcard${t.code === pinnedCode ? " is-pinned" : ""}" data-code="${t.code}" role="button" tabindex="0" aria-label="Follow ${properCase(t.name).replace(/"/g, "&quot;")}">
+      <div class="mcard-head"><span class="mcard-name">${properCase(t.name)}</span><span class="mcard-region">${t.region || ""}</span></div>
+      <div class="mcard-figs">
+        <div><small>People waiting</small><b>${fmtCompact(t.waiting_list)}</b></div>
+        <div><small>Under 18 weeks</small><b>${fmtPct(t.pct_within_18wk)}</b>${changeCell(t.pct_change)}</div>
+        <div><small>Median wait</small><b>${fmtWeeks(t.median_weeks)} wks</b></div>
+      </div>
+    </div>`).join("") || `<div class="mobile-note">No trusts match your search.</div>`;
+  list.querySelectorAll(".mcard").forEach(card => {
+    const pick = () => setPinned(card.dataset.code === pinnedCode ? null : card.dataset.code, true);
+    card.addEventListener("click", pick);
+    card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); } });
+  });
+  const more = document.getElementById("mobileMore");
+  more.hidden = rows.length <= mobileShown;
+  more.textContent = `Show more trusts (${rows.length - shown.length} more)`;
+}
+document.getElementById("mobileMore").addEventListener("click", () => { mobileShown += 20; renderTable(); });
+document.getElementById("mobileSort").addEventListener("change", e => {
+  const [key, dir] = e.target.value.split(":");
+  sortKey = key; sortDir = Number(dir); mobileShown = 20;
+  renderTable();
+});
+
 function renderTable() {
   const tbody = document.getElementById("trustTableBody");
   const needle = filterText.toLowerCase();
@@ -1962,6 +2052,7 @@ function renderTable() {
   });
 
   document.getElementById("resultCount").textContent = `${rows.length} of ${trusts.length} trusts`;
+  renderMobileList(rows);
 
   tbody.innerHTML = rows.map((t, i) => `
     <tr data-code="${t.code}" class="${t.code === pinnedCode ? "is-pinned" : ""}" title="Click to follow this trust">
@@ -2010,6 +2101,7 @@ document.querySelectorAll("#trustTable thead th").forEach(th => {
 
 document.getElementById("searchBox").addEventListener("input", (e) => {
   filterText = e.target.value;
+  mobileShown = 20;
   renderTable();
   updateClearFiltersVisibility();
 });
