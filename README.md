@@ -1,84 +1,106 @@
-# NHS England RTT Dashboard — Acute Trusts
+# NHS England waiting times: acute trusts
 
-A live dashboard tracking NHS England's Referral to Treatment (RTT) waiting
-times for England's acute NHS trusts, refreshed automatically every month.
+A public dashboard of NHS England's referral to treatment (RTT) waiting times for England's acute NHS trusts. It shows how long people are waiting, how that is changing, and how each trust compares with its region and with similar trusts.
 
 **Live dashboard:** https://fahdrehman.github.io/NHS-rtt-dashboard-data/
 
+This is an independent project by Fahd Rehman. It is not linked to any NHS body and is not an official source of NHS statistics.
+
 ## What it shows
 
-- **Headline figures** — % of patients waiting within 18 weeks, total waiting
-  list size, estimated median wait, and the number of patients waiting over
-  52 weeks, all for England's acute trusts combined.
-- **National trend** — how those figures have moved over the last few months.
-- **Average wait time by region** — acute trusts grouped into NHS England's
-  7 administrative regions (London, Midlands, North West, North East and
-  Yorkshire, East of England, South East, South West), compared by median
-  wait.
-- **Trust-by-trust comparison** — a searchable, sortable, filterable table
-  of every acute trust, with the same metrics broken out individually.
+**At a glance**
+- The share of people waiting under 18 weeks, against the 70% milestone for March 2027 and the 92% constitutional standard due by 2029.
+- People waiting, the median wait, and the number waiting over 52, 65 and 78 weeks.
+- A plain-English summary of the month, which follows the region selected.
+- Monthly trends since April 2024.
+
+**Find a trust**
+- Search for any acute trust to see its figures, its change on the previous month and its own trend.
+- A comparison with its region, with the 10 most similar-sized trusts of the same type, and with England.
+- A share button that copies a link to a one-page summary of that trust. When the link is pasted into WhatsApp, Teams, LinkedIn or email, it shows a preview card with the trust's figures.
+
+**Explore the detail** (collapsed by default)
+- **Regions:** median wait and long waits across NHS England's seven regions.
+- **Waits compared with trust size:** each trust's median wait against the wait expected for a trust with that many people waiting.
+- **All trusts:** a sortable, filterable table of every acute trust.
+
+The size comparison and the full table are designed for a PC, Mac or tablet. On phones these two sections show a note with buttons to share or copy the link.
 
 ## Data source
 
-Figures are built from NHS England's monthly Referral to Treatment (RTT)
-["Full CSV" data extract](https://www.england.nhs.uk/statistics/statistical-work-areas/rtt-waiting-times/),
-published roughly two weeks after the end of each reporting month.
+NHS England's monthly RTT "Full CSV data file", published on the [RTT waiting times statistics pages](https://www.england.nhs.uk/statistics/statistical-work-areas/rtt-waiting-times/), usually on the second Thursday of each month for the month two months earlier.
 
-## Methodology
+## Method
 
-- Filtered to **Incomplete Pathways** rows only — this is the current
-  waiting list (as opposed to completed pathways or new referrals), and is
-  what NHS England's own headline "% within 18 weeks" figure is based on.
-- NHS's extract includes a pre-computed rollup row per provider
-  (`Treatment Function Code = 999`) that duplicates the sum of that
-  provider's real specialty rows. These rollup rows are explicitly excluded
-  before aggregating — left in, they silently double every total.
-- **Median wait** is estimated by linear interpolation across NHS's
-  published weekly waiting-time bands (NHS doesn't publish an exact median,
-  only counts within 1-week bands).
-- **Acute trust list** — NHS's raw data doesn't tag provider type, so this
-  dashboard uses a maintained reference list of ~135 acute NHS trusts
-  (`data/acute_trusts.csv`) to separate acute trusts from mental health,
-  community, and independent-sector providers. Trust mergers or renames may
-  occasionally need a manual update to this list.
-- **Region mapping** — each acute trust is matched by name to one of NHS
-  England's 7 administrative regions (`data/trust_regions.csv`). This is a
-  best-effort mapping based on each trust's real headquarters location.
-- **Trend history** — the dashboard keeps a rolling window of the most
-  recent months' figures to chart trends over time; older months are
-  backfilled automatically the first few times the pipeline runs.
+**What is counted**
+- Only "incomplete pathways", meaning people still waiting to start treatment. This is the basis of NHS England's own 18-week figure.
+- NHS England's extract includes a total row for each provider (treatment function code 999) that repeats the sum of its specialty rows. These are removed before adding up, otherwise every total would double.
+- The median wait is estimated by linear interpolation across the published one-week waiting bands, as NHS England does not publish an exact median.
 
-## How it stays up to date
+**Which trusts are included**
+- NHS England's data does not label provider type, so `data/acute_trusts.csv` lists the acute trusts to include, matched on NHS organisation code so that renamed trusts still match. It also holds each trust's region and whether it is a general or specialist trust.
+- Merged trusts are recorded with the code they merged into (for example, North Bristol into Bristol NHS Foundation Trust), so their figures stay comparable across the merger.
+- Trusts on the list that did not submit data for the latest month are named on the dashboard rather than silently dropped.
+- `data/providers_seen.json` lists every provider in the latest extract, so the list can be checked when trusts merge or new ones appear.
 
-1. A [GitHub Actions workflow](.github/workflows/update-rtt.yml) runs on the
-   15th, 20th, and 25th of each month, checks for a new NHS RTT release, and
-   commits the refreshed figures to `data/rtt_summary.json`.
-2. The dashboard page (`docs/index.html`) is a static page that fetches
-   `data/rtt_summary.json` live, in the visitor's browser, every time it's
-   opened — so it's always showing the latest committed figures without
-   needing to be rebuilt or redeployed.
+**Month-on-month changes**
+- Changes compare only trusts that reported in both months, with merged trusts combined. Without this, a trust that stops sending data makes the totals fall even though nothing has changed. In July 2026, for example, the reported England waiting list fell by about 7,600, but at the same trusts it rose by about 39,700.
+- Small movements are shown as "no real change" rather than as a rise or fall: under 0.3 percentage points for the 18-week figure, 0.2 weeks for the median wait, and 0.5% for counts.
+- Months when a trust stopped or started reporting are noted in the chart tooltips. Months with no data for a trust appear as a red point and dashed line rather than a break in its trend.
+
+**Comparing trusts of different sizes**
+- Bigger waiting lists tend to mean longer waits, so the median wait is fitted against the log of the waiting list across general acute trusts.
+- Specialist trusts (children's, eye, orthopaedic, cancer, heart, neurosciences, women's and plastics; 16 in total) treat a different mix of patients, so they are shown but not compared with the line. In the "Find a trust" comparison they are only compared with other specialist trusts.
+- A trust is flagged only if it falls outside the normal range, where about 95 in 100 trusts would be expected to sit. This replaces a top-five and bottom-five league table, which would always name ten trusts whether or not they really stood out.
+
+## How it is updated
+
+NHS England's website now shows a browser check to automated requests, so the workflow cannot find each month's download link by itself. The update is split in two:
+
+1. **Finding the link.** A scheduled task runs on my own computer four times a day from the 8th to the 20th of each month. It checks whether the dashboard already has the latest month and, if not, opens the NHS England page in a normal browser, finds the new "Full CSV data file" link and starts the GitHub workflow with it. If the new month has not appeared by the 20th, it sends a notification instead.
+2. **Processing the data.** The [GitHub Actions workflow](.github/workflows/update-rtt.yml) downloads the file, runs `scripts/fetch_and_process_rtt.py`, rebuilds the preview cards with `scripts/build_share_cards.py`, and commits the results. GitHub Pages then republishes the site.
+
+The dashboard page fetches `data/rtt_summary.json` each time it is opened, so it always shows the latest figures without being rebuilt.
+
+**Running an update by hand:** on GitHub, open Actions, choose "Update NHS RTT data", then "Run workflow", and paste the month's "Full CSV data file" link from the NHS England page. Several links separated by spaces can be pasted at once to rebuild earlier months.
+
+**Running locally:**
+
+```
+pip install -r requirements.txt
+RTT_ZIP_URL="<full CSV zip link>" python scripts/fetch_and_process_rtt.py
+python scripts/build_share_cards.py
+```
 
 ## Repository structure
 
 ```
-scripts/fetch_and_process_rtt.py   the data pipeline (download, clean, aggregate)
-data/acute_trusts.csv              reference list of acute NHS trusts
-data/trust_regions.csv             trust → NHS England region mapping
-data/rtt_summary.json              latest computed figures (auto-generated)
-docs/index.html                    the dashboard page (served via GitHub Pages)
-.github/workflows/update-rtt.yml   the monthly automation
+docs/index.html                     the dashboard (served by GitHub Pages)
+docs/og/                            link-preview images, one per trust plus England
+docs/t/                             share pages that carry each preview and open the trust summary
+data/rtt_summary.json               figures used by the dashboard (generated)
+data/bands_latest.json              latest month's waiting bands per trust, kept for next month's comparison (generated)
+data/acute_trusts.csv               acute trust list: code, name, region, merger, general or specialist
+data/providers_seen.json            every provider in the latest extract (generated)
+data/unmatched_nhs_trust_providers.json   NHS trusts in the extract that are not on the acute list (generated)
+scripts/fetch_and_process_rtt.py    downloads and processes the NHS England extract
+scripts/build_share_cards.py        builds the preview images and share pages
+scripts/fonts/                      Fraunces and Manrope, with their licences
+.github/workflows/update-rtt.yml    the update workflow
 ```
 
 ## Limitations
 
-- Figures are England-only, acute trusts only — mental health, community,
-  ambulance, and independent-sector providers are excluded from trust- and
-  region-level figures (though still counted in NHS's raw national totals).
-- Median wait is an estimate, not an exact figure, since NHS publishes
-  banded (not individual) wait times.
-- The acute trust list and region mapping are maintained manually and may
-  lag behind trust mergers, renames, or reorganisations.
+- England only, and acute trusts only. Mental health, community and independent-sector providers are excluded.
+- The median wait is an estimate from banded data.
+- Trusts that stop submitting data are missing for those months. Changes are adjusted for this, but the reported totals in the trend charts are not.
+- The size comparison uses a single month and a simple model. Waiting-list size explains only part of the difference between trusts, so a flag is a prompt for questions rather than a verdict.
+- The acute trust list is maintained by hand and may need updating after mergers.
+
+## Design
+
+The dashboard shares its look with [fahd.uk](https://www.fahd.uk): Fraunces for headings and figures, Manrope for text, and the same light and dark colour schemes. Both fonts are from Google Fonts under the SIL Open Font Licence.
 
 ## Credit
 
-Dashboard created by Fahd Rehman.
+Created by Fahd Rehman · [fahd.uk](https://www.fahd.uk)
