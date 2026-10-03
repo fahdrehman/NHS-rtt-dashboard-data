@@ -499,6 +499,15 @@
   .focus-kpis .kpi-tile { box-shadow: none; padding: 14px 12px 12px; }
   .focus-kpis .kpi-value { font-size: 24px; }
   .focus-section-label { font-size: 12px; font-weight: 700; color: var(--text-secondary); margin: 18px 0 8px; }
+  .share-note {
+    margin-top: 10px; padding: 10px 12px; border-radius: 8px; font-size: 12.5px; line-height: 1.55;
+    background: var(--status-good-wash); color: var(--text-secondary); border: 1px solid var(--border);
+  }
+  .share-note strong { color: var(--status-good); }
+  .share-note input {
+    width: 100%; margin-top: 6px; border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px;
+    font: inherit; font-size: 12px; background: var(--surface-2); color: var(--text-primary);
+  }
   .pin-mark { color: var(--series-1); margin-right: 6px; font-size: 11px; }
   #trustTable tbody tr { cursor: pointer; }
   #trustTable tbody tr.is-pinned td { background-color: var(--series-1-soft); }
@@ -609,9 +618,10 @@
       <div class="focus-head">
         <input class="search-box" id="focusInput" type="text" list="focusTrustList" placeholder="Type a trust name to follow it…" autocomplete="off">
         <datalist id="focusTrustList"></datalist>
-        <button class="filter-btn" id="focusShare" type="button" hidden>Copy link to this trust</button>
+        <button class="filter-btn" id="focusShare" type="button" hidden>Share a link to this trust</button>
         <button class="clear-filters-btn" id="focusClear" type="button" hidden>Stop following</button>
       </div>
+      <div class="share-note" id="focusShareNote" hidden></div>
       <div class="chart-note" id="focusEmpty" style="margin:12px 0 4px;">Pick a trust to see its trend and how it compares with its region and with trusts of a similar size. It stays highlighted in the charts and table below, and is remembered on this device. You can also click any row in the trust table.</div>
       <div id="focusBody" hidden>
         <div class="focus-title"><span class="focus-name" id="focusName"></span><span class="focus-region" id="focusRegion"></span></div>
@@ -1751,6 +1761,7 @@ function renderFocus() {
   document.getElementById("focusClear").hidden = !t;
   document.getElementById("focusShare").hidden = !t;
   body.hidden = !t;
+  document.getElementById("focusShareNote").hidden = true;
   if (!t) { focusInput.value = ""; return; }
   focusInput.value = properCase(t.name);
 
@@ -1835,11 +1846,26 @@ focusInput.addEventListener("input", () => {
 });
 focusInput.addEventListener("focus", () => focusInput.select());
 document.getElementById("focusClear").addEventListener("click", () => setPinned(null, false));
+let shareNoteTimer = null;
 document.getElementById("focusShare").addEventListener("click", () => {
-  const btn = document.getElementById("focusShare");
-  const done = msg => { btn.textContent = msg; setTimeout(() => { btn.textContent = "Copy link to this trust"; }, 1800); };
-  if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(() => done("Link copied"), () => done("Copy failed"));
-  else done("Copy the address bar link");
+  const link = location.href;
+  const note = document.getElementById("focusShareNote");
+  const t = trusts.find(x => x.code === pinnedCode);
+  const name = t ? properCase(t.name) : "this trust";
+  const show = copied => {
+    note.innerHTML = (copied
+      ? `<strong>Link copied.</strong> Paste it into an email or message. It opens this dashboard with ${name} already selected.`
+      : `Copy this link to share it. It opens this dashboard with ${name} already selected.`)
+      + `<input type="text" readonly value="${link.replace(/"/g, "&quot;")}">`;
+    note.hidden = false;
+    const input = note.querySelector("input");
+    input.addEventListener("focus", () => input.select());
+    if (!copied) input.select();
+    clearTimeout(shareNoteTimer);
+    shareNoteTimer = setTimeout(() => { note.hidden = true; }, 12000);
+  };
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(link).then(() => show(true), () => show(false));
+  else show(false);
 });
 wireTooltip(document.getElementById("fChartPct18"), document.getElementById("fTtPct18"));
 wireTooltip(document.getElementById("fChartWl"), document.getElementById("fTtWl"));
