@@ -30,11 +30,14 @@ jobs:
         env:
           RTT_ZIP_URL: ${{ inputs.csv_zip_url }}
 
+      - name: Build link-preview images and share pages
+        run: python scripts/build_share_cards.py
+
       - name: Commit updated data (if any)
         run: |
           git config user.name "rtt-data-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/
+          git add data/ docs/og docs/t
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else

@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NHS England RTT Dashboard — Acute Trusts</title>
+<meta name="description" content="Monthly referral to treatment waiting times for England's acute NHS trusts, with trends, regional figures and trust comparisons.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NHS England RTT waiting times: acute trusts dashboard">
+<meta property="og:description" content="Monthly referral to treatment waiting times for England's acute NHS trusts, with trends, regional figures and trust comparisons.">
+<meta property="og:url" content="https://fahdrehman.github.io/NHS-rtt-dashboard-data/">
+<meta property="og:image" content="https://fahdrehman.github.io/NHS-rtt-dashboard-data/og/england.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   :root {
     color-scheme: light;
@@ -502,6 +511,8 @@
   /* Summary mode: a shared link shows only the followed trust's panel */
   .summary-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin: 0 2px 16px; }
   .summary-head[hidden] { display: none; }
+  .summary-head .byline { font-size: 12.5px; }
+  .summary-head .byline strong { font-weight: 600; color: var(--text-secondary); }
   .summary-kicker { font-size: 12.5px; color: var(--text-muted); font-weight: 600; margin-bottom: 4px; }
   .summary-head a.filter-btn { text-decoration: none; }
   body.summary-mode .wrap { max-width: 980px; }
@@ -1867,10 +1878,9 @@ focusInput.addEventListener("focus", () => focusInput.select());
 document.getElementById("focusClear").addEventListener("click", () => setPinned(null, false));
 let shareNoteTimer = null;
 document.getElementById("focusShare").addEventListener("click", () => {
-  const u = new URL(location.href);
-  u.search = ""; u.hash = "";
-  u.searchParams.set("trust", pinnedCode); u.searchParams.set("view", "summary");
-  const link = u.toString();
+  // Each trust has a small share page carrying its preview image for
+  // WhatsApp, Teams and email; it forwards on to the one-page summary.
+  const link = new URL(`t/${encodeURIComponent(pinnedCode)}.html`, location.href.split(/[?#]/)[0]).toString();
   const note = document.getElementById("focusShareNote");
   const t = trusts.find(x => x.code === pinnedCode);
   const name = t ? properCase(t.name) : "this trust";
