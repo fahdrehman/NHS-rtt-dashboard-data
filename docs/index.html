@@ -499,6 +499,17 @@
   .focus-kpis .kpi-tile { box-shadow: none; padding: 14px 12px 12px; }
   .focus-kpis .kpi-value { font-size: 24px; }
   .focus-section-label { font-size: 12px; font-weight: 700; color: var(--text-secondary); margin: 18px 0 8px; }
+  /* Summary mode: a shared link shows only the followed trust's panel */
+  .summary-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin: 0 2px 16px; }
+  .summary-head[hidden] { display: none; }
+  .summary-kicker { font-size: 12.5px; color: var(--text-muted); font-weight: 600; margin-bottom: 4px; }
+  .summary-head a.filter-btn { text-decoration: none; }
+  body.summary-mode .wrap { max-width: 980px; }
+  body.summary-mode .wrap > :not(#summaryHead):not(#focusSection) { display: none !important; }
+  body.summary-mode #focusSection > h2, body.summary-mode .focus-head,
+  body.summary-mode #focusEmpty, body.summary-mode #focusShareNote { display: none !important; }
+  body.summary-mode .focus-title { margin-top: 0; }
+  body.summary-mode .focus-name { font-size: 20px; }
   .share-note {
     margin-top: 10px; padding: 10px 12px; border-radius: 8px; font-size: 12.5px; line-height: 1.55;
     background: var(--status-good-wash); color: var(--text-secondary); border: 1px solid var(--border);
@@ -544,6 +555,14 @@
 </head>
 <body>
 <div class="wrap">
+
+  <div class="summary-head" id="summaryHead" hidden>
+    <div>
+      <div class="summary-kicker">NHS England RTT waiting times · <span id="summaryPeriod"></span></div>
+      <div class="byline">Dashboard by <strong>Fahd Rehman</strong><span class="sep">·</span><a href="https://www.fahd.uk" target="_blank" rel="noopener">www.fahd.uk</a></div>
+    </div>
+    <a class="filter-btn" id="summaryFullLink" href="./">Open the full dashboard</a>
+  </div>
 
   <div class="top-strip">
     <div class="meta-row">
@@ -1848,14 +1867,17 @@ focusInput.addEventListener("focus", () => focusInput.select());
 document.getElementById("focusClear").addEventListener("click", () => setPinned(null, false));
 let shareNoteTimer = null;
 document.getElementById("focusShare").addEventListener("click", () => {
-  const link = location.href;
+  const u = new URL(location.href);
+  u.search = ""; u.hash = "";
+  u.searchParams.set("trust", pinnedCode); u.searchParams.set("view", "summary");
+  const link = u.toString();
   const note = document.getElementById("focusShareNote");
   const t = trusts.find(x => x.code === pinnedCode);
   const name = t ? properCase(t.name) : "this trust";
   const show = copied => {
     note.innerHTML = (copied
-      ? `<strong>Link copied.</strong> Paste it into an email or message. It opens this dashboard with ${name} already selected.`
-      : `Copy this link to share it. It opens this dashboard with ${name} already selected.`)
+      ? `<strong>Link copied.</strong> Paste it into an email or message. It opens a one-page summary for ${name}, with a button to the full dashboard.`
+      : `Copy this link to share it. It opens a one-page summary for ${name}, with a button to the full dashboard.`)
       + `<input type="text" readonly value="${link.replace(/"/g, "&quot;")}">`;
     note.hidden = false;
     const input = note.querySelector("input");
@@ -1870,6 +1892,15 @@ document.getElementById("focusShare").addEventListener("click", () => {
 wireTooltip(document.getElementById("fChartPct18"), document.getElementById("fTtPct18"));
 wireTooltip(document.getElementById("fChartWl"), document.getElementById("fTtWl"));
 renderFocus();
+
+if (new URLSearchParams(location.search).get("view") === "summary" && pinnedCode) {
+  document.body.classList.add("summary-mode");
+  document.getElementById("summaryHead").hidden = false;
+  document.getElementById("summaryPeriod").textContent = DATA.period_display || DATA.period;
+  document.getElementById("summaryFullLink").href = "./?trust=" + encodeURIComponent(pinnedCode);
+  const t = trusts.find(x => x.code === pinnedCode);
+  if (t) document.title = `${properCase(t.name)} · RTT summary`;
+}
 
 // ---- Theme toggle - a clean two-state switch (light <-> dark), label always
 // names the mode a click will switch TO, so it reads correctly either way ----
