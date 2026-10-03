@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-03T10:47:07.595679+00:00",
+ "generated_at": "2026-10-03T11:00:24.603605+00:00",
  "period": "2026-07",
  "period_display": "July 2026",
  "source_url": "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2026/09/Full-CSV-data-file-Jul26-ZIP-4M-97ylx5.zip",
@@ -35718,6 +35718,2108 @@
    }
   ]
  },
+ "region_history": [
+  {
+   "period": "2024-04",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 861034,
+     "pct_within_18wk": 53.1,
+     "over_52wk": 51831,
+     "over_65wk": 10535,
+     "over_78wk": 950,
+     "median_weeks": 16.0
+    },
+    {
+     "region": "London",
+     "trust_count": 22,
+     "waiting_list": 1290505,
+     "pct_within_18wk": 59.6,
+     "over_52wk": 41718,
+     "over_65wk": 8221,
+     "over_78wk": 820,
+     "median_weeks": 13.5
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1278119,
+     "pct_within_18wk": 54.4,
+     "over_52wk": 52227,
+     "over_65wk": 7121,
+     "over_78wk": 478,
+     "median_weeks": 15.5
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 22,
+     "waiting_list": 1003359,
+     "pct_within_18wk": 64.1,
+     "over_52wk": 22987,
+     "over_65wk": 2464,
+     "over_78wk": 63,
+     "median_weeks": 12.1
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1089498,
+     "pct_within_18wk": 54.2,
+     "over_52wk": 52558,
+     "over_65wk": 5841,
+     "over_78wk": 208,
+     "median_weeks": 15.5
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 1003999,
+     "pct_within_18wk": 55.7,
+     "over_52wk": 50325,
+     "over_65wk": 10295,
+     "over_78wk": 1324,
+     "median_weeks": 14.9
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 630665,
+     "pct_within_18wk": 60.6,
+     "over_52wk": 26206,
+     "over_65wk": 4710,
+     "over_78wk": 539,
+     "median_weeks": 13.0
+    }
+   ]
+  },
+  {
+   "period": "2024-05",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 865758,
+     "pct_within_18wk": 53.9,
+     "over_52wk": 53370,
+     "over_65wk": 11522,
+     "over_78wk": 814,
+     "median_weeks": 16.3
+    },
+    {
+     "region": "London",
+     "trust_count": 22,
+     "waiting_list": 1291670,
+     "pct_within_18wk": 60.5,
+     "over_52wk": 42375,
+     "over_65wk": 8920,
+     "over_78wk": 682,
+     "median_weeks": 13.8
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1288849,
+     "pct_within_18wk": 55.5,
+     "over_52wk": 52278,
+     "over_65wk": 8079,
+     "over_78wk": 505,
+     "median_weeks": 15.6
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 22,
+     "waiting_list": 1012345,
+     "pct_within_18wk": 64.6,
+     "over_52wk": 24745,
+     "over_65wk": 3101,
+     "over_78wk": 77,
+     "median_weeks": 12.4
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1091270,
+     "pct_within_18wk": 55.0,
+     "over_52wk": 53273,
+     "over_65wk": 6524,
+     "over_78wk": 178,
+     "median_weeks": 15.8
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 1005160,
+     "pct_within_18wk": 56.6,
+     "over_52wk": 50433,
+     "over_65wk": 11742,
+     "over_78wk": 1252,
+     "median_weeks": 15.2
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 628260,
+     "pct_within_18wk": 61.0,
+     "over_52wk": 26399,
+     "over_65wk": 5033,
+     "over_78wk": 484,
+     "median_weeks": 13.4
+    }
+   ]
+  },
+  {
+   "period": "2024-06",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 869586,
+     "pct_within_18wk": 53.9,
+     "over_52wk": 49566,
+     "over_65wk": 11216,
+     "over_78wk": 479,
+     "median_weeks": 16.3
+    },
+    {
+     "region": "London",
+     "trust_count": 22,
+     "waiting_list": 1306493,
+     "pct_within_18wk": 60.1,
+     "over_52wk": 44435,
+     "over_65wk": 9639,
+     "over_78wk": 528,
+     "median_weeks": 14.1
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1292502,
+     "pct_within_18wk": 55.6,
+     "over_52wk": 51420,
+     "over_65wk": 8732,
+     "over_78wk": 398,
+     "median_weeks": 15.6
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 22,
+     "waiting_list": 1011648,
+     "pct_within_18wk": 64.3,
+     "over_52wk": 26078,
+     "over_65wk": 3255,
+     "over_78wk": 66,
+     "median_weeks": 12.1
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1088358,
+     "pct_within_18wk": 54.7,
+     "over_52wk": 51607,
+     "over_65wk": 7099,
+     "over_78wk": 146,
+     "median_weeks": 15.9
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 1003863,
+     "pct_within_18wk": 56.5,
+     "over_52wk": 49237,
+     "over_65wk": 12597,
+     "over_78wk": 846,
+     "median_weeks": 15.3
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 634155,
+     "pct_within_18wk": 60.9,
+     "over_52wk": 25950,
+     "over_65wk": 4977,
+     "over_78wk": 215,
+     "median_weeks": 13.3
+    }
+   ]
+  },
+  {
+   "period": "2024-07",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 867151,
+     "pct_within_18wk": 53.9,
+     "over_52wk": 47902,
+     "over_65wk": 9740,
+     "over_78wk": 434,
+     "median_weeks": 15.9
+    },
+    {
+     "region": "London",
+     "trust_count": 22,
+     "waiting_list": 1299238,
+     "pct_within_18wk": 59.8,
+     "over_52wk": 42372,
+     "over_65wk": 8167,
+     "over_78wk": 584,
+     "median_weeks": 13.8
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1297339,
+     "pct_within_18wk": 56.0,
+     "over_52wk": 48820,
+     "over_65wk": 7605,
+     "over_78wk": 418,
+     "median_weeks": 15.1
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 22,
+     "waiting_list": 1007439,
+     "pct_within_18wk": 64.1,
+     "over_52wk": 26152,
+     "over_65wk": 2743,
+     "over_78wk": 94,
+     "median_weeks": 12.1
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1093374,
+     "pct_within_18wk": 54.5,
+     "over_52wk": 49371,
+     "over_65wk": 6344,
+     "over_78wk": 127,
+     "median_weeks": 15.6
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 1002488,
+     "pct_within_18wk": 56.0,
+     "over_52wk": 46750,
+     "over_65wk": 11588,
+     "over_78wk": 997,
+     "median_weeks": 15.1
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 636050,
+     "pct_within_18wk": 61.1,
+     "over_52wk": 24389,
+     "over_65wk": 4343,
+     "over_78wk": 185,
+     "median_weeks": 13.1
+    }
+   ]
+  },
+  {
+   "period": "2024-08",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 866369,
+     "pct_within_18wk": 53.2,
+     "over_52wk": 45552,
+     "over_65wk": 8159,
+     "over_78wk": 576,
+     "median_weeks": 16.6
+    },
+    {
+     "region": "London",
+     "trust_count": 22,
+     "waiting_list": 1306394,
+     "pct_within_18wk": 59.0,
+     "over_52wk": 41283,
+     "over_65wk": 7610,
+     "over_78wk": 659,
+     "median_weeks": 14.5
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1299494,
+     "pct_within_18wk": 55.5,
+     "over_52wk": 48371,
+     "over_65wk": 6673,
+     "over_78wk": 502,
+     "median_weeks": 15.7
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 22,
+     "waiting_list": 1014348,
+     "pct_within_18wk": 63.4,
+     "over_52wk": 26560,
+     "over_65wk": 2705,
+     "over_78wk": 107,
+     "median_weeks": 12.6
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1093175,
+     "pct_within_18wk": 54.0,
+     "over_52wk": 48628,
+     "over_65wk": 5549,
+     "over_78wk": 153,
+     "median_weeks": 16.1
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 1002377,
+     "pct_within_18wk": 55.3,
+     "over_52wk": 44888,
+     "over_65wk": 10766,
+     "over_78wk": 1269,
+     "median_weeks": 15.7
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 637634,
+     "pct_within_18wk": 60.7,
+     "over_52wk": 23087,
+     "over_65wk": 3801,
+     "over_78wk": 152,
+     "median_weeks": 13.5
+    }
+   ]
+  },
+  {
+   "period": "2024-09",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 862450,
+     "pct_within_18wk": 53.8,
+     "over_52wk": 38974,
+     "over_65wk": 3208,
+     "over_78wk": 401,
+     "median_weeks": 16.2
+    },
+    {
+     "region": "London",
+     "trust_count": 22,
+     "waiting_list": 1286749,
+     "pct_within_18wk": 59.2,
+     "over_52wk": 37190,
+     "over_65wk": 4493,
+     "over_78wk": 534,
+     "median_weeks": 14.3
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1287622,
+     "pct_within_18wk": 55.3,
+     "over_52wk": 44108,
+     "over_65wk": 3734,
+     "over_78wk": 530,
+     "median_weeks": 15.7
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 22,
+     "waiting_list": 1005599,
+     "pct_within_18wk": 63.7,
+     "over_52wk": 23985,
+     "over_65wk": 1583,
+     "over_78wk": 79,
+     "median_weeks": 12.5
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1082420,
+     "pct_within_18wk": 54.3,
+     "over_52wk": 43110,
+     "over_65wk": 2128,
+     "over_78wk": 144,
+     "median_weeks": 16.0
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 993939,
+     "pct_within_18wk": 56.0,
+     "over_52wk": 37753,
+     "over_65wk": 5564,
+     "over_78wk": 950,
+     "median_weeks": 15.4
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 632490,
+     "pct_within_18wk": 61.2,
+     "over_52wk": 19576,
+     "over_65wk": 1854,
+     "over_78wk": 124,
+     "median_weeks": 13.3
+    }
+   ]
+  },
+  {
+   "period": "2024-10",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 856476,
+     "pct_within_18wk": 53.9,
+     "over_52wk": 38048,
+     "over_65wk": 2841,
+     "over_78wk": 302,
+     "median_weeks": 16.3
+    },
+    {
+     "region": "London",
+     "trust_count": 22,
+     "waiting_list": 1278045,
+     "pct_within_18wk": 59.8,
+     "over_52wk": 33131,
+     "over_65wk": 3763,
+     "over_78wk": 425,
+     "median_weeks": 14.0
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1281214,
+     "pct_within_18wk": 55.7,
+     "over_52wk": 40991,
+     "over_65wk": 3049,
+     "over_78wk": 501,
+     "median_weeks": 15.6
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 22,
+     "waiting_list": 1003348,
+     "pct_within_18wk": 64.2,
+     "over_52wk": 22849,
+     "over_65wk": 1634,
+     "over_78wk": 80,
+     "median_weeks": 12.3
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1082009,
+     "pct_within_18wk": 54.9,
+     "over_52wk": 41369,
+     "over_65wk": 2307,
+     "over_78wk": 166,
+     "median_weeks": 15.8
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 988650,
+     "pct_within_18wk": 56.4,
+     "over_52wk": 36259,
+     "over_65wk": 5174,
+     "over_78wk": 884,
+     "median_weeks": 15.2
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 629731,
+     "pct_within_18wk": 61.5,
+     "over_52wk": 18052,
+     "over_65wk": 1608,
+     "over_78wk": 111,
+     "median_weeks": 13.1
+    }
+   ]
+  },
+  {
+   "period": "2024-11",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 854652,
+     "pct_within_18wk": 54.0,
+     "over_52wk": 35463,
+     "over_65wk": 2297,
+     "over_78wk": 177,
+     "median_weeks": 16.2
+    },
+    {
+     "region": "London",
+     "trust_count": 22,
+     "waiting_list": 1258862,
+     "pct_within_18wk": 60.0,
+     "over_52wk": 30163,
+     "over_65wk": 2720,
+     "over_78wk": 371,
+     "median_weeks": 13.7
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1273865,
+     "pct_within_18wk": 55.8,
+     "over_52wk": 38740,
+     "over_65wk": 2446,
+     "over_78wk": 572,
+     "median_weeks": 15.4
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 22,
+     "waiting_list": 992720,
+     "pct_within_18wk": 64.1,
+     "over_52wk": 22136,
+     "over_65wk": 1408,
+     "over_78wk": 82,
+     "median_weeks": 12.0
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1072068,
+     "pct_within_18wk": 55.1,
+     "over_52wk": 39975,
+     "over_65wk": 2115,
+     "over_78wk": 125,
+     "median_weeks": 15.7
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 982619,
+     "pct_within_18wk": 56.9,
+     "over_52wk": 34899,
+     "over_65wk": 4206,
+     "over_78wk": 769,
+     "median_weeks": 14.9
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 624633,
+     "pct_within_18wk": 62.0,
+     "over_52wk": 16807,
+     "over_65wk": 1293,
+     "over_78wk": 92,
+     "median_weeks": 12.6
+    }
+   ]
+  },
+  {
+   "period": "2024-12",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 854504,
+     "pct_within_18wk": 53.5,
+     "over_52wk": 32504,
+     "over_65wk": 1782,
+     "over_78wk": 103,
+     "median_weeks": 16.4
+    },
+    {
+     "region": "London",
+     "trust_count": 22,
+     "waiting_list": 1255558,
+     "pct_within_18wk": 59.9,
+     "over_52wk": 26370,
+     "over_65wk": 2180,
+     "over_78wk": 297,
+     "median_weeks": 14.0
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1272527,
+     "pct_within_18wk": 55.5,
+     "over_52wk": 35676,
+     "over_65wk": 2171,
+     "over_78wk": 646,
+     "median_weeks": 15.7
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 22,
+     "waiting_list": 988484,
+     "pct_within_18wk": 64.1,
+     "over_52wk": 19474,
+     "over_65wk": 1119,
+     "over_78wk": 80,
+     "median_weeks": 12.4
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1064986,
+     "pct_within_18wk": 54.8,
+     "over_52wk": 36747,
+     "over_65wk": 2254,
+     "over_78wk": 121,
+     "median_weeks": 15.8
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 981365,
+     "pct_within_18wk": 56.8,
+     "over_52wk": 31250,
+     "over_65wk": 4236,
+     "over_78wk": 737,
+     "median_weeks": 15.1
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 624894,
+     "pct_within_18wk": 61.7,
+     "over_52wk": 14958,
+     "over_65wk": 1212,
+     "over_78wk": 61,
+     "median_weeks": 13.1
+    }
+   ]
+  },
+  {
+   "period": "2025-01",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 868507,
+     "pct_within_18wk": 53.3,
+     "over_52wk": 33091,
+     "over_65wk": 2008,
+     "over_78wk": 101,
+     "median_weeks": 16.6
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1252940,
+     "pct_within_18wk": 60.1,
+     "over_52wk": 25811,
+     "over_65wk": 2103,
+     "over_78wk": 260,
+     "median_weeks": 14.1
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1253798,
+     "pct_within_18wk": 55.2,
+     "over_52wk": 34956,
+     "over_65wk": 2196,
+     "over_78wk": 663,
+     "median_weeks": 15.9
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 22,
+     "waiting_list": 982333,
+     "pct_within_18wk": 64.1,
+     "over_52wk": 19358,
+     "over_65wk": 1032,
+     "over_78wk": 101,
+     "median_weeks": 12.6
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1059392,
+     "pct_within_18wk": 54.9,
+     "over_52wk": 37313,
+     "over_65wk": 2067,
+     "over_78wk": 93,
+     "median_weeks": 15.9
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 974938,
+     "pct_within_18wk": 56.7,
+     "over_52wk": 30267,
+     "over_65wk": 3940,
+     "over_78wk": 633,
+     "median_weeks": 15.3
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 621211,
+     "pct_within_18wk": 61.8,
+     "over_52wk": 14596,
+     "over_65wk": 1134,
+     "over_78wk": 64,
+     "median_weeks": 13.2
+    }
+   ]
+  },
+  {
+   "period": "2025-02",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 871301,
+     "pct_within_18wk": 53.6,
+     "over_52wk": 33634,
+     "over_65wk": 1934,
+     "over_78wk": 97,
+     "median_weeks": 16.4
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1251011,
+     "pct_within_18wk": 60.3,
+     "over_52wk": 25447,
+     "over_65wk": 1941,
+     "over_78wk": 211,
+     "median_weeks": 13.9
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1247740,
+     "pct_within_18wk": 55.5,
+     "over_52wk": 33028,
+     "over_65wk": 2162,
+     "over_78wk": 680,
+     "median_weeks": 15.7
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 22,
+     "waiting_list": 988189,
+     "pct_within_18wk": 64.6,
+     "over_52wk": 18469,
+     "over_65wk": 1020,
+     "over_78wk": 69,
+     "median_weeks": 12.3
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1052379,
+     "pct_within_18wk": 55.3,
+     "over_52wk": 37169,
+     "over_65wk": 1794,
+     "over_78wk": 119,
+     "median_weeks": 15.6
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 969054,
+     "pct_within_18wk": 56.8,
+     "over_52wk": 29135,
+     "over_65wk": 2959,
+     "over_78wk": 493,
+     "median_weeks": 15.1
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 616611,
+     "pct_within_18wk": 62.4,
+     "over_52wk": 13802,
+     "over_65wk": 1009,
+     "over_78wk": 64,
+     "median_weeks": 13.0
+    }
+   ]
+  },
+  {
+   "period": "2025-03",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 882657,
+     "pct_within_18wk": 53.6,
+     "over_52wk": 34318,
+     "over_65wk": 1217,
+     "over_78wk": 77,
+     "median_weeks": 16.4
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1252012,
+     "pct_within_18wk": 60.7,
+     "over_52wk": 24109,
+     "over_65wk": 1226,
+     "over_78wk": 149,
+     "median_weeks": 13.5
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1240823,
+     "pct_within_18wk": 55.9,
+     "over_52wk": 29565,
+     "over_65wk": 1873,
+     "over_78wk": 689,
+     "median_weeks": 15.4
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 22,
+     "waiting_list": 989531,
+     "pct_within_18wk": 65.4,
+     "over_52wk": 16301,
+     "over_65wk": 627,
+     "over_78wk": 59,
+     "median_weeks": 11.1
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1051220,
+     "pct_within_18wk": 56.0,
+     "over_52wk": 35145,
+     "over_65wk": 980,
+     "over_78wk": 70,
+     "median_weeks": 15.3
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 973982,
+     "pct_within_18wk": 57.5,
+     "over_52wk": 27146,
+     "over_65wk": 831,
+     "over_78wk": 181,
+     "median_weeks": 14.9
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 616700,
+     "pct_within_18wk": 63.2,
+     "over_52wk": 11721,
+     "over_65wk": 572,
+     "over_78wk": 37,
+     "median_weeks": 11.8
+    }
+   ]
+  },
+  {
+   "period": "2025-04",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 878170,
+     "pct_within_18wk": 53.4,
+     "over_52wk": 35929,
+     "over_65wk": 1533,
+     "over_78wk": 137,
+     "median_weeks": 15.7
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1248635,
+     "pct_within_18wk": 60.4,
+     "over_52wk": 25479,
+     "over_65wk": 1442,
+     "over_78wk": 132,
+     "median_weeks": 13.1
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1221938,
+     "pct_within_18wk": 56.1,
+     "over_52wk": 30837,
+     "over_65wk": 2041,
+     "over_78wk": 739,
+     "median_weeks": 14.7
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 22,
+     "waiting_list": 985902,
+     "pct_within_18wk": 65.2,
+     "over_52wk": 17100,
+     "over_65wk": 755,
+     "over_78wk": 59,
+     "median_weeks": 11.5
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1045233,
+     "pct_within_18wk": 55.6,
+     "over_52wk": 37200,
+     "over_65wk": 1380,
+     "over_78wk": 85,
+     "median_weeks": 14.7
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 976989,
+     "pct_within_18wk": 57.6,
+     "over_52wk": 29239,
+     "over_65wk": 1305,
+     "over_78wk": 181,
+     "median_weeks": 14.1
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 612716,
+     "pct_within_18wk": 63.0,
+     "over_52wk": 12481,
+     "over_65wk": 681,
+     "over_78wk": 49,
+     "median_weeks": 12.1
+    }
+   ]
+  },
+  {
+   "period": "2025-05",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 867396,
+     "pct_within_18wk": 55.2,
+     "over_52wk": 36885,
+     "over_65wk": 2096,
+     "over_78wk": 179,
+     "median_weeks": 15.8
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1254719,
+     "pct_within_18wk": 61.2,
+     "over_52wk": 28518,
+     "over_65wk": 2116,
+     "over_78wk": 206,
+     "median_weeks": 13.6
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1213318,
+     "pct_within_18wk": 57.3,
+     "over_52wk": 32972,
+     "over_65wk": 2169,
+     "over_78wk": 838,
+     "median_weeks": 15.1
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 22,
+     "waiting_list": 984987,
+     "pct_within_18wk": 66.3,
+     "over_52wk": 17919,
+     "over_65wk": 875,
+     "over_78wk": 64,
+     "median_weeks": 11.9
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1033798,
+     "pct_within_18wk": 56.9,
+     "over_52wk": 37586,
+     "over_65wk": 1948,
+     "over_78wk": 98,
+     "median_weeks": 15.0
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 967948,
+     "pct_within_18wk": 58.8,
+     "over_52wk": 28950,
+     "over_65wk": 1690,
+     "over_78wk": 96,
+     "median_weeks": 14.4
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 610320,
+     "pct_within_18wk": 63.9,
+     "over_52wk": 12759,
+     "over_65wk": 827,
+     "over_78wk": 57,
+     "median_weeks": 12.4
+    }
+   ]
+  },
+  {
+   "period": "2025-06",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 861321,
+     "pct_within_18wk": 55.6,
+     "over_52wk": 35922,
+     "over_65wk": 1973,
+     "over_78wk": 193,
+     "median_weeks": 15.6
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1263917,
+     "pct_within_18wk": 62.0,
+     "over_52wk": 27632,
+     "over_65wk": 1970,
+     "over_78wk": 172,
+     "median_weeks": 13.4
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1206198,
+     "pct_within_18wk": 58.6,
+     "over_52wk": 31538,
+     "over_65wk": 1995,
+     "over_78wk": 815,
+     "median_weeks": 14.6
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 22,
+     "waiting_list": 987781,
+     "pct_within_18wk": 66.6,
+     "over_52wk": 17801,
+     "over_65wk": 709,
+     "over_78wk": 53,
+     "median_weeks": 11.7
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1034458,
+     "pct_within_18wk": 57.2,
+     "over_52wk": 37729,
+     "over_65wk": 1800,
+     "over_78wk": 104,
+     "median_weeks": 14.9
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 965809,
+     "pct_within_18wk": 59.2,
+     "over_52wk": 27638,
+     "over_65wk": 1486,
+     "over_78wk": 50,
+     "median_weeks": 14.3
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 608363,
+     "pct_within_18wk": 64.4,
+     "over_52wk": 12081,
+     "over_65wk": 778,
+     "over_78wk": 50,
+     "median_weeks": 12.3
+    }
+   ]
+  },
+  {
+   "period": "2025-07",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 866583,
+     "pct_within_18wk": 55.6,
+     "over_52wk": 35620,
+     "over_65wk": 2437,
+     "over_78wk": 309,
+     "median_weeks": 15.6
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1262945,
+     "pct_within_18wk": 61.9,
+     "over_52wk": 27549,
+     "over_65wk": 2128,
+     "over_78wk": 136,
+     "median_weeks": 13.0
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1196705,
+     "pct_within_18wk": 58.5,
+     "over_52wk": 31146,
+     "over_65wk": 2233,
+     "over_78wk": 926,
+     "median_weeks": 14.4
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 21,
+     "waiting_list": 904733,
+     "pct_within_18wk": 66.1,
+     "over_52wk": 16098,
+     "over_65wk": 766,
+     "over_78wk": 54,
+     "median_weeks": 11.4
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1047066,
+     "pct_within_18wk": 57.0,
+     "over_52wk": 37635,
+     "over_65wk": 1689,
+     "over_78wk": 156,
+     "median_weeks": 15.0
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 968109,
+     "pct_within_18wk": 58.9,
+     "over_52wk": 27520,
+     "over_65wk": 1761,
+     "over_78wk": 76,
+     "median_weeks": 13.9
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 609679,
+     "pct_within_18wk": 64.0,
+     "over_52wk": 11933,
+     "over_65wk": 940,
+     "over_78wk": 65,
+     "median_weeks": 11.9
+    }
+   ]
+  },
+  {
+   "period": "2025-08",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 867518,
+     "pct_within_18wk": 55.4,
+     "over_52wk": 36839,
+     "over_65wk": 2785,
+     "over_78wk": 317,
+     "median_weeks": 15.5
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1262051,
+     "pct_within_18wk": 61.6,
+     "over_52wk": 26767,
+     "over_65wk": 2338,
+     "over_78wk": 182,
+     "median_weeks": 13.4
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1190277,
+     "pct_within_18wk": 58.3,
+     "over_52wk": 29551,
+     "over_65wk": 2614,
+     "over_78wk": 1003,
+     "median_weeks": 14.6
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 21,
+     "waiting_list": 907224,
+     "pct_within_18wk": 65.3,
+     "over_52wk": 16655,
+     "over_65wk": 863,
+     "over_78wk": 62,
+     "median_weeks": 12.0
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1055423,
+     "pct_within_18wk": 56.5,
+     "over_52wk": 38172,
+     "over_65wk": 1305,
+     "over_78wk": 141,
+     "median_weeks": 15.1
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 962132,
+     "pct_within_18wk": 58.7,
+     "over_52wk": 27748,
+     "over_65wk": 2329,
+     "over_78wk": 128,
+     "median_weeks": 14.3
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 611402,
+     "pct_within_18wk": 63.3,
+     "over_52wk": 11828,
+     "over_65wk": 1080,
+     "over_78wk": 104,
+     "median_weeks": 12.5
+    }
+   ]
+  },
+  {
+   "period": "2025-09",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 864129,
+     "pct_within_18wk": 55.9,
+     "over_52wk": 35923,
+     "over_65wk": 3132,
+     "over_78wk": 393,
+     "median_weeks": 15.4
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1263847,
+     "pct_within_18wk": 62.5,
+     "over_52wk": 24742,
+     "over_65wk": 2096,
+     "over_78wk": 192,
+     "median_weeks": 13.2
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1187306,
+     "pct_within_18wk": 59.2,
+     "over_52wk": 27972,
+     "over_65wk": 2745,
+     "over_78wk": 1069,
+     "median_weeks": 14.5
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 21,
+     "waiting_list": 906909,
+     "pct_within_18wk": 66.0,
+     "over_52wk": 15950,
+     "over_65wk": 879,
+     "over_78wk": 71,
+     "median_weeks": 12.0
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1051971,
+     "pct_within_18wk": 57.4,
+     "over_52wk": 35033,
+     "over_65wk": 1012,
+     "over_78wk": 99,
+     "median_weeks": 14.8
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 951379,
+     "pct_within_18wk": 59.4,
+     "over_52wk": 26826,
+     "over_65wk": 2461,
+     "over_78wk": 140,
+     "median_weeks": 14.2
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 609448,
+     "pct_within_18wk": 64.3,
+     "over_52wk": 10970,
+     "over_65wk": 1120,
+     "over_78wk": 109,
+     "median_weeks": 12.4
+    }
+   ]
+  },
+  {
+   "period": "2025-10",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 870008,
+     "pct_within_18wk": 55.9,
+     "over_52wk": 35187,
+     "over_65wk": 3931,
+     "over_78wk": 643,
+     "median_weeks": 15.5
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1260351,
+     "pct_within_18wk": 62.4,
+     "over_52wk": 22849,
+     "over_65wk": 1839,
+     "over_78wk": 213,
+     "median_weeks": 13.2
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1188332,
+     "pct_within_18wk": 59.0,
+     "over_52wk": 27108,
+     "over_65wk": 2642,
+     "over_78wk": 1203,
+     "median_weeks": 14.4
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 21,
+     "waiting_list": 907108,
+     "pct_within_18wk": 65.8,
+     "over_52wk": 15046,
+     "over_65wk": 892,
+     "over_78wk": 73,
+     "median_weeks": 11.9
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1049042,
+     "pct_within_18wk": 57.5,
+     "over_52wk": 32662,
+     "over_65wk": 661,
+     "over_78wk": 48,
+     "median_weeks": 14.8
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 950503,
+     "pct_within_18wk": 59.6,
+     "over_52wk": 26000,
+     "over_65wk": 2125,
+     "over_78wk": 114,
+     "median_weeks": 14.1
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 609195,
+     "pct_within_18wk": 64.5,
+     "over_52wk": 10522,
+     "over_65wk": 1028,
+     "over_78wk": 138,
+     "median_weeks": 12.2
+    }
+   ]
+  },
+  {
+   "period": "2025-11",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 855211,
+     "pct_within_18wk": 56.3,
+     "over_52wk": 32946,
+     "over_65wk": 3748,
+     "over_78wk": 695,
+     "median_weeks": 15.2
+    },
+    {
+     "region": "London",
+     "trust_count": 20,
+     "waiting_list": 1198491,
+     "pct_within_18wk": 62.0,
+     "over_52wk": 20247,
+     "over_65wk": 1216,
+     "over_78wk": 184,
+     "median_weeks": 12.9
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1181339,
+     "pct_within_18wk": 58.8,
+     "over_52wk": 25404,
+     "over_65wk": 2472,
+     "over_78wk": 1292,
+     "median_weeks": 14.3
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 21,
+     "waiting_list": 893526,
+     "pct_within_18wk": 65.4,
+     "over_52wk": 14231,
+     "over_65wk": 682,
+     "over_78wk": 43,
+     "median_weeks": 11.7
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1026176,
+     "pct_within_18wk": 57.4,
+     "over_52wk": 29144,
+     "over_65wk": 478,
+     "over_78wk": 27,
+     "median_weeks": 14.7
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 940776,
+     "pct_within_18wk": 59.7,
+     "over_52wk": 23029,
+     "over_65wk": 1299,
+     "over_78wk": 74,
+     "median_weeks": 13.7
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 605033,
+     "pct_within_18wk": 64.9,
+     "over_52wk": 9721,
+     "over_65wk": 657,
+     "over_78wk": 71,
+     "median_weeks": 11.7
+    }
+   ]
+  },
+  {
+   "period": "2025-12",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 849715,
+     "pct_within_18wk": 56.2,
+     "over_52wk": 30475,
+     "over_65wk": 4360,
+     "over_78wk": 987,
+     "median_weeks": 15.3
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1264946,
+     "pct_within_18wk": 62.3,
+     "over_52wk": 18984,
+     "over_65wk": 443,
+     "over_78wk": 71,
+     "median_weeks": 13.3
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1178088,
+     "pct_within_18wk": 58.4,
+     "over_52wk": 22728,
+     "over_65wk": 2393,
+     "over_78wk": 1379,
+     "median_weeks": 14.7
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 21,
+     "waiting_list": 888454,
+     "pct_within_18wk": 65.1,
+     "over_52wk": 12844,
+     "over_65wk": 457,
+     "over_78wk": 34,
+     "median_weeks": 12.2
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1015269,
+     "pct_within_18wk": 57.5,
+     "over_52wk": 23998,
+     "over_65wk": 127,
+     "over_78wk": 9,
+     "median_weeks": 14.8
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 938190,
+     "pct_within_18wk": 59.3,
+     "over_52wk": 21004,
+     "over_65wk": 592,
+     "over_78wk": 45,
+     "median_weeks": 14.2
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 600965,
+     "pct_within_18wk": 64.4,
+     "over_52wk": 9246,
+     "over_65wk": 382,
+     "over_78wk": 53,
+     "median_weeks": 12.3
+    }
+   ]
+  },
+  {
+   "period": "2026-01",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 833626,
+     "pct_within_18wk": 56.9,
+     "over_52wk": 28957,
+     "over_65wk": 4275,
+     "over_78wk": 1068,
+     "median_weeks": 15.2
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1260158,
+     "pct_within_18wk": 62.4,
+     "over_52wk": 17929,
+     "over_65wk": 426,
+     "over_78wk": 60,
+     "median_weeks": 13.4
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1170569,
+     "pct_within_18wk": 57.9,
+     "over_52wk": 22948,
+     "over_65wk": 2476,
+     "over_78wk": 1353,
+     "median_weeks": 15.0
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 21,
+     "waiting_list": 883500,
+     "pct_within_18wk": 65.0,
+     "over_52wk": 12936,
+     "over_65wk": 448,
+     "over_78wk": 56,
+     "median_weeks": 12.4
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 1003251,
+     "pct_within_18wk": 58.0,
+     "over_52wk": 21825,
+     "over_65wk": 110,
+     "over_78wk": 5,
+     "median_weeks": 14.7
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 932168,
+     "pct_within_18wk": 59.2,
+     "over_52wk": 20590,
+     "over_65wk": 751,
+     "over_78wk": 52,
+     "median_weeks": 14.4
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 605138,
+     "pct_within_18wk": 64.6,
+     "over_52wk": 8572,
+     "over_65wk": 407,
+     "over_78wk": 53,
+     "median_weeks": 12.5
+    }
+   ]
+  },
+  {
+   "period": "2026-02",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 823919,
+     "pct_within_18wk": 58.3,
+     "over_52wk": 25130,
+     "over_65wk": 3366,
+     "over_78wk": 895,
+     "median_weeks": 14.6
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1251144,
+     "pct_within_18wk": 63.8,
+     "over_52wk": 15576,
+     "over_65wk": 438,
+     "over_78wk": 57,
+     "median_weeks": 12.9
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1175659,
+     "pct_within_18wk": 59.1,
+     "over_52wk": 21534,
+     "over_65wk": 2514,
+     "over_78wk": 1309,
+     "median_weeks": 14.4
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 21,
+     "waiting_list": 878427,
+     "pct_within_18wk": 65.5,
+     "over_52wk": 12364,
+     "over_65wk": 436,
+     "over_78wk": 50,
+     "median_weeks": 12.1
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 989084,
+     "pct_within_18wk": 59.8,
+     "over_52wk": 19373,
+     "over_65wk": 126,
+     "over_78wk": 2,
+     "median_weeks": 13.9
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 927941,
+     "pct_within_18wk": 60.2,
+     "over_52wk": 19005,
+     "over_65wk": 861,
+     "over_78wk": 35,
+     "median_weeks": 13.9
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 608197,
+     "pct_within_18wk": 65.5,
+     "over_52wk": 7833,
+     "over_65wk": 446,
+     "over_78wk": 38,
+     "median_weeks": 12.2
+    }
+   ]
+  },
+  {
+   "period": "2026-03",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 817019,
+     "pct_within_18wk": 60.3,
+     "over_52wk": 20124,
+     "over_65wk": 2164,
+     "over_78wk": 670,
+     "median_weeks": 13.5
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1224802,
+     "pct_within_18wk": 66.7,
+     "over_52wk": 10915,
+     "over_65wk": 255,
+     "over_78wk": 39,
+     "median_weeks": 11.1
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1142062,
+     "pct_within_18wk": 63.0,
+     "over_52wk": 17265,
+     "over_65wk": 2287,
+     "over_78wk": 1309,
+     "median_weeks": 12.1
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 21,
+     "waiting_list": 872171,
+     "pct_within_18wk": 67.5,
+     "over_52wk": 10318,
+     "over_65wk": 288,
+     "over_78wk": 34,
+     "median_weeks": 10.6
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 961501,
+     "pct_within_18wk": 63.5,
+     "over_52wk": 13262,
+     "over_65wk": 101,
+     "over_78wk": 11,
+     "median_weeks": 11.7
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 918984,
+     "pct_within_18wk": 63.2,
+     "over_52wk": 15035,
+     "over_65wk": 432,
+     "over_78wk": 19,
+     "median_weeks": 11.9
+    },
+    {
+     "region": "South West",
+     "trust_count": 13,
+     "waiting_list": 601244,
+     "pct_within_18wk": 67.5,
+     "over_52wk": 6017,
+     "over_65wk": 259,
+     "over_78wk": 38,
+     "median_weeks": 10.8
+    }
+   ]
+  },
+  {
+   "period": "2026-04",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 821937,
+     "pct_within_18wk": 59.9,
+     "over_52wk": 20582,
+     "over_65wk": 2586,
+     "over_78wk": 669,
+     "median_weeks": 13.4
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1243874,
+     "pct_within_18wk": 66.3,
+     "over_52wk": 12057,
+     "over_65wk": 405,
+     "over_78wk": 32,
+     "median_weeks": 11.7
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1165131,
+     "pct_within_18wk": 62.6,
+     "over_52wk": 18286,
+     "over_65wk": 2368,
+     "over_78wk": 1311,
+     "median_weeks": 12.6
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 21,
+     "waiting_list": 897854,
+     "pct_within_18wk": 67.4,
+     "over_52wk": 10994,
+     "over_65wk": 402,
+     "over_78wk": 28,
+     "median_weeks": 11.1
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 966952,
+     "pct_within_18wk": 63.2,
+     "over_52wk": 13622,
+     "over_65wk": 184,
+     "over_78wk": 7,
+     "median_weeks": 12.4
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 935403,
+     "pct_within_18wk": 62.5,
+     "over_52wk": 16228,
+     "over_65wk": 805,
+     "over_78wk": 49,
+     "median_weeks": 12.6
+    },
+    {
+     "region": "South West",
+     "trust_count": 12,
+     "waiting_list": 579482,
+     "pct_within_18wk": 67.2,
+     "over_52wk": 5912,
+     "over_65wk": 274,
+     "over_78wk": 29,
+     "median_weeks": 11.3
+    }
+   ]
+  },
+  {
+   "period": "2026-05",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 821698,
+     "pct_within_18wk": 60.4,
+     "over_52wk": 20654,
+     "over_65wk": 2866,
+     "over_78wk": 665,
+     "median_weeks": 14.0
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1251657,
+     "pct_within_18wk": 67.0,
+     "over_52wk": 12557,
+     "over_65wk": 629,
+     "over_78wk": 54,
+     "median_weeks": 12.2
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1172179,
+     "pct_within_18wk": 63.1,
+     "over_52wk": 18955,
+     "over_65wk": 2321,
+     "over_78wk": 1299,
+     "median_weeks": 13.2
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 21,
+     "waiting_list": 909679,
+     "pct_within_18wk": 68.2,
+     "over_52wk": 11910,
+     "over_65wk": 535,
+     "over_78wk": 33,
+     "median_weeks": 11.6
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 973576,
+     "pct_within_18wk": 63.6,
+     "over_52wk": 14062,
+     "over_65wk": 322,
+     "over_78wk": 9,
+     "median_weeks": 13.1
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 949840,
+     "pct_within_18wk": 63.1,
+     "over_52wk": 17605,
+     "over_65wk": 1060,
+     "over_78wk": 62,
+     "median_weeks": 13.1
+    },
+    {
+     "region": "South West",
+     "trust_count": 12,
+     "waiting_list": 586546,
+     "pct_within_18wk": 67.8,
+     "over_52wk": 6540,
+     "over_65wk": 304,
+     "over_78wk": 27,
+     "median_weeks": 11.8
+    }
+   ]
+  },
+  {
+   "period": "2026-06",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 812939,
+     "pct_within_18wk": 60.4,
+     "over_52wk": 20779,
+     "over_65wk": 3376,
+     "over_78wk": 530,
+     "median_weeks": 14.0
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1250269,
+     "pct_within_18wk": 67.5,
+     "over_52wk": 11895,
+     "over_65wk": 674,
+     "over_78wk": 62,
+     "median_weeks": 11.5
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1172828,
+     "pct_within_18wk": 63.6,
+     "over_52wk": 18224,
+     "over_65wk": 2236,
+     "over_78wk": 1194,
+     "median_weeks": 13.1
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 21,
+     "waiting_list": 910717,
+     "pct_within_18wk": 68.4,
+     "over_52wk": 12412,
+     "over_65wk": 735,
+     "over_78wk": 31,
+     "median_weeks": 11.0
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 975907,
+     "pct_within_18wk": 63.8,
+     "over_52wk": 13936,
+     "over_65wk": 405,
+     "over_78wk": 13,
+     "median_weeks": 12.8
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 952549,
+     "pct_within_18wk": 63.0,
+     "over_52wk": 18837,
+     "over_65wk": 1199,
+     "over_78wk": 76,
+     "median_weeks": 13.0
+    },
+    {
+     "region": "South West",
+     "trust_count": 12,
+     "waiting_list": 583486,
+     "pct_within_18wk": 67.8,
+     "over_52wk": 6919,
+     "over_65wk": 315,
+     "over_78wk": 28,
+     "median_weeks": 11.3
+    }
+   ]
+  },
+  {
+   "period": "2026-07",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 820577,
+     "pct_within_18wk": 60.1,
+     "over_52wk": 22048,
+     "over_65wk": 3762,
+     "over_78wk": 777,
+     "median_weeks": 13.7
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1247776,
+     "pct_within_18wk": 67.3,
+     "over_52wk": 12284,
+     "over_65wk": 996,
+     "over_78wk": 132,
+     "median_weeks": 11.6
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 23,
+     "waiting_list": 1179849,
+     "pct_within_18wk": 62.8,
+     "over_52wk": 18916,
+     "over_65wk": 2152,
+     "over_78wk": 1161,
+     "median_weeks": 13.0
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 21,
+     "waiting_list": 923045,
+     "pct_within_18wk": 67.8,
+     "over_52wk": 13357,
+     "over_65wk": 937,
+     "over_78wk": 48,
+     "median_weeks": 11.2
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 979874,
+     "pct_within_18wk": 63.5,
+     "over_52wk": 13890,
+     "over_65wk": 505,
+     "over_78wk": 14,
+     "median_weeks": 12.5
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 955929,
+     "pct_within_18wk": 62.5,
+     "over_52wk": 19905,
+     "over_65wk": 1348,
+     "over_78wk": 108,
+     "median_weeks": 12.9
+    },
+    {
+     "region": "South West",
+     "trust_count": 10,
+     "waiting_list": 544027,
+     "pct_within_18wk": 67.5,
+     "over_52wk": 6604,
+     "over_65wk": 255,
+     "over_78wk": 15,
+     "median_weeks": 11.4
+    }
+   ]
+  }
+ ],
  "acute_not_reported": [
   "SHEFFIELD TEACHING HOSPITALS NHS FOUNDATION TRUST",
   "TORBAY AND SOUTH DEVON NHS FOUNDATION TRUST",
