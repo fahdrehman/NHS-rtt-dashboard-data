@@ -686,9 +686,47 @@ details.detail > summary:hover { background: var(--brand-wash); }
 .clear-filters-btn { color: var(--brand); }
 .kpi-hero { border-radius: 22px; }
 .kpi-tile, .trend-card, .table-card, details.detail { border-color: var(--border); }
+
+/* Portfolio background: soft drifting glows behind the page, violet-tinted
+   card shadows and gradient headings, as on fahd.uk */
+:root { --glow-opacity: 0.32; --shadow-tint: rgba(110,70,190,0.22); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --glow-opacity: 0.16; --shadow-tint: rgba(0,0,0,0.45); } }
+:root[data-theme="dark"] { --glow-opacity: 0.16; --shadow-tint: rgba(0,0,0,0.45); }
+.page-glow { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.page-glow span {
+  position: absolute; border-radius: 50%; filter: blur(60px); opacity: var(--glow-opacity);
+}
+.page-glow .g1 { width: 520px; height: 520px; top: -160px; left: -120px; background: radial-gradient(circle, var(--brand) 0%, transparent 68%); animation: drift1 13s ease-in-out infinite; }
+.page-glow .g2 { width: 460px; height: 460px; top: 120px; right: -160px; background: radial-gradient(circle, var(--series-1) 0%, transparent 68%); animation: drift2 16s ease-in-out infinite; }
+.page-glow .g3 { width: 420px; height: 420px; bottom: -180px; left: 30%; background: radial-gradient(circle, #6a63d6 0%, transparent 68%); animation: drift3 19s ease-in-out infinite; }
+@keyframes drift1 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-35px, 30px) scale(1.08); } }
+@keyframes drift2 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(30px, -25px) scale(1.05); } }
+@keyframes drift3 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(20px, 25px) scale(1.1); } }
+@keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+html, body { background: transparent; }
+html { background: var(--page-plane); }
+.kpi-hero, .kpi-tile, .trend-card, .table-card, details.detail, .detail-group details, .focus-kpis .kpi-tile {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 14px 30px -20px var(--shadow-tint);
+}
+.detail-body .trend-card { box-shadow: none; }
+h1 {
+  background: linear-gradient(120deg, var(--brand), #6a63d6, var(--series-1), var(--brand));
+  background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: gradientShift 12s ease-in-out infinite;
+}
+h1 .dot { -webkit-text-fill-color: var(--brand); }
+@media (prefers-reduced-motion: reduce) { .page-glow span, h1 { animation: none; } }
+
+/* Missing months in trend charts */
+.lc-missing-line { stroke: var(--status-critical); stroke-width: 2; stroke-dasharray: 4,4; fill: none; }
+.lc-missing-dot { fill: var(--surface-2); stroke: var(--status-critical); stroke-width: 2; }
+.chart-key { display: flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--text-muted); margin-top: 6px; }
+.chart-key[hidden] { display: none; }
+.chart-key svg { flex-shrink: 0; }
 </style>
 </head>
 <body>
+<div class="page-glow" aria-hidden="true"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
 <div class="wrap">
 
   <div class="summary-head" id="summaryHead" hidden>
@@ -707,7 +745,7 @@ details.detail > summary:hover { background: var(--brand-wash); }
       <span>Last refreshed: <strong id="metaGenerated">—</strong></span>
     </div>
     <div class="byline">
-      Dashboard by <strong>Fahd Rehman</strong><span class="sep">·</span><a href="https://www.fahd.uk" target="_blank" rel="noopener">www.fahd.uk</a>
+      Dashboard by <strong>Fahd Rehman</strong>
     </div>
   </div>
 
@@ -769,16 +807,16 @@ details.detail > summary:hover { background: var(--brand-wash); }
     <div class="trend-grid" style="margin-top:18px;">
       <div class="trend-card">
         <div class="chart-title">People waiting under 18 weeks</div>
-        <div class="chart-note" id="trendNote1"></div>
+        <div class="chart-note" id="trendNote1" hidden></div>
         <div class="lc-wrap"><svg class="linechart linechart-tall" id="chartPct18"></svg><div class="lc-tooltip" id="ttPct18"></div></div>
       </div>
       <div class="trend-card">
         <div class="chart-title">People waiting</div>
-        <div class="chart-note" id="trendNote2"></div>
+        <div class="chart-note" id="trendNote2" hidden></div>
         <div class="lc-wrap"><svg class="linechart linechart-tall" id="chartWaitlist"></svg><div class="lc-tooltip" id="ttWaitlist"></div></div>
       </div>
     </div>
-    <div class="lfl-note" id="reportingNote" hidden></div>
+    
   </section>
 
   <section id="focusSection">
@@ -820,12 +858,12 @@ details.detail > summary:hover { background: var(--brand-wash); }
         <div class="trend-grid">
           <div>
             <div class="chart-title">% within 18 weeks</div>
-            <div class="chart-note" id="fTrendNote1"></div>
+            <div class="chart-note" id="fTrendNote1" hidden></div>
             <div class="lc-wrap"><svg class="linechart linechart-tall" id="fChartPct18"></svg><div class="lc-tooltip" id="fTtPct18"></div></div>
           </div>
           <div>
             <div class="chart-title">Waiting list size</div>
-            <div class="chart-note" id="fTrendNote2"></div>
+            <div class="chart-note" id="fTrendNote2" hidden></div>
             <div class="lc-wrap"><svg class="linechart linechart-tall" id="fChartWl"></svg><div class="lc-tooltip" id="fTtWl"></div></div>
           </div>
         </div>
@@ -860,7 +898,7 @@ details.detail > summary:hover { background: var(--brand-wash); }
       <div class="detail-body">
     <div class="trend-card">
       <div class="chart-title" id="geoMapTitle">Median wait (weeks) by NHS England region</div>
-      <div class="chart-note" id="geoMapNote"></div>
+      <div class="chart-note" id="geoMapNote" hidden></div>
       <div class="geo-map-wrap">
         <div class="geo-tile-grid" id="geoTileGrid"></div>
         <div class="geo-legend-col">
@@ -899,7 +937,7 @@ details.detail > summary:hover { background: var(--brand-wash); }
       <div class="detail-body">
     <div class="trend-card">
       <div class="chart-title">Is a longer wait explained by a bigger waiting list?</div>
-      <div class="chart-note" id="scatterNote"></div>
+      <div class="chart-note" id="scatterNote" hidden></div>
       <div class="lc-wrap"><svg class="linechart" id="chartScatter" style="height:300px;"></svg><div class="lc-tooltip scatter-tooltip" id="ttScatter"></div></div>
       <div class="scatter-legend">
         <div class="scatter-legend-item"><span class="scatter-legend-swatch" style="background:var(--status-good)"></span>Clearly shorter wait than expected</div>
@@ -1417,10 +1455,6 @@ function drawLineChart(svgEl, points, valueFmt, minSpan, target) {
     add("text", { x: xFor(i), y: h - 6, "text-anchor": "middle", class: "lc-axis-label" }, p.label);
   });
 
-  points.forEach((p, i) => {
-    if (p.note) add("line", { x1: xFor(i), x2: xFor(i), y1: padT, y2: padT + plotH, class: "lc-gap-mark" });
-  });
-
   if (target && !targetOffScale) {
     const ty = yFor(target.value);
     add("line", { x1: padL, x2: w - padR, y1: ty, y2: ty, class: "lc-target-line" });
@@ -1446,6 +1480,49 @@ function drawLineChart(svgEl, points, valueFmt, minSpan, target) {
     add("path", { d: `${d} L ${xFor(seg[seg.length - 1])} ${baseline} L ${xFor(seg[0])} ${baseline} Z`, class: "lc-area" });
     add("path", { d, class: "lc-line" });
   });
+
+  // Missing months: bridge the gap with a red dashed line between the months
+  // either side, with a hollow red point where each missing month would sit.
+  // A gap at either end is carried flat from the nearest reported month.
+  const isMissing = p => p.value === null || p.value === undefined;
+  const missing = [];
+  let k = 0;
+  while (k < points.length) {
+    if (!isMissing(points[k])) { k++; continue; }
+    let j = k;
+    while (j < points.length && isMissing(points[j])) j++;
+    const left = k - 1 >= 0 ? k - 1 : null, right = j < points.length ? j : null;
+    const yAt = i => {
+      if (left !== null && right !== null) {
+        const t = (i - left) / (right - left);
+        return points[left].value + t * (points[right].value - points[left].value);
+      }
+      return points[left !== null ? left : right].value;
+    };
+    const from = left !== null ? left : k, to = right !== null ? right : j - 1;
+    add("line", { x1: xFor(from), y1: yFor(yAt(from === left ? left : from)), x2: xFor(to), y2: yFor(yAt(to === right ? right : to)), class: "lc-missing-line" });
+    for (let i = k; i < j; i++) missing.push({ i, y: yAt(i) });
+    k = j;
+  }
+  missing.forEach(({ i, y }) => {
+    const cx = xFor(i), cy = yFor(y);
+    add("circle", { cx, cy, r: 4.5, class: "lc-missing-dot" });
+    const hit = add("circle", { cx, cy, r: 12, class: "lc-dot-hit" });
+    hit.dataset.value = "no data reported";
+    hit.dataset.label = points[i].label;
+    hit.dataset.cx = cx; hit.dataset.cy = cy;
+  });
+  const wrap = svgEl.closest(".lc-wrap");
+  if (wrap) {
+    let key = wrap.nextElementSibling;
+    if (!key || !key.classList.contains("chart-key")) {
+      key = document.createElement("div");
+      key.className = "chart-key";
+      key.innerHTML = '<svg width="34" height="10" viewBox="0 0 34 10" aria-hidden="true"><line x1="1" y1="5" x2="33" y2="5" class="lc-missing-line"/><circle cx="17" cy="5" r="3.5" class="lc-missing-dot"/></svg><span>No data reported for this month</span>';
+      wrap.after(key);
+    }
+    key.hidden = missing.length === 0;
+  }
 
   points.forEach((p, i) => {
     if (p.value === null || p.value === undefined) return;
@@ -1495,12 +1572,6 @@ wireTooltip(document.getElementById("chartWaitlist"), document.getElementById("t
   const months = history.length ? `${monthLabel(history[0].period)} to ${monthLabel(history[history.length - 1].period)}` : "";
   document.getElementById("trendNote1").textContent = history.length > 1 ? `${months}, acute trusts` : "The trend builds as each month is added.";
   document.getElementById("trendNote2").textContent = history.length > 1 ? `${months}, acute trusts` : "The trend builds as each month is added.";
-  const events = history.filter(h => reportingNoteFor(h)).map(h => `${monthLabel(h.period)}: ${reportingNoteFor(h)}`);
-  const el = document.getElementById("reportingNote");
-  if (events.length) {
-    el.textContent = `Dotted lines mark months when trusts started or stopped sending data, which moves the totals without any real change in waits. ${events.slice(-4).join(". ")}.`;
-    el.hidden = false;
-  }
 })();
 
 // ---- Median wait vs waiting-list size ----
