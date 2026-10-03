@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NHS England RTT Dashboard — Acute Trusts</title>
+<title>NHS England waiting times: acute trusts</title>
 <meta name="description" content="Monthly referral to treatment waiting times for England's acute NHS trusts, with trends, regional figures and trust comparisons.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="NHS England RTT waiting times: acute trusts dashboard">
@@ -521,6 +521,31 @@
   body.summary-mode #focusEmpty, body.summary-mode #focusShareNote { display: none !important; }
   body.summary-mode .focus-title { margin-top: 0; }
   body.summary-mode .focus-name { font-size: 20px; }
+  /* Explore the detail: collapsible sections */
+  details.detail {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--card-radius);
+    box-shadow: var(--shadow-card); margin-bottom: 12px; overflow: hidden;
+  }
+  details.detail > summary {
+    list-style: none; cursor: pointer; padding: 16px 22px; display: flex; justify-content: space-between;
+    align-items: center; gap: 16px;
+  }
+  details.detail > summary::-webkit-details-marker { display: none; }
+  details.detail > summary::after {
+    content: "+"; font-size: 20px; font-weight: 500; color: var(--series-1); line-height: 1; flex-shrink: 0;
+  }
+  details.detail[open] > summary::after { content: "\2212"; }
+  details.detail > summary:hover { background: var(--hover-wash); }
+  .detail-title { font-size: 14.5px; font-weight: 700; color: var(--text-primary); }
+  .detail-sub { font-size: 12.5px; color: var(--text-muted); margin-top: 3px; }
+  .detail-body { padding: 4px 22px 22px; border-top: 1px solid var(--gridline); }
+  .detail-body .trend-card { box-shadow: none; border: none; padding: 16px 0 0; background: none; }
+  /* Notes about like-for-like comparisons and reporting gaps */
+  .lfl-note { font-size: 12px; color: var(--text-muted); margin: 10px 4px 0; line-height: 1.55; }
+  .lfl-note[hidden] { display: none; }
+  .kpi-delta.is-neutral { color: var(--text-secondary); background: var(--gridline); }
+  .lc-gap-mark { stroke: var(--baseline); stroke-width: 1; stroke-dasharray: 2,3; }
+  .scatter-band { fill: var(--series-1); opacity: 0.06; }
   .share-note {
     margin-top: 10px; padding: 10px 12px; border-radius: 8px; font-size: 12.5px; line-height: 1.55;
     background: var(--status-good-wash); color: var(--text-secondary); border: 1px solid var(--border);
@@ -591,7 +616,7 @@
     <div class="page-head-inner">
       <div class="brand-mark"></div>
       <div>
-        <h1>NHS England RTT — Acute Trust Waiting Times</h1>
+        <h1>NHS England waiting times: acute trusts</h1>
         <p class="subtitle">Referral to treatment (consultant-led) waiting times, England's acute NHS trusts · Source: <a href="#" id="sourceLink" target="_blank" rel="noopener">NHS England statistics</a></p>
       </div>
     </div>
@@ -599,7 +624,7 @@
   </header>
 
   <section>
-    <h2>England's acute trusts, headline figures<span class="kpi-filter-context" id="kpiFilterContext"></span></h2>
+    <h2>England's acute trusts at a glance<span class="kpi-filter-context" id="kpiFilterContext"></span></h2>
     <div class="kpi-filter-row">
       <span class="kpi-filter-label">Show figures for:</span>
       <div class="kpi-filter-pills" id="kpiRegionSlicer"></div>
@@ -607,12 +632,12 @@
 
     <div class="kpi-hero">
       <div class="kpi-hero-main">
-        <div class="kpi-hero-label">Waiting within 18 weeks — the NHS constitutional standard</div>
+        <div class="kpi-hero-label">People waiting under 18 weeks</div>
         <div class="kpi-hero-row">
           <div class="kpi-hero-value" id="kpiPct18">—</div>
           <div class="kpi-delta" id="kpiPct18Delta"></div>
         </div>
-        <div class="kpi-hero-sub" id="kpiHeroSub">vs. 92% target</div>
+        <div class="kpi-hero-sub" id="kpiHeroSub"></div>
       </div>
       <div class="kpi-hero-brief">
         <div class="brief-label" id="briefLabel">The month in brief</div>
@@ -622,37 +647,52 @@
 
     <div class="kpi-row">
       <div class="kpi-tile">
-        <div class="kpi-label">Total waiting list (incomplete pathways)</div>
+        <div class="kpi-label">People waiting</div>
         <div class="kpi-value" id="kpiWaitingList">—</div>
         <div class="kpi-delta" id="kpiWaitingListDelta"></div>
-        <div class="kpi-sub" id="kpiWaitingListSub">Across acute trusts only</div>
+        <div class="kpi-sub" id="kpiWaitingListSub">Across acute trusts</div>
       </div>
       <div class="kpi-tile">
         <div class="kpi-label">Median wait</div>
         <div class="kpi-value" id="kpiMedian">—</div>
         <div class="kpi-delta" id="kpiMedianDelta"></div>
-        <div class="kpi-sub">Weeks, estimated from banded data</div>
+        <div class="kpi-sub">Half of patients have waited less than this</div>
       </div>
       <div class="kpi-tile">
-        <div class="kpi-label">Waiting over 52 weeks</div>
+        <div class="kpi-label">Waiting over a year (52 weeks)</div>
         <div class="kpi-value" id="kpi52wk">—</div>
         <div class="kpi-delta" id="kpi52wkDelta"></div>
-        <div class="kpi-sub" id="kpiLongWaitSub">Long-wait breaches</div>
+        <div class="kpi-sub" id="kpiLongWaitSub"></div>
       </div>
     </div>
+    <div class="lfl-note" id="kpiLflNote" hidden></div>
+
+    <div class="trend-grid" style="margin-top:18px;">
+      <div class="trend-card">
+        <div class="chart-title">People waiting under 18 weeks</div>
+        <div class="chart-note" id="trendNote1"></div>
+        <div class="lc-wrap"><svg class="linechart linechart-tall" id="chartPct18"></svg><div class="lc-tooltip" id="ttPct18"></div></div>
+      </div>
+      <div class="trend-card">
+        <div class="chart-title">People waiting</div>
+        <div class="chart-note" id="trendNote2"></div>
+        <div class="lc-wrap"><svg class="linechart linechart-tall" id="chartWaitlist"></svg><div class="lc-tooltip" id="ttWaitlist"></div></div>
+      </div>
+    </div>
+    <div class="lfl-note" id="reportingNote" hidden></div>
   </section>
 
   <section id="focusSection">
-    <h2>Follow a trust</h2>
+    <h2>Find a trust</h2>
     <div class="trend-card">
       <div class="focus-head">
-        <input class="search-box" id="focusInput" type="text" list="focusTrustList" placeholder="Type a trust name to follow it…" autocomplete="off">
+        <input class="search-box" id="focusInput" type="text" list="focusTrustList" placeholder="Search for a hospital trust…" autocomplete="off">
         <datalist id="focusTrustList"></datalist>
         <button class="filter-btn" id="focusShare" type="button" hidden>Share a link to this trust</button>
         <button class="clear-filters-btn" id="focusClear" type="button" hidden>Stop following</button>
       </div>
       <div class="share-note" id="focusShareNote" hidden></div>
-      <div class="chart-note" id="focusEmpty" style="margin:12px 0 4px;">Pick a trust to see its trend and how it compares with its region and with trusts of a similar size. It stays highlighted in the charts and table below, and is remembered on this device. You can also click any row in the trust table.</div>
+      <div class="chart-note" id="focusEmpty" style="margin:12px 0 4px;">Search for a trust to see its waits, its trend and how it compares with its region and with similar trusts. Your choice is remembered on this device and highlighted in the detail below.</div>
       <div id="focusBody" hidden>
         <div class="focus-title"><span class="focus-name" id="focusName"></span><span class="focus-region" id="focusRegion"></span></div>
         <div class="focus-kpis">
@@ -713,24 +753,12 @@
     </div>
   </section>
 
-  <section>
-    <h2>National trend — acute trusts</h2>
-    <div class="trend-grid">
-      <div class="trend-card">
-        <div class="chart-title">% seen within 18 weeks</div>
-        <div class="chart-note" id="trendNote1">Builds up as each month is added.</div>
-        <div class="lc-wrap"><svg class="linechart linechart-tall" id="chartPct18"></svg><div class="lc-tooltip" id="ttPct18"></div></div>
-      </div>
-      <div class="trend-card">
-        <div class="chart-title">Waiting list size</div>
-        <div class="chart-note" id="trendNote2">Builds up as each month is added.</div>
-        <div class="lc-wrap"><svg class="linechart linechart-tall" id="chartWaitlist"></svg><div class="lc-tooltip" id="ttWaitlist"></div></div>
-      </div>
-    </div>
-  </section>
+  <section class="detail-group">
+    <h2>Explore the detail</h2>
 
-  <section id="regionSection" style="display:none;">
-    <h2>Median wait by region</h2>
+    <details class="detail" id="regionSection" style="display:none;">
+      <summary><div><div class="detail-title">Regions</div><div class="detail-sub">Median wait and long waits across England's seven NHS regions</div></div></summary>
+      <div class="detail-body">
     <div class="trend-card">
       <div class="chart-title" id="geoMapTitle">Median wait (weeks) by NHS England region</div>
       <div class="chart-note" id="geoMapNote"></div>
@@ -740,7 +768,7 @@
           <div class="geo-legend-title">Median wait (weeks)</div>
           <div class="geo-legend-bar"></div>
           <div class="geo-legend-scale"><span id="geoLegendMin">—</span><span id="geoLegendMax">—</span></div>
-          <div class="geo-legend-note">Schematic tile layout, arranged by approximate geography — not to scale or precise boundaries. Click a region below for its full breakdown; click it again to clear.</div>
+          <div class="geo-legend-note">Schematic layout by approximate geography, not to scale. Click a region for its breakdown; click it again to clear.</div>
         </div>
       </div>
 
@@ -764,40 +792,46 @@
         </div>
       </div>
     </div>
-  </section>
+      </div>
+    </details>
 
-  <section id="scatterSection" style="display:none;">
-    <h2>Median wait vs waiting-list size</h2>
+    <details class="detail" id="scatterSection" style="display:none;">
+      <summary><div><div class="detail-title">Waits compared with trust size</div><div class="detail-sub">Which trusts wait clearly longer or shorter than their size would predict</div></div></summary>
+      <div class="detail-body">
     <div class="trend-card">
       <div class="chart-title">Is a longer wait explained by a bigger waiting list?</div>
       <div class="chart-note" id="scatterNote"></div>
       <div class="lc-wrap"><svg class="linechart" id="chartScatter" style="height:300px;"></svg><div class="lc-tooltip scatter-tooltip" id="ttScatter"></div></div>
       <div class="scatter-legend">
-        <div class="scatter-legend-item"><span class="scatter-legend-swatch" style="background:var(--status-good)"></span>Waiting less than expected for its size</div>
-        <div class="scatter-legend-item"><span class="scatter-legend-swatch" style="background:var(--status-critical)"></span>Waiting more than expected for its size</div>
-        <div class="scatter-legend-item">- - - Expected wait, fitted across all acute trusts</div>
+        <div class="scatter-legend-item"><span class="scatter-legend-swatch" style="background:var(--status-good)"></span>Clearly shorter wait than expected</div>
+        <div class="scatter-legend-item"><span class="scatter-legend-swatch" style="background:var(--status-critical)"></span>Clearly longer wait than expected</div>
+        <div class="scatter-legend-item"><span class="scatter-legend-swatch" style="background:var(--baseline)"></span>Within the normal range</div>
+        <div class="scatter-legend-item"><span class="scatter-legend-swatch" style="background:transparent;border:1.5px solid var(--text-muted)"></span>Specialist trust (not compared)</div>
+        <div class="scatter-legend-item">- - - Expected wait, with the normal range shaded</div>
       </div>
       <div class="explainer" id="scatterExplainer"></div>
     </div>
 
     <div class="trend-card" style="margin-top: 16px;">
-      <div class="chart-title">Furthest from expected wait, adjusted for waiting-list size</div>
-      <div class="chart-note" id="rankNote">Not a raw leaderboard — ranked by distance from the fitted line above, so trusts of very different sizes aren't compared head-to-head.</div>
+      <div class="chart-title">Trusts clearly outside the normal range</div>
+      <div class="chart-note" id="rankNote">Only trusts whose wait sits outside the shaded range are listed. Everything inside it is within the variation you'd expect between trusts of that size.</div>
       <div class="rank-lists">
         <div class="rank-list">
-          <div class="rank-list-header good">Waiting less than expected</div>
+          <div class="rank-list-header good">Clearly shorter wait than expected</div>
           <div id="rankBelowList"></div>
         </div>
         <div class="rank-list">
-          <div class="rank-list-header bad">Waiting more than expected</div>
+          <div class="rank-list-header bad">Clearly longer wait than expected</div>
           <div id="rankAboveList"></div>
         </div>
       </div>
     </div>
-  </section>
+      </div>
+    </details>
 
-  <section>
-    <h2>Compare acute trusts</h2>
+    <details class="detail" id="tableSection">
+      <summary><div><div class="detail-title">All trusts</div><div class="detail-sub">Sort, filter and compare every acute trust</div></div></summary>
+      <div class="detail-body">
     <div class="table-controls">
       <div class="filter-row">
         <input class="search-box" id="searchBox" type="text" placeholder="Search trust or region…">
@@ -837,11 +871,11 @@
             <tr>
               <th class="col-text" data-key="name" data-type="text">Trust</th>
               <th class="col-text" data-key="region" data-type="text">Region</th>
-              <th data-key="residual" data-type="num">Diff vs expected</th>
+              <th data-key="residual" data-type="num">Wait vs expected for size</th>
               <th data-key="waiting_list" data-type="num">Waiting list</th>
               <th data-key="pct_within_18wk" data-type="num">Within 18 weeks</th>
-              <th data-key="pct_change" data-type="num">18-wk change vs last month</th>
-              <th data-key="median_weeks" data-type="num">Actual wait (wks)</th>
+              <th data-key="pct_change" data-type="num">Change on last month</th>
+              <th data-key="median_weeks" data-type="num">Median wait (wks)</th>
               <th data-key="expected" data-type="num">Expected (wks)</th>
               <th data-key="over_52wk" data-type="num">Over 52 weeks</th>
               <th data-key="over_65wk" data-type="num">Over 65 weeks</th>
@@ -852,18 +886,22 @@
         </table>
       </div>
     </div>
+      </div>
+    </details>
   </section>
 
   <footer>
-    <p>Built from NHS England's monthly Referral to Treatment (RTT) "Full CSV" data extract, filtered to Incomplete Pathways
-    (the current waiting list) for England's acute NHS trusts (a maintained reference list matched on NHS organisation code,
-    since NHS's raw data doesn't tag provider type; mergers may occasionally need a manual update). Trusts that did not submit
-    data for the month are listed beside "Trusts covered". Median wait is estimated by linear interpolation across NHS's published
-    weekly waiting bands. Long waits count patients waiting more than 52, 65 and 78 weeks. Regions are NHS England's 7
-    administrative regions. This dashboard refreshes each month after NHS England publishes new figures.</p>
+    <p><strong>About the figures.</strong> Built from NHS England's monthly referral to treatment (RTT) data, counting people still
+    waiting to start treatment ("incomplete pathways") at England's acute NHS trusts. Trusts are matched on their NHS organisation
+    code; trusts that merge are combined so their figures stay comparable. Trusts that did not submit data are listed at the top of
+    the page. The median wait is estimated from NHS England's weekly waiting bands. Long waits count people waiting more than 52, 65
+    and 78 weeks. Month-on-month changes compare only the trusts that reported in both months, and changes smaller than 0.3
+    percentage points (or 0.5% for counts) are shown as "no real change". The current milestone is 70% of people waiting under
+    18 weeks by March 2027, with each trust expected to reach at least 65%; the constitutional standard of 92% is due by March 2029.</p>
     <p><strong>Disclaimer:</strong> this is an unofficial reporting tool and is not linked to any NHS bodies or entities. It is
     purely for research purposes, using monthly data made publicly available by NHS England.</p>
   </footer>
+
 
 </div>
 
@@ -917,13 +955,35 @@ const history = (DATA.history || []).slice().sort((a, b) => a.period.localeCompa
 
 // ---- Per-trust history + the pinned ("followed") trust ----
 const TRUST_HISTORY = DATA.trust_history || {};
+const ALL_PERIODS = history.map(h => h.period);
 function trustSeries(code) {
   return (TRUST_HISTORY[code] || []).slice().sort((a, b) => a.period.localeCompare(b.period));
 }
-// The trust's previous reported month, if it is in the history.
+function previousPeriod(p) {
+  const [y, m] = p.split("-").map(Number);
+  return m === 1 ? `${y - 1}-12` : `${y}-${String(m - 1).padStart(2, "0")}`;
+}
+function monthName(period) {
+  const [y, m] = period.split("-").map(Number);
+  return new Date(y, m - 1, 1).toLocaleString("en-GB", { month: "long" });
+}
+// One point per month from the trust's first report, with null for months it
+// didn't report, so charts show the gap rather than drawing straight across it.
+function trustPoints(code, key) {
+  const series = trustSeries(code);
+  if (!series.length) return [];
+  const byPeriod = new Map(series.map(h => [h.period, h]));
+  return ALL_PERIODS.filter(p => p >= series[0].period)
+    .map(p => ({ label: monthLabel(p), value: byPeriod.has(p) ? byPeriod.get(p)[key] : null }));
+}
+// Last month's figures for a trust. The data carries a like-for-like figure
+// (merged trusts combined); otherwise fall back to its report for the
+// immediately previous month only.
 function trustPrev(code) {
-  const s = trustSeries(code).filter(h => h.period < DATA.period);
-  return s.length ? s[s.length - 1] : null;
+  const t = DATA.trusts.find(x => x.code === code);
+  if (t && t.prev) return { period: t.prev.prev_period, ...t.prev };
+  const last = trustSeries(code).filter(h => h.period < DATA.period).pop();
+  return last && last.period === previousPeriod(DATA.period) ? last : null;
 }
 const PIN_KEY = "rtt-dashboard-pinned-trust";
 function readInitialPin() {
@@ -934,34 +994,53 @@ function readInitialPin() {
 }
 let pinnedCode = readInitialPin();
 
+// ---- Month-on-month changes ----
+// Changes compare only trusts that reported in both months (worked out in the
+// data pipeline), and anything smaller than these bands is shown as "no real
+// change" rather than as a coloured rise or fall.
+const NEUTRAL = { pct: 0.3, weeks: 0.2, countShare: 0.005 };
+function nationalComparison() {
+  const latest = history[history.length - 1];
+  return latest && latest.period === DATA.period && latest.like_for_like ? latest.like_for_like : null;
+}
+function regionComparison(region) {
+  const entry = (DATA.region_history || []).find(e => e.period === DATA.period);
+  return entry && entry.like_for_like ? (entry.like_for_like[region] || null) : null;
+}
+function fmtPeople(n) {
+  if (n === null || n === undefined) return "—";
+  return n >= 1e6 ? `${(n / 1e6).toFixed(2)} million` : fmtInt(n);
+}
+
 // ---- The month in brief - plain-English summary for the region being shown ----
 function placeName(region) {
   if (!region) return "England";
   return region === "London" ? "London" : "the " + region;
 }
-function renderNarrative(curr, prev, region) {
+function renderNarrative(curr, cmp, region) {
   const el = document.getElementById("narrativeText");
   const periodDisplay = DATA.period_display || DATA.period;
   const where = placeName(region);
   document.getElementById("briefLabel").textContent = `${periodDisplay} in brief${region ? " · " + region : ""}`;
   if (!curr || curr.pct_within_18wk === undefined || curr.pct_within_18wk === null) { el.textContent = "—"; return; }
-  let text = `<strong>${fmtPct(curr.pct_within_18wk)}</strong> of patients waiting at ${where}'s acute trusts had been waiting under 18 weeks`;
-  if (prev && prev.pct_within_18wk !== undefined && prev.pct_within_18wk !== null) {
-    const d = curr.pct_within_18wk - prev.pct_within_18wk;
-    text += Math.abs(d) < 0.05 ? ", unchanged on the month." : `, ${d > 0 ? "up" : "down"} ${Math.abs(d).toFixed(1)}pp on ${monthLabel(prev.period)}.`;
-    const wlDiff = curr.waiting_list - prev.waiting_list;
-    const wlWord = Math.abs(wlDiff) < curr.waiting_list * 0.0005 ? "held steady at" : (wlDiff > 0 ? "rose to" : "fell to");
-    text += ` The waiting list ${wlWord} <strong>${fmtCompact(curr.waiting_list)}</strong>`;
+  let text = `<strong>${fmtPct(curr.pct_within_18wk)}</strong> of people waiting at ${where}'s acute trusts had been waiting under 18 weeks`;
+  if (cmp) {
+    const before = monthName(cmp.prev_period);
+    const d = cmp.curr.pct_within_18wk - cmp.prev.pct_within_18wk;
+    text += Math.abs(d) < NEUTRAL.pct ? `, much the same as in ${before}.` : `, ${d > 0 ? "up" : "down"} ${Math.abs(d).toFixed(1)} percentage points on ${before}.`;
+    const wlDiff = cmp.curr.waiting_list - cmp.prev.waiting_list;
+    text += ` <strong>${fmtPeople(curr.waiting_list)}</strong> people are waiting, `
+      + (Math.abs(wlDiff) < cmp.prev.waiting_list * NEUTRAL.countShare
+          ? `about the same as a month earlier`
+          : `${fmtInt(Math.abs(wlDiff))} ${wlDiff > 0 ? "more" : "fewer"} than a month earlier`);
   } else {
-    text += `. The waiting list stands at <strong>${fmtCompact(curr.waiting_list)}</strong>`;
+    text += `. <strong>${fmtPeople(curr.waiting_list)}</strong> people are waiting`;
   }
-  text += `, with <strong>${fmtInt(curr.over_52wk)}</strong> people waiting over a year`;
-  if (curr.over_78wk !== undefined && curr.over_78wk !== null) text += ` and <strong>${fmtInt(curr.over_78wk)}</strong> over 78 weeks`;
-  text += ".";
+  text += `, and <strong>${fmtInt(curr.over_52wk)}</strong> have waited over a year.`;
   el.innerHTML = text;
 }
 
-// ---- Small shared helpers: number count-up + inline sparklines ----
+// ---- Small shared helpers: number count-up ----
 function animateValue(el, toValue, fmtFn, suffix) {
   suffix = suffix || "";
   if (toValue === null || toValue === undefined || isNaN(toValue)) { el.textContent = fmtFn(toValue) + suffix; return; }
@@ -980,34 +1059,36 @@ function animateValue(el, toValue, fmtFn, suffix) {
   requestAnimationFrame(tick);
 }
 
-// ---- KPIs (with month-on-month delta + region slicer) ----
-function renderKpiDelta(elId, curr, prev, prevLabel, fmtDiff, higherIsGood) {
+// ---- KPIs (with month-on-month change + region slicer) ----
+function renderKpiDelta(elId, curr, prev, prevLabel, fmtDiff, higherIsGood, neutralBand) {
   const el = document.getElementById(elId);
   if (!el) return;
+  el.classList.remove("is-good", "is-bad", "is-neutral");
   if (curr === null || curr === undefined || prev === null || prev === undefined) {
     el.textContent = "";
     return;
   }
   const diff = curr - prev;
-  const isFlat = Math.abs(diff) < 1e-9;
+  if (Math.abs(diff) < (neutralBand || 1e-9)) {
+    el.classList.add("is-neutral");
+    el.innerHTML = `<span class="arrow">•</span> No real change vs ${prevLabel}`;
+    return;
+  }
   const isUp = diff > 0;
-  const isGood = isFlat ? true : (higherIsGood ? isUp : !isUp);
-  el.classList.remove("is-good", "is-bad");
-  el.classList.add(isGood ? "is-good" : "is-bad");
-  const arrow = isFlat ? "•" : (isUp ? "▲" : "▼");
-  el.innerHTML = `<span class="arrow">${arrow}</span> ${fmtDiff(diff)} vs ${prevLabel}`;
+  el.classList.add((higherIsGood ? isUp : !isUp) ? "is-good" : "is-bad");
+  el.innerHTML = `<span class="arrow">${isUp ? "▲" : "▼"}</span> ${fmtDiff(diff)} vs ${prevLabel}`;
 }
-
-function getRegionHistorySeries(regionName) {
-  const rh = (DATA.region_history || []).slice().sort((a, b) => a.period.localeCompare(b.period));
-  return rh.map(entry => {
-    const r = (entry.regions || []).find(x => x.region === regionName);
-    return { period: entry.period, ...(r || {}) };
-  });
+// Draws all four changes for a set of current/previous figures.
+function renderDeltaSet(ids, curr, prev, prevLabel) {
+  if (!curr || !prev) { ids.forEach(id => renderKpiDelta(id)); return; }
+  renderKpiDelta(ids[0], curr.pct_within_18wk, prev.pct_within_18wk, prevLabel, DELTA_FMT.pct, true, NEUTRAL.pct);
+  renderKpiDelta(ids[1], curr.waiting_list, prev.waiting_list, prevLabel, DELTA_FMT.int, false, (prev.waiting_list || 0) * NEUTRAL.countShare);
+  renderKpiDelta(ids[2], curr.median_weeks, prev.median_weeks, prevLabel, DELTA_FMT.weeks, false, NEUTRAL.weeks);
+  renderKpiDelta(ids[3], curr.over_52wk, prev.over_52wk, prevLabel, DELTA_FMT.int, false, Math.max(1, (prev.over_52wk || 0) * NEUTRAL.countShare));
 }
 
 const DELTA_FMT = {
-  pct: d => `${d > 0 ? "+" : ""}${d.toFixed(1)}pp`,
+  pct: d => `${d > 0 ? "+" : ""}${d.toFixed(1)} points`,
   compact: d => `${d >= 0 ? "+" : "-"}${fmtCompact(Math.abs(d))}`,
   weeks: d => `${d > 0 ? "+" : ""}${d.toFixed(1)} wks`,
   int: d => `${d >= 0 ? "+" : "-"}${fmtInt(Math.abs(d))}`,
@@ -1015,25 +1096,11 @@ const DELTA_FMT = {
 
 function updateKpiTiles(regionName) {
   const isAll = !regionName;
-  document.getElementById("kpiFilterContext").textContent = isAll ? "" : `— ${regionName}`;
+  document.getElementById("kpiFilterContext").textContent = isAll ? "" : `: ${regionName}`;
 
-  let curr, prev, prevLabel;
-  if (isAll) {
-    curr = DATA.national_acute;
-    if (history.length >= 2) {
-      prev = history[history.length - 2];
-      prevLabel = monthLabel(prev.period);
-    }
-    document.getElementById("kpiWaitingListSub").textContent = "Across acute trusts only";
-  } else {
-    curr = (DATA.regions || []).find(r => r.region === regionName) || {};
-    const series = getRegionHistorySeries(regionName);
-    if (series.length >= 2 && series[series.length - 1].waiting_list !== undefined) {
-      prev = series[series.length - 2];
-      prevLabel = prev.period ? monthLabel(prev.period) : undefined;
-    }
-    document.getElementById("kpiWaitingListSub").textContent = `Across ${regionName} acute trusts`;
-  }
+  const curr = isAll ? DATA.national_acute : ((DATA.regions || []).find(r => r.region === regionName) || {});
+  const cmp = isAll ? nationalComparison() : regionComparison(regionName);
+  document.getElementById("kpiWaitingListSub").textContent = isAll ? "Across acute trusts" : `Across ${regionName} acute trusts`;
 
   animateValue(document.getElementById("kpiPct18"), curr.pct_within_18wk, v => v === undefined || v === null || isNaN(v) ? "—" : v.toFixed(1) + "%");
   animateValue(document.getElementById("kpiWaitingList"), curr.waiting_list, v => v === undefined || v === null || isNaN(v) ? "—" : fmtCompact(v));
@@ -1041,27 +1108,30 @@ function updateKpiTiles(regionName) {
   animateValue(document.getElementById("kpi52wk"), curr.over_52wk, v => v === undefined || v === null || isNaN(v) ? "—" : fmtInt(v));
   document.getElementById("kpiLongWaitSub").textContent =
     (curr.over_65wk !== undefined && curr.over_65wk !== null)
-      ? `Over 65 wks: ${fmtInt(curr.over_65wk)} · Over 78 wks: ${fmtInt(curr.over_78wk)}`
-      : "Long-wait breaches";
+      ? `Over 65 weeks: ${fmtInt(curr.over_65wk)} · Over 78 weeks: ${fmtInt(curr.over_78wk)}` : "";
 
   if (curr.pct_within_18wk !== undefined && curr.pct_within_18wk !== null) {
-    const gap = 92 - curr.pct_within_18wk;
-    document.getElementById("kpiHeroSub").textContent = gap > 0.05
-      ? `${gap.toFixed(1)}pp below the 92% NHS target`
-      : "meets the 92% NHS target";
+    const gap = 70 - curr.pct_within_18wk;
+    document.getElementById("kpiHeroSub").textContent = (gap > 0.05
+      ? `${gap.toFixed(1)} points below the 70% target for March 2027`
+      : "Meets the 70% target for March 2027") + " · 92% standard due by 2029";
   }
 
-  if (prev && prev.waiting_list !== undefined) {
-    renderKpiDelta("kpiPct18Delta", curr.pct_within_18wk, prev.pct_within_18wk, prevLabel, DELTA_FMT.pct, true);
-    renderKpiDelta("kpiWaitingListDelta", curr.waiting_list, prev.waiting_list, prevLabel, DELTA_FMT.compact, false);
-    renderKpiDelta("kpiMedianDelta", curr.median_weeks, prev.median_weeks, prevLabel, DELTA_FMT.weeks, false);
-    renderKpiDelta("kpi52wkDelta", curr.over_52wk, prev.over_52wk, prevLabel, DELTA_FMT.int, false);
+  const ids = ["kpiPct18Delta", "kpiWaitingListDelta", "kpiMedianDelta", "kpi52wkDelta"];
+  const note = document.getElementById("kpiLflNote");
+  if (cmp) {
+    renderDeltaSet(ids, cmp.curr, cmp.prev, monthLabel(cmp.prev_period));
+    let text = `Changes compare the same ${cmp.trusts} trusts in ${monthName(cmp.prev_period)} and ${monthName(DATA.period)}, so trusts starting or stopping reporting don't distort them.`;
+    const latest = history[history.length - 1] || {};
+    const stopped = isAll ? ((latest.reporting || {}).stopped || []) : [];
+    if (stopped.length) text += ` Not reporting this month: ${stopped.map(properCase).join(", ")}.`;
+    note.textContent = text;
+    note.hidden = false;
   } else {
-    ["kpiPct18Delta", "kpiWaitingListDelta", "kpiMedianDelta", "kpi52wkDelta"].forEach(id => {
-      document.getElementById(id).textContent = "";
-    });
+    renderDeltaSet(ids, null, null);
+    note.hidden = true;
   }
-  renderNarrative(curr, (prev && prev.waiting_list !== undefined) ? prev : null, isAll ? null : regionName);
+  renderNarrative(curr, cmp, isAll ? null : regionName);
 }
 
 function renderKpiSlicer() {
@@ -1196,16 +1266,22 @@ renderRegionDetailRow();
 // doesn't get zoomed-in until it *looks* like a dramatic swing - the chart
 // stays honest about how big the change actually is.
 function drawLineChart(svgEl, points, valueFmt, minSpan, target) {
+  // points: [{label, value, note?}]. A null value is a month with no data: the
+  // line breaks there instead of joining across it. A point with a note gets a
+  // faint marker (used for months when trusts started or stopped reporting).
   const tall = svgEl.classList.contains("linechart-tall");
   const w = tall ? 560 : 520, h = tall ? 320 : 160;
   const padL = tall ? 48 : 46, padR = tall ? 18 : 16, padT = tall ? 18 : 14, padB = tall ? 34 : 26;
   svgEl.setAttribute("viewBox", `0 0 ${w} ${h}`);
   svgEl.innerHTML = "";
 
-  if (!points.length) return;
+  const vals = points.map(p => p.value).filter(v => v !== null && v !== undefined);
+  if (!vals.length) return;
 
-  const vals = points.map(p => p.value);
   let vMin = Math.min(...vals), vMax = Math.max(...vals);
+  // A target close to the data (e.g. a 70% milestone vs ~64% actual) widens the
+  // axis so the gap to it is visible; a distant one is noted as off scale.
+  if (target && target.stretch) { vMin = Math.min(vMin, target.value); vMax = Math.max(vMax, target.value); }
   const dataSpan = vMax - vMin;
   if (dataSpan < minSpan) {
     const mid = (vMax + vMin) / 2;
@@ -1214,103 +1290,72 @@ function drawLineChart(svgEl, points, valueFmt, minSpan, target) {
   }
   const pad = (vMax - vMin) * 0.12;
   vMin -= pad; vMax += pad;
-  // A target far outside the data's own range (e.g. 92% vs an actual ~65%) is shown
-  // as a small off-scale note rather than stretching the axis to fit it - that keeps
-  // month-to-month movement legible instead of flattening it near the bottom.
   const targetOffScale = target && (target.value > vMax || target.value < vMin);
 
   const plotW = w - padL - padR, plotH = h - padT - padB;
   const xFor = i => points.length === 1 ? padL + plotW / 2 : padL + (i / (points.length - 1)) * plotW;
   const yFor = v => padT + plotH - ((v - vMin) / (vMax - vMin)) * plotH;
-
   const ns = "http://www.w3.org/2000/svg";
-  // gridlines (3 horizontal)
+  const add = (tag, attrs, text) => {
+    const el = document.createElementNS(ns, tag);
+    Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+    if (text !== undefined) el.textContent = text;
+    svgEl.appendChild(el);
+    return el;
+  };
+
   for (let g = 0; g <= 2; g++) {
     const gy = padT + (g / 2) * plotH;
-    const line = document.createElementNS(ns, "line");
-    line.setAttribute("x1", padL); line.setAttribute("x2", w - padR);
-    line.setAttribute("y1", gy); line.setAttribute("y2", gy);
-    line.setAttribute("class", "lc-gridline");
-    svgEl.appendChild(line);
-    const label = document.createElementNS(ns, "text");
-    label.setAttribute("x", padL - 8); label.setAttribute("y", gy + 3);
-    label.setAttribute("text-anchor", "end"); label.setAttribute("class", "lc-axis-label");
-    const val = vMax - (g / 2) * (vMax - vMin);
-    label.textContent = valueFmt(val);
-    svgEl.appendChild(label);
+    add("line", { x1: padL, x2: w - padR, y1: gy, y2: gy, class: "lc-gridline" });
+    add("text", { x: padL - 8, y: gy + 3, "text-anchor": "end", class: "lc-axis-label" }, valueFmt(vMax - (g / 2) * (vMax - vMin)));
   }
 
-  // x-axis labels
   // Label every Nth month counted back from the latest, so the latest month
   // is always labelled and the gaps between labels stay even.
   const labelStep = points.length > 8 ? Math.ceil(points.length / 6) : 1;
   points.forEach((p, i) => {
     if ((points.length - 1 - i) % labelStep !== 0) return;
-    const label = document.createElementNS(ns, "text");
-    label.setAttribute("x", xFor(i)); label.setAttribute("y", h - 6);
-    label.setAttribute("text-anchor", "middle"); label.setAttribute("class", "lc-axis-label");
-    label.textContent = p.label;
-    svgEl.appendChild(label);
+    add("text", { x: xFor(i), y: h - 6, "text-anchor": "middle", class: "lc-axis-label" }, p.label);
   });
 
-  // target reference line (e.g. the 92% NHS constitutional standard)
+  points.forEach((p, i) => {
+    if (p.note) add("line", { x1: xFor(i), x2: xFor(i), y1: padT, y2: padT + plotH, class: "lc-gap-mark" });
+  });
+
   if (target && !targetOffScale) {
     const ty = yFor(target.value);
-    const tline = document.createElementNS(ns, "line");
-    tline.setAttribute("x1", padL); tline.setAttribute("x2", w - padR);
-    tline.setAttribute("y1", ty); tline.setAttribute("y2", ty);
-    tline.setAttribute("class", "lc-target-line");
-    svgEl.appendChild(tline);
-    const tlabel = document.createElementNS(ns, "text");
-    tlabel.setAttribute("x", w - padR); tlabel.setAttribute("y", ty - 4);
-    tlabel.setAttribute("text-anchor", "end"); tlabel.setAttribute("class", "lc-target-label");
-    tlabel.textContent = target.label;
-    svgEl.appendChild(tlabel);
+    add("line", { x1: padL, x2: w - padR, y1: ty, y2: ty, class: "lc-target-line" });
+    add("text", { x: w - padR, y: ty - 4, "text-anchor": "end", class: "lc-target-label" }, target.label);
   } else if (target && targetOffScale) {
     const above = target.value > vMax;
-    const ty = above ? padT + 3 : h - padB - 3;
-    const arrow = above ? "↑" : "↓";
-    const tlabel = document.createElementNS(ns, "text");
-    tlabel.setAttribute("x", w - padR); tlabel.setAttribute("y", ty + (above ? 9 : -5));
-    tlabel.setAttribute("text-anchor", "end"); tlabel.setAttribute("class", "lc-target-label");
-    tlabel.textContent = `${arrow} ${target.label} - off scale`;
-    svgEl.appendChild(tlabel);
+    add("text", { x: w - padR, y: (above ? padT + 3 : h - padB - 3) + (above ? 9 : -5), "text-anchor": "end", class: "lc-target-label" },
+      `${above ? "↑" : "↓"} ${target.label} (off scale)`);
   }
 
-  // soft area fill under the line - anchors the eye to the baseline so the
-  // slope reads as "a change of this size", not just "a steep line"
-  if (points.length > 1) {
-    const baseline = padT + plotH;
-    const areaD = points.map((p, i) => `${i === 0 ? "M" : "L"} ${xFor(i)} ${yFor(p.value)}`).join(" ")
-      + ` L ${xFor(points.length - 1)} ${baseline} L ${xFor(0)} ${baseline} Z`;
-    const area = document.createElementNS(ns, "path");
-    area.setAttribute("d", areaD); area.setAttribute("class", "lc-area");
-    svgEl.appendChild(area);
-  }
-
-  // line
-  if (points.length > 1) {
-    const d = points.map((p, i) => `${i === 0 ? "M" : "L"} ${xFor(i)} ${yFor(p.value)}`).join(" ");
-    const path = document.createElementNS(ns, "path");
-    path.setAttribute("d", d); path.setAttribute("class", "lc-line");
-    svgEl.appendChild(path);
-  }
-
-  // dots + hit targets
+  // Contiguous runs of months with data, drawn as separate line and area pieces.
+  const segments = [];
+  let run = [];
   points.forEach((p, i) => {
-    const cx = xFor(i), cy = yFor(p.value);
-    const dot = document.createElementNS(ns, "circle");
-    dot.setAttribute("cx", cx); dot.setAttribute("cy", cy); dot.setAttribute("r", 4);
-    dot.setAttribute("class", "lc-dot");
-    svgEl.appendChild(dot);
+    if (p.value === null || p.value === undefined) { if (run.length) segments.push(run); run = []; }
+    else run.push(i);
+  });
+  if (run.length) segments.push(run);
+  const baseline = padT + plotH;
+  segments.forEach(seg => {
+    if (seg.length < 2) return;
+    const d = seg.map((i, k) => `${k === 0 ? "M" : "L"} ${xFor(i)} ${yFor(points[i].value)}`).join(" ");
+    add("path", { d: `${d} L ${xFor(seg[seg.length - 1])} ${baseline} L ${xFor(seg[0])} ${baseline} Z`, class: "lc-area" });
+    add("path", { d, class: "lc-line" });
+  });
 
-    const hit = document.createElementNS(ns, "circle");
-    hit.setAttribute("cx", cx); hit.setAttribute("cy", cy); hit.setAttribute("r", 12);
-    hit.setAttribute("class", "lc-dot-hit");
-    hit.dataset.value = valueFmt(p.value);
+  points.forEach((p, i) => {
+    if (p.value === null || p.value === undefined) return;
+    const cx = xFor(i), cy = yFor(p.value);
+    add("circle", { cx, cy, r: 4, class: "lc-dot" });
+    const hit = add("circle", { cx, cy, r: 12, class: "lc-dot-hit" });
+    hit.dataset.value = valueFmt(p.value) + (p.note ? ` · ${p.note}` : "");
     hit.dataset.label = p.label;
     hit.dataset.cx = cx; hit.dataset.cy = cy;
-    svgEl.appendChild(hit);
   });
 }
 
@@ -1329,37 +1374,49 @@ function wireTooltip(svgEl, ttEl) {
   svgEl.addEventListener("mouseleave", () => { ttEl.style.opacity = 0; });
 }
 
-const pct18Points = history.map(h => ({ label: monthLabel(h.period), value: h.pct_within_18wk }));
-const waitlistPoints = history.map(h => ({ label: monthLabel(h.period), value: h.waiting_list }));
+// Months when trusts started or stopped reporting move the reported totals, so
+// they're marked on the national charts and listed underneath.
+function reportingNoteFor(h) {
+  const r = h.reporting || {};
+  const bits = [];
+  if ((r.stopped || []).length) bits.push(`${r.stopped.length === 1 ? properCase(r.stopped[0]) : r.stopped.length + " trusts"} stopped reporting`);
+  if ((r.started || []).length) bits.push(`${r.started.length === 1 ? properCase(r.started[0]) : r.started.length + " trusts"} started reporting`);
+  return bits.join("; ");
+}
+const pct18Points = history.map(h => ({ label: monthLabel(h.period), value: h.pct_within_18wk, note: reportingNoteFor(h) }));
+const waitlistPoints = history.map(h => ({ label: monthLabel(h.period), value: h.waiting_list, note: reportingNoteFor(h) }));
 const waitlistMax = Math.max(...waitlistPoints.map(p => p.value), 1);
 
-// Floors: at least 20 percentage points of visible range for the % chart,
-// at least 12% of the largest value seen for the waiting-list chart - small
-// real fluctuations stay visually small instead of filling the whole chart.
-drawLineChart(document.getElementById("chartPct18"), pct18Points, v => v.toFixed(1) + "%", 3, { value: 92, label: "92% target" });
+drawLineChart(document.getElementById("chartPct18"), pct18Points, v => v.toFixed(1) + "%", 3, { value: 70, label: "70% target, Mar 2027", stretch: true });
 drawLineChart(document.getElementById("chartWaitlist"), waitlistPoints, v => fmtCompact(v), waitlistMax * 0.03);
 wireTooltip(document.getElementById("chartPct18"), document.getElementById("ttPct18"));
 wireTooltip(document.getElementById("chartWaitlist"), document.getElementById("ttWaitlist"));
 
-if (history.length < 2) {
-  const note = history.length === 1 ? "Only one month tracked so far — the trend line will build as future months are added." : "No history yet.";
-  document.getElementById("trendNote1").textContent = note;
-  document.getElementById("trendNote2").textContent = note;
-} else {
-  document.getElementById("trendNote1").textContent = `${history.length} months tracked`;
-  document.getElementById("trendNote2").textContent = `${history.length} months tracked`;
-}
+(function () {
+  const months = history.length ? `${monthLabel(history[0].period)} to ${monthLabel(history[history.length - 1].period)}` : "";
+  document.getElementById("trendNote1").textContent = history.length > 1 ? `${months}, acute trusts` : "The trend builds as each month is added.";
+  document.getElementById("trendNote2").textContent = history.length > 1 ? `${months}, acute trusts` : "The trend builds as each month is added.";
+  const events = history.filter(h => reportingNoteFor(h)).map(h => `${monthLabel(h.period)}: ${reportingNoteFor(h)}`);
+  const el = document.getElementById("reportingNote");
+  if (events.length) {
+    el.textContent = `Dotted lines mark months when trusts started or stopped sending data, which moves the totals without any real change in waits. ${events.slice(-4).join(". ")}.`;
+    el.hidden = false;
+  }
+})();
 
-// ---- Median wait vs waiting-list size: log-linear fit + size-adjusted ranking ----
-// Raw comparisons across trusts are unfair - a small specialist trust and a huge
-// general acute trust aren't operating at the same scale. Fitting median wait
-// against ln(waiting list) gives an "expected wait for a trust this size"; ranking
-// by the residual (actual minus expected) surfaces genuine over/under-performance
-// instead of just re-discovering which trusts happen to be biggest.
-// The fit is computed once here and shared by both the scatter analysis and the
-// comparator table (so the table's Expected/Diff columns match the chart exactly).
+// ---- Median wait vs waiting-list size ----
+// Bigger waiting lists tend to mean longer waits, so trusts are compared with
+// the wait expected for their size: median wait fitted against ln(waiting list).
+// Only general acute trusts are fitted. Specialist trusts (children's, eye,
+// orthopaedic, cancer, heart and similar) treat a very different mix of
+// patients, so they're shown but not judged against the line.
+// Most trusts sit near the line by chance and local circumstance, so a trust is
+// only flagged when it falls outside the normal range: about 95% of trusts are
+// expected to land inside +/- 1.96 residual standard deviations.
+const isSpecialist = t => t.type === "specialist";
+const hasWait = t => t.waiting_list > 0 && t.median_weeks !== null && t.median_weeks !== undefined;
 function computeSizeFit(allTrusts) {
-  const pts = allTrusts.filter(t => t.waiting_list > 0 && t.median_weeks !== null && t.median_weeks !== undefined);
+  const pts = allTrusts.filter(t => hasWait(t) && !isSpecialist(t));
   if (pts.length < 8) return null;
   const xs = pts.map(t => Math.log(t.waiting_list));
   const ys = pts.map(t => t.median_weeks);
@@ -1375,43 +1432,52 @@ function computeSizeFit(allTrusts) {
   const b = sxy / sxx;
   const a = my - b * mx;
   const r2 = (sxy * sxy) / (sxx * syy);
-  return { predict: wl => a + b * Math.log(wl), a, b, r2, n };
+  const sse = xs.reduce((s, x, i) => s + (ys[i] - (a + b * x)) ** 2, 0);
+  const sd = Math.sqrt(sse / (n - 2));
+  return { predict: wl => a + b * Math.log(wl), a, b, r2, n, band: 1.96 * sd };
 }
 const sizeFit = computeSizeFit(DATA.trusts);
 
+function properCase(name) {
+  const small = new Set(["and", "of", "the", "for", "in", "on"]);
+  return name.split(/\s+/).map((w, i) => {
+    const low = w.toLowerCase();
+    if (low === "nhs" || low === "ucl") return w.toUpperCase();
+    if (i > 0 && small.has(low)) return low;
+    return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+  }).join(" ");
+}
+
+// Each trust with its expected wait, the difference, and whether it's flagged.
+let trusts = DATA.trusts.map(t => {
+  const prev = trustPrev(t.code);
+  const out = { ...t, pct_change: (prev && prev.pct_within_18wk !== null && t.pct_within_18wk !== null) ? t.pct_within_18wk - prev.pct_within_18wk : null,
+                expected: null, residual: null, flag: null };
+  if (sizeFit && hasWait(t) && !isSpecialist(t)) {
+    out.expected = sizeFit.predict(t.waiting_list);
+    out.residual = t.median_weeks - out.expected;
+    out.flag = out.residual > sizeFit.band ? "longer" : (out.residual < -sizeFit.band ? "shorter" : null);
+  }
+  return out;
+});
+
 function renderScatterAnalysis() {
   const section = document.getElementById("scatterSection");
-  const pts = DATA.trusts.filter(t => t.waiting_list > 0 && t.median_weeks !== null && t.median_weeks !== undefined);
-  if (!sizeFit || pts.length < 8) { section.style.display = "none"; return; }
+  if (!sizeFit) { section.style.display = "none"; return; }
   section.style.display = "";
+  const pts = trusts.filter(hasWait);
+  const general = pts.filter(t => !isSpecialist(t));
+  const { predict, r2, band } = sizeFit;
+  const flagged = general.filter(t => t.flag);
 
-  const xs = pts.map(t => Math.log(t.waiting_list));
-  const ys = pts.map(t => t.median_weeks);
-  const n = pts.length;
-  const { predict, r2 } = sizeFit;
-
-  const withResid = pts.map(t => ({ ...t, expected: predict(t.waiting_list), residual: t.median_weeks - predict(t.waiting_list) }));
-  const maxAbsResid = Math.max(...withResid.map(t => Math.abs(t.residual)), 0.1);
-
-  const pctExplained = Math.round(r2 * 100);
   document.getElementById("scatterNote").textContent =
-    `Each dot is one acute trust: how big its waiting list is (left to right) against how long a typical patient waits (bottom to top).`;
-
-  // A worked, plain-English example built from a real trust — the one furthest
-  // ABOVE its expected wait — so a non-statistical reader can anchor the idea.
-  const example = withResid.slice().sort((a, b) => b.residual - a.residual)[0];
-  const exName = properCase(example.name);
-  const exWl = fmtInt(example.waiting_list);
-  const exActual = fmtWeeks(example.median_weeks);
-  const exExpected = fmtWeeks(example.expected);
-  const exDiff = Math.abs(example.residual).toFixed(1);
-
+    `Each dot is one trust: how many people it has waiting (left to right) against its median wait (bottom to top).`;
   document.getElementById("scatterExplainer").innerHTML =
     `<h4>How to read this</h4>` +
-    `<p>Bigger waiting lists generally take longer to clear, so a trust with more people waiting will usually have a longer typical wait. The <strong>dashed line</strong> is that normal pattern — the wait you'd <strong>expect</strong> for a trust of a given size, worked out from all ${n} trusts together.</p>` +
-    `<p>What matters is where each trust sits <strong>relative to that line</strong>. A trust <span class="ex-good">below the line</span> is doing better than its size would predict; a trust <span class="ex-bad">above the line</span> is waiting longer than its size alone explains — pointing to something beyond simply having a big list.</p>` +
-    `<p>For example, <strong>${exName}</strong> has ${exWl} people waiting. For a list that size you'd expect a typical wait of about <strong>${exExpected} weeks</strong>, but it's actually <strong>${exActual} weeks</strong> — roughly <span class="ex-bad">${exDiff} weeks longer</span> than expected. That gap is the "Diff vs expected" figure in the table below.</p>` +
-    `<p class="ex-caveat">Roughly ${pctExplained} in 100 of the difference in waits between trusts comes down to waiting-list size; the rest reflects other things (how a trust runs its lists, its case mix, local pressures). This is a fairer comparison than a raw league table, but it's a broad guide, not a verdict on any single trust.</p>`;
+    `<p>Trusts with more people waiting usually have longer waits. The <strong>dashed line</strong> shows the wait you'd expect for a trust of each size, worked out from the ${general.length} general acute trusts.</p>` +
+    `<p>Trusts naturally scatter around that line. The <strong>shaded band</strong> covers the normal spread, where about 95 in 100 trusts would be expected to sit. Only trusts <span class="ex-good">below the band</span> or <span class="ex-bad">above it</span> are flagged; this month that's ${flagged.length} of ${general.length}.</p>` +
+    `<p>Specialist trusts, such as children's, eye, orthopaedic and cancer hospitals, are shown as hollow circles. They treat a different mix of patients, so they aren't compared with the line.</p>` +
+    `<p class="ex-caveat">Waiting-list size explains about ${Math.round(r2 * 100)} in 100 of the difference in waits between general trusts. The rest reflects other things, such as case mix, local demand and how lists are run. This is a single month, so treat it as a prompt for questions rather than a verdict.</p>`;
 
   const svgEl = document.getElementById("chartScatter");
   const tooltipEl = document.getElementById("ttScatter");
@@ -1419,162 +1485,112 @@ function renderScatterAnalysis() {
   svgEl.setAttribute("viewBox", `0 0 ${w} ${h}`);
   svgEl.innerHTML = "";
   const ns = "http://www.w3.org/2000/svg";
+  const add = (tag, attrs, text) => {
+    const el = document.createElementNS(ns, tag);
+    Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+    if (text !== undefined) el.textContent = text;
+    svgEl.appendChild(el);
+    return el;
+  };
 
+  const xs = pts.map(t => Math.log(t.waiting_list));
   let xMin = Math.min(...xs), xMax = Math.max(...xs);
   const xPad = (xMax - xMin) * 0.06;
   xMin -= xPad; xMax += xPad;
-  const yMin = 0, yMax = Math.max(...ys) * 1.12;
-
+  const yMin = 0, yMax = Math.max(...pts.map(t => t.median_weeks), predict(Math.exp(xMax)) + band) * 1.1;
   const plotW = w - padL - padR, plotH = h - padT - padB;
   const xFor = lx => padL + ((lx - xMin) / (xMax - xMin)) * plotW;
-  const yFor = v => padT + plotH - ((v - yMin) / (yMax - yMin)) * plotH;
+  const yFor = v => padT + plotH - ((Math.max(yMin, Math.min(yMax, v)) - yMin) / (yMax - yMin)) * plotH;
 
   for (let g = 0; g <= 3; g++) {
     const gy = padT + (g / 3) * plotH;
-    const line = document.createElementNS(ns, "line");
-    line.setAttribute("x1", padL); line.setAttribute("x2", w - padR);
-    line.setAttribute("y1", gy); line.setAttribute("y2", gy);
-    line.setAttribute("class", "lc-gridline");
-    svgEl.appendChild(line);
-    const label = document.createElementNS(ns, "text");
-    label.setAttribute("x", padL - 8); label.setAttribute("y", gy + 3);
-    label.setAttribute("text-anchor", "end"); label.setAttribute("class", "lc-axis-label");
-    label.textContent = Math.round(yMax - (g / 3) * (yMax - yMin)) + " wks";
-    svgEl.appendChild(label);
+    add("line", { x1: padL, x2: w - padR, y1: gy, y2: gy, class: "lc-gridline" });
+    add("text", { x: padL - 8, y: gy + 3, "text-anchor": "end", class: "lc-axis-label" }, Math.round(yMax - (g / 3) * (yMax - yMin)) + " wks");
   }
+  const rawMin = Math.exp(Math.min(...xs)), rawMax = Math.exp(Math.max(...xs));
+  [1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000]
+    .filter(v => v >= rawMin * 0.8 && v <= rawMax * 1.2 && Math.log(v) >= xMin && Math.log(v) <= xMax)
+    .forEach(v => add("text", { x: xFor(Math.log(v)), y: h - padB + 16, "text-anchor": "middle", class: "lc-axis-label" }, fmtCompact(v)));
+  add("text", { x: padL + plotW / 2, y: h - 2, "text-anchor": "middle", class: "lc-axis-label" }, "People waiting (log scale)");
 
-  const rawMinWl = Math.exp(Math.min(...xs)), rawMaxWl = Math.exp(Math.max(...xs));
-  [1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000, 300000, 400000]
-    .filter(v => v >= rawMinWl * 0.8 && v <= rawMaxWl * 1.2)
-    .forEach(v => {
-      const lx = Math.log(v);
-      if (lx < xMin || lx > xMax) return;
-      const label = document.createElementNS(ns, "text");
-      label.setAttribute("x", xFor(lx)); label.setAttribute("y", h - padB + 16);
-      label.setAttribute("text-anchor", "middle"); label.setAttribute("class", "lc-axis-label");
-      label.textContent = fmtCompact(v);
-      svgEl.appendChild(label);
-    });
-  const xAxisTitle = document.createElementNS(ns, "text");
-  xAxisTitle.setAttribute("x", padL + plotW / 2); xAxisTitle.setAttribute("y", h - 2);
-  xAxisTitle.setAttribute("text-anchor", "middle"); xAxisTitle.setAttribute("class", "lc-axis-label");
-  xAxisTitle.textContent = "Waiting list (log scale)";
-  svgEl.appendChild(xAxisTitle);
-
-  const clampY = v => Math.max(yMin, Math.min(yMax, v));
-  const fitLine = document.createElementNS(ns, "line");
-  fitLine.setAttribute("x1", xFor(xMin)); fitLine.setAttribute("y1", yFor(clampY(predict(Math.exp(xMin)))));
-  fitLine.setAttribute("x2", xFor(xMax)); fitLine.setAttribute("y2", yFor(clampY(predict(Math.exp(xMax)))));
-  fitLine.setAttribute("class", "scatter-fit-line");
-  svgEl.appendChild(fitLine);
+  // Normal range band and expected line
+  const steps = 40, top = [], bottom = [];
+  for (let i = 0; i <= steps; i++) {
+    const lx = xMin + (i / steps) * (xMax - xMin);
+    const e = predict(Math.exp(lx));
+    top.push(`${xFor(lx)},${yFor(e + band)}`);
+    bottom.unshift(`${xFor(lx)},${yFor(e - band)}`);
+  }
+  add("polygon", { points: top.concat(bottom).join(" "), class: "scatter-band" });
+  add("line", { x1: xFor(xMin), y1: yFor(predict(Math.exp(xMin))), x2: xFor(xMax), y2: yFor(predict(Math.exp(xMax))), class: "scatter-fit-line" });
 
   const cs = getComputedStyle(document.documentElement);
-  const goodHex = cs.getPropertyValue("--status-good").trim();
-  const badHex = cs.getPropertyValue("--status-critical").trim();
+  const colour = { shorter: cs.getPropertyValue("--status-good").trim(), longer: cs.getPropertyValue("--status-critical").trim(),
+                   normal: cs.getPropertyValue("--baseline").trim(), muted: cs.getPropertyValue("--text-muted").trim() };
 
-  withResid.forEach(t => {
-    const cx = xFor(Math.log(t.waiting_list)), cy = yFor(clampY(t.median_weeks));
-    const tt = Math.max(0, Math.min(1, 0.5 + 0.5 * (t.residual / maxAbsResid)));
-    const color = lerpColor(goodHex, badHex, tt);
-    const dot = document.createElementNS(ns, "circle");
-    dot.setAttribute("cx", cx); dot.setAttribute("cy", cy); dot.setAttribute("r", 3.5);
-    dot.setAttribute("class", "scatter-dot");
-    dot.setAttribute("fill", color); dot.setAttribute("opacity", "0.8");
-    svgEl.appendChild(dot);
-
-    const hit = document.createElementNS(ns, "circle");
-    hit.setAttribute("cx", cx); hit.setAttribute("cy", cy); hit.setAttribute("r", 9);
-    hit.setAttribute("class", "scatter-hit");
-    svgEl.appendChild(hit);
-    hit.addEventListener("mousemove", (e) => {
+  pts.forEach(t => {
+    const cx = xFor(Math.log(t.waiting_list)), cy = yFor(t.median_weeks);
+    if (isSpecialist(t)) add("circle", { cx, cy, r: 3.5, fill: "none", stroke: colour.muted, "stroke-width": 1.5, class: "scatter-dot" });
+    else add("circle", { cx, cy, r: t.flag ? 4 : 3.5, fill: colour[t.flag || "normal"], opacity: t.flag ? 0.9 : 0.85, class: "scatter-dot" });
+    const hit = add("circle", { cx, cy, r: 9, class: "scatter-hit" });
+    hit.addEventListener("mousemove", () => {
       const rect = svgEl.getBoundingClientRect();
-      const scaleX = rect.width / svgEl.viewBox.baseVal.width;
-      const scaleY = rect.height / svgEl.viewBox.baseVal.height;
-      tooltipEl.innerHTML = `<div class="tt-title">${properCase(t.name)}</div>` +
-        `<div>${t.region || "—"}</div>` +
-        `<div>Waiting list: <strong>${fmtInt(t.waiting_list)}</strong></div>` +
+      const sx = rect.width / svgEl.viewBox.baseVal.width, sy = rect.height / svgEl.viewBox.baseVal.height;
+      tooltipEl.innerHTML = `<div class="tt-title">${properCase(t.name)}</div><div>${t.region || "—"}</div>` +
+        `<div>People waiting: <strong>${fmtInt(t.waiting_list)}</strong></div>` +
         `<div>Median wait: <strong>${fmtWeeks(t.median_weeks)} wks</strong></div>` +
-        `<div>Expected for this size: <strong>${fmtWeeks(t.expected)} wks</strong></div>` +
-        `<div>Difference: <strong>${t.residual > 0 ? "+" : ""}${t.residual.toFixed(1)} wks</strong></div>`;
-      tooltipEl.style.left = (cx * scaleX) + "px";
-      tooltipEl.style.top = (cy * scaleY) + "px";
+        (isSpecialist(t) ? `<div>Specialist trust, not compared</div>`
+          : `<div>Expected for its size: <strong>${fmtWeeks(t.expected)} wks</strong></div>` +
+            `<div>${t.flag ? (t.flag === "longer" ? "Clearly longer than expected" : "Clearly shorter than expected") : "Within the normal range"}</div>`);
+      tooltipEl.style.left = (cx * sx) + "px";
+      tooltipEl.style.top = (cy * sy) + "px";
       tooltipEl.style.opacity = 1;
     });
     hit.addEventListener("mouseleave", () => { tooltipEl.style.opacity = 0; });
   });
 
-  const pinned = withResid.find(t => t.code === pinnedCode);
+  const pinned = pts.find(t => t.code === pinnedCode);
   if (pinned) {
-    const px = xFor(Math.log(pinned.waiting_list)), py = yFor(clampY(pinned.median_weeks));
-    const ring = document.createElementNS(ns, "circle");
-    ring.setAttribute("cx", px); ring.setAttribute("cy", py); ring.setAttribute("r", 7.5);
-    ring.setAttribute("class", "scatter-pin-ring");
-    ring.setAttribute("pointer-events", "none");
-    svgEl.appendChild(ring);
-    const lbl = document.createElementNS(ns, "text");
+    const px = xFor(Math.log(pinned.waiting_list)), py = yFor(pinned.median_weeks);
+    add("circle", { cx: px, cy: py, r: 7.5, class: "scatter-pin-ring", "pointer-events": "none" });
     const toLeft = px > w * 0.7;
-    lbl.setAttribute("x", px + (toLeft ? -11 : 11)); lbl.setAttribute("y", py + 4);
-    lbl.setAttribute("text-anchor", toLeft ? "end" : "start");
-    lbl.setAttribute("class", "scatter-pin-label");
-    lbl.setAttribute("pointer-events", "none");
-    lbl.textContent = properCase(pinned.name);
-    svgEl.appendChild(lbl);
+    add("text", { x: px + (toLeft ? -11 : 11), y: py + 4, "text-anchor": toLeft ? "end" : "start", class: "scatter-pin-label", "pointer-events": "none" }, properCase(pinned.name));
   }
-
-  const sorted = withResid.slice().sort((x, y) => x.residual - y.residual);
-  const below = sorted.slice(0, 5);
-  const above = sorted.slice(-5).reverse();
 
   function renderRankList(elId, list, isGood) {
-    document.getElementById(elId).innerHTML = list.map((t, i) => `
+    const el = document.getElementById(elId);
+    if (!list.length) { el.innerHTML = `<div class="rank-row-stat" style="padding:8px 0;">No trusts this month.</div>`; return; }
+    el.innerHTML = list.map(t => `
       <div class="rank-row${t.code === pinnedCode ? " is-pinned" : ""}">
-        <span class="rank-badge">${i + 1}</span>
         <div class="rank-row-main">
           <div class="rank-row-name">${properCase(t.name)}</div>
-          <div class="rank-row-stat">${fmtWeeks(t.median_weeks)} wks actual vs ${fmtWeeks(t.expected)} wks expected · ${t.region || "—"}</div>
+          <div class="rank-row-stat">${fmtWeeks(t.median_weeks)} wks vs ${fmtWeeks(t.expected)} wks expected · ${t.region || "—"}</div>
         </div>
         <div class="rank-row-delta ${isGood ? "is-good" : "is-bad"}">${t.residual > 0 ? "+" : ""}${t.residual.toFixed(1)} wks</div>
-      </div>
-    `).join("");
+      </div>`).join("");
   }
-  renderRankList("rankBelowList", below, true);
-  renderRankList("rankAboveList", above, false);
+  renderRankList("rankBelowList", flagged.filter(t => t.flag === "shorter").sort((x, y) => x.residual - y.residual), true);
+  renderRankList("rankAboveList", flagged.filter(t => t.flag === "longer").sort((x, y) => y.residual - x.residual), false);
 }
 renderScatterAnalysis();
 
-// ---- Trust table ----
-// Attach each trust's size-expected wait and the difference from it, so the
-// table can show and sort on the same "waiting more/less than its size predicts"
-// signal the scatter analysis uses.
-let trusts = DATA.trusts.map(t => {
-  const prev = trustPrev(t.code);
-  t = { ...t, pct_change: (prev && prev.pct_within_18wk !== null && t.pct_within_18wk !== null) ? t.pct_within_18wk - prev.pct_within_18wk : null };
-  if (sizeFit && t.waiting_list > 0 && t.median_weeks !== null && t.median_weeks !== undefined) {
-    const expected = sizeFit.predict(t.waiting_list);
-    return { ...t, expected, residual: t.median_weeks - expected };
-  }
-  return { ...t, expected: null, residual: null };
-});
+// ---- Trust table helpers ----
 function changeCell(d) {
   if (d === null || d === undefined || isNaN(d)) return `<span class="change-cell is-neutral">—</span>`;
-  if (Math.abs(d) < 0.05) return `<span class="change-cell is-neutral">0.0pp</span>`;
-  return `<span class="change-cell ${d > 0 ? "is-good" : "is-bad"}">${d > 0 ? "▲ +" : "▼ "}${d.toFixed(1)}pp</span>`;
+  if (Math.abs(d) < NEUTRAL.pct) return `<span class="change-cell is-neutral">No real change</span>`;
+  return `<span class="change-cell ${d > 0 ? "is-good" : "is-bad"}">${d > 0 ? "▲ +" : "▼ "}${d.toFixed(1)} pts</span>`;
 }
-function diffCell(resid) {
-  if (resid === null || resid === undefined || isNaN(resid)) return `<span class="diff-pill is-neutral">—</span>`;
-  const good = resid < 0; // waiting LESS than expected for its size = good
-  const sign = resid > 0 ? "+" : "";
-  return `<span class="diff-pill ${good ? "is-good" : "is-bad"}">${sign}${resid.toFixed(1)}</span>`;
+function diffCell(t) {
+  if (isSpecialist(t)) return `<span class="diff-pill is-neutral">Specialist</span>`;
+  if (t.residual === null || t.residual === undefined || isNaN(t.residual)) return `<span class="diff-pill is-neutral">—</span>`;
+  const sign = t.residual > 0 ? "+" : "";
+  const cls = t.flag === "shorter" ? "is-good" : (t.flag === "longer" ? "is-bad" : "is-neutral");
+  return `<span class="diff-pill ${cls}" title="${t.flag ? "Outside the normal range" : "Within the normal range"}">${sign}${t.residual.toFixed(1)} wks</span>`;
 }
 let sortKey = "waiting_list", sortDir = -1;
 let filterText = "";
 let selectedRegions = new Set();   // empty = no filter (show all)
 let selectedTrustNames = new Set(); // empty = no filter (show all)
-
-function properCase(name) {
-  return name.replace(/\w\S*/g, t => t.charAt(0) + t.slice(1).toLowerCase())
-    .replace(/\bNhs\b/g, "NHS").replace(/\bUcl\b/g, "UCL");
-}
 
 // ---- Generic multi-select popover filter ----
 function setupMultiSelectFilter({ btnId, labelId, popoverId, optionsId, searchId, items, getSelected, onChange, noun }) {
@@ -1712,7 +1728,7 @@ function renderTable() {
     <tr data-code="${t.code}" class="${t.code === pinnedCode ? "is-pinned" : ""}" title="Click to follow this trust">
       <td class="trust-name">${t.code === pinnedCode ? '<span class="pin-mark">●</span>' : ""}${properCase(t.name)}</td>
       <td class="col-text">${t.region || "—"}</td>
-      <td>${diffCell(t.residual)}</td>
+      <td>${diffCell(t)}</td>
       <td class="num">${fmtInt(t.waiting_list)}</td>
       <td>
         <div class="meter-cell">
@@ -1776,10 +1792,11 @@ function median(vals) {
 }
 const shareOf = (n, wl) => (n === null || n === undefined || !wl) ? null : 100 * n / wl;
 
-// The 10 trusts closest in waiting-list size (on a log scale), excluding itself.
+// The 10 trusts of the same type (general or specialist) closest in
+// waiting-list size on a log scale, excluding itself.
 function sizePeers(t) {
   const lx = Math.log(t.waiting_list);
-  return trusts.filter(x => x.code !== t.code && x.waiting_list > 0)
+  return trusts.filter(x => x.code !== t.code && x.waiting_list > 0 && isSpecialist(x) === isSpecialist(t))
     .sort((a, b) => Math.abs(Math.log(a.waiting_list) - lx) - Math.abs(Math.log(b.waiting_list) - lx))
     .slice(0, 10);
 }
@@ -1806,18 +1823,15 @@ function renderFocus() {
   document.getElementById("f52").textContent = fmtInt(t.over_52wk);
   document.getElementById("fLongSub").textContent =
     (t.over_65wk !== undefined && t.over_65wk !== null) ? `Over 65: ${fmtInt(t.over_65wk)} · Over 78: ${fmtInt(t.over_78wk)}` : "";
-  const p = prev || {};
-  renderKpiDelta("fPct18Delta", t.pct_within_18wk, p.pct_within_18wk, prevLabel, DELTA_FMT.pct, true);
-  renderKpiDelta("fWlDelta", t.waiting_list, p.waiting_list, prevLabel, DELTA_FMT.int, false);
-  renderKpiDelta("fMedianDelta", t.median_weeks, p.median_weeks, prevLabel, DELTA_FMT.weeks, false);
-  renderKpiDelta("f52Delta", t.over_52wk, p.over_52wk, prevLabel, DELTA_FMT.int, false);
+  renderDeltaSet(["fPct18Delta", "fWlDelta", "fMedianDelta", "f52Delta"], t, prev, prevLabel);
 
-  const series = trustSeries(t.code);
-  const pctPts = series.filter(h => h.pct_within_18wk !== null).map(h => ({ label: monthLabel(h.period), value: h.pct_within_18wk }));
-  const wlPts = series.map(h => ({ label: monthLabel(h.period), value: h.waiting_list }));
-  drawLineChart(document.getElementById("fChartPct18"), pctPts, v => v.toFixed(1) + "%", 3, { value: 92, label: "92% target" });
-  drawLineChart(document.getElementById("fChartWl"), wlPts, v => fmtCompact(v), Math.max(...wlPts.map(x => x.value), 1) * 0.03);
-  const note = series.length < 2 ? "The trend builds as each month is added." : `${series.length} months tracked`;
+  const pctPts = trustPoints(t.code, "pct_within_18wk");
+  const wlPts = trustPoints(t.code, "waiting_list");
+  drawLineChart(document.getElementById("fChartPct18"), pctPts, v => v.toFixed(1) + "%", 3, { value: 65, label: "65% trust minimum", stretch: true });
+  drawLineChart(document.getElementById("fChartWl"), wlPts, v => fmtCompact(v), Math.max(...wlPts.map(x => x.value || 0), 1) * 0.03);
+  const gaps = pctPts.filter(x => x.value === null).map(x => x.label);
+  const note = pctPts.length < 2 ? "The trend builds as each month is added."
+    : (gaps.length ? `No data for ${gaps.join(", ")}, shown as a break in the line.` : `${pctPts.length} months`);
   document.getElementById("fTrendNote1").textContent = note;
   document.getElementById("fTrendNote2").textContent = note;
 
@@ -1834,7 +1848,7 @@ function renderFocus() {
   const rows = [
     { label: properCase(t.name), r: asRow(t), strong: true },
     region && { label: `${t.region} (all acute trusts)`, r: asRow(region) },
-    peerRow && { label: "Similar-sized trusts (median of 10)", r: peerRow },
+    peerRow && { label: `Similar-sized ${isSpecialist(t) ? "specialist" : "general"} trusts (median of 10)`, r: peerRow },
     { label: "England (all acute trusts)", r: asRow(DATA.national_acute) },
   ].filter(Boolean);
   const pctOrDash = v => (v === null || v === undefined) ? "—" : v.toFixed(1) + "%";

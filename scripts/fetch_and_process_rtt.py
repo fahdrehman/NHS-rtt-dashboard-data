@@ -210,111 +210,108 @@ def normalise_name(name):
 
 
 def load_acute_reference():
-    """Read data/acute_trusts.csv.
+    """Read data/acute_trusts.csv (code, trust_name, region, merged_into, trust_type).
 
-    Preferred columns: code, trust_name, region. Matching on the provider
-    code is robust to trusts being renamed; trust_name is a fallback for
-    rows without a code. Older files without code/region still work, with
-    regions taken from data/trust_regions.csv.
-    Returns (codes:set, names_norm:set, region_by_code:dict, region_by_name:dict).
+    Matching is on provider code, so renamed trusts keep matching. Rows with
+    merged_into are predecessor codes: they count in months before the merger
+    and are grouped with their successor when months are compared.
     """
     acute = pd.read_csv(DATA_DIR / "acute_trusts.csv", dtype=str).fillna("")
-    codes, names, region_by_code, region_by_name = set(), set(), {}, {}
+    ref = {"codes": set(), "names": set(), "region": {}, "region_by_name": {}, "group": {},
+           "type": {}, "trust_name": {}, "merged": set()}
     for _, row in acute.iterrows():
         code = row.get("code", "").strip().upper()
         name = normalise_name(row.get("trust_name", ""))
         region = row.get("region", "").strip()
         if code:
-            codes.add(code)
-            if region:
-                region_by_code[code] = region
+            ref["codes"].add(code)
+            ref["region"][code] = region or None
+            ref["type"][code] = row.get("trust_type", "").strip() or "general"
+            ref["trust_name"][code] = row.get("trust_name", "").strip()
+            merged = row.get("merged_into", "").strip().upper()
+            ref["group"][code] = merged or code
+            if merged:
+                ref["merged"].add(code)
         elif name:
-            names.add(name)
+            ref["names"].add(name)
         if name and region:
-            region_by_name[name] = region
-    reg_path = DATA_DIR / "trust_regions.csv"
-    if reg_path.exists():
-        for _, row in pd.read_csv(reg_path, dtype=str).fillna("").iterrows():
-            region_by_name.setdefault(normalise_name(row["trust_name"]), row["region"])
-    return codes, names, region_by_code, region_by_name
+            ref["region_by_name"][name] = region
+    return ref
+
+
+def metrics_from_bands(bands, band_cols):
+    """Headline metrics from one set of weekly band counts (a pandas Series)."""
+    total = float(bands.sum())
+    out = {
+        "waiting_list": int(round(total)),
+        "pct_within_18wk": round(100.0 * float(bands[[c for c in band_cols if band_upper_bound(c) <= 18]].sum())
+                                 / total, 1) if total else None,
+    }
+    # "Gt 52 To 53 Weeks" onward = waiting more than 52 weeks, and so on.
+    for wk in LONG_WAIT_TIERS:
+        out[f"over_{wk}wk"] = int(round(float(bands[[c for c in band_cols if band_lower_bound(c) >= wk]].sum())))
+    out["median_weeks"] = estimate_median_weeks(bands, band_cols, total)
+    return out
 
 
 def compute_metrics(df, band_cols, ref):
-    acute_codes, acute_names, region_by_code, region_by_name = ref
+    """Returns (national_all, national_acute, trusts, regions, providers, acute_bands).
 
+    acute_bands maps each acute trust code to its summed weekly band counts,
+    kept so months can be compared like for like.
+    """
     df = df[df["RTT Part Description"].astype(str).str.strip()
             .str.lower() == "incomplete pathways"].copy()
 
     # NHS's RTT extract includes a "Treatment Function Code" 999 row per
     # provider+commissioner, which is a pre-computed rollup ("Total") across
     # that provider+commissioner's actual specialty rows - not a real
-    # specialty. Left in, it silently doubles every total. Drop it here so
-    # we only sum genuine per-specialty rows.
+    # specialty. Left in, it silently doubles every total.
     is_rollup = (
         df["Treatment Function Code"].astype(str).str.contains(r"999", na=False)
         | df["Treatment Function Name"].astype(str).str.strip().str.lower().eq("total")
     )
     df = df[~is_rollup].copy()
-
     df[band_cols] = df[band_cols].apply(pd.to_numeric, errors="coerce").fillna(0.0)
-    extra = {
-        "_total": df[band_cols].sum(axis=1),
-        "_within18": df[[c for c in band_cols if band_upper_bound(c) <= 18]].sum(axis=1),
-    }
-    # "Gt 52 To 53 Weeks" onward = waiting more than 52 weeks, and so on.
-    for wk in LONG_WAIT_TIERS:
-        extra[f"_over{wk}"] = df[[c for c in band_cols if band_lower_bound(c) >= wk]].sum(axis=1)
-    df = pd.concat([df, pd.DataFrame(extra, index=df.index)], axis=1)
-    sum_cols = ["_total", "_within18"] + [f"_over{wk}" for wk in LONG_WAIT_TIERS]
 
-    grouped = df.groupby(["Provider Org Code", "Provider Org Name"], as_index=False)[
-        band_cols + sum_cols].sum()
+    grouped = df.groupby(["Provider Org Code", "Provider Org Name"], as_index=False)[band_cols].sum()
     grouped["_code"] = grouped["Provider Org Code"].astype(str).str.strip().str.upper()
     grouped["_name_norm"] = grouped["Provider Org Name"].map(normalise_name)
-    grouped["is_acute"] = grouped["_code"].isin(acute_codes) | grouped["_name_norm"].isin(acute_names)
-    grouped["_region"] = [region_by_code.get(c) or region_by_name.get(n)
+    grouped["is_acute"] = grouped["_code"].isin(ref["codes"]) | grouped["_name_norm"].isin(ref["names"])
+    grouped["_region"] = [ref["region"].get(c) or ref["region_by_name"].get(n)
                           for c, n in zip(grouped["_code"], grouped["_name_norm"])]
 
-    def build(sub):
-        total = float(sub["_total"].sum())
-        out = {
-            "waiting_list": int(round(total)),
-            "pct_within_18wk": round(100.0 * float(sub["_within18"].sum()) / total, 1) if total else None,
-        }
-        for wk in LONG_WAIT_TIERS:
-            out[f"over_{wk}wk"] = int(round(float(sub[f"_over{wk}"].sum())))
-        out["median_weeks"] = estimate_median_weeks(sub[band_cols].sum(), band_cols, total)
-        return out
-
-    national_all = build(grouped)
+    national_all = metrics_from_bands(grouped[band_cols].sum(), band_cols)
     acute_rows = grouped[grouped["is_acute"]]
-    national_acute = build(acute_rows)
+    national_acute = metrics_from_bands(acute_rows[band_cols].sum(), band_cols)
 
-    trusts = []
+    trusts, acute_bands = [], {}
     for _, r in acute_rows.iterrows():
+        bands = r[band_cols].astype(float)
+        acute_bands[r["_code"]] = bands
         trusts.append({
             "code": r["_code"],
             "name": r["Provider Org Name"],
             "region": r["_region"] or None,
-            **build(pd.DataFrame([r])),
+            "type": ref["type"].get(r["_code"], "general"),
+            **metrics_from_bands(bands, band_cols),
         })
     trusts.sort(key=lambda t: t["waiting_list"], reverse=True)
 
     regions = []
     mapped = acute_rows[acute_rows["_region"].notna()]
     for region_name, sub in mapped.groupby("_region"):
-        regions.append({"region": region_name, "trust_count": int(len(sub)), **build(sub)})
+        regions.append({"region": region_name, "trust_count": int(len(sub)),
+                        **metrics_from_bands(sub[band_cols].sum(), band_cols)})
     regions.sort(key=lambda r: r["region"])
 
-    # Every provider in the extract, so the acute list can be audited when
-    # trusts merge or are renamed.
     providers = sorted(
         ({"code": r["_code"], "name": r["Provider Org Name"],
-          "waiting_list": int(round(float(r["_total"]))), "is_acute": bool(r["is_acute"])}
+          "waiting_list": int(round(float(r[band_cols].sum()))), "is_acute": bool(r["is_acute"])}
          for _, r in grouped.iterrows()),
         key=lambda p: p["waiting_list"], reverse=True)
 
-    return national_all, national_acute, trusts, regions, providers
+    return national_all, national_acute, trusts, regions, providers, acute_bands
 
 
 def process_period(csv_zip_url, ref):
@@ -322,7 +319,76 @@ def process_period(csv_zip_url, ref):
     band_cols = get_band_columns(df)
     if not band_cols:
         raise RuntimeError("Could not find weeks-waited band columns in the extract")
-    return compute_metrics(df, band_cols, ref)
+    return (*compute_metrics(df, band_cols, ref), band_cols)
+
+
+def group_bands(acute_bands, ref):
+    """Sum trust band counts by merger group (a predecessor joins its successor)."""
+    groups = {}
+    for code, bands in acute_bands.items():
+        g = ref["group"].get(code, code)
+        groups[g] = bands if g not in groups else groups[g].add(bands, fill_value=0.0)
+    return groups
+
+
+def like_for_like(curr_bands, prev_bands, band_cols, ref, curr_period, prev_period):
+    """Compare two months using only trusts (merger groups) reporting in both.
+
+    A trust that stops or starts reporting would otherwise move the totals on
+    its own, which looks like a real change in waiting times when it isn't.
+    """
+    gc, gp = group_bands(curr_bands, ref), group_bands(prev_bands, ref)
+    common = sorted(set(gc) & set(gp))
+    cols = sorted(set(band_cols), key=band_lower_bound)
+
+    def total(groups, keys):
+        if not keys:
+            return None
+        s = pd.concat([groups[k] for k in keys], axis=1).fillna(0.0).sum(axis=1)
+        return s.reindex(cols, fill_value=0.0)
+
+    def compare(keys):
+        if not keys:
+            return None
+        return {"prev_period": prev_period, "trusts": len(keys),
+                "curr": metrics_from_bands(total(gc, keys), cols),
+                "prev": metrics_from_bands(total(gp, keys), cols)}
+
+    national = compare(common)
+    regions = {}
+    for region in sorted({ref["region"].get(k) for k in common if ref["region"].get(k)}):
+        regions[region] = compare([k for k in common if ref["region"].get(k) == region])
+    trusts = {}
+    for code in curr_bands:
+        g = ref["group"].get(code, code)
+        if g in gp:
+            trusts[code] = {"prev_period": prev_period, **metrics_from_bands(gp[g].reindex(cols, fill_value=0.0), cols)}
+
+    def label(k):
+        return ref["trust_name"].get(k, k)
+    reporting = {"stopped": sorted(label(k) for k in set(gp) - set(gc)),
+                 "started": sorted(label(k) for k in set(gc) - set(gp))}
+    return national, regions, trusts, reporting
+
+
+def previous_month(period):
+    y, m = map(int, period.split("-"))
+    return f"{y - 1}-12" if m == 1 else f"{y}-{m - 1:02d}"
+
+
+def load_bands_cache(path):
+    if not path.exists():
+        return None, {}
+    raw = json.loads(path.read_text())
+    cols = raw["band_cols"]
+    return raw["period"], {code: pd.Series(vals, index=cols, dtype=float) for code, vals in raw["trusts"].items()}
+
+
+def save_bands_cache(path, period, bands):
+    cols = list(next(iter(bands.values())).index)
+    path.write_text(json.dumps({"period": period, "band_cols": cols,
+                                "trusts": {c: [int(round(v)) for v in b.tolist()] for c, b in bands.items()}},
+                               separators=(",", ":")))
 
 
 def candidate_from_url(zip_url):
@@ -360,16 +426,9 @@ def collect_candidates():
 
 
 def not_reported(ref, trusts):
+    """Listed trusts (not merged predecessors) with no rows in this month's extract."""
     codes = {t["code"] for t in trusts}
-    acute = pd.read_csv(DATA_DIR / "acute_trusts.csv", dtype=str).fillna("")
-    if "code" not in acute.columns:
-        return []
-    # Rows with merged_into are predecessor codes kept so older months count
-    # them; they are not "missing" once the merger has happened.
-    merged = acute["merged_into"] if "merged_into" in acute.columns else pd.Series("", index=acute.index)
-    return sorted(r["trust_name"] for (_, r), m in zip(acute.iterrows(), merged)
-                  if r["code"].strip().upper() and not m.strip()
-                  and r["code"].strip().upper() not in codes)
+    return sorted(ref["trust_name"][c] for c in ref["codes"] if c not in ref["merged"] and c not in codes)
 
 
 def main():
@@ -379,42 +438,77 @@ def main():
         sys.exit(1)
 
     summary_path = DATA_DIR / "rtt_summary.json"
+    cache_path = DATA_DIR / "bands_latest.json"
     existing = json.loads(summary_path.read_text()) if summary_path.exists() else {}
     history = {h["period"]: h for h in existing.get("history", [])}
-    trust_history = existing.get("trust_history", {})
     region_history = {h["period"]: h for h in existing.get("region_history", [])}
+    trust_history = existing.get("trust_history", {})
     ref = load_acute_reference()
 
-    latest = None
-    for idx, c in enumerate(candidates):
+    # Bands for like-for-like comparisons: the cached latest month, plus every
+    # month processed in this run. Oldest first so each month can look back.
+    cache_period, cache_bands = load_bands_cache(cache_path)
+    bands_by_period = {cache_period: cache_bands} if cache_period else {}
+    results = {}
+    for idx, c in enumerate(sorted(candidates, key=lambda c: c["period_date"])):
         lbl = c["period_date"].strftime("%Y-%m")
         print(f"Processing {lbl} -> {c['csv_zip_url']}")
         try:
-            national_all, national_acute, trusts, regions, providers = process_period(c["csv_zip_url"], ref)
+            national_all, national_acute, trusts, regions, providers, acute_bands, band_cols = \
+                process_period(c["csv_zip_url"], ref)
         except Exception as exc:  # noqa: BLE001
-            if idx == 0:
+            if c is candidates[0]:
                 raise
             print(f"WARN: {lbl} failed, skipping: {exc}", file=sys.stderr)
             continue
-        history[lbl] = {"period": lbl, **national_acute}
-        region_history[lbl] = {"period": lbl, "regions": regions}
+        bands_by_period[lbl] = acute_bands
+
+        prev_lbl = previous_month(lbl)
+        lfl = None
+        if prev_lbl in bands_by_period:
+            lfl = like_for_like(acute_bands, bands_by_period[prev_lbl], band_cols, ref, lbl, prev_lbl)
+
+        entry = {"period": lbl, **national_acute}
+        old = history.get(lbl, {})
+        if lfl:
+            entry["like_for_like"], entry["reporting"] = lfl[0], lfl[3]
+        else:  # keep what an earlier run worked out, if this run can't look back
+            for k in ("like_for_like", "reporting"):
+                if k in old:
+                    entry[k] = old[k]
+        history[lbl] = entry
+
+        rentry = {"period": lbl, "regions": regions}
+        if lfl:
+            rentry["like_for_like"] = lfl[1]
+        elif "like_for_like" in region_history.get(lbl, {}):
+            rentry["like_for_like"] = region_history[lbl]["like_for_like"]
+        region_history[lbl] = rentry
+
         for t in trusts:
             rows = [h for h in trust_history.get(t["code"], []) if h["period"] != lbl]
-            rows.append({"period": lbl, **{k: v for k, v in t.items() if k not in ("code", "name", "region")}})
+            rows.append({"period": lbl, **{k: v for k, v in t.items() if k not in ("code", "name", "region", "type")}})
             trust_history[t["code"]] = sorted(rows, key=lambda h: h["period"])
-        if idx == 0:
-            latest = (c, national_all, national_acute, trusts, regions, providers)
+            if lfl and t["code"] in lfl[2]:
+                t["prev"] = lfl[2][t["code"]]
+        results[lbl] = (c, national_all, national_acute, trusts, regions, providers)
 
-    c, national_all, national_acute, trusts, regions, providers = latest
-    period_date = c["period_date"]
-    lbl = period_date.strftime("%Y-%m")
+    if not results:
+        sys.exit(1)
+    lbl = max(results)
+    c, national_all, national_acute, trusts, regions, providers = results[lbl]
     if existing.get("period") and existing["period"] > lbl:
         print(f"Supplied month {lbl} is older than the dashboard's {existing['period']}; "
               f"history updated but headline left as it was.")
-        out = {**existing, "history": sorted(history.values(), key=lambda h: h["period"]),
-               "trust_history": trust_history,
-               "region_history": sorted(region_history.values(), key=lambda h: h["period"])}
+        out = {**existing}
     else:
+        if "prev" not in (trusts[0] if trusts else {}) and existing.get("period") == lbl:
+            # Re-run of the same month without last month's bands: keep earlier comparisons.
+            old_prev = {t["code"]: t.get("prev") for t in existing.get("trusts", []) if t.get("prev")}
+            for t in trusts:
+                if t["code"] in old_prev:
+                    t["prev"] = old_prev[t["code"]]
+        period_date = c["period_date"]
         out = {
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "period": lbl,
@@ -424,19 +518,18 @@ def main():
             "national_acute": national_acute,
             "trusts": trusts,
             "regions": regions,
-            "history": sorted(history.values(), key=lambda h: h["period"]),
-            "trust_history": trust_history,
-            "region_history": sorted(region_history.values(), key=lambda h: h["period"]),
-            # Trusts on the acute list with no rows in this month's extract.
             "acute_not_reported": not_reported(ref, trusts),
         }
         (DATA_DIR / "providers_seen.json").write_text(json.dumps(providers, indent=1))
         unmatched = [p["name"] for p in providers if not p["is_acute"]
                      and re.search("NHS TRUST|NHS FOUNDATION TRUST", p["name"], re.I)]
         (DATA_DIR / "unmatched_nhs_trust_providers.json").write_text(json.dumps(sorted(unmatched), indent=2))
+        save_bands_cache(cache_path, lbl, bands_by_period[lbl])
+    out["history"] = sorted(history.values(), key=lambda h: h["period"])
+    out["region_history"] = sorted(region_history.values(), key=lambda h: h["period"])
+    out["trust_history"] = trust_history
     summary_path.write_text(json.dumps(out, indent=1))
-    print(f"Wrote {summary_path}: {len(out['trusts'])} acute trusts, {len(out['regions'])} regions, "
-          f"{len(out['history'])} months of national history.")
+    print(f"Wrote {summary_path}: {len(out['trusts'])} acute trusts, {len(out['history'])} months of history.")
 
 
 if __name__ == "__main__":

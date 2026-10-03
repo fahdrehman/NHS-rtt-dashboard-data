@@ -40,6 +40,7 @@ TEXT = "#14141f"
 TEXT_2 = "#55536b"
 MUTED = "#92909f"
 GRID = "#e6e5f0"
+NEUTRAL_PP = 0.3  # changes smaller than this are shown as "no real change"
 GOOD, GOOD_WASH = "#16a34a", (22 / 255, 163 / 255, 74 / 255, 0.12)
 BAD, BAD_WASH = "#dc2626", (220 / 255, 38 / 255, 38 / 255, 0.12)
 
@@ -102,14 +103,19 @@ def draw_card(path, title, subtitle, curr, prev, series):
     pct = curr.get("pct_within_18wk")
     ax.text(100, 345, "—" if pct is None else f"{pct:.1f}%", fontsize=66, fontweight="bold",
             color=TEXT, va="center")
-    ax.text(104, 282, "waiting under 18 weeks  ·  92% standard", fontsize=14, color=TEXT_2, va="center")
+    ax.text(104, 282, "waiting under 18 weeks", fontsize=14, color=TEXT_2, va="center")
+    curr_cmp = (prev or {}).get("curr_pct", pct)
     if prev and prev.get("pct_within_18wk") is not None and pct is not None:
-        d = pct - prev["pct_within_18wk"]
-        good = d >= 0
-        label = f"{'▲' if d > 0 else ('▼' if d < 0 else '•')} {'+' if d > 0 else ''}{d:.1f}pp vs {month_label(prev['period'])}"
-        ax.text(104 + 9, 236, label, fontsize=13, fontweight="bold", color=GOOD if good else BAD, va="center",
-                bbox=dict(boxstyle="round,pad=0.45,rounding_size=0.9", facecolor=GOOD_WASH if good else BAD_WASH,
-                          edgecolor="none"))
+        d = curr_cmp - prev["pct_within_18wk"]
+        when = month_label(prev["period"])
+        if abs(d) < NEUTRAL_PP:  # month-to-month wobble, not a real change
+            label, fg, bg = f"•  No real change vs {when}", TEXT_2, GRID
+        else:
+            good = d > 0
+            label = f"{'▲' if good else '▼'} {'+' if good else ''}{d:.1f} points vs {when}"
+            fg, bg = (GOOD, GOOD_WASH) if good else (BAD, BAD_WASH)
+        ax.text(104 + 9, 236, label, fontsize=13, fontweight="bold", color=fg, va="center",
+                bbox=dict(boxstyle="round,pad=0.45,rounding_size=0.9", facecolor=bg, edgecolor="none"))
 
     # Trend: % under 18 weeks over the months tracked
     pts = [(h["period"], h["pct_within_18wk"]) for h in series if h.get("pct_within_18wk") is not None]
@@ -208,7 +214,9 @@ def main():
 
     # England
     hist = sorted(DATA.get("history", []), key=lambda h: h["period"])
-    prev = next((h for h in reversed(hist) if h["period"] < period), None)
+    lfl = (hist[-1] if hist else {}).get("like_for_like")
+    prev = ({"period": lfl["prev_period"], **lfl["prev"], "curr_pct": lfl["curr"]["pct_within_18wk"]}
+            if lfl else next((h for h in reversed(hist) if h["period"] < period), None))
     draw_card(OG_DIR / "england.png", "England: all acute trusts",
               f"{len(DATA['trusts'])} acute NHS trusts", DATA["national_acute"], prev, hist)
     keep.add("england.png")
@@ -216,7 +224,8 @@ def main():
     for t in DATA["trusts"]:
         code = t["code"]
         series = sorted(DATA.get("trust_history", {}).get(code, []), key=lambda h: h["period"])
-        prev = next((h for h in reversed(series) if h["period"] < period), None)
+        prev = ({"period": t["prev"]["prev_period"], **t["prev"]} if t.get("prev")
+                else next((h for h in reversed(series) if h["period"] < period), None))
         image_name = f"{code}-{period}.png"
         name = proper_case(t["name"])
         draw_card(OG_DIR / image_name, name, t.get("region") or "", t, prev, series)
