@@ -1,11 +1,15 @@
 name: Update NHS RTT data
 
 on:
-  workflow_dispatch: {}
-  schedule:
-    - cron: '0 8 15 * *'
-    - cron: '0 8 20 * *'
-    - cron: '0 8 25 * *'
+  # Started by the monthly laptop task, which finds the link in a real browser.
+  # The old cron schedule was removed: NHS England's browser check blocks
+  # the script from finding links on its own, so scheduled runs only failed.
+  workflow_dispatch:
+    inputs:
+      csv_zip_url:
+        description: 'Full CSV data file (ZIP) link from the NHS England RTT page'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -23,6 +27,8 @@ jobs:
       - run: pip install -r requirements.txt
 
       - run: python scripts/fetch_and_process_rtt.py
+        env:
+          RTT_ZIP_URL: ${{ inputs.csv_zip_url }}
 
       - name: Commit updated data (if any)
         run: |

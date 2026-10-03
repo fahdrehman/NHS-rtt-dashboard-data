@@ -16,6 +16,7 @@ automatically and each run only processes the latest month.
 """
 import io
 import json
+import os
 import re
 import sys
 import zipfile
@@ -323,12 +324,30 @@ def process_period(csv_zip_url, band_cols_cache, acute_names_norm, region_map):
     return national_all, national_acute, trusts, unmatched, regions
 
 
+def candidate_from_url(zip_url):
+    """Build a candidate from a full-CSV zip link given directly (e.g. 'Full-CSV-data-file-Aug26-ZIP...')."""
+    m = re.search(r"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[\-_ ]?(\d{2})",
+                  zip_url.rsplit("/", 1)[-1], re.I)
+    if not m:
+        print(f"Could not read a month (e.g. Aug26) from the link: {zip_url}", file=sys.stderr)
+        sys.exit(1)
+    mon = MONTH_ABBR.index(m.group(1).title()) + 1
+    return {"period_date": datetime(2000 + int(m.group(2)), mon, 1), "csv_zip_url": zip_url}
+
+
 def main():
-    slugs = financial_year_slugs()
+    # NHS England's pages now sit behind a browser check that blocks this
+    # script, so the zip link is normally passed in (RTT_ZIP_URL) by a task
+    # that found it in a real browser. Scraping is kept as a fallback.
+    zip_url = os.environ.get("RTT_ZIP_URL", "").strip()
 
     all_candidates = []
-    for slug in slugs:
-        all_candidates.extend(find_all_month_links(slug))
+    if zip_url:
+        print(f"Using zip link supplied to the workflow: {zip_url}")
+        all_candidates.append(candidate_from_url(zip_url))
+    else:
+        for slug in financial_year_slugs():
+            all_candidates.extend(find_all_month_links(slug))
 
     if not all_candidates:
         print("Could not find any RTT data links on any candidate page.", file=sys.stderr)
