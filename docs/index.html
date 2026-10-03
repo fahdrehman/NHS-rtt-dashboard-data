@@ -740,7 +740,11 @@ h1 .dot { -webkit-text-fill-color: var(--brand-text); }
 .device-note-title { font-weight: 700; font-size: 14px; color: var(--text-primary); }
 .device-note p { font-size: 13px; line-height: 1.55; color: var(--text-secondary); margin: 6px 0 12px; }
 .device-link { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-.device-link a { color: var(--brand-text); font-weight: 700; font-size: 13px; word-break: break-all; }
+.device-btn {
+  font: inherit; font-weight: 700; font-size: 13px; color: #fff; background: var(--brand); border: 1px solid var(--brand);
+  border-radius: 999px; padding: 8px 18px; cursor: pointer;
+}
+.device-btn:hover, .device-btn:focus-visible { filter: brightness(1.08); outline: 2px solid var(--brand-soft); outline-offset: 2px; }
 .lc-target-halo { paint-order: stroke; stroke: var(--surface-2); stroke-width: 4px; stroke-linejoin: round; }
 .lc-missing-line { stroke: var(--status-critical); stroke-width: 2; stroke-dasharray: 4,4; fill: none; }
 .lc-missing-dot { fill: var(--surface-2); stroke: var(--status-critical); stroke-width: 2; }
@@ -978,8 +982,8 @@ h1 .dot { -webkit-text-fill-color: var(--brand-text); }
       <div class="detail-body">
       <div class="device-note">
         <div class="device-note-title">Best viewed on a larger screen</div>
-        <p>This section is designed for a PC, Mac or tablet, with a screen at least 640 pixels wide. Open the dashboard on one of those to explore it:</p>
-        <div class="device-link"><a href="https://fahdrehman.github.io/NHS-rtt-dashboard-data/" target="_blank" rel="noopener">fahdrehman.github.io/NHS-rtt-dashboard-data</a><button class="filter-btn copy-link" type="button">Copy link</button></div>
+        <p>This section is designed for a PC, Mac or tablet, with a screen at least 640 pixels wide. Send yourself the link to open it there.</p>
+        <div class="device-link"><button class="device-btn share-link" type="button">Share link</button><button class="filter-btn copy-link" type="button">Copy link</button></div>
       </div>
     <div class="trend-card">
       <div class="chart-title">Is a longer wait explained by a bigger waiting list?</div>
@@ -1017,8 +1021,8 @@ h1 .dot { -webkit-text-fill-color: var(--brand-text); }
       <div class="detail-body">
       <div class="device-note">
         <div class="device-note-title">Best viewed on a larger screen</div>
-        <p>This section is designed for a PC, Mac or tablet, with a screen at least 640 pixels wide. Open the dashboard on one of those to explore it:</p>
-        <div class="device-link"><a href="https://fahdrehman.github.io/NHS-rtt-dashboard-data/" target="_blank" rel="noopener">fahdrehman.github.io/NHS-rtt-dashboard-data</a><button class="filter-btn copy-link" type="button">Copy link</button></div>
+        <p>This section is designed for a PC, Mac or tablet, with a screen at least 640 pixels wide. Send yourself the link to open it there.</p>
+        <div class="device-link"><button class="device-btn share-link" type="button">Share link</button><button class="filter-btn copy-link" type="button">Copy link</button></div>
       </div>
     <div class="table-controls">
       <div class="filter-row">
@@ -2157,12 +2161,23 @@ focusInput.addEventListener("input", () => {
 });
 focusInput.addEventListener("focus", () => focusInput.select());
 document.getElementById("focusClear").addEventListener("click", () => setPinned(null, false));
+// The dashboard's own address, without any trust or view settings.
+const DASHBOARD_LINK = new URL("./", location.href.split(/[?#]/)[0]).toString();
+document.querySelectorAll(".share-link").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (navigator.share) {
+      navigator.share({ title: "NHS England waiting times: acute trusts", url: DASHBOARD_LINK }).catch(() => {});
+    } else {
+      location.href = "mailto:?subject=" + encodeURIComponent("NHS waiting times dashboard") + "&body=" + encodeURIComponent(DASHBOARD_LINK);
+    }
+  });
+});
 document.querySelectorAll(".copy-link").forEach(btn => {
   btn.addEventListener("click", () => {
-    const link = btn.previousElementSibling.href;
+    const link = DASHBOARD_LINK;
     const done = msg => { btn.textContent = msg; setTimeout(() => { btn.textContent = "Copy link"; }, 1800); };
-    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(link).then(() => done("Copied"), () => done("Copy the link above"));
-    else done("Copy the link above");
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(link).then(() => done("Copied"), () => done("Use Share link instead"));
+    else done("Use Share link instead");
   });
 });
 let shareNoteTimer = null;
