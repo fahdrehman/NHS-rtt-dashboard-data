@@ -612,8 +612,8 @@
   --series-1: #2d74ca;
   --series-1-wash: rgba(45,116,202,0.09);
   --series-1-soft: rgba(45,116,202,0.16);
-  --seq-100: #d5e6fc;
-  --seq-450: #2d74ca;
+  --seq-100: #ece2ff;
+  --seq-450: #8557c8;
   --hover-wash: rgba(133,87,200,0.07);
   --hover-text: #6b3fb0;
   --card-radius: 18px;
@@ -626,7 +626,7 @@
     --text-primary: #eeedf5; --text-secondary: #b4b4c2; --text-muted: #a2a2b0;
     --gridline: #2b2b36; --baseline: #4a4a57; --border: #32323d;
     --series-1: #64a1ee; --series-1-wash: rgba(100,161,238,0.14); --series-1-soft: rgba(100,161,238,0.24);
-    --seq-100: #1f3654; --seq-450: #64a1ee;
+    --seq-100: #33244b; --seq-450: #b28fef;
     --hover-wash: rgba(190,157,247,0.10); --hover-text: #d6c2fa;
     --status-good: #4ade80; --status-critical: #f87171;
     --status-good-wash: rgba(74,222,128,0.16); --status-critical-wash: rgba(248,113,113,0.18);
@@ -639,7 +639,7 @@
   --text-primary: #eeedf5; --text-secondary: #b4b4c2; --text-muted: #a2a2b0;
   --gridline: #2b2b36; --baseline: #4a4a57; --border: #32323d;
   --series-1: #64a1ee; --series-1-wash: rgba(100,161,238,0.14); --series-1-soft: rgba(100,161,238,0.24);
-  --seq-100: #1f3654; --seq-450: #64a1ee;
+  --seq-100: #33244b; --seq-450: #b28fef;
   --hover-wash: rgba(190,157,247,0.10); --hover-text: #d6c2fa;
   --status-good: #4ade80; --status-critical: #f87171;
   --status-good-wash: rgba(74,222,128,0.16); --status-critical-wash: rgba(248,113,113,0.18);
@@ -757,7 +757,7 @@ h1 .dot { -webkit-text-fill-color: var(--brand-text); }
       <div class="summary-kicker">NHS England RTT waiting times · <span id="summaryPeriod"></span></div>
       <div class="byline">Dashboard by <strong>Fahd Rehman</strong><span class="sep">·</span><a href="https://www.fahd.uk" target="_blank" rel="noopener">www.fahd.uk</a></div>
     </div>
-    <a class="filter-btn" id="summaryFullLink" href="./">Open the full dashboard</a>
+    <div class="head-actions" id="summaryActions"><a class="filter-btn" id="summaryFullLink" href="./">Open the full dashboard</a></div>
   </div>
 
   <div class="top-strip">
@@ -2160,6 +2160,8 @@ if (new URLSearchParams(location.search).get("view") === "summary" && pinnedCode
   document.getElementById("summaryFullLink").href = "./?trust=" + encodeURIComponent(pinnedCode);
   const t = trusts.find(x => x.code === pinnedCode);
   if (t) document.title = `${properCase(t.name)} · RTT summary`;
+  // The header (and its theme toggle) is hidden on this page, so move the toggle here.
+  document.getElementById("summaryActions").prepend(document.getElementById("themeToggle"));
 }
 
 // ---- Theme toggle - a clean two-state switch (light <-> dark), label always
@@ -2177,7 +2179,20 @@ themeToggle.addEventListener("click", () => {
   const next = effectiveTheme() === "dark" ? "light" : "dark";
   document.documentElement.setAttribute("data-theme", next);
   updateThemeToggleLabel();
+  recolourForTheme();
 });
+// The map and scatter chart read their colours when drawn, so redraw them
+// whenever the theme changes.
+function recolourForTheme() {
+  renderRegionMap();
+  document.querySelectorAll(".geo-tile").forEach(tile => tile.classList.toggle("is-selected", tile.dataset.region === selectedMapRegion));
+  renderScatterAnalysis();
+}
+if (window.matchMedia) {
+  const mq = window.matchMedia("(prefers-color-scheme: dark)");
+  const onChange = () => { if (!document.documentElement.getAttribute("data-theme")) { updateThemeToggleLabel(); recolourForTheme(); } };
+  if (mq.addEventListener) mq.addEventListener("change", onChange);
+}
 updateThemeToggleLabel();
 }
 
