@@ -378,7 +378,7 @@
   }
   .table-scroll { overflow: auto; max-height: 620px; padding-bottom: 12px; }
   table.trust-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 760px; }
-  table#trustTable { min-width: 980px; }
+  table#trustTable { min-width: 1240px; }
   table.trust-table th, table.trust-table td {
     padding: 10px 14px; text-align: center; border-bottom: 1px solid var(--gridline);
     white-space: nowrap;
@@ -499,6 +499,30 @@
   footer a { color: var(--series-1); }
   footer .credit { margin-top: 6px; font-weight: 500; }
 
+  /* Follow a trust: pinned trust panel */
+  .focus-head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .focus-head .search-box { min-width: 260px; max-width: 420px; flex: 1 1 260px; }
+  .focus-title { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 16px 0 12px; }
+  .focus-name { font-size: 17px; font-weight: 700; color: var(--text-primary); }
+  .focus-region { font-size: 12.5px; color: var(--text-muted); font-weight: 600; }
+  .focus-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+  @media (max-width: 860px) { .focus-kpis { grid-template-columns: repeat(2, 1fr); } }
+  .focus-kpis .kpi-tile { box-shadow: none; padding: 14px 12px 12px; }
+  .focus-kpis .kpi-value { font-size: 24px; }
+  .focus-section-label { font-size: 12px; font-weight: 700; color: var(--text-secondary); margin: 18px 0 8px; }
+  .pin-mark { color: var(--series-1); margin-right: 6px; font-size: 11px; }
+  #trustTable tbody tr { cursor: pointer; }
+  #trustTable tbody tr.is-pinned td { background-color: var(--series-1-soft); }
+  #trustTable tbody tr.is-pinned td.trust-name { background-color: var(--surface-2); background-image: linear-gradient(var(--series-1-soft), var(--series-1-soft)); font-weight: 700; }
+  .rank-row.is-pinned .rank-row-name { color: var(--series-1); }
+  .scatter-pin-ring { fill: none; stroke: var(--text-primary); stroke-width: 2; }
+  .scatter-pin-label { font-size: 11px; font-weight: 700; fill: var(--text-primary); font-family: inherit; paint-order: stroke; stroke: var(--surface-2); stroke-width: 3px; }
+  .change-cell { font-variant-numeric: tabular-nums; font-weight: 650; }
+  .change-cell.is-good { color: var(--status-good); }
+  .change-cell.is-bad { color: var(--status-critical); }
+  .change-cell.is-neutral { color: var(--text-muted); font-weight: 500; }
+  .meta-row .not-reported { cursor: help; border-bottom: 1px dotted var(--text-muted); }
+
   /* --- Mobile: reclaim screen width so tables and charts read larger, without
      changing the card design or letting content spill past its borders. We trim
      the outer page padding and inner card padding, tighten table cells, and bump
@@ -552,6 +576,7 @@
   <div class="meta-row">
     <span>Data period: <strong id="metaPeriod">—</strong></span>
     <span>Trusts covered: <strong id="metaTrustCount">—</strong></span>
+    <span id="metaNotReported" hidden></span>
     <span>Dashboard last refreshed: <strong id="metaGenerated">—</strong></span>
   </div>
 
@@ -595,7 +620,77 @@
         <div class="kpi-label">Waiting over 52 weeks</div>
         <div class="kpi-value" id="kpi52wk">—</div>
         <div class="kpi-delta" id="kpi52wkDelta"></div>
-        <div class="kpi-sub">Long-wait breaches</div>
+        <div class="kpi-sub" id="kpiLongWaitSub">Long-wait breaches</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="focusSection">
+    <h2>Follow a trust</h2>
+    <div class="trend-card">
+      <div class="focus-head">
+        <input class="search-box" id="focusInput" type="text" list="focusTrustList" placeholder="Type a trust name to follow it…" autocomplete="off">
+        <datalist id="focusTrustList"></datalist>
+        <button class="filter-btn" id="focusShare" type="button" hidden>Copy link to this trust</button>
+        <button class="clear-filters-btn" id="focusClear" type="button" hidden>Stop following</button>
+      </div>
+      <div class="chart-note" id="focusEmpty" style="margin:12px 0 4px;">Pick a trust to see its trend and how it compares with its region and with trusts of a similar size. It stays highlighted in the charts and table below, and is remembered on this device. You can also click any row in the trust table.</div>
+      <div id="focusBody" hidden>
+        <div class="focus-title"><span class="focus-name" id="focusName"></span><span class="focus-region" id="focusRegion"></span></div>
+        <div class="focus-kpis">
+          <div class="kpi-tile">
+            <div class="kpi-label">Within 18 weeks</div>
+            <div class="kpi-value" id="fPct18">—</div>
+            <div class="kpi-delta" id="fPct18Delta"></div>
+          </div>
+          <div class="kpi-tile">
+            <div class="kpi-label">Waiting list</div>
+            <div class="kpi-value" id="fWl">—</div>
+            <div class="kpi-delta" id="fWlDelta"></div>
+          </div>
+          <div class="kpi-tile">
+            <div class="kpi-label">Median wait</div>
+            <div class="kpi-value" id="fMedian">—</div>
+            <div class="kpi-delta" id="fMedianDelta"></div>
+          </div>
+          <div class="kpi-tile">
+            <div class="kpi-label">Over 52 weeks</div>
+            <div class="kpi-value" id="f52">—</div>
+            <div class="kpi-delta" id="f52Delta"></div>
+            <div class="kpi-sub" id="fLongSub"></div>
+          </div>
+        </div>
+        <div class="trend-grid">
+          <div>
+            <div class="chart-title">% within 18 weeks</div>
+            <div class="chart-note" id="fTrendNote1"></div>
+            <div class="lc-wrap"><svg class="linechart linechart-tall" id="fChartPct18"></svg><div class="lc-tooltip" id="fTtPct18"></div></div>
+          </div>
+          <div>
+            <div class="chart-title">Waiting list size</div>
+            <div class="chart-note" id="fTrendNote2"></div>
+            <div class="lc-wrap"><svg class="linechart linechart-tall" id="fChartWl"></svg><div class="lc-tooltip" id="fTtWl"></div></div>
+          </div>
+        </div>
+        <div class="focus-section-label">How it compares</div>
+        <div class="table-card">
+          <div class="table-scroll">
+            <table class="trust-table" id="focusCompareTable">
+              <thead>
+                <tr>
+                  <th class="col-text"></th>
+                  <th>Waiting list</th>
+                  <th>Within 18 weeks</th>
+                  <th>Median wait (wks)</th>
+                  <th>Over 52 wks (% of list)</th>
+                  <th>Over 65 wks (% of list)</th>
+                </tr>
+              </thead>
+              <tbody id="focusCompareBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="chart-note" id="focusPeerNote" style="margin-top:10px;"></div>
       </div>
     </div>
   </section>
@@ -641,6 +736,8 @@
                 <th>Within 18 weeks</th>
                 <th>Median wait (wks)</th>
                 <th>Over 52 weeks</th>
+                <th>Over 65 weeks</th>
+                <th>Over 78 weeks</th>
                 <th>Trusts</th>
               </tr>
             </thead>
@@ -725,9 +822,12 @@
               <th data-key="residual" data-type="num">Diff vs expected</th>
               <th data-key="waiting_list" data-type="num">Waiting list</th>
               <th data-key="pct_within_18wk" data-type="num">Within 18 weeks</th>
+              <th data-key="pct_change" data-type="num">18-wk change vs last month</th>
               <th data-key="median_weeks" data-type="num">Actual wait (wks)</th>
               <th data-key="expected" data-type="num">Expected (wks)</th>
               <th data-key="over_52wk" data-type="num">Over 52 weeks</th>
+              <th data-key="over_65wk" data-type="num">Over 65 weeks</th>
+              <th data-key="over_78wk" data-type="num">Over 78 weeks</th>
             </tr>
           </thead>
           <tbody id="trustTableBody"></tbody>
@@ -738,10 +838,11 @@
 
   <footer>
     <p>Built from NHS England's monthly Referral to Treatment (RTT) "Full CSV" data extract, filtered to Incomplete Pathways
-    (the current waiting list) for the ~135 acute NHS trusts in England (a maintained reference list, since NHS's raw data
-    doesn't tag provider type — mergers/renames may occasionally need a manual update). Median wait is estimated by linear
-    interpolation across NHS's published weekly waiting bands. Regions are NHS England's 7 administrative regions, matched
-    to each trust by name. This dashboard refreshes automatically each month after NHS England publishes new figures.</p>
+    (the current waiting list) for England's acute NHS trusts (a maintained reference list matched on NHS organisation code,
+    since NHS's raw data doesn't tag provider type; mergers may occasionally need a manual update). Trusts that did not submit
+    data for the month are listed beside "Trusts covered". Median wait is estimated by linear interpolation across NHS's published
+    weekly waiting bands. Long waits count patients waiting more than 52, 65 and 78 weeks. Regions are NHS England's 7
+    administrative regions. This dashboard refreshes each month after NHS England publishes new figures.</p>
   </footer>
 
 </div>
@@ -779,6 +880,13 @@ function monthLabel(period) {
 document.getElementById("metaPeriod").textContent = DATA.period_display || DATA.period;
 document.getElementById("metaTrustCount").textContent = DATA.trusts.length + " acute trusts";
 (function() {
+  const missing = DATA.acute_not_reported || [];
+  if (!missing.length) return;
+  const el = document.getElementById("metaNotReported");
+  el.hidden = false;
+  el.innerHTML = `<span class="not-reported" title="${missing.map(n => n.replace(/\w\S*/g, w => w.charAt(0) + w.slice(1).toLowerCase()).replace(/\bNhs\b/g, "NHS")).join("\n").replace(/"/g, "&quot;")}">${missing.length} acute trust${missing.length === 1 ? "" : "s"} did not report this month</span>`;
+})();
+(function() {
   const d = new Date(DATA.generated_at);
   const opts = { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" };
   document.getElementById("metaGenerated").textContent = isNaN(d) ? DATA.generated_at : d.toLocaleString("en-GB", opts);
@@ -786,6 +894,25 @@ document.getElementById("metaTrustCount").textContent = DATA.trusts.length + " a
 
 // ---- History (national) - defined early, several sections below depend on it ----
 const history = (DATA.history || []).slice().sort((a, b) => a.period.localeCompare(b.period));
+
+// ---- Per-trust history + the pinned ("followed") trust ----
+const TRUST_HISTORY = DATA.trust_history || {};
+function trustSeries(code) {
+  return (TRUST_HISTORY[code] || []).slice().sort((a, b) => a.period.localeCompare(b.period));
+}
+// The trust's previous reported month, if it is in the history.
+function trustPrev(code) {
+  const s = trustSeries(code).filter(h => h.period < DATA.period);
+  return s.length ? s[s.length - 1] : null;
+}
+const PIN_KEY = "rtt-dashboard-pinned-trust";
+function readInitialPin() {
+  const fromUrl = new URLSearchParams(location.search).get("trust");
+  let code = fromUrl ? fromUrl.toUpperCase() : null;
+  if (!code) { try { code = localStorage.getItem(PIN_KEY); } catch (e) { code = null; } }
+  return DATA.trusts.some(t => t.code === code) ? code : null;
+}
+let pinnedCode = readInitialPin();
 
 // ---- Narrative headline - a plain-English summary generated from the data ----
 function renderNarrative() {
@@ -883,6 +1010,10 @@ function updateKpiTiles(regionName) {
   animateValue(document.getElementById("kpiWaitingList"), curr.waiting_list, v => v === undefined || v === null || isNaN(v) ? "—" : fmtCompact(v));
   animateValue(document.getElementById("kpiMedian"), curr.median_weeks, v => v === undefined || v === null || isNaN(v) ? "—" : v.toFixed(1), " wks");
   animateValue(document.getElementById("kpi52wk"), curr.over_52wk, v => v === undefined || v === null || isNaN(v) ? "—" : fmtInt(v));
+  document.getElementById("kpiLongWaitSub").textContent =
+    (curr.over_65wk !== undefined && curr.over_65wk !== null)
+      ? `Over 65 wks: ${fmtInt(curr.over_65wk)} · Over 78 wks: ${fmtInt(curr.over_78wk)}`
+      : "Long-wait breaches";
 
   if (curr.pct_within_18wk !== undefined && curr.pct_within_18wk !== null) {
     const gap = 92 - curr.pct_within_18wk;
@@ -1022,6 +1153,8 @@ function renderRegionDetailRow() {
       </td>
       <td class="num">${fmtWeeks(r.median_weeks)}</td>
       <td class="num">${fmtInt(r.over_52wk)}</td>
+      <td class="num">${fmtInt(r.over_65wk)}</td>
+      <td class="num">${fmtInt(r.over_78wk)}</td>
       <td class="num">${r.trust_count} ${trustWord}</td>
     </tr>`;
 }
@@ -1337,13 +1470,31 @@ function renderScatterAnalysis() {
     hit.addEventListener("mouseleave", () => { tooltipEl.style.opacity = 0; });
   });
 
+  const pinned = withResid.find(t => t.code === pinnedCode);
+  if (pinned) {
+    const px = xFor(Math.log(pinned.waiting_list)), py = yFor(clampY(pinned.median_weeks));
+    const ring = document.createElementNS(ns, "circle");
+    ring.setAttribute("cx", px); ring.setAttribute("cy", py); ring.setAttribute("r", 7.5);
+    ring.setAttribute("class", "scatter-pin-ring");
+    ring.setAttribute("pointer-events", "none");
+    svgEl.appendChild(ring);
+    const lbl = document.createElementNS(ns, "text");
+    const toLeft = px > w * 0.7;
+    lbl.setAttribute("x", px + (toLeft ? -11 : 11)); lbl.setAttribute("y", py + 4);
+    lbl.setAttribute("text-anchor", toLeft ? "end" : "start");
+    lbl.setAttribute("class", "scatter-pin-label");
+    lbl.setAttribute("pointer-events", "none");
+    lbl.textContent = properCase(pinned.name);
+    svgEl.appendChild(lbl);
+  }
+
   const sorted = withResid.slice().sort((x, y) => x.residual - y.residual);
   const below = sorted.slice(0, 5);
   const above = sorted.slice(-5).reverse();
 
   function renderRankList(elId, list, isGood) {
     document.getElementById(elId).innerHTML = list.map((t, i) => `
-      <div class="rank-row">
+      <div class="rank-row${t.code === pinnedCode ? " is-pinned" : ""}">
         <span class="rank-badge">${i + 1}</span>
         <div class="rank-row-main">
           <div class="rank-row-name">${properCase(t.name)}</div>
@@ -1363,12 +1514,19 @@ renderScatterAnalysis();
 // table can show and sort on the same "waiting more/less than its size predicts"
 // signal the scatter analysis uses.
 let trusts = DATA.trusts.map(t => {
+  const prev = trustPrev(t.code);
+  t = { ...t, pct_change: (prev && prev.pct_within_18wk !== null && t.pct_within_18wk !== null) ? t.pct_within_18wk - prev.pct_within_18wk : null };
   if (sizeFit && t.waiting_list > 0 && t.median_weeks !== null && t.median_weeks !== undefined) {
     const expected = sizeFit.predict(t.waiting_list);
     return { ...t, expected, residual: t.median_weeks - expected };
   }
   return { ...t, expected: null, residual: null };
 });
+function changeCell(d) {
+  if (d === null || d === undefined || isNaN(d)) return `<span class="change-cell is-neutral">—</span>`;
+  if (Math.abs(d) < 0.05) return `<span class="change-cell is-neutral">0.0pp</span>`;
+  return `<span class="change-cell ${d > 0 ? "is-good" : "is-bad"}">${d > 0 ? "▲ +" : "▼ "}${d.toFixed(1)}pp</span>`;
+}
 function diffCell(resid) {
   if (resid === null || resid === undefined || isNaN(resid)) return `<span class="diff-pill is-neutral">—</span>`;
   const good = resid < 0; // waiting LESS than expected for its size = good
@@ -1518,8 +1676,8 @@ function renderTable() {
   document.getElementById("resultCount").textContent = `${rows.length} of ${trusts.length} trusts`;
 
   tbody.innerHTML = rows.map((t, i) => `
-    <tr>
-      <td class="trust-name">${properCase(t.name)}</td>
+    <tr data-code="${t.code}" class="${t.code === pinnedCode ? "is-pinned" : ""}" title="Click to follow this trust">
+      <td class="trust-name">${t.code === pinnedCode ? '<span class="pin-mark">●</span>' : ""}${properCase(t.name)}</td>
       <td class="col-text">${t.region || "—"}</td>
       <td>${diffCell(t.residual)}</td>
       <td class="num">${fmtInt(t.waiting_list)}</td>
@@ -1529,11 +1687,20 @@ function renderTable() {
           <span class="meter-value">${fmtPct(t.pct_within_18wk)}</span>
         </div>
       </td>
+      <td>${changeCell(t.pct_change)}</td>
       <td class="num">${fmtWeeks(t.median_weeks)}</td>
       <td class="num">${t.expected !== null && t.expected !== undefined ? fmtWeeks(t.expected) : "—"}</td>
       <td class="num">${fmtInt(t.over_52wk)}</td>
+      <td class="num">${fmtInt(t.over_65wk)}</td>
+      <td class="num">${fmtInt(t.over_78wk)}</td>
     </tr>
   `).join("");
+  tbody.querySelectorAll("tr[data-code]").forEach(tr => {
+    tr.addEventListener("click", () => {
+      if (window.getSelection && String(window.getSelection()).length) return;
+      setPinned(tr.dataset.code === pinnedCode ? null : tr.dataset.code, true);
+    });
+  });
 
   document.querySelectorAll("#trustTable thead th").forEach(th => {
     const arrow = th.querySelector(".arrow");
@@ -1561,6 +1728,129 @@ document.getElementById("searchBox").addEventListener("input", (e) => {
 
 renderTable();
 updateClearFiltersVisibility();
+
+// ---- Follow a trust: pinned trust panel ----
+const focusInput = document.getElementById("focusInput");
+const trustByLabel = new Map(trusts.map(t => [properCase(t.name), t]));
+document.getElementById("focusTrustList").innerHTML = Array.from(trustByLabel.keys()).sort()
+  .map(n => `<option value="${n.replace(/"/g, "&quot;")}"></option>`).join("");
+
+function median(vals) {
+  const v = vals.filter(x => x !== null && x !== undefined && !isNaN(x)).sort((a, b) => a - b);
+  if (!v.length) return null;
+  const m = Math.floor(v.length / 2);
+  return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2;
+}
+const shareOf = (n, wl) => (n === null || n === undefined || !wl) ? null : 100 * n / wl;
+
+// The 10 trusts closest in waiting-list size (on a log scale), excluding itself.
+function sizePeers(t) {
+  const lx = Math.log(t.waiting_list);
+  return trusts.filter(x => x.code !== t.code && x.waiting_list > 0)
+    .sort((a, b) => Math.abs(Math.log(a.waiting_list) - lx) - Math.abs(Math.log(b.waiting_list) - lx))
+    .slice(0, 10);
+}
+
+function renderFocus() {
+  const t = trusts.find(x => x.code === pinnedCode);
+  const body = document.getElementById("focusBody");
+  document.getElementById("focusEmpty").hidden = !!t;
+  document.getElementById("focusClear").hidden = !t;
+  document.getElementById("focusShare").hidden = !t;
+  body.hidden = !t;
+  if (!t) { focusInput.value = ""; return; }
+  focusInput.value = properCase(t.name);
+
+  document.getElementById("focusName").textContent = properCase(t.name);
+  document.getElementById("focusRegion").textContent = `${t.region || "Region not mapped"} · ${DATA.period_display || DATA.period}`;
+
+  const prev = trustPrev(t.code);
+  const prevLabel = prev ? monthLabel(prev.period) : "";
+  document.getElementById("fPct18").textContent = fmtPct(t.pct_within_18wk);
+  document.getElementById("fWl").textContent = fmtInt(t.waiting_list);
+  document.getElementById("fMedian").textContent = fmtWeeks(t.median_weeks) + " wks";
+  document.getElementById("f52").textContent = fmtInt(t.over_52wk);
+  document.getElementById("fLongSub").textContent =
+    (t.over_65wk !== undefined && t.over_65wk !== null) ? `Over 65: ${fmtInt(t.over_65wk)} · Over 78: ${fmtInt(t.over_78wk)}` : "";
+  const p = prev || {};
+  renderKpiDelta("fPct18Delta", t.pct_within_18wk, p.pct_within_18wk, prevLabel, DELTA_FMT.pct, true);
+  renderKpiDelta("fWlDelta", t.waiting_list, p.waiting_list, prevLabel, DELTA_FMT.int, false);
+  renderKpiDelta("fMedianDelta", t.median_weeks, p.median_weeks, prevLabel, DELTA_FMT.weeks, false);
+  renderKpiDelta("f52Delta", t.over_52wk, p.over_52wk, prevLabel, DELTA_FMT.int, false);
+
+  const series = trustSeries(t.code);
+  const pctPts = series.filter(h => h.pct_within_18wk !== null).map(h => ({ label: monthLabel(h.period), value: h.pct_within_18wk }));
+  const wlPts = series.map(h => ({ label: monthLabel(h.period), value: h.waiting_list }));
+  drawLineChart(document.getElementById("fChartPct18"), pctPts, v => v.toFixed(1) + "%", 3, { value: 92, label: "92% target" });
+  drawLineChart(document.getElementById("fChartWl"), wlPts, v => fmtCompact(v), Math.max(...wlPts.map(x => x.value), 1) * 0.03);
+  const note = series.length < 2 ? "The trend builds as each month is added." : `${series.length} months tracked`;
+  document.getElementById("fTrendNote1").textContent = note;
+  document.getElementById("fTrendNote2").textContent = note;
+
+  const region = (DATA.regions || []).find(r => r.region === t.region);
+  const peers = sizePeers(t);
+  const peerRow = peers.length ? {
+    waiting_list: median(peers.map(x => x.waiting_list)),
+    pct_within_18wk: median(peers.map(x => x.pct_within_18wk)),
+    median_weeks: median(peers.map(x => x.median_weeks)),
+    s52: median(peers.map(x => shareOf(x.over_52wk, x.waiting_list))),
+    s65: median(peers.map(x => shareOf(x.over_65wk, x.waiting_list))),
+  } : null;
+  const asRow = r => r && ({ ...r, s52: shareOf(r.over_52wk, r.waiting_list), s65: shareOf(r.over_65wk, r.waiting_list) });
+  const rows = [
+    { label: properCase(t.name), r: asRow(t), strong: true },
+    region && { label: `${t.region} (all acute trusts)`, r: asRow(region) },
+    peerRow && { label: "Similar-sized trusts (median of 10)", r: peerRow },
+    { label: "England (all acute trusts)", r: asRow(DATA.national_acute) },
+  ].filter(Boolean);
+  const pctOrDash = v => (v === null || v === undefined) ? "—" : v.toFixed(1) + "%";
+  document.getElementById("focusCompareBody").innerHTML = rows.map(({ label, r, strong }) => `
+    <tr${strong ? ' class="is-pinned"' : ""}>
+      <td class="trust-name"${strong ? ' style="font-weight:700"' : ""}>${label}</td>
+      <td class="num">${fmtInt(r.waiting_list)}</td>
+      <td class="num">${fmtPct(r.pct_within_18wk)}</td>
+      <td class="num">${fmtWeeks(r.median_weeks)}</td>
+      <td class="num">${pctOrDash(r.s52)}</td>
+      <td class="num">${pctOrDash(r.s65)}</td>
+    </tr>`).join("");
+  document.getElementById("focusPeerNote").textContent = peers.length
+    ? `Similar-sized trusts are the 10 with waiting lists closest to this one's: ${peers.map(x => properCase(x.name)).join(", ")}. Long waits are shown as a share of the waiting list so trusts of different sizes compare fairly.`
+    : "";
+}
+
+function setPinned(code, scrollToPanel) {
+  pinnedCode = code;
+  try { if (code) localStorage.setItem(PIN_KEY, code); else localStorage.removeItem(PIN_KEY); } catch (e) {}
+  try {
+    const url = new URL(location.href);
+    if (code) url.searchParams.set("trust", code); else url.searchParams.delete("trust");
+    window.history.replaceState(null, "", url);
+  } catch (e) {}
+  renderFocus();
+  renderScatterAnalysis();
+  renderTable();
+  if (scrollToPanel && code) document.getElementById("focusSection").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+focusInput.addEventListener("change", () => {
+  const t = trustByLabel.get(focusInput.value.trim());
+  if (t) setPinned(t.code, false);
+});
+focusInput.addEventListener("input", () => {
+  const t = trustByLabel.get(focusInput.value.trim());
+  if (t && t.code !== pinnedCode) setPinned(t.code, false);
+});
+focusInput.addEventListener("focus", () => focusInput.select());
+document.getElementById("focusClear").addEventListener("click", () => setPinned(null, false));
+document.getElementById("focusShare").addEventListener("click", () => {
+  const btn = document.getElementById("focusShare");
+  const done = msg => { btn.textContent = msg; setTimeout(() => { btn.textContent = "Copy link to this trust"; }, 1800); };
+  if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(() => done("Link copied"), () => done("Copy failed"));
+  else done("Copy the address bar link");
+});
+wireTooltip(document.getElementById("fChartPct18"), document.getElementById("fTtPct18"));
+wireTooltip(document.getElementById("fChartWl"), document.getElementById("fTtWl"));
+renderFocus();
 
 // ---- Theme toggle - a clean two-state switch (light <-> dark), label always
 // names the mode a click will switch TO, so it reads correctly either way ----

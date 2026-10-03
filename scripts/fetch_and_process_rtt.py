@@ -359,6 +359,15 @@ def collect_candidates():
     return out
 
 
+def not_reported(ref, trusts):
+    codes = {t["code"] for t in trusts}
+    acute = pd.read_csv(DATA_DIR / "acute_trusts.csv", dtype=str).fillna("")
+    if "code" not in acute.columns:
+        return []
+    return sorted(r["trust_name"] for _, r in acute.iterrows()
+                  if r["code"].strip().upper() and r["code"].strip().upper() not in codes)
+
+
 def main():
     candidates = collect_candidates()
     if not candidates:
@@ -410,6 +419,8 @@ def main():
             "regions": regions,
             "history": sorted(history.values(), key=lambda h: h["period"]),
             "trust_history": trust_history,
+            # Trusts on the acute list with no rows in this month's extract.
+            "acute_not_reported": not_reported(ref, trusts),
         }
         (DATA_DIR / "providers_seen.json").write_text(json.dumps(providers, indent=1))
         unmatched = [p["name"] for p in providers if not p["is_acute"]
