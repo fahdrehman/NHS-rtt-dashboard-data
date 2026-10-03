@@ -364,8 +364,12 @@ def not_reported(ref, trusts):
     acute = pd.read_csv(DATA_DIR / "acute_trusts.csv", dtype=str).fillna("")
     if "code" not in acute.columns:
         return []
-    return sorted(r["trust_name"] for _, r in acute.iterrows()
-                  if r["code"].strip().upper() and r["code"].strip().upper() not in codes)
+    # Rows with merged_into are predecessor codes kept so older months count
+    # them; they are not "missing" once the merger has happened.
+    merged = acute["merged_into"] if "merged_into" in acute.columns else pd.Series("", index=acute.index)
+    return sorted(r["trust_name"] for (_, r), m in zip(acute.iterrows(), merged)
+                  if r["code"].strip().upper() and not m.strip()
+                  and r["code"].strip().upper() not in codes)
 
 
 def main():
