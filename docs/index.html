@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NHS England waiting times: acute trusts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
 <meta name="description" content="Monthly referral to treatment waiting times for England's acute NHS trusts, with trends, regional figures and trust comparisons.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="NHS England RTT waiting times: acute trusts dashboard">
@@ -588,6 +590,103 @@
     h1 { font-size: 19px; }
   }
 </style>
+<style>
+/* Portfolio theme (fahd.uk). Brand layer in violet, data in blue,
+   status colours unchanged. Space Grotesk for display, Manrope for text. */
+:root {
+  --font-display: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --font-body: Manrope, system-ui, -apple-system, sans-serif;
+  --brand: #8557c8;
+  --brand-wash: rgba(133,87,200,0.10);
+  --brand-soft: rgba(133,87,200,0.18);
+  --surface-1: #f6f6fc;
+  --surface-2: #ffffff;
+  --page-plane: #fbfbff;
+  --text-primary: #131423;
+  --text-secondary: #585a66;
+  --text-muted: #848592;
+  --gridline: #e7e7ee;
+  --baseline: #c9c9d6;
+  --border: #dddde7;
+  --series-1: #2d74ca;
+  --series-1-wash: rgba(45,116,202,0.09);
+  --series-1-soft: rgba(45,116,202,0.16);
+  --seq-100: #d5e6fc;
+  --seq-450: #2d74ca;
+  --hover-wash: rgba(133,87,200,0.07);
+  --hover-text: #6b3fb0;
+  --card-radius: 18px;
+  --shadow-card: 0 1px 2px rgba(19,20,35,0.04), 0 8px 24px rgba(19,20,35,0.05);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand: #b28fef; --brand-wash: rgba(178,143,239,0.14); --brand-soft: rgba(178,143,239,0.22);
+    --surface-1: #12121c; --surface-2: #171722; --page-plane: #0e0e18;
+    --text-primary: #f3f3f8; --text-secondary: #c2c3d1; --text-muted: #90919e;
+    --gridline: #2a2a35; --baseline: #41414d; --border: #2c2c3a;
+    --series-1: #6fa7ee; --series-1-wash: rgba(111,167,238,0.14); --series-1-soft: rgba(111,167,238,0.22);
+    --seq-100: #1d3451; --seq-450: #6fa7ee;
+    --hover-wash: rgba(178,143,239,0.10); --hover-text: #d3bdf7;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --brand: #b28fef; --brand-wash: rgba(178,143,239,0.14); --brand-soft: rgba(178,143,239,0.22);
+  --surface-1: #12121c; --surface-2: #171722; --page-plane: #0e0e18;
+  --text-primary: #f3f3f8; --text-secondary: #c2c3d1; --text-muted: #90919e;
+  --gridline: #2a2a35; --baseline: #41414d; --border: #2c2c3a;
+  --series-1: #6fa7ee; --series-1-wash: rgba(111,167,238,0.14); --series-1-soft: rgba(111,167,238,0.22);
+  --seq-100: #1d3451; --seq-450: #6fa7ee;
+  --hover-wash: rgba(178,143,239,0.10); --hover-text: #d3bdf7;
+  color-scheme: dark;
+}
+
+html, body { font-family: var(--font-body); background: var(--page-plane); }
+body { padding-inline: 20px; }
+h1, .kpi-hero-value, .kpi-value, .focus-name, .detail-title, .chart-title, .gt-val, .summary-kicker {
+  font-family: var(--font-display);
+}
+h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; text-wrap: balance; }
+h1 .dot { color: var(--brand); }
+h2 { font-family: var(--font-body); font-weight: 800; letter-spacing: 0.08em; font-size: 11.5px; color: var(--text-muted); }
+.kpi-hero-value { font-weight: 700; letter-spacing: -0.035em; font-size: 60px; }
+.kpi-value { font-weight: 600; letter-spacing: -0.02em; }
+.kpi-hero-label, .kpi-label { font-weight: 600; }
+.narrative-text { font-weight: 500; }
+.detail-title, .chart-title, .focus-name { font-weight: 600; letter-spacing: -0.01em; }
+
+/* Brand layer: violet */
+header.page-head { border: none; box-shadow: none; background: none; padding: 6px 2px 4px; }
+.brand-mark { display: none; }
+.subtitle a, .byline a, footer a { color: var(--brand); }
+.byline strong { color: var(--text-primary); }
+.home-link {
+  font-family: var(--font-body); font-weight: 700; font-size: 13px; text-decoration: none; color: var(--brand);
+  border: 1.5px solid var(--brand-soft); border-radius: 999px; padding: 8px 15px; white-space: nowrap;
+}
+.home-link:hover, .home-link:focus-visible { background: var(--brand-wash); outline: none; }
+.theme-toggle { border-radius: 999px; padding: 8px 15px; }
+.head-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.theme-toggle:hover { border-color: var(--brand); }
+.top-strip { border-bottom: 1px solid var(--gridline); padding-bottom: 12px; margin-bottom: 18px; }
+.kpi-filter-pill { border-radius: 999px; font-family: var(--font-body); font-weight: 700; }
+.kpi-filter-pill.active { background: var(--brand); border-color: var(--brand); color: #fff; }
+.kpi-filter-pill:hover { border-color: var(--brand); }
+.brief-label { color: var(--brand); font-family: var(--font-body); letter-spacing: 0.08em; }
+details.detail > summary::after { color: var(--brand); }
+details.detail > summary:hover { background: var(--brand-wash); }
+.filter-btn { border-radius: 999px; }
+.filter-btn.active { border-color: var(--brand); color: var(--brand); background: var(--brand-wash); }
+.filter-btn .count-badge { background: var(--brand); }
+.search-box { border-radius: 999px; padding-inline: 16px; }
+.search-box:focus-visible, .focus-head .search-box:focus { outline: 2px solid var(--brand-soft); border-color: var(--brand); }
+.explainer { background: var(--brand-wash); }
+.explainer h4 { color: var(--brand); }
+.pin-mark, .rank-row.is-pinned .rank-row-name { color: var(--brand); }
+.clear-filters-btn { color: var(--brand); }
+.kpi-hero { border-radius: 22px; }
+.kpi-tile, .trend-card, .table-card, details.detail { border-color: var(--border); }
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -616,11 +715,11 @@
     <div class="page-head-inner">
       <div class="brand-mark"></div>
       <div>
-        <h1>NHS England waiting times: acute trusts</h1>
+        <h1>NHS England waiting times: acute trusts<span class="dot">.</span></h1>
         <p class="subtitle">Referral to treatment (consultant-led) waiting times, England's acute NHS trusts · Source: <a href="#" id="sourceLink" target="_blank" rel="noopener">NHS England statistics</a></p>
       </div>
     </div>
-    <button class="theme-toggle" id="themeToggle" type="button">Toggle dark mode</button>
+    <div class="head-actions"><a class="home-link" href="https://www.fahd.uk" target="_blank" rel="noopener">fahd.uk</a><button class="theme-toggle" id="themeToggle" type="button">Toggle dark mode</button></div>
   </header>
 
   <section>
