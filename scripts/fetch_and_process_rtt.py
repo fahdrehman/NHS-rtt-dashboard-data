@@ -8,11 +8,9 @@ This script is designed to run inside a GitHub Actions runner (which has
 normal internet access) on a monthly schedule. It is intentionally
 dependency-light: requests + beautifulsoup4 + pandas + openpyxl.
 
-In addition to the latest month, it will backfill a handful of the most
-recent prior months into "history" (national_acute-level metrics only) the
-first few times it runs, so trend charts have more than one data point.
-Once history has TARGET_HISTORY_MONTHS distinct months, backfilling stops
-automatically and each run only processes the latest month.
+The zip link(s) are normally supplied by the workflow (RTT_ZIP_URL), because
+NHS England's pages now block scripts with a browser check. Each run keeps a
+month-by-month history nationally and for every acute trust.
 """
 import io
 import json
@@ -66,14 +64,8 @@ def http_get(url, timeout, attempts=4):
 MONTH_ABBR = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
               "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
-# How many distinct months we want sitting in history. Backfilling only
-# happens while history has fewer months than this - once we reach it,
-# each run just adds the latest month going forward (cheap, one download).
-TARGET_HISTORY_MONTHS = 4
-# Safety cap on how many extra full-extract downloads a single run will do
-# to backfill, so a fresh repo doesn't try to download every month NHS has
-# ever published in one go.
-MAX_BACKFILL_DOWNLOADS_PER_RUN = 4
+# Long-wait thresholds reported (weeks).
+LONG_WAIT_TIERS = (52, 65, 78)
 
 
 def financial_year_slugs(today=None):
@@ -217,21 +209,38 @@ def normalise_name(name):
     return name
 
 
-def load_region_map():
-    """trust_name (normalised) -> NHS England region, or {} if the reference file is missing."""
-    path = DATA_DIR / "trust_regions.csv"
-    if not path.exists():
-        print("DEBUG: no data/trust_regions.csv found - regions will be omitted", file=sys.stderr)
-        return {}
-    regions_df = pd.read_csv(path)
-    return {
-        normalise_name(row["trust_name"]): row["region"]
-        for _, row in regions_df.iterrows()
-    }
+def load_acute_reference():
+    """Read data/acute_trusts.csv.
+
+    Preferred columns: code, trust_name, region. Matching on the provider
+    code is robust to trusts being renamed; trust_name is a fallback for
+    rows without a code. Older files without code/region still work, with
+    regions taken from data/trust_regions.csv.
+    Returns (codes:set, names_norm:set, region_by_code:dict, region_by_name:dict).
+    """
+    acute = pd.read_csv(DATA_DIR / "acute_trusts.csv", dtype=str).fillna("")
+    codes, names, region_by_code, region_by_name = set(), set(), {}, {}
+    for _, row in acute.iterrows():
+        code = row.get("code", "").strip().upper()
+        name = normalise_name(row.get("trust_name", ""))
+        region = row.get("region", "").strip()
+        if code:
+            codes.add(code)
+            if region:
+                region_by_code[code] = region
+        elif name:
+            names.add(name)
+        if name and region:
+            region_by_name[name] = region
+    reg_path = DATA_DIR / "trust_regions.csv"
+    if reg_path.exists():
+        for _, row in pd.read_csv(reg_path, dtype=str).fillna("").iterrows():
+            region_by_name.setdefault(normalise_name(row["trust_name"]), row["region"])
+    return codes, names, region_by_code, region_by_name
 
 
-def compute_metrics(df, band_cols, acute_names_norm, region_map=None):
-    region_map = region_map or {}
+def compute_metrics(df, band_cols, ref):
+    acute_codes, acute_names, region_by_code, region_by_name = ref
 
     df = df[df["RTT Part Description"].astype(str).str.strip()
             .str.lower() == "incomplete pathways"].copy()
@@ -245,42 +254,37 @@ def compute_metrics(df, band_cols, acute_names_norm, region_map=None):
         df["Treatment Function Code"].astype(str).str.contains(r"999", na=False)
         | df["Treatment Function Name"].astype(str).str.strip().str.lower().eq("total")
     )
-    print(f"DEBUG: dropping {int(is_rollup.sum())} Treatment Function 'Total' rollup rows "
-          f"(of {len(df)}) to avoid double-counting", file=sys.stderr)
     df = df[~is_rollup].copy()
 
-    print(f"DEBUG: after filtering to Incomplete Pathways (excl. rollup rows): {len(df)} rows", file=sys.stderr)
-
-    for c in band_cols:
-        df[c] = pd.to_numeric(df[c], errors="coerce").fillna(0.0)
-
-    within18_cols = [c for c in band_cols if band_upper_bound(c) <= 18]
-    over52_cols = [c for c in band_cols if band_lower_bound(c) >= 52]
-
-    df["_total"] = df[band_cols].sum(axis=1)
-    df["_within18"] = df[within18_cols].sum(axis=1)
-    df["_over52"] = df[over52_cols].sum(axis=1)
+    df[band_cols] = df[band_cols].apply(pd.to_numeric, errors="coerce").fillna(0.0)
+    extra = {
+        "_total": df[band_cols].sum(axis=1),
+        "_within18": df[[c for c in band_cols if band_upper_bound(c) <= 18]].sum(axis=1),
+    }
+    # "Gt 52 To 53 Weeks" onward = waiting more than 52 weeks, and so on.
+    for wk in LONG_WAIT_TIERS:
+        extra[f"_over{wk}"] = df[[c for c in band_cols if band_lower_bound(c) >= wk]].sum(axis=1)
+    df = pd.concat([df, pd.DataFrame(extra, index=df.index)], axis=1)
+    sum_cols = ["_total", "_within18"] + [f"_over{wk}" for wk in LONG_WAIT_TIERS]
 
     grouped = df.groupby(["Provider Org Code", "Provider Org Name"], as_index=False)[
-        band_cols + ["_total", "_within18", "_over52"]
-    ].sum()
-
+        band_cols + sum_cols].sum()
+    grouped["_code"] = grouped["Provider Org Code"].astype(str).str.strip().str.upper()
     grouped["_name_norm"] = grouped["Provider Org Name"].map(normalise_name)
-    grouped["is_acute"] = grouped["_name_norm"].isin(acute_names_norm)
-    grouped["_region"] = grouped["_name_norm"].map(region_map)
+    grouped["is_acute"] = grouped["_code"].isin(acute_codes) | grouped["_name_norm"].isin(acute_names)
+    grouped["_region"] = [region_by_code.get(c) or region_by_name.get(n)
+                          for c, n in zip(grouped["_code"], grouped["_name_norm"])]
 
     def build(sub):
         total = float(sub["_total"].sum())
-        within18 = float(sub["_within18"].sum())
-        over52 = float(sub["_over52"].sum())
-        band_sums = sub[band_cols].sum()
-        median = estimate_median_weeks(band_sums, band_cols, total)
-        return {
+        out = {
             "waiting_list": int(round(total)),
-            "pct_within_18wk": round(100.0 * within18 / total, 1) if total else None,
-            "over_52wk": int(round(over52)),
-            "median_weeks": median,
+            "pct_within_18wk": round(100.0 * float(sub["_within18"].sum()) / total, 1) if total else None,
         }
+        for wk in LONG_WAIT_TIERS:
+            out[f"over_{wk}wk"] = int(round(float(sub[f"_over{wk}"].sum())))
+        out["median_weeks"] = estimate_median_weeks(sub[band_cols].sum(), band_cols, total)
+        return out
 
     national_all = build(grouped)
     acute_rows = grouped[grouped["is_acute"]]
@@ -288,44 +292,41 @@ def compute_metrics(df, band_cols, acute_names_norm, region_map=None):
 
     trusts = []
     for _, r in acute_rows.iterrows():
-        m = build(pd.DataFrame([r]))
         trusts.append({
-            "code": r["Provider Org Code"],
+            "code": r["_code"],
             "name": r["Provider Org Name"],
-            "region": r["_region"] if pd.notna(r["_region"]) else None,
-            **m,
+            "region": r["_region"] or None,
+            **build(pd.DataFrame([r])),
         })
     trusts.sort(key=lambda t: t["waiting_list"], reverse=True)
 
     regions = []
-    mapped_acute_rows = acute_rows[acute_rows["_region"].notna()]
-    for region_name, sub in mapped_acute_rows.groupby("_region"):
-        m = build(sub)
-        regions.append({"region": region_name, "trust_count": int(len(sub)), **m})
+    mapped = acute_rows[acute_rows["_region"].notna()]
+    for region_name, sub in mapped.groupby("_region"):
+        regions.append({"region": region_name, "trust_count": int(len(sub)), **build(sub)})
     regions.sort(key=lambda r: r["region"])
 
-    unmatched = sorted(
-        grouped[(~grouped["is_acute"]) & grouped["Provider Org Name"].str.contains(
-            "NHS TRUST|NHS FOUNDATION TRUST", case=False, na=False)]["Provider Org Name"].unique().tolist()
-    )
+    # Every provider in the extract, so the acute list can be audited when
+    # trusts merge or are renamed.
+    providers = sorted(
+        ({"code": r["_code"], "name": r["Provider Org Name"],
+          "waiting_list": int(round(float(r["_total"]))), "is_acute": bool(r["is_acute"])}
+         for _, r in grouped.iterrows()),
+        key=lambda p: p["waiting_list"], reverse=True)
 
-    return national_all, national_acute, trusts, unmatched, regions
+    return national_all, national_acute, trusts, regions, providers
 
 
-def process_period(csv_zip_url, band_cols_cache, acute_names_norm, region_map):
-    """Download + compute for one period. Returns (national_all, national_acute, trusts, unmatched, regions, band_cols)."""
-    df = download_full_extract(csv_zip_url)
-    df = normalise_columns(df)
+def process_period(csv_zip_url, ref):
+    df = normalise_columns(download_full_extract(csv_zip_url))
     band_cols = get_band_columns(df)
     if not band_cols:
         raise RuntimeError("Could not find weeks-waited band columns in the extract")
-    national_all, national_acute, trusts, unmatched, regions = compute_metrics(
-        df, band_cols, acute_names_norm, region_map)
-    return national_all, national_acute, trusts, unmatched, regions
+    return compute_metrics(df, band_cols, ref)
 
 
 def candidate_from_url(zip_url):
-    """Build a candidate from a full-CSV zip link given directly (e.g. 'Full-CSV-data-file-Aug26-ZIP...')."""
+    """Build a candidate from a full-CSV zip link (e.g. '...Full-CSV-data-file-Aug26-ZIP...')."""
     m = re.search(r"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[\-_ ]?(\d{2})",
                   zip_url.rsplit("/", 1)[-1], re.I)
     if not m:
@@ -335,99 +336,88 @@ def candidate_from_url(zip_url):
     return {"period_date": datetime(2000 + int(m.group(2)), mon, 1), "csv_zip_url": zip_url}
 
 
-def main():
-    # NHS England's pages now sit behind a browser check that blocks this
-    # script, so the zip link is normally passed in (RTT_ZIP_URL) by a task
-    # that found it in a real browser. Scraping is kept as a fallback.
-    zip_url = os.environ.get("RTT_ZIP_URL", "").strip()
-
-    all_candidates = []
-    if zip_url:
-        print(f"Using zip link supplied to the workflow: {zip_url}")
-        all_candidates.append(candidate_from_url(zip_url))
+def collect_candidates():
+    """Links to process, most recent first. RTT_ZIP_URL may hold several
+    links (space, comma or newline separated) to fill in older months too."""
+    raw = os.environ.get("RTT_ZIP_URL", "").strip()
+    links = [u for u in re.split(r"[\s,]+", raw) if u]
+    if links:
+        print(f"Using {len(links)} zip link(s) supplied to the workflow")
+        found = [candidate_from_url(u) for u in links]
     else:
+        # NHS England's pages now sit behind a browser check that blocks this
+        # script, so this fallback normally finds nothing.
+        found = []
         for slug in financial_year_slugs():
-            all_candidates.extend(find_all_month_links(slug))
+            found.extend(find_all_month_links(slug))
+    seen, out = set(), []
+    for c in sorted(found, key=lambda c: c["period_date"], reverse=True):
+        lbl = c["period_date"].strftime("%Y-%m")
+        if lbl not in seen:
+            seen.add(lbl)
+            out.append(c)
+    return out
 
-    if not all_candidates:
+
+def main():
+    candidates = collect_candidates()
+    if not candidates:
         print("Could not find any RTT data links on any candidate page.", file=sys.stderr)
         sys.exit(1)
 
-    # De-duplicate by period (a month can theoretically appear on more than
-    # one FY page near a financial-year boundary) and sort most recent first.
-    seen = set()
-    candidates = []
-    for c in sorted(all_candidates, key=lambda c: c["period_date"], reverse=True):
-        lbl = c["period_date"].strftime("%Y-%m")
-        if lbl in seen:
-            continue
-        seen.add(lbl)
-        candidates.append(c)
-
-    found = candidates[0]
-    period_date = found["period_date"]
-    period_label = period_date.strftime("%Y-%m")
-    print(f"Latest period found: {period_label} -> {found['csv_zip_url']}")
-
     summary_path = DATA_DIR / "rtt_summary.json"
-    existing = json.loads(summary_path.read_text()) if summary_path.exists() else {"history": []}
-    history = existing.get("history", [])
+    existing = json.loads(summary_path.read_text()) if summary_path.exists() else {}
+    history = {h["period"]: h for h in existing.get("history", [])}
+    trust_history = existing.get("trust_history", {})
+    ref = load_acute_reference()
 
-    acute_names = pd.read_csv(DATA_DIR / "acute_trusts.csv")["trust_name"].tolist()
-    acute_names_norm = set(normalise_name(n) for n in acute_names)
-    region_map = load_region_map()
-
-    national_all, national_acute, trusts, unmatched, regions = process_period(
-        found["csv_zip_url"], None, acute_names_norm, region_map)
-
-    history = [h for h in history if h.get("period") != period_label]
-    history.append({"period": period_label, **national_acute})
-
-    # Backfill a handful of the most recent prior months (national_acute
-    # metrics only - the full trust table is only kept for the latest
-    # month) until history has TARGET_HISTORY_MONTHS distinct entries, or
-    # we run out of candidates, or we hit the per-run download cap.
-    have_periods = {h["period"] for h in history}
-    downloads_used = 0
-    for c in candidates[1:]:
-        if len(have_periods) >= TARGET_HISTORY_MONTHS:
-            break
-        if downloads_used >= MAX_BACKFILL_DOWNLOADS_PER_RUN:
-            print(f"DEBUG: hit backfill download cap ({MAX_BACKFILL_DOWNLOADS_PER_RUN}) for this run, "
-                  f"will continue backfilling on future runs", file=sys.stderr)
-            break
+    latest = None
+    for idx, c in enumerate(candidates):
         lbl = c["period_date"].strftime("%Y-%m")
-        if lbl in have_periods:
-            continue
-        print(f"DEBUG: backfilling {lbl} -> {c['csv_zip_url']}", file=sys.stderr)
+        print(f"Processing {lbl} -> {c['csv_zip_url']}")
         try:
-            _, backfill_acute, _, _, _ = process_period(
-                c["csv_zip_url"], None, acute_names_norm, region_map)
-        except Exception as exc:  # noqa: BLE001 - a bad backfill month shouldn't fail the whole run
-            print(f"DEBUG: backfill of {lbl} failed, skipping: {exc}", file=sys.stderr)
+            national_all, national_acute, trusts, regions, providers = process_period(c["csv_zip_url"], ref)
+        except Exception as exc:  # noqa: BLE001
+            if idx == 0:
+                raise
+            print(f"WARN: {lbl} failed, skipping: {exc}", file=sys.stderr)
             continue
-        history.append({"period": lbl, **backfill_acute})
-        have_periods.add(lbl)
-        downloads_used += 1
+        history[lbl] = {"period": lbl, **national_acute}
+        for t in trusts:
+            rows = [h for h in trust_history.get(t["code"], []) if h["period"] != lbl]
+            rows.append({"period": lbl, **{k: v for k, v in t.items() if k not in ("code", "name", "region")}})
+            trust_history[t["code"]] = sorted(rows, key=lambda h: h["period"])
+        if idx == 0:
+            latest = (c, national_all, national_acute, trusts, regions, providers)
 
-    history.sort(key=lambda h: h["period"])
-
-    out = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
-        "period": period_label,
-        "period_display": period_date.strftime("%B %Y"),
-        "source_url": found["csv_zip_url"],
-        "national_all_providers": national_all,
-        "national_acute": national_acute,
-        "trusts": trusts,
-        "regions": regions,
-        "history": history,
-    }
-    summary_path.write_text(json.dumps(out, indent=2))
-    (DATA_DIR / "unmatched_nhs_trust_providers.json").write_text(json.dumps(unmatched, indent=2))
-    print(f"Wrote {summary_path} with {len(trusts)} acute trusts across {len(regions)} regions, "
-          f"{len(history)} months of history. "
-          f"{len(unmatched)} non-acute NHS Trust providers seen (not included).")
+    c, national_all, national_acute, trusts, regions, providers = latest
+    period_date = c["period_date"]
+    lbl = period_date.strftime("%Y-%m")
+    if existing.get("period") and existing["period"] > lbl:
+        print(f"Supplied month {lbl} is older than the dashboard's {existing['period']}; "
+              f"history updated but headline left as it was.")
+        out = {**existing, "history": sorted(history.values(), key=lambda h: h["period"]),
+               "trust_history": trust_history}
+    else:
+        out = {
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "period": lbl,
+            "period_display": period_date.strftime("%B %Y"),
+            "source_url": c["csv_zip_url"],
+            "national_all_providers": national_all,
+            "national_acute": national_acute,
+            "trusts": trusts,
+            "regions": regions,
+            "history": sorted(history.values(), key=lambda h: h["period"]),
+            "trust_history": trust_history,
+        }
+        (DATA_DIR / "providers_seen.json").write_text(json.dumps(providers, indent=1))
+        unmatched = [p["name"] for p in providers if not p["is_acute"]
+                     and re.search("NHS TRUST|NHS FOUNDATION TRUST", p["name"], re.I)]
+        (DATA_DIR / "unmatched_nhs_trust_providers.json").write_text(json.dumps(sorted(unmatched), indent=2))
+    summary_path.write_text(json.dumps(out, indent=1))
+    print(f"Wrote {summary_path}: {len(out['trusts'])} acute trusts, {len(out['regions'])} regions, "
+          f"{len(out['history'])} months of national history.")
 
 
 if __name__ == "__main__":
