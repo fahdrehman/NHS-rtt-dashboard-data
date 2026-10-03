@@ -2188,15 +2188,18 @@ document.getElementById("focusShare").addEventListener("click", () => {
   const note = document.getElementById("focusShareNote");
   const t = trusts.find(x => x.code === pinnedCode);
   const name = t ? properCase(t.name) : "this trust";
+  // No address on screen: a confirmation when copied, otherwise a Share button.
   const show = copied => {
     note.innerHTML = (copied
       ? `<strong>Link copied.</strong> Paste it into an email or message. It opens a one-page summary for ${name}, with a button to the full dashboard.`
-      : `Copy this link to share it. It opens a one-page summary for ${name}, with a button to the full dashboard.`)
-      + `<input type="text" readonly value="${link.replace(/"/g, "&quot;")}">`;
+      : `Share a one-page summary for ${name}, with a button to the full dashboard.`)
+      + (copied ? "" : `<div class="device-link" style="margin-top:10px;"><button class="device-btn" type="button" id="focusShareSend">Share link</button></div>`);
     note.hidden = false;
-    const input = note.querySelector("input");
-    input.addEventListener("focus", () => input.select());
-    if (!copied) input.select();
+    const send = document.getElementById("focusShareSend");
+    if (send) send.addEventListener("click", () => {
+      if (navigator.share) navigator.share({ title: `${name}: NHS waiting times`, url: link }).catch(() => {});
+      else location.href = "mailto:?subject=" + encodeURIComponent(`${name}: NHS waiting times`) + "&body=" + encodeURIComponent(link);
+    });
     clearTimeout(shareNoteTimer);
     shareNoteTimer = setTimeout(() => { note.hidden = true; }, 12000);
   };
