@@ -723,11 +723,14 @@ h1 .dot { -webkit-text-fill-color: var(--brand-text); }
 @media (prefers-reduced-motion: reduce) { .page-glow span, h1 { animation: none; } }
 
 /* Missing months in trend charts */
+.lc-target-halo { paint-order: stroke; stroke: var(--surface-2); stroke-width: 4px; stroke-linejoin: round; }
 .lc-missing-line { stroke: var(--status-critical); stroke-width: 2; stroke-dasharray: 4,4; fill: none; }
 .lc-missing-dot { fill: var(--surface-2); stroke: var(--status-critical); stroke-width: 2; }
 .chart-key { display: flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--text-muted); margin-top: 6px; }
 .chart-key[hidden] { display: none; }
 .chart-key svg { flex-shrink: 0; }
+.chart-key { flex-wrap: wrap; gap: 6px 16px; }
+.key-item { display: inline-flex; align-items: center; gap: 7px; }
 
 /* Dark mode readability: small and secondary text brighter and slightly bolder */
 .diff-pill.is-neutral, .change-cell.is-neutral { color: var(--text-secondary); }
@@ -1476,13 +1479,50 @@ function drawLineChart(svgEl, points, valueFmt, minSpan, target) {
   });
 
   if (target && !targetOffScale) {
-    const ty = yFor(target.value);
-    add("line", { x1: padL, x2: w - padR, y1: ty, y2: ty, class: "lc-target-line" });
-    add("text", { x: w - padR, y: ty - 4, "text-anchor": "end", class: "lc-target-label" }, target.label);
+    // Line now (behind the data); its label is placed last, clear of the trend.
+    add("line", { x1: padL, x2: w - padR, y1: yFor(target.value), y2: yFor(target.value), class: "lc-target-line" });
   } else if (target && targetOffScale) {
     const above = target.value > vMax;
     add("text", { x: w - padR, y: (above ? padT + 3 : h - padB - 3) + (above ? 9 : -5), "text-anchor": "end", class: "lc-target-label" },
       `${above ? "↑" : "↓"} ${target.label} (off scale)`);
+  }
+
+  // Put the target's label at whichever end of its line, above or below, the
+  // trend doesn't pass through, so it never sits on top of the data. If every
+  // spot is busy it takes the least crowded one; its halo keeps it readable.
+  function placeTargetLabel() {
+    const ty = yFor(target.value);
+    const label = add("text", { x: 0, y: 0, class: "lc-target-label lc-target-halo" }, target.label);
+    let tw = target.label.length * 5.4;
+    try { const m = label.getComputedTextLength(); if (m > 0) tw = m; } catch (e) {}
+    const th = 11, gap = 5, edge = 6;
+    // Sample the trend line densely to test each spot for collisions.
+    const trail = [];
+    points.forEach((p, i) => {
+      if (p.value === null || p.value === undefined) return;
+      trail.push([xFor(i), yFor(p.value)]);
+      const n = points[i + 1];
+      if (n && n.value !== null && n.value !== undefined)
+        for (let k = 1; k < 8; k++) trail.push([xFor(i) + (xFor(i + 1) - xFor(i)) * k / 8, yFor(p.value) + (yFor(n.value) - yFor(p.value)) * k / 8]);
+    });
+    const spots = [
+      { x: w - padR, anchor: "end", above: true }, { x: padL + edge, anchor: "start", above: true },
+      { x: w - padR, anchor: "end", above: false }, { x: padL + edge, anchor: "start", above: false },
+    ].map(sp => {
+      const x0 = sp.anchor === "end" ? sp.x - tw : sp.x, x1 = x0 + tw;
+      const y0 = sp.above ? ty - gap - th : ty + gap, y1 = y0 + th;
+      const hits = trail.filter(([px, py]) => px >= x0 - 8 && px <= x1 + 8 && py >= y0 - 7 && py <= y1 + 7).length;
+      return { ...sp, y: sp.above ? ty - gap - 2 : ty + gap + th - 2, hits, inside: y0 > padT - 2 && y1 < padT + plotH + 2 };
+    }).filter(sp => sp.inside);
+    const best = spots.sort((a, b) => a.hits - b.hits)[0];
+    const wrap = svgEl.closest(".lc-wrap");
+    if (best && best.hits === 0) {
+      label.setAttribute("x", best.x); label.setAttribute("y", best.y); label.setAttribute("text-anchor", best.anchor);
+      return false;
+    }
+    // Nowhere on the line is clear: name it in a key under the chart instead.
+    label.remove();
+    return true;
   }
 
   // Contiguous runs of months with data, drawn as separate line and area pieces.
@@ -1500,6 +1540,8 @@ function drawLineChart(svgEl, points, valueFmt, minSpan, target) {
     add("path", { d: `${d} L ${xFor(seg[seg.length - 1])} ${baseline} L ${xFor(seg[0])} ${baseline} Z`, class: "lc-area" });
     add("path", { d, class: "lc-line" });
   });
+
+  const targetInKey = target && !targetOffScale ? placeTargetLabel() : false;
 
   // Missing months: bridge the gap with a red dashed line between the months
   // either side, with a hollow red point where each missing month would sit.
@@ -1538,11 +1580,15 @@ function drawLineChart(svgEl, points, valueFmt, minSpan, target) {
     if (!key || !key.classList.contains("chart-key")) {
       key = document.createElement("div");
       key.className = "chart-key";
-      key.innerHTML = '<svg width="34" height="10" viewBox="0 0 34 10" aria-hidden="true"><line x1="1" y1="5" x2="33" y2="5" class="lc-missing-line"/><circle cx="17" cy="5" r="3.5" class="lc-missing-dot"/></svg><span>No data reported for this month</span>';
       wrap.after(key);
     }
-    key.hidden = missing.length === 0;
+    const entries = [];
+    if (targetInKey) entries.push(`<span class="key-item"><svg width="28" height="10" viewBox="0 0 28 10" aria-hidden="true"><line x1="1" y1="5" x2="27" y2="5" class="lc-target-line"/></svg>${target.label}</span>`);
+    if (missing.length) entries.push('<span class="key-item"><svg width="34" height="10" viewBox="0 0 34 10" aria-hidden="true"><line x1="1" y1="5" x2="33" y2="5" class="lc-missing-line"/><circle cx="17" cy="5" r="3.5" class="lc-missing-dot"/></svg>No data reported for this month</span>');
+    key.innerHTML = entries.join("");
+    key.hidden = entries.length === 0;
   }
+
 
   points.forEach((p, i) => {
     if (p.value === null || p.value === undefined) return;
