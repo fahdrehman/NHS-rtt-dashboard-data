@@ -63,7 +63,7 @@
   "code": "RA7",
   "name": "BRISTOL NHS FOUNDATION TRUST",
   "waiting_list": 95525,
-  "is_acute": false
+  "is_acute": true
  },
  {
   "code": "RRK",
@@ -303,13 +303,13 @@
   "code": "RWH",
   "name": "EAST AND NORTH HERTFORDSHIRE TEACHING NHS TRUST",
   "waiting_list": 55861,
-  "is_acute": false
+  "is_acute": true
  },
  {
   "code": "RJ2",
   "name": "LEWISHAM AND GREENWICH NHS TRUST",
   "waiting_list": 55829,
-  "is_acute": false
+  "is_acute": true
  },
  {
   "code": "RTK",
@@ -375,7 +375,7 @@
   "code": "RRF",
   "name": "WRIGHTINGTON, WIGAN AND LEIGH TEACHING HOSPITALS NHS FOUNDATION TRUST",
   "waiting_list": 45765,
-  "is_acute": false
+  "is_acute": true
  },
  {
   "code": "RWG",
@@ -429,7 +429,7 @@
   "code": "RAX",
   "name": "KINGSTON AND RICHMOND NHS FOUNDATION TRUST",
   "waiting_list": 40341,
-  "is_acute": false
+  "is_acute": true
  },
  {
   "code": "RNS",
@@ -471,7 +471,7 @@
   "code": "RXW",
   "name": "THE SHREWSBURY AND TELFORD HOSPITAL NHS TRUST",
   "waiting_list": 37291,
-  "is_acute": false
+  "is_acute": true
  },
  {
   "code": "RTX",
@@ -489,7 +489,7 @@
   "code": "RWW",
   "name": "NORTH CHESHIRE AND MERSEY NHS FOUNDATION TRUST",
   "waiting_list": 35330,
-  "is_acute": false
+  "is_acute": true
  },
  {
   "code": "RPA",
@@ -555,7 +555,7 @@
   "code": "RA2",
   "name": "ROYAL SURREY NHS FOUNDATION TRUST",
   "waiting_list": 31177,
-  "is_acute": false
+  "is_acute": true
  },
  {
   "code": "RNQ",
@@ -591,7 +591,7 @@
   "code": "RBT",
   "name": "MID CHESHIRE HOSPITALS NHS FOUNDATION TRUST",
   "waiting_list": 29199,
-  "is_acute": false
+  "is_acute": true
  },
  {
   "code": "RBK",
@@ -639,7 +639,7 @@
   "code": "RL1",
   "name": "THE ROBERT JONES AND AGNES HUNT ORTHOPAEDIC HOSPITAL NHS FOUNDATION TRUST",
   "waiting_list": 23052,
-  "is_acute": false
+  "is_acute": true
  },
  {
   "code": "RKE",
@@ -735,7 +735,7 @@
   "code": "RRJ",
   "name": "THE ROYAL ORTHOPAEDIC HOSPITAL NHS FOUNDATION TRUST",
   "waiting_list": 13293,
-  "is_acute": false
+  "is_acute": true
  },
  {
   "code": "R1F",
@@ -1785,7 +1785,7 @@
   "code": "REN",
   "name": "THE CLATTERBRIDGE CANCER CENTRE NHS FOUNDATION TRUST",
   "waiting_list": 798,
-  "is_acute": false
+  "is_acute": true
  },
  {
   "code": "NAM01",
