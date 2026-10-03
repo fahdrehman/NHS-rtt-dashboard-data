@@ -46,8 +46,8 @@ NEUTRAL_PP = 0.3  # changes smaller than this are shown as "no real change"
 GOOD, GOOD_WASH = "#16a34a", (22 / 255, 163 / 255, 74 / 255, 0.12)
 BAD, BAD_WASH = "#dc2626", (220 / 255, 38 / 255, 38 / 255, 0.12)
 
-# The portfolio's fonts (SIL Open Font Licence, see scripts/fonts): Space
-# Grotesk for names and figures, Manrope for labels.
+# The portfolio's fonts (SIL Open Font Licence, see scripts/fonts): Fraunces,
+# with its soft rounded forms switched on, for names and figures; Manrope for labels.
 FONT_DIR = Path(__file__).resolve().parent / "fonts"
 
 
@@ -105,7 +105,7 @@ def draw_card(path, title, subtitle, curr, prev, series):
             fontproperties=font("Manrope-ExtraBold", 13), color=BRAND, va="center")
     lines = textwrap.wrap(title, 42)[:2]
     size = 30 if len(lines) == 1 else 25
-    name = ax.text(84, 528, "\n".join(lines), fontproperties=font("SpaceGrotesk-SemiBold", size), color=TEXT,
+    name = ax.text(84, 528, "\n".join(lines), fontproperties=font("Fraunces-SemiBold", size), color=TEXT,
                    va="top", linespacing=1.0)
     # Measure the drawn name so the region sits just below it, however many lines.
     renderer = fig.canvas.get_renderer()
@@ -114,7 +114,7 @@ def draw_card(path, title, subtitle, curr, prev, series):
 
     # Headline: % waiting under 18 weeks
     pct = curr.get("pct_within_18wk")
-    ax.text(80, 342, "—" if pct is None else f"{pct:.1f}%", fontproperties=font("SpaceGrotesk-Bold", 72),
+    ax.text(80, 342, "—" if pct is None else f"{pct:.1f}%", fontproperties=font("Fraunces-SemiBold", 74),
             color=TEXT, va="center")
     ax.text(84, 278, "waiting under 18 weeks", fontproperties=font("Manrope-SemiBold", 15), color=TEXT_2, va="center")
     curr_cmp = (prev or {}).get("curr_pct", pct)
@@ -170,7 +170,7 @@ def draw_card(path, title, subtitle, curr, prev, series):
     for i, (lab, val) in enumerate(stats):
         x = 84 + i * 262
         ax.text(x, 140, lab, fontproperties=font("Manrope-SemiBold", 14), color=TEXT_2, va="center")
-        ax.text(x, 103, val, fontproperties=font("SpaceGrotesk-SemiBold", 26), color=TEXT, va="center")
+        ax.text(x, 103, val, fontproperties=font("Fraunces-SemiBoldText", 27), color=TEXT, va="center")
 
     site = ax.text(W - 84, 62, "www.fahd.uk", fontproperties=font("Manrope-Bold", 12.5), color=BRAND,
                    ha="right", va="center")

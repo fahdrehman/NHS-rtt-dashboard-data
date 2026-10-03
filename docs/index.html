@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NHS England waiting times: acute trusts</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,100&family=Manrope:wght@400;500;600;700;800&display=swap">
 <meta name="description" content="Monthly referral to treatment waiting times for England's acute NHS trusts, with trends, regional figures and trust comparisons.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="NHS England RTT waiting times: acute trusts dashboard">
@@ -592,9 +592,9 @@
 </style>
 <style>
 /* Portfolio theme (fahd.uk). Brand layer in violet, data in blue,
-   status colours unchanged. Space Grotesk for display, Manrope for text. */
+   status colours unchanged. Fraunces (soft) for display, Manrope for text. */
 :root {
-  --font-display: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --font-display: Fraunces, Georgia, "Times New Roman", serif;
   --font-body: Manrope, system-ui, -apple-system, sans-serif;
   --brand: #8557c8;
   --brand-text: #8557c8;
@@ -650,15 +650,18 @@ html, body { font-family: var(--font-body); background: var(--page-plane); }
 body { padding-inline: 20px; }
 h1, .kpi-hero-value, .kpi-value, .focus-name, .detail-title, .chart-title, .gt-val, .summary-kicker {
   font-family: var(--font-display);
+  /* Fraunces' soft, rounded forms; optical size follows the font size */
+  font-variation-settings: "SOFT" 100, "WONK" 0;
+  font-optical-sizing: auto;
 }
-h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; text-wrap: balance; }
+h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.01em; text-wrap: balance; }
 h1 .dot { color: var(--brand); }
 h2 { font-family: var(--font-body); font-weight: 800; letter-spacing: 0.08em; font-size: 11.5px; color: var(--text-muted); }
-.kpi-hero-value { font-weight: 700; letter-spacing: -0.035em; font-size: 60px; }
-.kpi-value { font-weight: 600; letter-spacing: -0.02em; }
+.kpi-hero-value { font-weight: 600; letter-spacing: -0.02em; font-size: 62px; }
+.kpi-value { font-weight: 600; letter-spacing: -0.01em; }
 .kpi-hero-label, .kpi-label { font-weight: 600; }
 .narrative-text { font-weight: 500; }
-.detail-title, .chart-title, .focus-name { font-weight: 600; letter-spacing: -0.01em; }
+.detail-title, .chart-title, .focus-name { font-weight: 600; letter-spacing: 0; }
 
 /* Brand layer: violet */
 header.page-head { border: none; box-shadow: none; background: none; padding: 6px 2px 4px; }
