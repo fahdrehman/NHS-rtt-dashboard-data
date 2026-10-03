@@ -30,7 +30,38 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 DATA_DIR.mkdir(exist_ok=True)
 
-HEADERS = {"User-Agent": "Mozilla/5.0 (rtt-dashboard-bot; +https://github.com)"}
+import time
+
+# NHS England's site started refusing requests that identify as a bot (Sept
+# 2026), so send ordinary browser headers instead.
+HEADERS = {
+    "User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                   "(KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-GB,en;q=0.9",
+}
+SESSION = requests.Session()
+SESSION.headers.update(HEADERS)
+
+
+def http_get(url, timeout, attempts=4):
+    """GET with retries on blocks/rate limits/server errors, logging every failure."""
+    resp = None
+    for i in range(attempts):
+        try:
+            resp = SESSION.get(url, timeout=timeout)
+        except requests.RequestException as exc:
+            print(f"WARN: attempt {i + 1} for {url} raised {exc!r}", file=sys.stderr)
+        else:
+            if resp.status_code == 200:
+                return resp
+            print(f"WARN: attempt {i + 1} for {url} returned HTTP {resp.status_code}; "
+                  f"body starts: {resp.text[:200]!r}", file=sys.stderr)
+            if resp.status_code not in (403, 429, 500, 502, 503, 504):
+                return resp
+        if i < attempts - 1:
+            time.sleep(10 * (i + 1))
+    return resp
 MONTH_ABBR = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
               "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
@@ -61,8 +92,10 @@ def find_all_month_links(slug):
     months.
     """
     url = f"https://www.england.nhs.uk/statistics/statistical-work-areas/rtt-waiting-times/rtt-data-{slug}/"
-    resp = requests.get(url, headers=HEADERS, timeout=60)
-    if resp.status_code != 200:
+    resp = http_get(url, timeout=60)
+    if resp is None or resp.status_code != 200:
+        print(f"WARN: could not load {url} "
+              f"(HTTP {getattr(resp, 'status_code', 'no response')})", file=sys.stderr)
         return []
     soup = BeautifulSoup(resp.text, "html.parser")
 
@@ -99,7 +132,9 @@ def find_latest_links(slug):
 
 
 def download_full_extract(csv_zip_url):
-    resp = requests.get(csv_zip_url, headers=HEADERS, timeout=180)
+    resp = http_get(csv_zip_url, timeout=180)
+    if resp is None:
+        raise RuntimeError(f"No response downloading {csv_zip_url}")
     resp.raise_for_status()
     frames = []
     with zipfile.ZipFile(io.BytesIO(resp.content)) as zf:
