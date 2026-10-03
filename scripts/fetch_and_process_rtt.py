@@ -382,6 +382,7 @@ def main():
     existing = json.loads(summary_path.read_text()) if summary_path.exists() else {}
     history = {h["period"]: h for h in existing.get("history", [])}
     trust_history = existing.get("trust_history", {})
+    region_history = {h["period"]: h for h in existing.get("region_history", [])}
     ref = load_acute_reference()
 
     latest = None
@@ -396,6 +397,7 @@ def main():
             print(f"WARN: {lbl} failed, skipping: {exc}", file=sys.stderr)
             continue
         history[lbl] = {"period": lbl, **national_acute}
+        region_history[lbl] = {"period": lbl, "regions": regions}
         for t in trusts:
             rows = [h for h in trust_history.get(t["code"], []) if h["period"] != lbl]
             rows.append({"period": lbl, **{k: v for k, v in t.items() if k not in ("code", "name", "region")}})
@@ -410,7 +412,8 @@ def main():
         print(f"Supplied month {lbl} is older than the dashboard's {existing['period']}; "
               f"history updated but headline left as it was.")
         out = {**existing, "history": sorted(history.values(), key=lambda h: h["period"]),
-               "trust_history": trust_history}
+               "trust_history": trust_history,
+               "region_history": sorted(region_history.values(), key=lambda h: h["period"])}
     else:
         out = {
             "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -423,6 +426,7 @@ def main():
             "regions": regions,
             "history": sorted(history.values(), key=lambda h: h["period"]),
             "trust_history": trust_history,
+            "region_history": sorted(region_history.values(), key=lambda h: h["period"]),
             # Trusts on the acute list with no rows in this month's extract.
             "acute_not_reported": not_reported(ref, trusts),
         }

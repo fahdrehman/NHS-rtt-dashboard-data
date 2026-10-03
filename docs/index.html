@@ -1211,8 +1211,11 @@ function drawLineChart(svgEl, points, valueFmt, minSpan, target) {
   }
 
   // x-axis labels
+  // Label every Nth month counted back from the latest, so the latest month
+  // is always labelled and the gaps between labels stay even.
+  const labelStep = points.length > 8 ? Math.ceil(points.length / 6) : 1;
   points.forEach((p, i) => {
-    if (points.length > 8 && i % Math.ceil(points.length / 6) !== 0 && i !== points.length - 1) return;
+    if ((points.length - 1 - i) % labelStep !== 0) return;
     const label = document.createElementNS(ns, "text");
     label.setAttribute("x", xFor(i)); label.setAttribute("y", h - 6);
     label.setAttribute("text-anchor", "middle"); label.setAttribute("class", "lc-axis-label");
