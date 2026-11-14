@@ -1,22 +1,22 @@
 {
- "generated_at": "2026-10-09T19:30:31.721091+00:00",
- "period": "2026-08",
- "period_display": "August 2026",
- "source_url": "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2026/10/Full-CSV-data-file-Aug26-ZIP-3M-vjgRdG.zip",
+ "generated_at": "2026-11-14T11:51:11.679509+00:00",
+ "period": "2026-09",
+ "period_display": "September 2026",
+ "source_url": "https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2026/11/Full-CSV-data-file-Sep26-ZIP-3M-ojyW5x.zip",
  "national_all_providers": {
-  "waiting_list": 7189213,
-  "pct_within_18wk": 65.2,
-  "over_52wk": 112958,
-  "over_65wk": 12488,
-  "over_78wk": 2748,
+  "waiting_list": 7104965,
+  "pct_within_18wk": 65.9,
+  "over_52wk": 113490,
+  "over_65wk": 14469,
+  "over_78wk": 3094,
   "median_weeks": 12.2
  },
  "national_acute": {
-  "waiting_list": 6646455,
-  "pct_within_18wk": 64.3,
-  "over_52wk": 108567,
-  "over_65wk": 11452,
-  "over_78wk": 2375,
+  "waiting_list": 6538002,
+  "pct_within_18wk": 64.8,
+  "over_52wk": 108357,
+  "over_65wk": 13181,
+  "over_78wk": 2645,
   "median_weeks": 12.5
  },
  "trusts": [
@@ -25,20 +25,20 @@
    "name": "MANCHESTER UNIVERSITY NHS FOUNDATION TRUST",
    "region": "North West",
    "type": "general",
-   "waiting_list": 167907,
-   "pct_within_18wk": 63.9,
-   "over_52wk": 1337,
+   "waiting_list": 166486,
+   "pct_within_18wk": 65.0,
+   "over_52wk": 1404,
    "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 12.8,
+   "median_weeks": 12.7,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 167649,
+    "prev_period": "2026-08",
+    "waiting_list": 167907,
     "pct_within_18wk": 63.9,
-    "over_52wk": 1390,
-    "over_65wk": 1,
+    "over_52wk": 1337,
+    "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 12.7
+    "median_weeks": 12.8
    }
   },
   {
@@ -46,41 +46,20 @@
    "name": "MID AND SOUTH ESSEX NHS FOUNDATION TRUST",
    "region": "East of England",
    "type": "general",
-   "waiting_list": 165277,
-   "pct_within_18wk": 50.4,
-   "over_52wk": 13427,
-   "over_65wk": 3373,
-   "over_78wk": 668,
-   "median_weeks": 17.8,
+   "waiting_list": 162041,
+   "pct_within_18wk": 51.6,
+   "over_52wk": 13133,
+   "over_65wk": 3612,
+   "over_78wk": 814,
+   "median_weeks": 17.2,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 165420,
-    "pct_within_18wk": 49.8,
-    "over_52wk": 13104,
-    "over_65wk": 2986,
-    "over_78wk": 592,
-    "median_weeks": 18.1
-   }
-  },
-  {
-   "code": "RAL",
-   "name": "ROYAL FREE LONDON NHS FOUNDATION TRUST",
-   "region": "London",
-   "type": "general",
-   "waiting_list": 137947,
-   "pct_within_18wk": 62.7,
-   "over_52wk": 1334,
-   "over_65wk": 101,
-   "over_78wk": 5,
-   "median_weeks": 13.2,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 139727,
-    "pct_within_18wk": 62.7,
-    "over_52wk": 1548,
-    "over_65wk": 65,
-    "over_78wk": 6,
-    "median_weeks": 13.1
+    "prev_period": "2026-08",
+    "waiting_list": 165277,
+    "pct_within_18wk": 50.4,
+    "over_52wk": 13427,
+    "over_65wk": 3373,
+    "over_78wk": 668,
+    "median_weeks": 17.8
    }
   },
   {
@@ -88,20 +67,41 @@
    "name": "NORTHERN CARE ALLIANCE NHS FOUNDATION TRUST",
    "region": "North West",
    "type": "general",
-   "waiting_list": 136973,
-   "pct_within_18wk": 55.8,
-   "over_52wk": 3932,
-   "over_65wk": 286,
-   "over_78wk": 2,
-   "median_weeks": 15.5,
+   "waiting_list": 138013,
+   "pct_within_18wk": 55.1,
+   "over_52wk": 4739,
+   "over_65wk": 439,
+   "over_78wk": 4,
+   "median_weeks": 15.9,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 134561,
-    "pct_within_18wk": 55.9,
-    "over_52wk": 3777,
-    "over_65wk": 179,
-    "over_78wk": 3,
-    "median_weeks": 15.0
+    "prev_period": "2026-08",
+    "waiting_list": 136973,
+    "pct_within_18wk": 55.8,
+    "over_52wk": 3932,
+    "over_65wk": 286,
+    "over_78wk": 2,
+    "median_weeks": 15.5
+   }
+  },
+  {
+   "code": "RAL",
+   "name": "ROYAL FREE LONDON NHS FOUNDATION TRUST",
+   "region": "London",
+   "type": "general",
+   "waiting_list": 133429,
+   "pct_within_18wk": 65.7,
+   "over_52wk": 1166,
+   "over_65wk": 95,
+   "over_78wk": 9,
+   "median_weeks": 12.5,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 137947,
+    "pct_within_18wk": 62.7,
+    "over_52wk": 1334,
+    "over_65wk": 101,
+    "over_78wk": 5,
+    "median_weeks": 13.2
    }
   },
   {
@@ -109,18 +109,18 @@
    "name": "BARTS HEALTH NHS TRUST",
    "region": "London",
    "type": "general",
-   "waiting_list": 122536,
-   "pct_within_18wk": 64.1,
-   "over_52wk": 1012,
-   "over_65wk": 95,
+   "waiting_list": 123589,
+   "pct_within_18wk": 64.6,
+   "over_52wk": 1097,
+   "over_65wk": 149,
    "over_78wk": 0,
-   "median_weeks": 12.5,
+   "median_weeks": 12.6,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 121618,
-    "pct_within_18wk": 63.8,
-    "over_52wk": 1030,
-    "over_65wk": 74,
+    "prev_period": "2026-08",
+    "waiting_list": 122536,
+    "pct_within_18wk": 64.1,
+    "over_52wk": 1012,
+    "over_65wk": 95,
     "over_78wk": 0,
     "median_weeks": 12.5
    }
@@ -130,20 +130,20 @@
    "name": "UNIVERSITY HOSPITALS SUSSEX NHS FOUNDATION TRUST",
    "region": "South East",
    "type": "general",
-   "waiting_list": 118148,
-   "pct_within_18wk": 52.6,
-   "over_52wk": 5634,
-   "over_65wk": 594,
+   "waiting_list": 118874,
+   "pct_within_18wk": 52.0,
+   "over_52wk": 6415,
+   "over_65wk": 946,
    "over_78wk": 14,
-   "median_weeks": 16.9,
+   "median_weeks": 17.0,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 117217,
-    "pct_within_18wk": 53.1,
-    "over_52wk": 5121,
-    "over_65wk": 294,
-    "over_78wk": 9,
-    "median_weeks": 16.2
+    "prev_period": "2026-08",
+    "waiting_list": 118148,
+    "pct_within_18wk": 52.6,
+    "over_52wk": 5634,
+    "over_65wk": 594,
+    "over_78wk": 14,
+    "median_weeks": 16.9
    }
   },
   {
@@ -151,20 +151,20 @@
    "name": "UNIVERSITY HOSPITALS OF LEICESTER NHS TRUST",
    "region": "Midlands",
    "type": "general",
-   "waiting_list": 114889,
-   "pct_within_18wk": 60.3,
-   "over_52wk": 2455,
-   "over_65wk": 62,
+   "waiting_list": 114052,
+   "pct_within_18wk": 61.5,
+   "over_52wk": 2526,
+   "over_65wk": 51,
    "over_78wk": 0,
-   "median_weeks": 14.0,
+   "median_weeks": 13.7,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 116558,
-    "pct_within_18wk": 60.0,
-    "over_52wk": 2407,
-    "over_65wk": 73,
+    "prev_period": "2026-08",
+    "waiting_list": 114889,
+    "pct_within_18wk": 60.3,
+    "over_52wk": 2455,
+    "over_65wk": 62,
     "over_78wk": 0,
-    "median_weeks": 13.7
+    "median_weeks": 14.0
    }
   },
   {
@@ -172,20 +172,20 @@
    "name": "GUY'S AND ST THOMAS' NHS FOUNDATION TRUST",
    "region": "London",
    "type": "general",
-   "waiting_list": 109320,
-   "pct_within_18wk": 67.7,
-   "over_52wk": 916,
-   "over_65wk": 163,
-   "over_78wk": 66,
-   "median_weeks": 11.3,
+   "waiting_list": 107635,
+   "pct_within_18wk": 67.3,
+   "over_52wk": 1066,
+   "over_65wk": 162,
+   "over_78wk": 69,
+   "median_weeks": 11.6,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 109056,
-    "pct_within_18wk": 68.2,
-    "over_52wk": 723,
-    "over_65wk": 111,
-    "over_78wk": 41,
-    "median_weeks": 11.0
+    "prev_period": "2026-08",
+    "waiting_list": 109320,
+    "pct_within_18wk": 67.7,
+    "over_52wk": 916,
+    "over_65wk": 163,
+    "over_78wk": 66,
+    "median_weeks": 11.3
    }
   },
   {
@@ -193,20 +193,20 @@
    "name": "UNIVERSITY HOSPITALS OF DERBY AND BURTON NHS FOUNDATION TRUST",
    "region": "Midlands",
    "type": "general",
-   "waiting_list": 100816,
-   "pct_within_18wk": 60.8,
-   "over_52wk": 2176,
-   "over_65wk": 66,
+   "waiting_list": 102720,
+   "pct_within_18wk": 61.5,
+   "over_52wk": 2278,
+   "over_65wk": 98,
    "over_78wk": 6,
-   "median_weeks": 13.6,
+   "median_weeks": 13.3,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 99108,
-    "pct_within_18wk": 60.7,
-    "over_52wk": 2039,
-    "over_65wk": 60,
-    "over_78wk": 8,
-    "median_weeks": 13.2
+    "prev_period": "2026-08",
+    "waiting_list": 100816,
+    "pct_within_18wk": 60.8,
+    "over_52wk": 2176,
+    "over_65wk": 66,
+    "over_78wk": 6,
+    "median_weeks": 13.6
    }
   },
   {
@@ -214,20 +214,20 @@
    "name": "BRISTOL NHS FOUNDATION TRUST",
    "region": "South West",
    "type": "general",
-   "waiting_list": 96608,
-   "pct_within_18wk": 69.1,
-   "over_52wk": 525,
-   "over_65wk": 10,
+   "waiting_list": 98038,
+   "pct_within_18wk": 68.8,
+   "over_52wk": 479,
+   "over_65wk": 16,
    "over_78wk": 0,
-   "median_weeks": 11.1,
+   "median_weeks": 11.0,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 95525,
-    "pct_within_18wk": 70.0,
-    "over_52wk": 495,
-    "over_65wk": 7,
+    "prev_period": "2026-08",
+    "waiting_list": 96608,
+    "pct_within_18wk": 69.1,
+    "over_52wk": 525,
+    "over_65wk": 10,
     "over_78wk": 0,
-    "median_weeks": 10.5
+    "median_weeks": 11.1
    }
   },
   {
@@ -235,20 +235,20 @@
    "name": "UNIVERSITY HOSPITALS BIRMINGHAM NHS FOUNDATION TRUST",
    "region": "Midlands",
    "type": "general",
-   "waiting_list": 96303,
-   "pct_within_18wk": 66.6,
-   "over_52wk": 175,
-   "over_65wk": 6,
+   "waiting_list": 96445,
+   "pct_within_18wk": 69.0,
+   "over_52wk": 227,
+   "over_65wk": 16,
    "over_78wk": 0,
-   "median_weeks": 11.7,
+   "median_weeks": 11.3,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 94792,
-    "pct_within_18wk": 67.2,
-    "over_52wk": 230,
-    "over_65wk": 9,
+    "prev_period": "2026-08",
+    "waiting_list": 96303,
+    "pct_within_18wk": 66.6,
+    "over_52wk": 175,
+    "over_65wk": 6,
     "over_78wk": 0,
-    "median_weeks": 11.6
+    "median_weeks": 11.7
    }
   },
   {
@@ -256,41 +256,20 @@
    "name": "EAST SUFFOLK AND NORTH ESSEX NHS FOUNDATION TRUST",
    "region": "East of England",
    "type": "general",
-   "waiting_list": 95346,
-   "pct_within_18wk": 60.5,
-   "over_52wk": 410,
-   "over_65wk": 21,
-   "over_78wk": 9,
-   "median_weeks": 13.5,
+   "waiting_list": 93050,
+   "pct_within_18wk": 61.8,
+   "over_52wk": 348,
+   "over_65wk": 27,
+   "over_78wk": 22,
+   "median_weeks": 13.3,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 95757,
-    "pct_within_18wk": 59.7,
-    "over_52wk": 497,
-    "over_65wk": 207,
-    "over_78wk": 114,
-    "median_weeks": 13.8
-   }
-  },
-  {
-   "code": "RJZ",
-   "name": "KING'S COLLEGE HOSPITAL NHS FOUNDATION TRUST",
-   "region": "London",
-   "type": "general",
-   "waiting_list": 91102,
-   "pct_within_18wk": 66.2,
-   "over_52wk": 2004,
-   "over_65wk": 340,
-   "over_78wk": 19,
-   "median_weeks": 12.3,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 89928,
-    "pct_within_18wk": 66.8,
-    "over_52wk": 1890,
-    "over_65wk": 264,
-    "over_78wk": 15,
-    "median_weeks": 11.8
+    "prev_period": "2026-08",
+    "waiting_list": 95346,
+    "pct_within_18wk": 60.5,
+    "over_52wk": 410,
+    "over_65wk": 21,
+    "over_78wk": 9,
+    "median_weeks": 13.5
    }
   },
   {
@@ -298,41 +277,41 @@
    "name": "OXFORD UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
    "region": "South East",
    "type": "general",
-   "waiting_list": 89940,
-   "pct_within_18wk": 62.2,
-   "over_52wk": 1519,
-   "over_65wk": 54,
-   "over_78wk": 1,
-   "median_weeks": 13.3,
+   "waiting_list": 89488,
+   "pct_within_18wk": 63.9,
+   "over_52wk": 1731,
+   "over_65wk": 78,
+   "over_78wk": 2,
+   "median_weeks": 12.9,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 90597,
-    "pct_within_18wk": 62.5,
-    "over_52wk": 1504,
-    "over_65wk": 74,
-    "over_78wk": 2,
-    "median_weeks": 12.9
+    "prev_period": "2026-08",
+    "waiting_list": 89940,
+    "pct_within_18wk": 62.2,
+    "over_52wk": 1519,
+    "over_65wk": 54,
+    "over_78wk": 1,
+    "median_weeks": 13.3
    }
   },
   {
-   "code": "RR8",
-   "name": "LEEDS TEACHING HOSPITALS NHS TRUST",
-   "region": "North East and Yorkshire",
+   "code": "RJZ",
+   "name": "KING'S COLLEGE HOSPITAL NHS FOUNDATION TRUST",
+   "region": "London",
    "type": "general",
-   "waiting_list": 89330,
-   "pct_within_18wk": 67.5,
-   "over_52wk": 1485,
-   "over_65wk": 358,
-   "over_78wk": 66,
-   "median_weeks": 11.0,
+   "waiting_list": 88570,
+   "pct_within_18wk": 67.6,
+   "over_52wk": 2091,
+   "over_65wk": 364,
+   "over_78wk": 28,
+   "median_weeks": 12.1,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 88602,
-    "pct_within_18wk": 67.8,
-    "over_52wk": 1471,
-    "over_65wk": 330,
-    "over_78wk": 29,
-    "median_weeks": 10.7
+    "prev_period": "2026-08",
+    "waiting_list": 91102,
+    "pct_within_18wk": 66.2,
+    "over_52wk": 2004,
+    "over_65wk": 340,
+    "over_78wk": 19,
+    "median_weeks": 12.3
    }
   },
   {
@@ -340,20 +319,41 @@
    "name": "THE NEWCASTLE UPON TYNE HOSPITALS NHS FOUNDATION TRUST",
    "region": "North East and Yorkshire",
    "type": "general",
-   "waiting_list": 88112,
+   "waiting_list": 88160,
    "pct_within_18wk": 72.6,
-   "over_52wk": 722,
-   "over_65wk": 27,
-   "over_78wk": 1,
-   "median_weeks": 10.3,
+   "over_52wk": 767,
+   "over_65wk": 43,
+   "over_78wk": 2,
+   "median_weeks": 10.2,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 88477,
-    "pct_within_18wk": 73.9,
-    "over_52wk": 743,
-    "over_65wk": 24,
-    "over_78wk": 0,
-    "median_weeks": 9.6
+    "prev_period": "2026-08",
+    "waiting_list": 88112,
+    "pct_within_18wk": 72.6,
+    "over_52wk": 722,
+    "over_65wk": 27,
+    "over_78wk": 1,
+    "median_weeks": 10.3
+   }
+  },
+  {
+   "code": "RR8",
+   "name": "LEEDS TEACHING HOSPITALS NHS TRUST",
+   "region": "North East and Yorkshire",
+   "type": "general",
+   "waiting_list": 87847,
+   "pct_within_18wk": 66.4,
+   "over_52wk": 1650,
+   "over_65wk": 444,
+   "over_78wk": 101,
+   "median_weeks": 11.4,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 89330,
+    "pct_within_18wk": 67.5,
+    "over_52wk": 1485,
+    "over_65wk": 358,
+    "over_78wk": 66,
+    "median_weeks": 11.0
    }
   },
   {
@@ -361,20 +361,20 @@
    "name": "BEDFORDSHIRE HOSPITALS NHS FOUNDATION TRUST",
    "region": "East of England",
    "type": "general",
-   "waiting_list": 86990,
-   "pct_within_18wk": 59.7,
-   "over_52wk": 1215,
-   "over_65wk": 88,
-   "over_78wk": 4,
-   "median_weeks": 14.4,
+   "waiting_list": 86519,
+   "pct_within_18wk": 59.6,
+   "over_52wk": 1431,
+   "over_65wk": 130,
+   "over_78wk": 8,
+   "median_weeks": 14.6,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 85541,
-    "pct_within_18wk": 59.1,
-    "over_52wk": 998,
-    "over_65wk": 58,
-    "over_78wk": 1,
-    "median_weeks": 14.2
+    "prev_period": "2026-08",
+    "waiting_list": 86990,
+    "pct_within_18wk": 59.7,
+    "over_52wk": 1215,
+    "over_65wk": 88,
+    "over_78wk": 4,
+    "median_weeks": 14.4
    }
   },
   {
@@ -382,62 +382,20 @@
    "name": "HULL UNIVERSITY TEACHING HOSPITALS NHS TRUST",
    "region": "North East and Yorkshire",
    "type": "general",
-   "waiting_list": 86732,
-   "pct_within_18wk": 55.4,
-   "over_52wk": 3500,
-   "over_65wk": 355,
-   "over_78wk": 7,
-   "median_weeks": 15.6,
+   "waiting_list": 86302,
+   "pct_within_18wk": 54.7,
+   "over_52wk": 3585,
+   "over_65wk": 463,
+   "over_78wk": 15,
+   "median_weeks": 15.8,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 85759,
-    "pct_within_18wk": 56.0,
-    "over_52wk": 3331,
-    "over_65wk": 277,
+    "prev_period": "2026-08",
+    "waiting_list": 86732,
+    "pct_within_18wk": 55.4,
+    "over_52wk": 3500,
+    "over_65wk": 355,
     "over_78wk": 7,
-    "median_weeks": 14.9
-   }
-  },
-  {
-   "code": "RX1",
-   "name": "NOTTINGHAM UNIVERSITY HOSPITALS NHS TRUST",
-   "region": "Midlands",
-   "type": "general",
-   "waiting_list": 86339,
-   "pct_within_18wk": 62.1,
-   "over_52wk": 2404,
-   "over_65wk": 33,
-   "over_78wk": 0,
-   "median_weeks": 13.3,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 78304,
-    "pct_within_18wk": 61.5,
-    "over_52wk": 1899,
-    "over_65wk": 28,
-    "over_78wk": 1,
-    "median_weeks": 14.0
-   }
-  },
-  {
-   "code": "RVV",
-   "name": "EAST KENT HOSPITALS UNIVERSITY NHS FOUNDATION TRUST",
-   "region": "South East",
-   "type": "general",
-   "waiting_list": 85395,
-   "pct_within_18wk": 55.4,
-   "over_52wk": 2623,
-   "over_65wk": 291,
-   "over_78wk": 33,
-   "median_weeks": 15.7,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 83107,
-    "pct_within_18wk": 55.2,
-    "over_52wk": 2648,
-    "over_65wk": 231,
-    "over_78wk": 25,
-    "median_weeks": 15.5
+    "median_weeks": 15.6
    }
   },
   {
@@ -445,20 +403,20 @@
    "name": "MERSEY AND WEST LANCASHIRE TEACHING HOSPITALS NHS TRUST",
    "region": "North West",
    "type": "general",
-   "waiting_list": 84572,
-   "pct_within_18wk": 64.9,
-   "over_52wk": 1809,
-   "over_65wk": 39,
+   "waiting_list": 86201,
+   "pct_within_18wk": 65.8,
+   "over_52wk": 1928,
+   "over_65wk": 59,
    "over_78wk": 2,
    "median_weeks": 12.1,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 84465,
-    "pct_within_18wk": 66.5,
-    "over_52wk": 1766,
-    "over_65wk": 33,
-    "over_78wk": 4,
-    "median_weeks": 11.8
+    "prev_period": "2026-08",
+    "waiting_list": 84572,
+    "pct_within_18wk": 64.9,
+    "over_52wk": 1809,
+    "over_65wk": 39,
+    "over_78wk": 2,
+    "median_weeks": 12.1
    }
   },
   {
@@ -466,41 +424,41 @@
    "name": "IMPERIAL COLLEGE HEALTHCARE NHS TRUST",
    "region": "London",
    "type": "general",
-   "waiting_list": 84392,
-   "pct_within_18wk": 70.4,
-   "over_52wk": 22,
-   "over_65wk": 1,
+   "waiting_list": 83658,
+   "pct_within_18wk": 70.1,
+   "over_52wk": 18,
+   "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 10.8,
+   "median_weeks": 11.2,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 83496,
-    "pct_within_18wk": 69.9,
-    "over_52wk": 26,
-    "over_65wk": 0,
+    "prev_period": "2026-08",
+    "waiting_list": 84392,
+    "pct_within_18wk": 70.4,
+    "over_52wk": 22,
+    "over_65wk": 1,
     "over_78wk": 0,
-    "median_weeks": 11.1
+    "median_weeks": 10.8
    }
   },
   {
-   "code": "R1K",
-   "name": "LONDON NORTH WEST UNIVERSITY HEALTHCARE NHS TRUST",
-   "region": "London",
+   "code": "RVV",
+   "name": "EAST KENT HOSPITALS UNIVERSITY NHS FOUNDATION TRUST",
+   "region": "South East",
    "type": "general",
-   "waiting_list": 81540,
-   "pct_within_18wk": 67.2,
-   "over_52wk": 581,
-   "over_65wk": 2,
-   "over_78wk": 0,
-   "median_weeks": 11.9,
+   "waiting_list": 82997,
+   "pct_within_18wk": 55.9,
+   "over_52wk": 2389,
+   "over_65wk": 337,
+   "over_78wk": 35,
+   "median_weeks": 15.6,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 80601,
-    "pct_within_18wk": 66.1,
-    "over_52wk": 580,
-    "over_65wk": 1,
-    "over_78wk": 0,
-    "median_weeks": 12.0
+    "prev_period": "2026-08",
+    "waiting_list": 85395,
+    "pct_within_18wk": 55.4,
+    "over_52wk": 2623,
+    "over_65wk": 291,
+    "over_78wk": 33,
+    "median_weeks": 15.7
    }
   },
   {
@@ -508,41 +466,41 @@
    "name": "UNIVERSITY COLLEGE LONDON HOSPITALS NHS FOUNDATION TRUST",
    "region": "London",
    "type": "general",
-   "waiting_list": 80143,
-   "pct_within_18wk": 65.5,
-   "over_52wk": 850,
-   "over_65wk": 15,
-   "over_78wk": 1,
-   "median_weeks": 12.0,
+   "waiting_list": 81253,
+   "pct_within_18wk": 66.7,
+   "over_52wk": 840,
+   "over_65wk": 20,
+   "over_78wk": 2,
+   "median_weeks": 11.8,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 78841,
-    "pct_within_18wk": 65.3,
-    "over_52wk": 780,
-    "over_65wk": 20,
-    "over_78wk": 0,
-    "median_weeks": 11.8
+    "prev_period": "2026-08",
+    "waiting_list": 80143,
+    "pct_within_18wk": 65.5,
+    "over_52wk": 850,
+    "over_65wk": 15,
+    "over_78wk": 1,
+    "median_weeks": 12.0
    }
   },
   {
-   "code": "RGN",
-   "name": "NORTH WEST ANGLIA NHS FOUNDATION TRUST",
-   "region": "East of England",
+   "code": "R1K",
+   "name": "LONDON NORTH WEST UNIVERSITY HEALTHCARE NHS TRUST",
+   "region": "London",
    "type": "general",
-   "waiting_list": 75563,
-   "pct_within_18wk": 60.2,
-   "over_52wk": 450,
-   "over_65wk": 0,
+   "waiting_list": 81205,
+   "pct_within_18wk": 68.4,
+   "over_52wk": 512,
+   "over_65wk": 3,
    "over_78wk": 0,
-   "median_weeks": 13.9,
+   "median_weeks": 12.1,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 76053,
-    "pct_within_18wk": 59.6,
-    "over_52wk": 399,
-    "over_65wk": 0,
+    "prev_period": "2026-08",
+    "waiting_list": 81540,
+    "pct_within_18wk": 67.2,
+    "over_52wk": 581,
+    "over_65wk": 2,
     "over_78wk": 0,
-    "median_weeks": 13.6
+    "median_weeks": 11.9
    }
   },
   {
@@ -550,20 +508,20 @@
    "name": "UNIVERSITY HOSPITALS OF NORTH MIDLANDS NHS TRUST",
    "region": "Midlands",
    "type": "general",
-   "waiting_list": 75543,
-   "pct_within_18wk": 60.0,
-   "over_52wk": 1737,
-   "over_65wk": 79,
-   "over_78wk": 4,
-   "median_weeks": 13.8,
+   "waiting_list": 75301,
+   "pct_within_18wk": 61.2,
+   "over_52wk": 1977,
+   "over_65wk": 120,
+   "over_78wk": 5,
+   "median_weeks": 13.3,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 74375,
-    "pct_within_18wk": 61.4,
-    "over_52wk": 1521,
-    "over_65wk": 63,
+    "prev_period": "2026-08",
+    "waiting_list": 75543,
+    "pct_within_18wk": 60.0,
+    "over_52wk": 1737,
+    "over_65wk": 79,
     "over_78wk": 4,
-    "median_weeks": 13.0
+    "median_weeks": 13.8
    }
   },
   {
@@ -571,20 +529,41 @@
    "name": "ROYAL DEVON UNIVERSITY HEALTHCARE NHS FOUNDATION TRUST",
    "region": "South West",
    "type": "general",
-   "waiting_list": 74526,
-   "pct_within_18wk": 62.8,
-   "over_52wk": 1684,
-   "over_65wk": 178,
-   "over_78wk": 11,
-   "median_weeks": 12.7,
+   "waiting_list": 74461,
+   "pct_within_18wk": 63.0,
+   "over_52wk": 1852,
+   "over_65wk": 212,
+   "over_78wk": 16,
+   "median_weeks": 12.8,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 75545,
-    "pct_within_18wk": 63.3,
-    "over_52wk": 1616,
-    "over_65wk": 163,
-    "over_78wk": 9,
-    "median_weeks": 12.4
+    "prev_period": "2026-08",
+    "waiting_list": 74526,
+    "pct_within_18wk": 62.8,
+    "over_52wk": 1684,
+    "over_65wk": 178,
+    "over_78wk": 11,
+    "median_weeks": 12.7
+   }
+  },
+  {
+   "code": "RGN",
+   "name": "NORTH WEST ANGLIA NHS FOUNDATION TRUST",
+   "region": "East of England",
+   "type": "general",
+   "waiting_list": 72563,
+   "pct_within_18wk": 60.4,
+   "over_52wk": 488,
+   "over_65wk": 3,
+   "over_78wk": 1,
+   "median_weeks": 14.0,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 75563,
+    "pct_within_18wk": 60.2,
+    "over_52wk": 450,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 13.9
    }
   },
   {
@@ -592,20 +571,20 @@
    "name": "CHELSEA AND WESTMINSTER HOSPITAL NHS FOUNDATION TRUST",
    "region": "London",
    "type": "general",
-   "waiting_list": 72142,
-   "pct_within_18wk": 69.3,
-   "over_52wk": 846,
-   "over_65wk": 1,
+   "waiting_list": 72443,
+   "pct_within_18wk": 70.1,
+   "over_52wk": 789,
+   "over_65wk": 3,
    "over_78wk": 0,
    "median_weeks": 11.9,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 73258,
-    "pct_within_18wk": 68.1,
-    "over_52wk": 913,
-    "over_65wk": 0,
+    "prev_period": "2026-08",
+    "waiting_list": 72142,
+    "pct_within_18wk": 69.3,
+    "over_52wk": 846,
+    "over_65wk": 1,
     "over_78wk": 0,
-    "median_weeks": 12.1
+    "median_weeks": 11.9
    }
   },
   {
@@ -613,20 +592,20 @@
    "name": "THE ROYAL WOLVERHAMPTON NHS TRUST",
    "region": "Midlands",
    "type": "general",
-   "waiting_list": 71216,
-   "pct_within_18wk": 63.9,
-   "over_52wk": 1059,
+   "waiting_list": 71509,
+   "pct_within_18wk": 64.7,
+   "over_52wk": 823,
    "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 12.8,
+   "median_weeks": 12.5,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 70399,
+    "prev_period": "2026-08",
+    "waiting_list": 71216,
     "pct_within_18wk": 63.9,
-    "over_52wk": 1038,
+    "over_52wk": 1059,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 12.7
+    "median_weeks": 12.8
    }
   },
   {
@@ -634,83 +613,20 @@
    "name": "ST GEORGE'S UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
    "region": "London",
    "type": "general",
-   "waiting_list": 70983,
-   "pct_within_18wk": 63.9,
-   "over_52wk": 805,
-   "over_65wk": 54,
-   "over_78wk": 4,
-   "median_weeks": 12.6,
+   "waiting_list": 71496,
+   "pct_within_18wk": 64.3,
+   "over_52wk": 905,
+   "over_65wk": 72,
+   "over_78wk": 17,
+   "median_weeks": 12.7,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 70262,
-    "pct_within_18wk": 64.6,
-    "over_52wk": 710,
-    "over_65wk": 47,
-    "over_78wk": 0,
-    "median_weeks": 12.2
-   }
-  },
-  {
-   "code": "RWD",
-   "name": "UNITED LINCOLNSHIRE TEACHING HOSPITALS NHS TRUST",
-   "region": "Midlands",
-   "type": "general",
-   "waiting_list": 69989,
-   "pct_within_18wk": 63.0,
-   "over_52wk": 1089,
-   "over_65wk": 4,
-   "over_78wk": 0,
-   "median_weeks": 13.0,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 69786,
-    "pct_within_18wk": 62.3,
-    "over_52wk": 1064,
-    "over_65wk": 3,
-    "over_78wk": 0,
-    "median_weeks": 13.4
-   }
-  },
-  {
-   "code": "R0D",
-   "name": "UNIVERSITY HOSPITALS DORSET NHS FOUNDATION TRUST",
-   "region": "South West",
-   "type": "general",
-   "waiting_list": 67260,
-   "pct_within_18wk": 66.0,
-   "over_52wk": 657,
-   "over_65wk": 0,
-   "over_78wk": 0,
-   "median_weeks": 12.4,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 67365,
-    "pct_within_18wk": 66.8,
-    "over_52wk": 773,
-    "over_65wk": 0,
-    "over_78wk": 0,
-    "median_weeks": 12.1
-   }
-  },
-  {
-   "code": "RXK",
-   "name": "SANDWELL AND WEST BIRMINGHAM HOSPITALS NHS TRUST",
-   "region": "Midlands",
-   "type": "general",
-   "waiting_list": 67228,
-   "pct_within_18wk": 60.1,
-   "over_52wk": 461,
-   "over_65wk": 0,
-   "over_78wk": 0,
-   "median_weeks": 14.4,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 67233,
-    "pct_within_18wk": 60.4,
-    "over_52wk": 368,
-    "over_65wk": 2,
-    "over_78wk": 0,
-    "median_weeks": 13.9
+    "prev_period": "2026-08",
+    "waiting_list": 70983,
+    "pct_within_18wk": 63.9,
+    "over_52wk": 805,
+    "over_65wk": 54,
+    "over_78wk": 4,
+    "median_weeks": 12.6
    }
   },
   {
@@ -718,41 +634,41 @@
    "name": "FRIMLEY HEALTH NHS FOUNDATION TRUST",
    "region": "South East",
    "type": "general",
-   "waiting_list": 66684,
-   "pct_within_18wk": 61.1,
-   "over_52wk": 1078,
-   "over_65wk": 10,
-   "over_78wk": 1,
-   "median_weeks": 13.2,
+   "waiting_list": 69978,
+   "pct_within_18wk": 61.5,
+   "over_52wk": 1143,
+   "over_65wk": 37,
+   "over_78wk": 0,
+   "median_weeks": 13.1,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 65983,
-    "pct_within_18wk": 61.4,
-    "over_52wk": 936,
-    "over_65wk": 6,
-    "over_78wk": 0,
-    "median_weeks": 12.9
+    "prev_period": "2026-08",
+    "waiting_list": 66684,
+    "pct_within_18wk": 61.1,
+    "over_52wk": 1078,
+    "over_65wk": 10,
+    "over_78wk": 1,
+    "median_weeks": 13.2
    }
   },
   {
-   "code": "RKB",
-   "name": "UNIVERSITY HOSPITALS COVENTRY AND WARWICKSHIRE NHS TRUST",
+   "code": "RWD",
+   "name": "UNITED LINCOLNSHIRE TEACHING HOSPITALS NHS TRUST",
    "region": "Midlands",
    "type": "general",
-   "waiting_list": 66684,
-   "pct_within_18wk": 58.8,
-   "over_52wk": 2173,
-   "over_65wk": 37,
+   "waiting_list": 68466,
+   "pct_within_18wk": 64.2,
+   "over_52wk": 1478,
+   "over_65wk": 33,
    "over_78wk": 0,
-   "median_weeks": 14.4,
+   "median_weeks": 13.0,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 68683,
-    "pct_within_18wk": 58.3,
-    "over_52wk": 2570,
-    "over_65wk": 21,
+    "prev_period": "2026-08",
+    "waiting_list": 69989,
+    "pct_within_18wk": 63.0,
+    "over_52wk": 1089,
+    "over_65wk": 4,
     "over_78wk": 0,
-    "median_weeks": 14.3
+    "median_weeks": 13.0
    }
   },
   {
@@ -760,83 +676,83 @@
    "name": "GLOUCESTERSHIRE HOSPITALS NHS FOUNDATION TRUST",
    "region": "South West",
    "type": "general",
-   "waiting_list": 66529,
-   "pct_within_18wk": 70.0,
-   "over_52wk": 34,
+   "waiting_list": 67851,
+   "pct_within_18wk": 71.0,
+   "over_52wk": 52,
    "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 10.9,
+   "median_weeks": 11.2,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 69444,
-    "pct_within_18wk": 72.0,
-    "over_52wk": 25,
+    "prev_period": "2026-08",
+    "waiting_list": 66529,
+    "pct_within_18wk": 70.0,
+    "over_52wk": 34,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 10.8
+    "median_weeks": 10.9
    }
   },
   {
-   "code": "REM",
-   "name": "LIVERPOOL UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
-   "region": "North West",
+   "code": "R0D",
+   "name": "UNIVERSITY HOSPITALS DORSET NHS FOUNDATION TRUST",
+   "region": "South West",
    "type": "general",
-   "waiting_list": 66322,
-   "pct_within_18wk": 62.7,
-   "over_52wk": 827,
-   "over_65wk": 6,
+   "waiting_list": 66984,
+   "pct_within_18wk": 67.3,
+   "over_52wk": 582,
+   "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 12.9,
+   "median_weeks": 12.4,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 63031,
-    "pct_within_18wk": 60.7,
-    "over_52wk": 736,
-    "over_65wk": 3,
+    "prev_period": "2026-08",
+    "waiting_list": 67260,
+    "pct_within_18wk": 66.0,
+    "over_52wk": 657,
+    "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 13.7
+    "median_weeks": 12.4
    }
   },
   {
-   "code": "RM1",
-   "name": "NORFOLK AND NORWICH UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
-   "region": "East of England",
+   "code": "RKB",
+   "name": "UNIVERSITY HOSPITALS COVENTRY AND WARWICKSHIRE NHS TRUST",
+   "region": "Midlands",
    "type": "general",
-   "waiting_list": 66059,
-   "pct_within_18wk": 63.5,
-   "over_52wk": 1803,
-   "over_65wk": 180,
-   "over_78wk": 10,
-   "median_weeks": 13.2,
+   "waiting_list": 66391,
+   "pct_within_18wk": 60.8,
+   "over_52wk": 1879,
+   "over_65wk": 30,
+   "over_78wk": 0,
+   "median_weeks": 13.7,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 66449,
-    "pct_within_18wk": 61.8,
-    "over_52wk": 1877,
-    "over_65wk": 175,
-    "over_78wk": 14,
-    "median_weeks": 13.4
+    "prev_period": "2026-08",
+    "waiting_list": 66684,
+    "pct_within_18wk": 58.8,
+    "over_52wk": 2173,
+    "over_65wk": 37,
+    "over_78wk": 0,
+    "median_weeks": 14.4
    }
   },
   {
-   "code": "RF4",
-   "name": "BARKING, HAVERING AND REDBRIDGE UNIVERSITY HOSPITALS NHS TRUST",
-   "region": "London",
+   "code": "RXK",
+   "name": "SANDWELL AND WEST BIRMINGHAM HOSPITALS NHS TRUST",
+   "region": "Midlands",
    "type": "general",
-   "waiting_list": 65760,
-   "pct_within_18wk": 68.2,
-   "over_52wk": 1257,
-   "over_65wk": 163,
-   "over_78wk": 32,
-   "median_weeks": 11.8,
+   "waiting_list": 66157,
+   "pct_within_18wk": 60.6,
+   "over_52wk": 611,
+   "over_65wk": 2,
+   "over_78wk": 0,
+   "median_weeks": 14.3,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 67654,
-    "pct_within_18wk": 68.6,
-    "over_52wk": 1243,
-    "over_65wk": 144,
-    "over_78wk": 37,
-    "median_weeks": 11.4
+    "prev_period": "2026-08",
+    "waiting_list": 67228,
+    "pct_within_18wk": 60.1,
+    "over_52wk": 461,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 14.4
    }
   },
   {
@@ -844,19 +760,40 @@
    "name": "UNIVERSITY HOSPITAL SOUTHAMPTON NHS FOUNDATION TRUST",
    "region": "South East",
    "type": "general",
-   "waiting_list": 64769,
+   "waiting_list": 64802,
    "pct_within_18wk": 64.0,
-   "over_52wk": 1542,
-   "over_65wk": 224,
-   "over_78wk": 16,
-   "median_weeks": 12.4,
+   "over_52wk": 1680,
+   "over_65wk": 230,
+   "over_78wk": 6,
+   "median_weeks": 12.5,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 64407,
-    "pct_within_18wk": 64.6,
-    "over_52wk": 1585,
-    "over_65wk": 222,
-    "over_78wk": 17,
+    "prev_period": "2026-08",
+    "waiting_list": 64769,
+    "pct_within_18wk": 64.0,
+    "over_52wk": 1542,
+    "over_65wk": 224,
+    "over_78wk": 16,
+    "median_weeks": 12.4
+   }
+  },
+  {
+   "code": "RF4",
+   "name": "BARKING, HAVERING AND REDBRIDGE UNIVERSITY HOSPITALS NHS TRUST",
+   "region": "London",
+   "type": "general",
+   "waiting_list": 64458,
+   "pct_within_18wk": 69.7,
+   "over_52wk": 1237,
+   "over_65wk": 188,
+   "over_78wk": 26,
+   "median_weeks": 11.5,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 65760,
+    "pct_within_18wk": 68.2,
+    "over_52wk": 1257,
+    "over_65wk": 163,
+    "over_78wk": 32,
     "median_weeks": 11.8
    }
   },
@@ -865,20 +802,62 @@
    "name": "LANCASHIRE TEACHING HOSPITALS NHS FOUNDATION TRUST",
    "region": "North West",
    "type": "general",
-   "waiting_list": 62317,
-   "pct_within_18wk": 60.0,
-   "over_52wk": 364,
+   "waiting_list": 62860,
+   "pct_within_18wk": 61.1,
+   "over_52wk": 354,
    "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 14.2,
+   "median_weeks": 13.9,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 61033,
-    "pct_within_18wk": 58.9,
-    "over_52wk": 362,
+    "prev_period": "2026-08",
+    "waiting_list": 62317,
+    "pct_within_18wk": 60.0,
+    "over_52wk": 364,
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 14.2
+   }
+  },
+  {
+   "code": "REM",
+   "name": "LIVERPOOL UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
+   "region": "North West",
+   "type": "general",
+   "waiting_list": 62794,
+   "pct_within_18wk": 63.0,
+   "over_52wk": 823,
+   "over_65wk": 13,
+   "over_78wk": 0,
+   "median_weeks": 13.1,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 66322,
+    "pct_within_18wk": 62.7,
+    "over_52wk": 827,
+    "over_65wk": 6,
+    "over_78wk": 0,
+    "median_weeks": 12.9
+   }
+  },
+  {
+   "code": "RM1",
+   "name": "NORFOLK AND NORWICH UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
+   "region": "East of England",
+   "type": "general",
+   "waiting_list": 62714,
+   "pct_within_18wk": 64.4,
+   "over_52wk": 1624,
+   "over_65wk": 201,
+   "over_78wk": 9,
+   "median_weeks": 12.4,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 66059,
+    "pct_within_18wk": 63.5,
+    "over_52wk": 1803,
+    "over_65wk": 180,
+    "over_78wk": 10,
+    "median_weeks": 13.2
    }
   },
   {
@@ -886,41 +865,20 @@
    "name": "SOUTH TYNESIDE AND SUNDERLAND NHS FOUNDATION TRUST",
    "region": "North East and Yorkshire",
    "type": "general",
-   "waiting_list": 61738,
+   "waiting_list": 60482,
    "pct_within_18wk": 74.9,
    "over_52wk": 0,
    "over_65wk": 0,
    "over_78wk": 0,
    "median_weeks": 9.6,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 61880,
-    "pct_within_18wk": 75.8,
-    "over_52wk": 1,
+    "prev_period": "2026-08",
+    "waiting_list": 61738,
+    "pct_within_18wk": 74.9,
+    "over_52wk": 0,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 8.8
-   }
-  },
-  {
-   "code": "RGT",
-   "name": "CAMBRIDGE UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
-   "region": "East of England",
-   "type": "general",
-   "waiting_list": 60401,
-   "pct_within_18wk": 65.6,
-   "over_52wk": 724,
-   "over_65wk": 53,
-   "over_78wk": 8,
-   "median_weeks": 11.7,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 60206,
-    "pct_within_18wk": 65.3,
-    "over_52wk": 838,
-    "over_65wk": 52,
-    "over_78wk": 6,
-    "median_weeks": 11.5
+    "median_weeks": 9.6
    }
   },
   {
@@ -928,41 +886,41 @@
    "name": "WORCESTERSHIRE ACUTE HOSPITALS NHS TRUST",
    "region": "Midlands",
    "type": "general",
-   "waiting_list": 59589,
-   "pct_within_18wk": 60.6,
-   "over_52wk": 593,
-   "over_65wk": 6,
-   "over_78wk": 3,
-   "median_weeks": 13.8,
+   "waiting_list": 59638,
+   "pct_within_18wk": 61.8,
+   "over_52wk": 661,
+   "over_65wk": 0,
+   "over_78wk": 0,
+   "median_weeks": 13.6,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 58986,
-    "pct_within_18wk": 61.7,
-    "over_52wk": 575,
-    "over_65wk": 4,
-    "over_78wk": 1,
-    "median_weeks": 13.4
+    "prev_period": "2026-08",
+    "waiting_list": 59589,
+    "pct_within_18wk": 60.6,
+    "over_52wk": 593,
+    "over_65wk": 6,
+    "over_78wk": 3,
+    "median_weeks": 13.8
    }
   },
   {
-   "code": "RTR",
-   "name": "SOUTH TEES HOSPITALS NHS FOUNDATION TRUST",
-   "region": "North East and Yorkshire",
+   "code": "RGT",
+   "name": "CAMBRIDGE UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
+   "region": "East of England",
    "type": "general",
-   "waiting_list": 58458,
-   "pct_within_18wk": 66.1,
-   "over_52wk": 730,
-   "over_65wk": 11,
-   "over_78wk": 0,
-   "median_weeks": 12.2,
+   "waiting_list": 59350,
+   "pct_within_18wk": 66.3,
+   "over_52wk": 657,
+   "over_65wk": 59,
+   "over_78wk": 14,
+   "median_weeks": 11.6,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 57822,
-    "pct_within_18wk": 65.8,
-    "over_52wk": 741,
-    "over_65wk": 7,
-    "over_78wk": 0,
-    "median_weeks": 12.0
+    "prev_period": "2026-08",
+    "waiting_list": 60401,
+    "pct_within_18wk": 65.6,
+    "over_52wk": 724,
+    "over_65wk": 53,
+    "over_78wk": 8,
+    "median_weeks": 11.7
    }
   },
   {
@@ -970,20 +928,20 @@
    "name": "MID YORKSHIRE TEACHING NHS TRUST",
    "region": "North East and Yorkshire",
    "type": "general",
-   "waiting_list": 57958,
-   "pct_within_18wk": 65.7,
-   "over_52wk": 337,
-   "over_65wk": 16,
+   "waiting_list": 59118,
+   "pct_within_18wk": 65.3,
+   "over_52wk": 416,
+   "over_65wk": 27,
    "over_78wk": 0,
-   "median_weeks": 11.7,
+   "median_weeks": 12.1,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 56479,
-    "pct_within_18wk": 66.0,
-    "over_52wk": 308,
-    "over_65wk": 7,
+    "prev_period": "2026-08",
+    "waiting_list": 57958,
+    "pct_within_18wk": 65.7,
+    "over_52wk": 337,
+    "over_65wk": 16,
     "over_78wk": 0,
-    "median_weeks": 11.5
+    "median_weeks": 11.7
    }
   },
   {
@@ -991,20 +949,20 @@
    "name": "EAST AND NORTH HERTFORDSHIRE TEACHING NHS TRUST",
    "region": "East of England",
    "type": "general",
-   "waiting_list": 57636,
-   "pct_within_18wk": 65.2,
-   "over_52wk": 853,
-   "over_65wk": 54,
-   "over_78wk": 8,
-   "median_weeks": 12.1,
+   "waiting_list": 58764,
+   "pct_within_18wk": 64.2,
+   "over_52wk": 1191,
+   "over_65wk": 80,
+   "over_78wk": 7,
+   "median_weeks": 13.0,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 55861,
-    "pct_within_18wk": 65.7,
-    "over_52wk": 705,
-    "over_65wk": 28,
-    "over_78wk": 6,
-    "median_weeks": 11.8
+    "prev_period": "2026-08",
+    "waiting_list": 57636,
+    "pct_within_18wk": 65.2,
+    "over_52wk": 853,
+    "over_65wk": 54,
+    "over_78wk": 8,
+    "median_weeks": 12.1
    }
   },
   {
@@ -1012,41 +970,41 @@
    "name": "YORK AND SCARBOROUGH TEACHING HOSPITALS NHS FOUNDATION TRUST",
    "region": "North East and Yorkshire",
    "type": "general",
-   "waiting_list": 57612,
-   "pct_within_18wk": 58.6,
-   "over_52wk": 1257,
-   "over_65wk": 0,
+   "waiting_list": 58327,
+   "pct_within_18wk": 57.8,
+   "over_52wk": 1294,
+   "over_65wk": 5,
    "over_78wk": 0,
-   "median_weeks": 14.5,
+   "median_weeks": 14.8,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 56760,
-    "pct_within_18wk": 58.5,
-    "over_52wk": 1163,
-    "over_65wk": 2,
+    "prev_period": "2026-08",
+    "waiting_list": 57612,
+    "pct_within_18wk": 58.6,
+    "over_52wk": 1257,
+    "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 14.0
+    "median_weeks": 14.5
    }
   },
   {
-   "code": "RHU",
-   "name": "PORTSMOUTH HOSPITALS UNIVERSITY NHS TRUST",
-   "region": "South East",
+   "code": "RTR",
+   "name": "SOUTH TEES HOSPITALS NHS FOUNDATION TRUST",
+   "region": "North East and Yorkshire",
    "type": "general",
    "waiting_list": 57587,
-   "pct_within_18wk": 60.6,
-   "over_52wk": 1863,
-   "over_65wk": 105,
-   "over_78wk": 4,
-   "median_weeks": 13.5,
+   "pct_within_18wk": 65.8,
+   "over_52wk": 805,
+   "over_65wk": 19,
+   "over_78wk": 0,
+   "median_weeks": 12.5,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 58058,
-    "pct_within_18wk": 61.0,
-    "over_52wk": 2045,
-    "over_65wk": 115,
-    "over_78wk": 1,
-    "median_weeks": 12.9
+    "prev_period": "2026-08",
+    "waiting_list": 58458,
+    "pct_within_18wk": 66.1,
+    "over_52wk": 730,
+    "over_65wk": 11,
+    "over_78wk": 0,
+    "median_weeks": 12.2
    }
   },
   {
@@ -1054,62 +1012,41 @@
    "name": "EPSOM AND ST HELIER UNIVERSITY HOSPITALS NHS TRUST",
    "region": "London",
    "type": "general",
-   "waiting_list": 56723,
-   "pct_within_18wk": 66.9,
-   "over_52wk": 500,
-   "over_65wk": 31,
-   "over_78wk": 9,
-   "median_weeks": 11.9,
+   "waiting_list": 57155,
+   "pct_within_18wk": 67.0,
+   "over_52wk": 569,
+   "over_65wk": 45,
+   "over_78wk": 15,
+   "median_weeks": 12.1,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 56820,
+    "prev_period": "2026-08",
+    "waiting_list": 56723,
     "pct_within_18wk": 66.9,
-    "over_52wk": 510,
-    "over_65wk": 39,
-    "over_78wk": 3,
-    "median_weeks": 11.5
+    "over_52wk": 500,
+    "over_65wk": 31,
+    "over_78wk": 9,
+    "median_weeks": 11.9
    }
   },
   {
-   "code": "RXC",
-   "name": "EAST SUSSEX HEALTHCARE NHS TRUST",
+   "code": "RHU",
+   "name": "PORTSMOUTH HOSPITALS UNIVERSITY NHS TRUST",
    "region": "South East",
    "type": "general",
-   "waiting_list": 55478,
-   "pct_within_18wk": 69.0,
-   "over_52wk": 338,
-   "over_65wk": 1,
-   "over_78wk": 0,
-   "median_weeks": 11.3,
+   "waiting_list": 56598,
+   "pct_within_18wk": 61.2,
+   "over_52wk": 1802,
+   "over_65wk": 66,
+   "over_78wk": 1,
+   "median_weeks": 13.6,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 56051,
-    "pct_within_18wk": 69.0,
-    "over_52wk": 352,
-    "over_65wk": 0,
-    "over_78wk": 0,
-    "median_weeks": 10.7
-   }
-  },
-  {
-   "code": "RJ2",
-   "name": "LEWISHAM AND GREENWICH NHS TRUST",
-   "region": "London",
-   "type": "general",
-   "waiting_list": 55440,
-   "pct_within_18wk": 65.9,
-   "over_52wk": 772,
-   "over_65wk": 81,
-   "over_78wk": 9,
-   "median_weeks": 12.5,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 55829,
-    "pct_within_18wk": 66.0,
-    "over_52wk": 875,
-    "over_65wk": 74,
-    "over_78wk": 7,
-    "median_weeks": 12.4
+    "prev_period": "2026-08",
+    "waiting_list": 57587,
+    "pct_within_18wk": 60.6,
+    "over_52wk": 1863,
+    "over_65wk": 105,
+    "over_78wk": 4,
+    "median_weeks": 13.5
    }
   },
   {
@@ -1117,20 +1054,20 @@
    "name": "SOMERSET NHS FOUNDATION TRUST",
    "region": "South West",
    "type": "general",
-   "waiting_list": 55401,
-   "pct_within_18wk": 64.1,
-   "over_52wk": 1702,
-   "over_65wk": 67,
-   "over_78wk": 2,
-   "median_weeks": 12.0,
+   "waiting_list": 55859,
+   "pct_within_18wk": 63.9,
+   "over_52wk": 1764,
+   "over_65wk": 58,
+   "over_78wk": 3,
+   "median_weeks": 12.2,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 54854,
-    "pct_within_18wk": 64.9,
-    "over_52wk": 1474,
-    "over_65wk": 29,
-    "over_78wk": 1,
-    "median_weeks": 11.5
+    "prev_period": "2026-08",
+    "waiting_list": 55401,
+    "pct_within_18wk": 64.1,
+    "over_52wk": 1702,
+    "over_65wk": 67,
+    "over_78wk": 2,
+    "median_weeks": 12.0
    }
   },
   {
@@ -1138,41 +1075,41 @@
    "name": "DONCASTER AND BASSETLAW TEACHING HOSPITALS NHS FOUNDATION TRUST",
    "region": "North East and Yorkshire",
    "type": "general",
-   "waiting_list": 55386,
-   "pct_within_18wk": 63.5,
-   "over_52wk": 1553,
-   "over_65wk": 210,
-   "over_78wk": 13,
+   "waiting_list": 55832,
+   "pct_within_18wk": 64.2,
+   "over_52wk": 1473,
+   "over_65wk": 274,
+   "over_78wk": 20,
    "median_weeks": 12.4,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 54941,
-    "pct_within_18wk": 63.6,
-    "over_52wk": 1626,
-    "over_65wk": 150,
-    "over_78wk": 9,
-    "median_weeks": 12.3
+    "prev_period": "2026-08",
+    "waiting_list": 55386,
+    "pct_within_18wk": 63.5,
+    "over_52wk": 1553,
+    "over_65wk": 210,
+    "over_78wk": 13,
+    "median_weeks": 12.4
    }
   },
   {
-   "code": "RTK",
-   "name": "ASHFORD AND ST PETER'S HOSPITALS NHS FOUNDATION TRUST",
+   "code": "RXC",
+   "name": "EAST SUSSEX HEALTHCARE NHS TRUST",
    "region": "South East",
    "type": "general",
-   "waiting_list": 54829,
-   "pct_within_18wk": 61.2,
-   "over_52wk": 1028,
-   "over_65wk": 119,
-   "over_78wk": 11,
-   "median_weeks": 13.9,
+   "waiting_list": 55350,
+   "pct_within_18wk": 69.0,
+   "over_52wk": 317,
+   "over_65wk": 3,
+   "over_78wk": 2,
+   "median_weeks": 11.2,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 54977,
-    "pct_within_18wk": 61.8,
-    "over_52wk": 906,
-    "over_65wk": 96,
-    "over_78wk": 7,
-    "median_weeks": 13.6
+    "prev_period": "2026-08",
+    "waiting_list": 55478,
+    "pct_within_18wk": 69.0,
+    "over_52wk": 338,
+    "over_65wk": 1,
+    "over_78wk": 0,
+    "median_weeks": 11.3
    }
   },
   {
@@ -1180,20 +1117,62 @@
    "name": "COUNTY DURHAM AND DARLINGTON NHS FOUNDATION TRUST",
    "region": "North East and Yorkshire",
    "type": "general",
-   "waiting_list": 54410,
-   "pct_within_18wk": 64.2,
-   "over_52wk": 1410,
-   "over_65wk": 66,
-   "over_78wk": 1,
-   "median_weeks": 12.3,
+   "waiting_list": 55102,
+   "pct_within_18wk": 64.7,
+   "over_52wk": 1454,
+   "over_65wk": 121,
+   "over_78wk": 3,
+   "median_weeks": 12.1,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 54409,
-    "pct_within_18wk": 65.4,
-    "over_52wk": 1199,
-    "over_65wk": 31,
-    "over_78wk": 0,
-    "median_weeks": 11.6
+    "prev_period": "2026-08",
+    "waiting_list": 54410,
+    "pct_within_18wk": 64.2,
+    "over_52wk": 1410,
+    "over_65wk": 66,
+    "over_78wk": 1,
+    "median_weeks": 12.3
+   }
+  },
+  {
+   "code": "RJ2",
+   "name": "LEWISHAM AND GREENWICH NHS TRUST",
+   "region": "London",
+   "type": "general",
+   "waiting_list": 54613,
+   "pct_within_18wk": 65.9,
+   "over_52wk": 855,
+   "over_65wk": 108,
+   "over_78wk": 16,
+   "median_weeks": 12.5,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 55440,
+    "pct_within_18wk": 65.9,
+    "over_52wk": 772,
+    "over_65wk": 81,
+    "over_78wk": 9,
+    "median_weeks": 12.5
+   }
+  },
+  {
+   "code": "RTK",
+   "name": "ASHFORD AND ST PETER'S HOSPITALS NHS FOUNDATION TRUST",
+   "region": "South East",
+   "type": "general",
+   "waiting_list": 54090,
+   "pct_within_18wk": 62.4,
+   "over_52wk": 1091,
+   "over_65wk": 152,
+   "over_78wk": 24,
+   "median_weeks": 13.6,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 54829,
+    "pct_within_18wk": 61.2,
+    "over_52wk": 1028,
+    "over_65wk": 119,
+    "over_78wk": 11,
+    "median_weeks": 13.9
    }
   },
   {
@@ -1201,41 +1180,20 @@
    "name": "SURREY AND SUSSEX HEALTHCARE NHS TRUST",
    "region": "South East",
    "type": "general",
-   "waiting_list": 51587,
-   "pct_within_18wk": 64.0,
-   "over_52wk": 1304,
-   "over_65wk": 186,
-   "over_78wk": 35,
-   "median_weeks": 12.6,
+   "waiting_list": 52867,
+   "pct_within_18wk": 64.7,
+   "over_52wk": 1457,
+   "over_65wk": 275,
+   "over_78wk": 49,
+   "median_weeks": 12.5,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 51721,
-    "pct_within_18wk": 65.2,
-    "over_52wk": 1137,
-    "over_65wk": 144,
-    "over_78wk": 19,
-    "median_weeks": 12.1
-   }
-  },
-  {
-   "code": "RWF",
-   "name": "MAIDSTONE AND TUNBRIDGE WELLS NHS TRUST",
-   "region": "South East",
-   "type": "general",
-   "waiting_list": 50987,
-   "pct_within_18wk": 70.0,
-   "over_52wk": 4,
-   "over_65wk": 0,
-   "over_78wk": 0,
-   "median_weeks": 11.5,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 50736,
-    "pct_within_18wk": 73.0,
-    "over_52wk": 2,
-    "over_65wk": 0,
-    "over_78wk": 0,
-    "median_weeks": 10.9
+    "prev_period": "2026-08",
+    "waiting_list": 51587,
+    "pct_within_18wk": 64.0,
+    "over_52wk": 1304,
+    "over_65wk": 186,
+    "over_78wk": 35,
+    "median_weeks": 12.6
    }
   },
   {
@@ -1243,20 +1201,41 @@
    "name": "HAMPSHIRE HOSPITALS NHS FOUNDATION TRUST",
    "region": "South East",
    "type": "general",
-   "waiting_list": 49635,
-   "pct_within_18wk": 63.5,
-   "over_52wk": 1188,
-   "over_65wk": 86,
-   "over_78wk": 5,
+   "waiting_list": 50362,
+   "pct_within_18wk": 63.3,
+   "over_52wk": 872,
+   "over_65wk": 108,
+   "over_78wk": 8,
    "median_weeks": 12.8,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 49240,
-    "pct_within_18wk": 64.9,
-    "over_52wk": 1273,
-    "over_65wk": 89,
-    "over_78wk": 3,
-    "median_weeks": 11.9
+    "prev_period": "2026-08",
+    "waiting_list": 49635,
+    "pct_within_18wk": 63.5,
+    "over_52wk": 1188,
+    "over_65wk": 86,
+    "over_78wk": 5,
+    "median_weeks": 12.8
+   }
+  },
+  {
+   "code": "RWF",
+   "name": "MAIDSTONE AND TUNBRIDGE WELLS NHS TRUST",
+   "region": "South East",
+   "type": "general",
+   "waiting_list": 49490,
+   "pct_within_18wk": 70.0,
+   "over_52wk": 9,
+   "over_65wk": 0,
+   "over_78wk": 0,
+   "median_weeks": 11.2,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 50987,
+    "pct_within_18wk": 70.0,
+    "over_52wk": 4,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 11.5
    }
   },
   {
@@ -1264,41 +1243,20 @@
    "name": "THE DUDLEY GROUP NHS FOUNDATION TRUST",
    "region": "Midlands",
    "type": "general",
-   "waiting_list": 48892,
-   "pct_within_18wk": 63.0,
-   "over_52wk": 21,
-   "over_65wk": 1,
+   "waiting_list": 49167,
+   "pct_within_18wk": 63.3,
+   "over_52wk": 32,
+   "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 12.9,
+   "median_weeks": 12.7,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 48052,
-    "pct_within_18wk": 63.9,
-    "over_52wk": 17,
-    "over_65wk": 0,
+    "prev_period": "2026-08",
+    "waiting_list": 48892,
+    "pct_within_18wk": 63.0,
+    "over_52wk": 21,
+    "over_65wk": 1,
     "over_78wk": 0,
-    "median_weeks": 12.5
-   }
-  },
-  {
-   "code": "RXQ",
-   "name": "BUCKINGHAMSHIRE HEALTHCARE NHS TRUST",
-   "region": "South East",
-   "type": "general",
-   "waiting_list": 47950,
-   "pct_within_18wk": 63.5,
-   "over_52wk": 55,
-   "over_65wk": 3,
-   "over_78wk": 2,
-   "median_weeks": 13.5,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 47659,
-    "pct_within_18wk": 63.7,
-    "over_52wk": 46,
-    "over_65wk": 0,
-    "over_78wk": 0,
-    "median_weeks": 13.3
+    "median_weeks": 12.9
    }
   },
   {
@@ -1306,20 +1264,41 @@
    "name": "EAST LANCASHIRE HOSPITALS NHS TRUST",
    "region": "North West",
    "type": "general",
-   "waiting_list": 46343,
-   "pct_within_18wk": 72.1,
-   "over_52wk": 171,
-   "over_65wk": 0,
+   "waiting_list": 47124,
+   "pct_within_18wk": 72.6,
+   "over_52wk": 188,
+   "over_65wk": 1,
    "over_78wk": 0,
-   "median_weeks": 9.4,
+   "median_weeks": 9.3,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 47031,
+    "prev_period": "2026-08",
+    "waiting_list": 46343,
     "pct_within_18wk": 72.1,
-    "over_52wk": 223,
+    "over_52wk": 171,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 9.0
+    "median_weeks": 9.4
+   }
+  },
+  {
+   "code": "RXQ",
+   "name": "BUCKINGHAMSHIRE HEALTHCARE NHS TRUST",
+   "region": "South East",
+   "type": "general",
+   "waiting_list": 47031,
+   "pct_within_18wk": 64.2,
+   "over_52wk": 50,
+   "over_65wk": 0,
+   "over_78wk": 0,
+   "median_weeks": 13.4,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 47950,
+    "pct_within_18wk": 63.5,
+    "over_52wk": 55,
+    "over_65wk": 3,
+    "over_78wk": 2,
+    "median_weeks": 13.5
    }
   },
   {
@@ -1327,20 +1306,20 @@
    "name": "WRIGHTINGTON, WIGAN AND LEIGH TEACHING HOSPITALS NHS FOUNDATION TRUST",
    "region": "North West",
    "type": "general",
-   "waiting_list": 46323,
-   "pct_within_18wk": 60.5,
-   "over_52wk": 1108,
-   "over_65wk": 52,
-   "over_78wk": 6,
+   "waiting_list": 46337,
+   "pct_within_18wk": 61.1,
+   "over_52wk": 1046,
+   "over_65wk": 17,
+   "over_78wk": 1,
    "median_weeks": 13.6,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 45765,
-    "pct_within_18wk": 60.6,
-    "over_52wk": 1102,
-    "over_65wk": 70,
-    "over_78wk": 1,
-    "median_weeks": 13.4
+    "prev_period": "2026-08",
+    "waiting_list": 46323,
+    "pct_within_18wk": 60.5,
+    "over_52wk": 1108,
+    "over_65wk": 52,
+    "over_78wk": 6,
+    "median_weeks": 13.6
    }
   },
   {
@@ -1348,20 +1327,20 @@
    "name": "ROYAL CORNWALL HOSPITALS NHS TRUST",
    "region": "South West",
    "type": "general",
-   "waiting_list": 45002,
-   "pct_within_18wk": 73.1,
-   "over_52wk": 446,
-   "over_65wk": 27,
-   "over_78wk": 5,
-   "median_weeks": 9.7,
+   "waiting_list": 45093,
+   "pct_within_18wk": 71.8,
+   "over_52wk": 419,
+   "over_65wk": 31,
+   "over_78wk": 4,
+   "median_weeks": 10.0,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 44275,
-    "pct_within_18wk": 74.0,
-    "over_52wk": 487,
-    "over_65wk": 37,
+    "prev_period": "2026-08",
+    "waiting_list": 45002,
+    "pct_within_18wk": 73.1,
+    "over_52wk": 446,
+    "over_65wk": 27,
     "over_78wk": 5,
-    "median_weeks": 8.9
+    "median_weeks": 9.7
    }
   },
   {
@@ -1369,20 +1348,20 @@
    "name": "WEST HERTFORDSHIRE TEACHING HOSPITALS NHS TRUST",
    "region": "East of England",
    "type": "general",
-   "waiting_list": 44408,
-   "pct_within_18wk": 69.1,
-   "over_52wk": 393,
+   "waiting_list": 44687,
+   "pct_within_18wk": 70.2,
+   "over_52wk": 425,
    "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 12.0,
+   "median_weeks": 11.9,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 44482,
-    "pct_within_18wk": 70.1,
-    "over_52wk": 374,
+    "prev_period": "2026-08",
+    "waiting_list": 44408,
+    "pct_within_18wk": 69.1,
+    "over_52wk": 393,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 11.7
+    "median_weeks": 12.0
    }
   },
   {
@@ -1390,41 +1369,20 @@
    "name": "WIRRAL UNIVERSITY TEACHING HOSPITAL NHS FOUNDATION TRUST",
    "region": "North West",
    "type": "general",
-   "waiting_list": 43368,
-   "pct_within_18wk": 65.4,
-   "over_52wk": 276,
+   "waiting_list": 43450,
+   "pct_within_18wk": 65.9,
+   "over_52wk": 242,
    "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 12.0,
+   "median_weeks": 11.9,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 44108,
-    "pct_within_18wk": 65.2,
-    "over_52wk": 308,
+    "prev_period": "2026-08",
+    "waiting_list": 43368,
+    "pct_within_18wk": 65.4,
+    "over_52wk": 276,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 11.8
-   }
-  },
-  {
-   "code": "RD1",
-   "name": "ROYAL UNITED HOSPITALS BATH NHS FOUNDATION TRUST",
-   "region": "South West",
-   "type": "general",
-   "waiting_list": 43165,
-   "pct_within_18wk": 70.1,
-   "over_52wk": 154,
-   "over_65wk": 0,
-   "over_78wk": 0,
-   "median_weeks": 11.6,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 41031,
-    "pct_within_18wk": 70.6,
-    "over_52wk": 155,
-    "over_65wk": 0,
-    "over_78wk": 0,
-    "median_weeks": 11.5
+    "median_weeks": 12.0
    }
   },
   {
@@ -1432,20 +1390,41 @@
    "name": "NORTHERN LINCOLNSHIRE AND GOOLE NHS FOUNDATION TRUST",
    "region": "North East and Yorkshire",
    "type": "general",
-   "waiting_list": 43139,
-   "pct_within_18wk": 58.6,
-   "over_52wk": 1584,
-   "over_65wk": 163,
-   "over_78wk": 3,
-   "median_weeks": 14.3,
+   "waiting_list": 43343,
+   "pct_within_18wk": 58.7,
+   "over_52wk": 1622,
+   "over_65wk": 252,
+   "over_78wk": 2,
+   "median_weeks": 14.4,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 42583,
-    "pct_within_18wk": 59.8,
-    "over_52wk": 1408,
-    "over_65wk": 98,
-    "over_78wk": 2,
-    "median_weeks": 13.4
+    "prev_period": "2026-08",
+    "waiting_list": 43139,
+    "pct_within_18wk": 58.6,
+    "over_52wk": 1584,
+    "over_65wk": 163,
+    "over_78wk": 3,
+    "median_weeks": 14.3
+   }
+  },
+  {
+   "code": "RD1",
+   "name": "ROYAL UNITED HOSPITALS BATH NHS FOUNDATION TRUST",
+   "region": "South West",
+   "type": "general",
+   "waiting_list": 42853,
+   "pct_within_18wk": 69.6,
+   "over_52wk": 142,
+   "over_65wk": 0,
+   "over_78wk": 0,
+   "median_weeks": 12.2,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 43165,
+    "pct_within_18wk": 70.1,
+    "over_52wk": 154,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 11.6
    }
   },
   {
@@ -1453,20 +1432,20 @@
    "name": "GREAT WESTERN HOSPITALS NHS FOUNDATION TRUST",
    "region": "South West",
    "type": "general",
-   "waiting_list": 42540,
-   "pct_within_18wk": 57.7,
-   "over_52wk": 970,
-   "over_65wk": 18,
-   "over_78wk": 4,
-   "median_weeks": 15.0,
+   "waiting_list": 42329,
+   "pct_within_18wk": 58.3,
+   "over_52wk": 921,
+   "over_65wk": 6,
+   "over_78wk": 1,
+   "median_weeks": 14.8,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 42820,
-    "pct_within_18wk": 57.9,
-    "over_52wk": 1082,
-    "over_65wk": 14,
-    "over_78wk": 0,
-    "median_weeks": 14.3
+    "prev_period": "2026-08",
+    "waiting_list": 42540,
+    "pct_within_18wk": 57.7,
+    "over_52wk": 970,
+    "over_65wk": 18,
+    "over_78wk": 4,
+    "median_weeks": 15.0
    }
   },
   {
@@ -1474,20 +1453,20 @@
    "name": "MOORFIELDS EYE HOSPITAL NHS FOUNDATION TRUST",
    "region": "London",
    "type": "specialist",
-   "waiting_list": 42168,
-   "pct_within_18wk": 84.6,
-   "over_52wk": 19,
-   "over_65wk": 10,
-   "over_78wk": 2,
-   "median_weeks": 7.7,
+   "waiting_list": 41919,
+   "pct_within_18wk": 85.6,
+   "over_52wk": 13,
+   "over_65wk": 3,
+   "over_78wk": 1,
+   "median_weeks": 7.4,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 41904,
-    "pct_within_18wk": 84.7,
-    "over_52wk": 21,
-    "over_65wk": 6,
-    "over_78wk": 3,
-    "median_weeks": 7.4
+    "prev_period": "2026-08",
+    "waiting_list": 42168,
+    "pct_within_18wk": 84.6,
+    "over_52wk": 19,
+    "over_65wk": 10,
+    "over_78wk": 2,
+    "median_weeks": 7.7
    }
   },
   {
@@ -1495,20 +1474,20 @@
    "name": "BLACKPOOL TEACHING HOSPITALS NHS FOUNDATION TRUST",
    "region": "North West",
    "type": "general",
-   "waiting_list": 41106,
-   "pct_within_18wk": 58.6,
-   "over_52wk": 1110,
-   "over_65wk": 203,
-   "over_78wk": 4,
-   "median_weeks": 14.5,
+   "waiting_list": 41772,
+   "pct_within_18wk": 59.4,
+   "over_52wk": 1056,
+   "over_65wk": 194,
+   "over_78wk": 10,
+   "median_weeks": 14.1,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 40794,
-    "pct_within_18wk": 57.8,
-    "over_52wk": 1123,
-    "over_65wk": 164,
-    "over_78wk": 0,
-    "median_weeks": 14.3
+    "prev_period": "2026-08",
+    "waiting_list": 41106,
+    "pct_within_18wk": 58.6,
+    "over_52wk": 1110,
+    "over_65wk": 203,
+    "over_78wk": 4,
+    "median_weeks": 14.5
    }
   },
   {
@@ -1516,83 +1495,20 @@
    "name": "THE PRINCESS ALEXANDRA HOSPITAL NHS TRUST",
    "region": "East of England",
    "type": "general",
-   "waiting_list": 40233,
-   "pct_within_18wk": 67.1,
-   "over_52wk": 411,
-   "over_65wk": 54,
-   "over_78wk": 36,
-   "median_weeks": 12.3,
+   "waiting_list": 40699,
+   "pct_within_18wk": 66.7,
+   "over_52wk": 408,
+   "over_65wk": 49,
+   "over_78wk": 25,
+   "median_weeks": 12.4,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 38992,
-    "pct_within_18wk": 68.5,
-    "over_52wk": 427,
-    "over_65wk": 50,
-    "over_78wk": 26,
-    "median_weeks": 11.8
-   }
-  },
-  {
-   "code": "RTF",
-   "name": "NORTHUMBRIA HEALTHCARE NHS FOUNDATION TRUST",
-   "region": "North East and Yorkshire",
-   "type": "general",
-   "waiting_list": 39301,
-   "pct_within_18wk": 83.6,
-   "over_52wk": 0,
-   "over_65wk": 0,
-   "over_78wk": 0,
-   "median_weeks": 9.7,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 39442,
-    "pct_within_18wk": 83.9,
-    "over_52wk": 0,
-    "over_65wk": 0,
-    "over_78wk": 0,
-    "median_weeks": 9.0
-   }
-  },
-  {
-   "code": "RD8",
-   "name": "MILTON KEYNES UNIVERSITY HOSPITAL NHS FOUNDATION TRUST",
-   "region": "East of England",
-   "type": "general",
-   "waiting_list": 38530,
-   "pct_within_18wk": 59.3,
-   "over_52wk": 882,
-   "over_65wk": 47,
-   "over_78wk": 10,
-   "median_weeks": 14.4,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 37528,
-    "pct_within_18wk": 58.8,
-    "over_52wk": 982,
-    "over_65wk": 44,
-    "over_78wk": 7,
-    "median_weeks": 14.5
-   }
-  },
-  {
-   "code": "RXW",
-   "name": "THE SHREWSBURY AND TELFORD HOSPITAL NHS TRUST",
-   "region": "Midlands",
-   "type": "general",
-   "waiting_list": 38312,
-   "pct_within_18wk": 68.2,
-   "over_52wk": 0,
-   "over_65wk": 0,
-   "over_78wk": 0,
-   "median_weeks": 12.1,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 37291,
-    "pct_within_18wk": 67.9,
-    "over_52wk": 0,
-    "over_65wk": 0,
-    "over_78wk": 0,
-    "median_weeks": 11.8
+    "prev_period": "2026-08",
+    "waiting_list": 40233,
+    "pct_within_18wk": 67.1,
+    "over_52wk": 411,
+    "over_65wk": 54,
+    "over_78wk": 36,
+    "median_weeks": 12.3
    }
   },
   {
@@ -1600,20 +1516,83 @@
    "name": "KINGSTON AND RICHMOND NHS FOUNDATION TRUST",
    "region": "London",
    "type": "general",
-   "waiting_list": 38311,
-   "pct_within_18wk": 68.1,
-   "over_52wk": 58,
+   "waiting_list": 40297,
+   "pct_within_18wk": 68.8,
+   "over_52wk": 71,
+   "over_65wk": 1,
+   "over_78wk": 1,
+   "median_weeks": 12.1,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 38311,
+    "pct_within_18wk": 68.1,
+    "over_52wk": 58,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 12.2
+   }
+  },
+  {
+   "code": "RD8",
+   "name": "MILTON KEYNES UNIVERSITY HOSPITAL NHS FOUNDATION TRUST",
+   "region": "East of England",
+   "type": "general",
+   "waiting_list": 39673,
+   "pct_within_18wk": 59.1,
+   "over_52wk": 951,
+   "over_65wk": 47,
+   "over_78wk": 10,
+   "median_weeks": 14.5,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 38530,
+    "pct_within_18wk": 59.3,
+    "over_52wk": 882,
+    "over_65wk": 47,
+    "over_78wk": 10,
+    "median_weeks": 14.4
+   }
+  },
+  {
+   "code": "RTF",
+   "name": "NORTHUMBRIA HEALTHCARE NHS FOUNDATION TRUST",
+   "region": "North East and Yorkshire",
+   "type": "general",
+   "waiting_list": 39559,
+   "pct_within_18wk": 83.6,
+   "over_52wk": 0,
    "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 12.2,
+   "median_weeks": 9.6,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 40341,
-    "pct_within_18wk": 68.2,
-    "over_52wk": 164,
-    "over_65wk": 3,
+    "prev_period": "2026-08",
+    "waiting_list": 39301,
+    "pct_within_18wk": 83.6,
+    "over_52wk": 0,
+    "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 11.6
+    "median_weeks": 9.7
+   }
+  },
+  {
+   "code": "RXW",
+   "name": "THE SHREWSBURY AND TELFORD HOSPITAL NHS TRUST",
+   "region": "Midlands",
+   "type": "general",
+   "waiting_list": 38171,
+   "pct_within_18wk": 69.0,
+   "over_52wk": 4,
+   "over_65wk": 0,
+   "over_78wk": 0,
+   "median_weeks": 12.1,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 38312,
+    "pct_within_18wk": 68.2,
+    "over_52wk": 0,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 12.1
    }
   },
   {
@@ -1621,20 +1600,20 @@
    "name": "BOLTON NHS FOUNDATION TRUST",
    "region": "North West",
    "type": "general",
-   "waiting_list": 36998,
-   "pct_within_18wk": 61.6,
-   "over_52wk": 509,
-   "over_65wk": 19,
+   "waiting_list": 37744,
+   "pct_within_18wk": 61.5,
+   "over_52wk": 451,
+   "over_65wk": 18,
    "over_78wk": 0,
-   "median_weeks": 13.3,
+   "median_weeks": 13.5,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 37306,
-    "pct_within_18wk": 61.0,
-    "over_52wk": 580,
-    "over_65wk": 7,
+    "prev_period": "2026-08",
+    "waiting_list": 36998,
+    "pct_within_18wk": 61.6,
+    "over_52wk": 509,
+    "over_65wk": 19,
     "over_78wk": 0,
-    "median_weeks": 13.5
+    "median_weeks": 13.3
    }
   },
   {
@@ -1642,41 +1621,20 @@
    "name": "UNIVERSITY HOSPITALS OF MORECAMBE BAY NHS FOUNDATION TRUST",
    "region": "North West",
    "type": "general",
-   "waiting_list": 36391,
-   "pct_within_18wk": 68.5,
-   "over_52wk": 584,
-   "over_65wk": 10,
-   "over_78wk": 1,
-   "median_weeks": 10.8,
+   "waiting_list": 35859,
+   "pct_within_18wk": 69.2,
+   "over_52wk": 580,
+   "over_65wk": 15,
+   "over_78wk": 0,
+   "median_weeks": 11.0,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 36259,
-    "pct_within_18wk": 68.6,
-    "over_52wk": 688,
-    "over_65wk": 13,
-    "over_78wk": 0,
-    "median_weeks": 10.5
-   }
-  },
-  {
-   "code": "RJ6",
-   "name": "CROYDON HEALTH SERVICES NHS TRUST",
-   "region": "London",
-   "type": "general",
-   "waiting_list": 36350,
-   "pct_within_18wk": 72.8,
-   "over_52wk": 637,
-   "over_65wk": 98,
-   "over_78wk": 2,
-   "median_weeks": 10.7,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 37338,
-    "pct_within_18wk": 72.9,
-    "over_52wk": 711,
-    "over_65wk": 48,
-    "over_78wk": 2,
-    "median_weeks": 10.7
+    "prev_period": "2026-08",
+    "waiting_list": 36391,
+    "pct_within_18wk": 68.5,
+    "over_52wk": 584,
+    "over_65wk": 10,
+    "over_78wk": 1,
+    "median_weeks": 10.8
    }
   },
   {
@@ -1684,62 +1642,20 @@
    "name": "MEDWAY NHS FOUNDATION TRUST",
    "region": "South East",
    "type": "general",
-   "waiting_list": 35806,
-   "pct_within_18wk": 58.2,
-   "over_52wk": 716,
+   "waiting_list": 35465,
+   "pct_within_18wk": 59.0,
+   "over_52wk": 606,
    "over_65wk": 2,
    "over_78wk": 0,
    "median_weeks": 14.8,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 35231,
-    "pct_within_18wk": 58.0,
-    "over_52wk": 727,
-    "over_65wk": 0,
-    "over_78wk": 0,
-    "median_weeks": 14.6
-   }
-  },
-  {
-   "code": "RWY",
-   "name": "CALDERDALE AND HUDDERSFIELD NHS FOUNDATION TRUST",
-   "region": "North East and Yorkshire",
-   "type": "general",
-   "waiting_list": 35543,
-   "pct_within_18wk": 76.3,
-   "over_52wk": 9,
-   "over_65wk": 1,
-   "over_78wk": 0,
-   "median_weeks": 9.6,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 34861,
-    "pct_within_18wk": 76.2,
-    "over_52wk": 8,
-    "over_65wk": 0,
-    "over_78wk": 0,
-    "median_weeks": 9.2
-   }
-  },
-  {
-   "code": "RWW",
-   "name": "NORTH CHESHIRE AND MERSEY NHS FOUNDATION TRUST",
-   "region": "North West",
-   "type": "general",
-   "waiting_list": 35458,
-   "pct_within_18wk": 65.3,
-   "over_52wk": 321,
-   "over_65wk": 1,
-   "over_78wk": 0,
-   "median_weeks": 12.5,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 35330,
-    "pct_within_18wk": 64.9,
-    "over_52wk": 329,
+    "prev_period": "2026-08",
+    "waiting_list": 35806,
+    "pct_within_18wk": 58.2,
+    "over_52wk": 716,
     "over_65wk": 2,
     "over_78wk": 0,
-    "median_weeks": 12.4
+    "median_weeks": 14.8
    }
   },
   {
@@ -1747,20 +1663,83 @@
    "name": "NORTH CUMBRIA INTEGRATED CARE NHS FOUNDATION TRUST",
    "region": "North East and Yorkshire",
    "type": "general",
-   "waiting_list": 35297,
-   "pct_within_18wk": 65.4,
-   "over_52wk": 360,
+   "waiting_list": 35391,
+   "pct_within_18wk": 66.1,
+   "over_52wk": 325,
    "over_65wk": 0,
    "over_78wk": 0,
    "median_weeks": 12.3,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 35424,
-    "pct_within_18wk": 66.1,
-    "over_52wk": 386,
+    "prev_period": "2026-08",
+    "waiting_list": 35297,
+    "pct_within_18wk": 65.4,
+    "over_52wk": 360,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 12.1
+    "median_weeks": 12.3
+   }
+  },
+  {
+   "code": "RWW",
+   "name": "NORTH CHESHIRE AND MERSEY NHS FOUNDATION TRUST",
+   "region": "North West",
+   "type": "general",
+   "waiting_list": 35314,
+   "pct_within_18wk": 65.9,
+   "over_52wk": 379,
+   "over_65wk": 1,
+   "over_78wk": 0,
+   "median_weeks": 12.7,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 35458,
+    "pct_within_18wk": 65.3,
+    "over_52wk": 321,
+    "over_65wk": 1,
+    "over_78wk": 0,
+    "median_weeks": 12.5
+   }
+  },
+  {
+   "code": "RJ6",
+   "name": "CROYDON HEALTH SERVICES NHS TRUST",
+   "region": "London",
+   "type": "general",
+   "waiting_list": 35289,
+   "pct_within_18wk": 73.1,
+   "over_52wk": 451,
+   "over_65wk": 104,
+   "over_78wk": 5,
+   "median_weeks": 10.4,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 36350,
+    "pct_within_18wk": 72.8,
+    "over_52wk": 637,
+    "over_65wk": 98,
+    "over_78wk": 2,
+    "median_weeks": 10.7
+   }
+  },
+  {
+   "code": "RWY",
+   "name": "CALDERDALE AND HUDDERSFIELD NHS FOUNDATION TRUST",
+   "region": "North East and Yorkshire",
+   "type": "general",
+   "waiting_list": 35191,
+   "pct_within_18wk": 75.7,
+   "over_52wk": 23,
+   "over_65wk": 1,
+   "over_78wk": 0,
+   "median_weeks": 9.8,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 35543,
+    "pct_within_18wk": 76.3,
+    "over_52wk": 9,
+    "over_65wk": 1,
+    "over_78wk": 0,
+    "median_weeks": 9.6
    }
   },
   {
@@ -1768,62 +1747,20 @@
    "name": "STOCKPORT NHS FOUNDATION TRUST",
    "region": "North West",
    "type": "general",
-   "waiting_list": 34942,
-   "pct_within_18wk": 62.3,
-   "over_52wk": 155,
-   "over_65wk": 1,
+   "waiting_list": 34143,
+   "pct_within_18wk": 62.8,
+   "over_52wk": 151,
+   "over_65wk": 0,
    "over_78wk": 0,
    "median_weeks": 12.9,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 34684,
-    "pct_within_18wk": 62.2,
-    "over_52wk": 146,
-    "over_65wk": 0,
+    "prev_period": "2026-08",
+    "waiting_list": 34942,
+    "pct_within_18wk": 62.3,
+    "over_52wk": 155,
+    "over_65wk": 1,
     "over_78wk": 0,
-    "median_weeks": 12.7
-   }
-  },
-  {
-   "code": "RHW",
-   "name": "ROYAL BERKSHIRE NHS FOUNDATION TRUST",
-   "region": "South East",
-   "type": "general",
-   "waiting_list": 34597,
-   "pct_within_18wk": 80.7,
-   "over_52wk": 35,
-   "over_65wk": 4,
-   "over_78wk": 0,
-   "median_weeks": 10.1,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 34892,
-    "pct_within_18wk": 83.3,
-    "over_52wk": 34,
-    "over_65wk": 5,
-    "over_78wk": 0,
-    "median_weeks": 9.6
-   }
-  },
-  {
-   "code": "RK5",
-   "name": "SHERWOOD FOREST HOSPITALS NHS FOUNDATION TRUST",
-   "region": "Midlands",
-   "type": "general",
-   "waiting_list": 33435,
-   "pct_within_18wk": 63.8,
-   "over_52wk": 468,
-   "over_65wk": 1,
-   "over_78wk": 0,
-   "median_weeks": 12.4,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 33453,
-    "pct_within_18wk": 64.0,
-    "over_52wk": 475,
-    "over_65wk": 0,
-    "over_78wk": 0,
-    "median_weeks": 12.3
+    "median_weeks": 12.9
    }
   },
   {
@@ -1831,167 +1768,41 @@
    "name": "WEST SUFFOLK NHS FOUNDATION TRUST",
    "region": "East of England",
    "type": "general",
-   "waiting_list": 32866,
-   "pct_within_18wk": 64.6,
-   "over_52wk": 613,
-   "over_65wk": 65,
-   "over_78wk": 9,
-   "median_weeks": 12.3,
+   "waiting_list": 33711,
+   "pct_within_18wk": 65.1,
+   "over_52wk": 671,
+   "over_65wk": 94,
+   "over_78wk": 13,
+   "median_weeks": 12.7,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 33152,
-    "pct_within_18wk": 65.7,
-    "over_52wk": 574,
-    "over_65wk": 41,
-    "over_78wk": 5,
-    "median_weeks": 12.2
-   }
-  },
-  {
-   "code": "RAS",
-   "name": "THE HILLINGDON HOSPITALS NHS FOUNDATION TRUST",
-   "region": "London",
-   "type": "general",
-   "waiting_list": 32558,
-   "pct_within_18wk": 63.9,
-   "over_52wk": 96,
-   "over_65wk": 7,
-   "over_78wk": 1,
-   "median_weeks": 12.6,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 32942,
-    "pct_within_18wk": 63.8,
-    "over_52wk": 108,
-    "over_65wk": 13,
-    "over_78wk": 1,
-    "median_weeks": 12.5
-   }
-  },
-  {
-   "code": "RNQ",
-   "name": "KETTERING GENERAL HOSPITAL NHS FOUNDATION TRUST",
-   "region": "Midlands",
-   "type": "general",
-   "waiting_list": 32045,
-   "pct_within_18wk": 68.2,
-   "over_52wk": 89,
-   "over_65wk": 0,
-   "over_78wk": 0,
-   "median_weeks": 11.9,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 31176,
-    "pct_within_18wk": 67.6,
-    "over_52wk": 84,
-    "over_65wk": 0,
-    "over_78wk": 0,
-    "median_weeks": 11.7
-   }
-  },
-  {
-   "code": "RJC",
-   "name": "SOUTH WARWICKSHIRE UNIVERSITY NHS FOUNDATION TRUST",
-   "region": "Midlands",
-   "type": "general",
-   "waiting_list": 31997,
-   "pct_within_18wk": 67.3,
-   "over_52wk": 398,
-   "over_65wk": 0,
-   "over_78wk": 0,
-   "median_weeks": 11.9,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 31237,
-    "pct_within_18wk": 68.3,
-    "over_52wk": 312,
-    "over_65wk": 0,
-    "over_78wk": 0,
-    "median_weeks": 11.3
-   }
-  },
-  {
-   "code": "RJR",
-   "name": "COUNTESS OF CHESTER HOSPITAL NHS FOUNDATION TRUST",
-   "region": "North West",
-   "type": "general",
-   "waiting_list": 31910,
-   "pct_within_18wk": 68.4,
-   "over_52wk": 205,
-   "over_65wk": 0,
-   "over_78wk": 0,
-   "median_weeks": 11.4,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 32138,
-    "pct_within_18wk": 67.6,
-    "over_52wk": 239,
-    "over_65wk": 2,
-    "over_78wk": 0,
-    "median_weeks": 11.2
-   }
-  },
-  {
-   "code": "RAE",
-   "name": "BRADFORD TEACHING HOSPITALS NHS FOUNDATION TRUST",
-   "region": "North East and Yorkshire",
-   "type": "general",
-   "waiting_list": 31756,
-   "pct_within_18wk": 68.9,
-   "over_52wk": 40,
-   "over_65wk": 0,
-   "over_78wk": 0,
-   "median_weeks": 11.4,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 31412,
-    "pct_within_18wk": 68.5,
-    "over_52wk": 44,
-    "over_65wk": 0,
-    "over_78wk": 0,
-    "median_weeks": 11.3
-   }
-  },
-  {
-   "code": "RA2",
-   "name": "ROYAL SURREY NHS FOUNDATION TRUST",
-   "region": "South East",
-   "type": "general",
-   "waiting_list": 31720,
-   "pct_within_18wk": 64.7,
-   "over_52wk": 379,
-   "over_65wk": 21,
-   "over_78wk": 7,
-   "median_weeks": 12.5,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 31177,
-    "pct_within_18wk": 64.3,
-    "over_52wk": 434,
-    "over_65wk": 29,
-    "over_78wk": 18,
+    "prev_period": "2026-08",
+    "waiting_list": 32866,
+    "pct_within_18wk": 64.6,
+    "over_52wk": 613,
+    "over_65wk": 65,
+    "over_78wk": 9,
     "median_weeks": 12.3
    }
   },
   {
-   "code": "RGP",
-   "name": "JAMES PAGET UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
-   "region": "East of England",
+   "code": "RHW",
+   "name": "ROYAL BERKSHIRE NHS FOUNDATION TRUST",
+   "region": "South East",
    "type": "general",
-   "waiting_list": 31209,
-   "pct_within_18wk": 61.5,
-   "over_52wk": 802,
-   "over_65wk": 137,
-   "over_78wk": 10,
-   "median_weeks": 13.6,
+   "waiting_list": 33360,
+   "pct_within_18wk": 82.7,
+   "over_52wk": 18,
+   "over_65wk": 1,
+   "over_78wk": 0,
+   "median_weeks": 9.9,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 31065,
-    "pct_within_18wk": 60.7,
-    "over_52wk": 959,
-    "over_65wk": 116,
-    "over_78wk": 4,
-    "median_weeks": 13.4
+    "prev_period": "2026-08",
+    "waiting_list": 34597,
+    "pct_within_18wk": 80.7,
+    "over_52wk": 35,
+    "over_65wk": 4,
+    "over_78wk": 0,
+    "median_weeks": 10.1
    }
   },
   {
@@ -1999,20 +1810,146 @@
    "name": "SALISBURY NHS FOUNDATION TRUST",
    "region": "South West",
    "type": "general",
-   "waiting_list": 31024,
-   "pct_within_18wk": 69.5,
-   "over_52wk": 126,
-   "over_65wk": 8,
-   "over_78wk": 0,
-   "median_weeks": 11.7,
+   "waiting_list": 32846,
+   "pct_within_18wk": 70.7,
+   "over_52wk": 127,
+   "over_65wk": 3,
+   "over_78wk": 1,
+   "median_weeks": 11.6,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 29788,
-    "pct_within_18wk": 71.0,
-    "over_52wk": 118,
-    "over_65wk": 4,
+    "prev_period": "2026-08",
+    "waiting_list": 31024,
+    "pct_within_18wk": 69.5,
+    "over_52wk": 126,
+    "over_65wk": 8,
     "over_78wk": 0,
-    "median_weeks": 11.0
+    "median_weeks": 11.7
+   }
+  },
+  {
+   "code": "RK5",
+   "name": "SHERWOOD FOREST HOSPITALS NHS FOUNDATION TRUST",
+   "region": "Midlands",
+   "type": "general",
+   "waiting_list": 32766,
+   "pct_within_18wk": 64.5,
+   "over_52wk": 487,
+   "over_65wk": 2,
+   "over_78wk": 0,
+   "median_weeks": 12.4,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 33435,
+    "pct_within_18wk": 63.8,
+    "over_52wk": 468,
+    "over_65wk": 1,
+    "over_78wk": 0,
+    "median_weeks": 12.4
+   }
+  },
+  {
+   "code": "RAS",
+   "name": "THE HILLINGDON HOSPITALS NHS FOUNDATION TRUST",
+   "region": "London",
+   "type": "general",
+   "waiting_list": 32695,
+   "pct_within_18wk": 64.9,
+   "over_52wk": 108,
+   "over_65wk": 6,
+   "over_78wk": 1,
+   "median_weeks": 12.4,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 32558,
+    "pct_within_18wk": 63.9,
+    "over_52wk": 96,
+    "over_65wk": 7,
+    "over_78wk": 1,
+    "median_weeks": 12.6
+   }
+  },
+  {
+   "code": "RA2",
+   "name": "ROYAL SURREY NHS FOUNDATION TRUST",
+   "region": "South East",
+   "type": "general",
+   "waiting_list": 32100,
+   "pct_within_18wk": 66.5,
+   "over_52wk": 347,
+   "over_65wk": 17,
+   "over_78wk": 3,
+   "median_weeks": 12.3,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 31720,
+    "pct_within_18wk": 64.7,
+    "over_52wk": 379,
+    "over_65wk": 21,
+    "over_78wk": 7,
+    "median_weeks": 12.5
+   }
+  },
+  {
+   "code": "RJC",
+   "name": "SOUTH WARWICKSHIRE UNIVERSITY NHS FOUNDATION TRUST",
+   "region": "Midlands",
+   "type": "general",
+   "waiting_list": 31719,
+   "pct_within_18wk": 66.8,
+   "over_52wk": 430,
+   "over_65wk": 0,
+   "over_78wk": 0,
+   "median_weeks": 12.1,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 31997,
+    "pct_within_18wk": 67.3,
+    "over_52wk": 398,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 11.9
+   }
+  },
+  {
+   "code": "RNQ",
+   "name": "KETTERING GENERAL HOSPITAL NHS FOUNDATION TRUST",
+   "region": "Midlands",
+   "type": "general",
+   "waiting_list": 31691,
+   "pct_within_18wk": 67.1,
+   "over_52wk": 108,
+   "over_65wk": 0,
+   "over_78wk": 0,
+   "median_weeks": 12.5,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 32045,
+    "pct_within_18wk": 68.2,
+    "over_52wk": 89,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 11.9
+   }
+  },
+  {
+   "code": "RJR",
+   "name": "COUNTESS OF CHESTER HOSPITAL NHS FOUNDATION TRUST",
+   "region": "North West",
+   "type": "general",
+   "waiting_list": 31490,
+   "pct_within_18wk": 69.8,
+   "over_52wk": 109,
+   "over_65wk": 1,
+   "over_78wk": 0,
+   "median_weeks": 11.5,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 31910,
+    "pct_within_18wk": 68.4,
+    "over_52wk": 205,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 11.4
    }
   },
   {
@@ -2020,20 +1957,62 @@
    "name": "MID CHESHIRE HOSPITALS NHS FOUNDATION TRUST",
    "region": "North West",
    "type": "general",
-   "waiting_list": 30270,
-   "pct_within_18wk": 70.6,
-   "over_52wk": 247,
-   "over_65wk": 3,
+   "waiting_list": 31457,
+   "pct_within_18wk": 69.5,
+   "over_52wk": 245,
+   "over_65wk": 4,
    "over_78wk": 0,
-   "median_weeks": 10.6,
+   "median_weeks": 11.1,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 29199,
-    "pct_within_18wk": 70.7,
-    "over_52wk": 276,
-    "over_65wk": 2,
+    "prev_period": "2026-08",
+    "waiting_list": 30270,
+    "pct_within_18wk": 70.6,
+    "over_52wk": 247,
+    "over_65wk": 3,
     "over_78wk": 0,
-    "median_weeks": 10.1
+    "median_weeks": 10.6
+   }
+  },
+  {
+   "code": "RAE",
+   "name": "BRADFORD TEACHING HOSPITALS NHS FOUNDATION TRUST",
+   "region": "North East and Yorkshire",
+   "type": "general",
+   "waiting_list": 31159,
+   "pct_within_18wk": 69.1,
+   "over_52wk": 39,
+   "over_65wk": 0,
+   "over_78wk": 0,
+   "median_weeks": 11.3,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 31756,
+    "pct_within_18wk": 68.9,
+    "over_52wk": 40,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 11.4
+   }
+  },
+  {
+   "code": "RGP",
+   "name": "JAMES PAGET UNIVERSITY HOSPITALS NHS FOUNDATION TRUST",
+   "region": "East of England",
+   "type": "general",
+   "waiting_list": 30520,
+   "pct_within_18wk": 61.8,
+   "over_52wk": 645,
+   "over_65wk": 105,
+   "over_78wk": 12,
+   "median_weeks": 13.7,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 31209,
+    "pct_within_18wk": 61.5,
+    "over_52wk": 802,
+    "over_65wk": 137,
+    "over_78wk": 10,
+    "median_weeks": 13.6
    }
   },
   {
@@ -2041,18 +2020,18 @@
    "name": "DARTFORD AND GRAVESHAM NHS TRUST",
    "region": "South East",
    "type": "general",
-   "waiting_list": 30107,
-   "pct_within_18wk": 61.0,
-   "over_52wk": 882,
-   "over_65wk": 57,
-   "over_78wk": 0,
-   "median_weeks": 13.5,
+   "waiting_list": 30017,
+   "pct_within_18wk": 63.0,
+   "over_52wk": 709,
+   "over_65wk": 65,
+   "over_78wk": 2,
+   "median_weeks": 13.1,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 29972,
-    "pct_within_18wk": 60.1,
-    "over_52wk": 851,
-    "over_65wk": 12,
+    "prev_period": "2026-08",
+    "waiting_list": 30107,
+    "pct_within_18wk": 61.0,
+    "over_52wk": 882,
+    "over_65wk": 57,
     "over_78wk": 0,
     "median_weeks": 13.5
    }
@@ -2062,20 +2041,20 @@
    "name": "THE ROTHERHAM NHS FOUNDATION TRUST",
    "region": "North East and Yorkshire",
    "type": "general",
-   "waiting_list": 29815,
-   "pct_within_18wk": 68.3,
-   "over_52wk": 376,
+   "waiting_list": 29840,
+   "pct_within_18wk": 68.6,
+   "over_52wk": 385,
    "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 11.6,
+   "median_weeks": 11.9,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 29510,
-    "pct_within_18wk": 69.0,
-    "over_52wk": 444,
+    "prev_period": "2026-08",
+    "waiting_list": 29815,
+    "pct_within_18wk": 68.3,
+    "over_52wk": 376,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 11.1
+    "median_weeks": 11.6
    }
   },
   {
@@ -2083,20 +2062,20 @@
    "name": "WALSALL HEALTHCARE NHS TRUST",
    "region": "Midlands",
    "type": "general",
-   "waiting_list": 28492,
-   "pct_within_18wk": 72.8,
-   "over_52wk": 11,
+   "waiting_list": 29475,
+   "pct_within_18wk": 73.2,
+   "over_52wk": 1,
    "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 10.3,
+   "median_weeks": 10.1,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 27855,
-    "pct_within_18wk": 73.8,
-    "over_52wk": 15,
-    "over_65wk": 1,
+    "prev_period": "2026-08",
+    "waiting_list": 28492,
+    "pct_within_18wk": 72.8,
+    "over_52wk": 11,
+    "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 9.8
+    "median_weeks": 10.3
    }
   },
   {
@@ -2104,20 +2083,20 @@
    "name": "WYE VALLEY NHS TRUST",
    "region": "Midlands",
    "type": "general",
-   "waiting_list": 27934,
-   "pct_within_18wk": 63.1,
-   "over_52wk": 799,
-   "over_65wk": 361,
-   "over_78wk": 190,
-   "median_weeks": 13.0,
+   "waiting_list": 28001,
+   "pct_within_18wk": 61.9,
+   "over_52wk": 827,
+   "over_65wk": 402,
+   "over_78wk": 216,
+   "median_weeks": 13.8,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 27798,
-    "pct_within_18wk": 63.3,
-    "over_52wk": 740,
-    "over_65wk": 328,
-    "over_78wk": 170,
-    "median_weeks": 12.6
+    "prev_period": "2026-08",
+    "waiting_list": 27934,
+    "pct_within_18wk": 63.1,
+    "over_52wk": 799,
+    "over_65wk": 361,
+    "over_78wk": 190,
+    "median_weeks": 13.0
    }
   },
   {
@@ -2125,20 +2104,20 @@
    "name": "CHESTERFIELD ROYAL HOSPITAL NHS FOUNDATION TRUST",
    "region": "Midlands",
    "type": "general",
-   "waiting_list": 26728,
-   "pct_within_18wk": 63.5,
-   "over_52wk": 492,
+   "waiting_list": 26494,
+   "pct_within_18wk": 63.6,
+   "over_52wk": 460,
    "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 12.6,
+   "median_weeks": 12.8,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 26876,
-    "pct_within_18wk": 63.2,
-    "over_52wk": 509,
-    "over_65wk": 7,
+    "prev_period": "2026-08",
+    "waiting_list": 26728,
+    "pct_within_18wk": 63.5,
+    "over_52wk": 492,
+    "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 12.2
+    "median_weeks": 12.6
    }
   },
   {
@@ -2146,20 +2125,20 @@
    "name": "HOMERTON HEALTHCARE NHS FOUNDATION TRUST",
    "region": "London",
    "type": "general",
-   "waiting_list": 25725,
-   "pct_within_18wk": 73.2,
-   "over_52wk": 116,
-   "over_65wk": 1,
+   "waiting_list": 24684,
+   "pct_within_18wk": 74.9,
+   "over_52wk": 103,
+   "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 9.7,
+   "median_weeks": 9.3,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 26141,
-    "pct_within_18wk": 73.6,
-    "over_52wk": 122,
-    "over_65wk": 4,
+    "prev_period": "2026-08",
+    "waiting_list": 25725,
+    "pct_within_18wk": 73.2,
+    "over_52wk": 116,
+    "over_65wk": 1,
     "over_78wk": 0,
-    "median_weeks": 9.2
+    "median_weeks": 9.7
    }
   },
   {
@@ -2167,146 +2146,20 @@
    "name": "NORTH TEES AND HARTLEPOOL NHS FOUNDATION TRUST",
    "region": "North East and Yorkshire",
    "type": "general",
-   "waiting_list": 24063,
-   "pct_within_18wk": 69.6,
-   "over_52wk": 225,
-   "over_65wk": 0,
+   "waiting_list": 24284,
+   "pct_within_18wk": 69.5,
+   "over_52wk": 229,
+   "over_65wk": 1,
    "over_78wk": 0,
    "median_weeks": 11.1,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 23668,
-    "pct_within_18wk": 71.2,
-    "over_52wk": 173,
+    "prev_period": "2026-08",
+    "waiting_list": 24063,
+    "pct_within_18wk": 69.6,
+    "over_52wk": 225,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 10.5
-   }
-  },
-  {
-   "code": "RCX",
-   "name": "THE QUEEN ELIZABETH HOSPITAL, KING'S LYNN, NHS FOUNDATION TRUST",
-   "region": "East of England",
-   "type": "general",
-   "waiting_list": 23666,
-   "pct_within_18wk": 64.7,
-   "over_52wk": 259,
-   "over_65wk": 0,
-   "over_78wk": 0,
-   "median_weeks": 12.0,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 24150,
-    "pct_within_18wk": 64.3,
-    "over_52wk": 277,
-    "over_65wk": 0,
-    "over_78wk": 0,
-    "median_weeks": 12.0
-   }
-  },
-  {
-   "code": "RQ3",
-   "name": "BIRMINGHAM WOMEN'S AND CHILDREN'S NHS FOUNDATION TRUST",
-   "region": "Midlands",
-   "type": "specialist",
-   "waiting_list": 23360,
-   "pct_within_18wk": 65.6,
-   "over_52wk": 142,
-   "over_65wk": 2,
-   "over_78wk": 1,
-   "median_weeks": 12.2,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 22274,
-    "pct_within_18wk": 65.7,
-    "over_52wk": 113,
-    "over_65wk": 2,
-    "over_78wk": 0,
-    "median_weeks": 11.7
-   }
-  },
-  {
-   "code": "RBD",
-   "name": "DORSET COUNTY HOSPITAL NHS FOUNDATION TRUST",
-   "region": "South West",
-   "type": "general",
-   "waiting_list": 23100,
-   "pct_within_18wk": 60.3,
-   "over_52wk": 370,
-   "over_65wk": 0,
-   "over_78wk": 0,
-   "median_weeks": 14.1,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 23380,
-    "pct_within_18wk": 60.0,
-    "over_52wk": 379,
-    "over_65wk": 1,
-    "over_78wk": 0,
-    "median_weeks": 13.7
-   }
-  },
-  {
-   "code": "RKE",
-   "name": "WHITTINGTON HEALTH NHS TRUST",
-   "region": "London",
-   "type": "general",
-   "waiting_list": 22760,
-   "pct_within_18wk": 67.5,
-   "over_52wk": 101,
-   "over_65wk": 0,
-   "over_78wk": 0,
-   "median_weeks": 11.6,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 22907,
-    "pct_within_18wk": 68.3,
-    "over_52wk": 83,
-    "over_65wk": 1,
-    "over_78wk": 1,
     "median_weeks": 11.1
-   }
-  },
-  {
-   "code": "RL1",
-   "name": "THE ROBERT JONES AND AGNES HUNT ORTHOPAEDIC HOSPITAL NHS FOUNDATION TRUST",
-   "region": "Midlands",
-   "type": "specialist",
-   "waiting_list": 22655,
-   "pct_within_18wk": 53.8,
-   "over_52wk": 2378,
-   "over_65wk": 1491,
-   "over_78wk": 949,
-   "median_weeks": 16.0,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 23052,
-    "pct_within_18wk": 53.7,
-    "over_52wk": 2483,
-    "over_65wk": 1548,
-    "over_78wk": 977,
-    "median_weeks": 15.9
-   }
-  },
-  {
-   "code": "RPC",
-   "name": "QUEEN VICTORIA HOSPITAL NHS FOUNDATION TRUST",
-   "region": "South East",
-   "type": "specialist",
-   "waiting_list": 22255,
-   "pct_within_18wk": 60.9,
-   "over_52wk": 228,
-   "over_65wk": 41,
-   "over_78wk": 13,
-   "median_weeks": 14.3,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 21977,
-    "pct_within_18wk": 61.0,
-    "over_52wk": 223,
-    "over_65wk": 31,
-    "over_78wk": 7,
-    "median_weeks": 13.8
    }
   },
   {
@@ -2314,20 +2167,146 @@
    "name": "HARROGATE AND DISTRICT NHS FOUNDATION TRUST",
    "region": "North East and Yorkshire",
    "type": "general",
-   "waiting_list": 21733,
-   "pct_within_18wk": 70.8,
-   "over_52wk": 12,
+   "waiting_list": 23332,
+   "pct_within_18wk": 71.9,
+   "over_52wk": 20,
    "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 10.6,
+   "median_weeks": 10.3,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 21345,
-    "pct_within_18wk": 73.6,
+    "prev_period": "2026-08",
+    "waiting_list": 21733,
+    "pct_within_18wk": 70.8,
     "over_52wk": 12,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 9.5
+    "median_weeks": 10.6
+   }
+  },
+  {
+   "code": "RQ3",
+   "name": "BIRMINGHAM WOMEN'S AND CHILDREN'S NHS FOUNDATION TRUST",
+   "region": "Midlands",
+   "type": "specialist",
+   "waiting_list": 23216,
+   "pct_within_18wk": 64.8,
+   "over_52wk": 123,
+   "over_65wk": 1,
+   "over_78wk": 0,
+   "median_weeks": 12.7,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 23360,
+    "pct_within_18wk": 65.6,
+    "over_52wk": 142,
+    "over_65wk": 2,
+    "over_78wk": 1,
+    "median_weeks": 12.2
+   }
+  },
+  {
+   "code": "RL1",
+   "name": "THE ROBERT JONES AND AGNES HUNT ORTHOPAEDIC HOSPITAL NHS FOUNDATION TRUST",
+   "region": "Midlands",
+   "type": "specialist",
+   "waiting_list": 22749,
+   "pct_within_18wk": 53.8,
+   "over_52wk": 2302,
+   "over_65wk": 1456,
+   "over_78wk": 897,
+   "median_weeks": 16.1,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 22655,
+    "pct_within_18wk": 53.8,
+    "over_52wk": 2378,
+    "over_65wk": 1491,
+    "over_78wk": 949,
+    "median_weeks": 16.0
+   }
+  },
+  {
+   "code": "RCX",
+   "name": "THE QUEEN ELIZABETH HOSPITAL, KING'S LYNN, NHS FOUNDATION TRUST",
+   "region": "East of England",
+   "type": "general",
+   "waiting_list": 22678,
+   "pct_within_18wk": 65.6,
+   "over_52wk": 111,
+   "over_65wk": 0,
+   "over_78wk": 0,
+   "median_weeks": 12.4,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 23666,
+    "pct_within_18wk": 64.7,
+    "over_52wk": 259,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 12.0
+   }
+  },
+  {
+   "code": "RBD",
+   "name": "DORSET COUNTY HOSPITAL NHS FOUNDATION TRUST",
+   "region": "South West",
+   "type": "general",
+   "waiting_list": 22624,
+   "pct_within_18wk": 60.4,
+   "over_52wk": 404,
+   "over_65wk": 0,
+   "over_78wk": 0,
+   "median_weeks": 14.1,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 23100,
+    "pct_within_18wk": 60.3,
+    "over_52wk": 370,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 14.1
+   }
+  },
+  {
+   "code": "RPC",
+   "name": "QUEEN VICTORIA HOSPITAL NHS FOUNDATION TRUST",
+   "region": "South East",
+   "type": "specialist",
+   "waiting_list": 22365,
+   "pct_within_18wk": 60.3,
+   "over_52wk": 257,
+   "over_65wk": 36,
+   "over_78wk": 15,
+   "median_weeks": 14.5,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 22255,
+    "pct_within_18wk": 60.9,
+    "over_52wk": 228,
+    "over_65wk": 41,
+    "over_78wk": 13,
+    "median_weeks": 14.3
+   }
+  },
+  {
+   "code": "RKE",
+   "name": "WHITTINGTON HEALTH NHS TRUST",
+   "region": "London",
+   "type": "general",
+   "waiting_list": 22341,
+   "pct_within_18wk": 69.2,
+   "over_52wk": 108,
+   "over_65wk": 6,
+   "over_78wk": 5,
+   "median_weeks": 11.2,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 22760,
+    "pct_within_18wk": 67.5,
+    "over_52wk": 101,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 11.6
    }
   },
   {
@@ -2335,20 +2314,20 @@
    "name": "BARNSLEY HOSPITAL NHS FOUNDATION TRUST",
    "region": "North East and Yorkshire",
    "type": "general",
-   "waiting_list": 21616,
-   "pct_within_18wk": 69.5,
-   "over_52wk": 148,
-   "over_65wk": 0,
-   "over_78wk": 0,
-   "median_weeks": 11.2,
+   "waiting_list": 21108,
+   "pct_within_18wk": 69.1,
+   "over_52wk": 151,
+   "over_65wk": 2,
+   "over_78wk": 1,
+   "median_weeks": 11.4,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 21760,
-    "pct_within_18wk": 70.6,
-    "over_52wk": 112,
+    "prev_period": "2026-08",
+    "waiting_list": 21616,
+    "pct_within_18wk": 69.5,
+    "over_52wk": 148,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 10.7
+    "median_weeks": 11.2
    }
   },
   {
@@ -2356,20 +2335,20 @@
    "name": "GEORGE ELIOT HOSPITAL NHS TRUST",
    "region": "Midlands",
    "type": "general",
-   "waiting_list": 19075,
-   "pct_within_18wk": 64.3,
-   "over_52wk": 87,
+   "waiting_list": 18575,
+   "pct_within_18wk": 65.2,
+   "over_52wk": 107,
    "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 12.5,
+   "median_weeks": 11.9,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 19328,
+    "prev_period": "2026-08",
+    "waiting_list": 19075,
     "pct_within_18wk": 64.3,
-    "over_52wk": 98,
+    "over_52wk": 87,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 12.1
+    "median_weeks": 12.5
    }
   },
   {
@@ -2377,20 +2356,20 @@
    "name": "ALDER HEY CHILDREN'S NHS FOUNDATION TRUST",
    "region": "North West",
    "type": "specialist",
-   "waiting_list": 17520,
-   "pct_within_18wk": 66.3,
-   "over_52wk": 167,
-   "over_65wk": 4,
-   "over_78wk": 0,
-   "median_weeks": 12.4,
+   "waiting_list": 17116,
+   "pct_within_18wk": 67.1,
+   "over_52wk": 175,
+   "over_65wk": 11,
+   "over_78wk": 1,
+   "median_weeks": 12.3,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 17351,
-    "pct_within_18wk": 67.7,
-    "over_52wk": 197,
+    "prev_period": "2026-08",
+    "waiting_list": 17520,
+    "pct_within_18wk": 66.3,
+    "over_52wk": 167,
     "over_65wk": 4,
     "over_78wk": 0,
-    "median_weeks": 11.5
+    "median_weeks": 12.4
    }
   },
   {
@@ -2398,20 +2377,20 @@
    "name": "TAMESIDE AND GLOSSOP INTEGRATED CARE NHS FOUNDATION TRUST",
    "region": "North West",
    "type": "general",
-   "waiting_list": 16489,
-   "pct_within_18wk": 78.5,
+   "waiting_list": 15914,
+   "pct_within_18wk": 79.3,
    "over_52wk": 0,
    "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 8.9,
+   "median_weeks": 9.1,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 16714,
-    "pct_within_18wk": 78.2,
+    "prev_period": "2026-08",
+    "waiting_list": 16489,
+    "pct_within_18wk": 78.5,
     "over_52wk": 0,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 8.5
+    "median_weeks": 8.9
    }
   },
   {
@@ -2419,20 +2398,20 @@
    "name": "EAST CHESHIRE NHS TRUST",
    "region": "North West",
    "type": "general",
-   "waiting_list": 15700,
-   "pct_within_18wk": 61.7,
+   "waiting_list": 15638,
+   "pct_within_18wk": 63.8,
    "over_52wk": 284,
-   "over_65wk": 4,
-   "over_78wk": 3,
+   "over_65wk": 5,
+   "over_78wk": 4,
    "median_weeks": 13.4,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 16489,
-    "pct_within_18wk": 62.4,
-    "over_52wk": 304,
-    "over_65wk": 6,
-    "over_78wk": 2,
-    "median_weeks": 13.2
+    "prev_period": "2026-08",
+    "waiting_list": 15700,
+    "pct_within_18wk": 61.7,
+    "over_52wk": 284,
+    "over_65wk": 4,
+    "over_78wk": 3,
+    "median_weeks": 13.4
    }
   },
   {
@@ -2440,20 +2419,20 @@
    "name": "AIREDALE NHS FOUNDATION TRUST",
    "region": "North East and Yorkshire",
    "type": "general",
-   "waiting_list": 14971,
-   "pct_within_18wk": 71.0,
-   "over_52wk": 40,
+   "waiting_list": 14769,
+   "pct_within_18wk": 75.0,
+   "over_52wk": 39,
    "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 10.4,
+   "median_weeks": 9.9,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 14618,
-    "pct_within_18wk": 71.4,
-    "over_52wk": 46,
+    "prev_period": "2026-08",
+    "waiting_list": 14971,
+    "pct_within_18wk": 71.0,
+    "over_52wk": 40,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 10.0
+    "median_weeks": 10.4
    }
   },
   {
@@ -2461,20 +2440,20 @@
    "name": "THE WALTON CENTRE NHS FOUNDATION TRUST",
    "region": "North West",
    "type": "specialist",
-   "waiting_list": 14722,
-   "pct_within_18wk": 65.9,
-   "over_52wk": 226,
-   "over_65wk": 6,
-   "over_78wk": 2,
-   "median_weeks": 11.6,
+   "waiting_list": 14703,
+   "pct_within_18wk": 67.3,
+   "over_52wk": 236,
+   "over_65wk": 3,
+   "over_78wk": 1,
+   "median_weeks": 11.1,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 14567,
-    "pct_within_18wk": 66.8,
-    "over_52wk": 214,
-    "over_65wk": 9,
-    "over_78wk": 3,
-    "median_weeks": 11.4
+    "prev_period": "2026-08",
+    "waiting_list": 14722,
+    "pct_within_18wk": 65.9,
+    "over_52wk": 226,
+    "over_65wk": 6,
+    "over_78wk": 2,
+    "median_weeks": 11.6
    }
   },
   {
@@ -2482,20 +2461,20 @@
    "name": "THE ROYAL ORTHOPAEDIC HOSPITAL NHS FOUNDATION TRUST",
    "region": "Midlands",
    "type": "specialist",
-   "waiting_list": 13473,
-   "pct_within_18wk": 66.5,
-   "over_52wk": 69,
+   "waiting_list": 13621,
+   "pct_within_18wk": 67.1,
+   "over_52wk": 56,
    "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 12.2,
+   "median_weeks": 12.5,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 13293,
-    "pct_within_18wk": 66.8,
-    "over_52wk": 66,
+    "prev_period": "2026-08",
+    "waiting_list": 13473,
+    "pct_within_18wk": 66.5,
+    "over_52wk": 69,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 12.1
+    "median_weeks": 12.2
    }
   },
   {
@@ -2503,20 +2482,20 @@
    "name": "ISLE OF WIGHT NHS TRUST",
    "region": "South East",
    "type": "general",
-   "waiting_list": 12463,
-   "pct_within_18wk": 65.8,
-   "over_52wk": 80,
-   "over_65wk": 0,
+   "waiting_list": 12636,
+   "pct_within_18wk": 65.9,
+   "over_52wk": 100,
+   "over_65wk": 3,
    "over_78wk": 0,
-   "median_weeks": 11.9,
+   "median_weeks": 11.8,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 12927,
+    "prev_period": "2026-08",
+    "waiting_list": 12463,
     "pct_within_18wk": 65.8,
-    "over_52wk": 81,
+    "over_52wk": 80,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 11.5
+    "median_weeks": 11.9
    }
   },
   {
@@ -2524,20 +2503,20 @@
    "name": "GATESHEAD HEALTH NHS FOUNDATION TRUST",
    "region": "North East and Yorkshire",
    "type": "general",
-   "waiting_list": 11753,
-   "pct_within_18wk": 75.5,
-   "over_52wk": 8,
+   "waiting_list": 11356,
+   "pct_within_18wk": 73.9,
+   "over_52wk": 3,
    "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 9.3,
+   "median_weeks": 9.5,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 11674,
-    "pct_within_18wk": 77.2,
-    "over_52wk": 5,
+    "prev_period": "2026-08",
+    "waiting_list": 11753,
+    "pct_within_18wk": 75.5,
+    "over_52wk": 8,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 8.3
+    "median_weeks": 9.3
    }
   },
   {
@@ -2545,20 +2524,20 @@
    "name": "SHEFFIELD CHILDREN'S NHS FOUNDATION TRUST",
    "region": "North East and Yorkshire",
    "type": "specialist",
-   "waiting_list": 11708,
-   "pct_within_18wk": 71.3,
-   "over_52wk": 122,
-   "over_65wk": 11,
-   "over_78wk": 0,
-   "median_weeks": 10.3,
+   "waiting_list": 11207,
+   "pct_within_18wk": 71.6,
+   "over_52wk": 92,
+   "over_65wk": 6,
+   "over_78wk": 1,
+   "median_weeks": 10.6,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 11619,
-    "pct_within_18wk": 72.7,
-    "over_52wk": 136,
+    "prev_period": "2026-08",
+    "waiting_list": 11708,
+    "pct_within_18wk": 71.3,
+    "over_52wk": 122,
     "over_65wk": 11,
-    "over_78wk": 1,
-    "median_weeks": 9.9
+    "over_78wk": 0,
+    "median_weeks": 10.3
    }
   },
   {
@@ -2566,20 +2545,20 @@
    "name": "LIVERPOOL WOMEN'S NHS FOUNDATION TRUST",
    "region": "North West",
    "type": "specialist",
-   "waiting_list": 11052,
-   "pct_within_18wk": 61.3,
-   "over_52wk": 129,
-   "over_65wk": 17,
+   "waiting_list": 11194,
+   "pct_within_18wk": 63.8,
+   "over_52wk": 85,
+   "over_65wk": 2,
    "over_78wk": 0,
-   "median_weeks": 13.2,
+   "median_weeks": 12.7,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 11643,
-    "pct_within_18wk": 63.9,
-    "over_52wk": 103,
-    "over_65wk": 8,
-    "over_78wk": 1,
-    "median_weeks": 12.8
+    "prev_period": "2026-08",
+    "waiting_list": 11052,
+    "pct_within_18wk": 61.3,
+    "over_52wk": 129,
+    "over_65wk": 17,
+    "over_78wk": 0,
+    "median_weeks": 13.2
    }
   },
   {
@@ -2587,20 +2566,20 @@
    "name": "ROYAL NATIONAL ORTHOPAEDIC HOSPITAL NHS TRUST",
    "region": "London",
    "type": "specialist",
-   "waiting_list": 9854,
-   "pct_within_18wk": 77.7,
-   "over_52wk": 11,
+   "waiting_list": 10983,
+   "pct_within_18wk": 77.0,
+   "over_52wk": 20,
    "over_65wk": 3,
-   "over_78wk": 0,
-   "median_weeks": 8.9,
+   "over_78wk": 1,
+   "median_weeks": 9.2,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 8961,
-    "pct_within_18wk": 77.0,
+    "prev_period": "2026-08",
+    "waiting_list": 9854,
+    "pct_within_18wk": 77.7,
     "over_52wk": 11,
-    "over_65wk": 2,
+    "over_65wk": 3,
     "over_78wk": 0,
-    "median_weeks": 8.5
+    "median_weeks": 8.9
    }
   },
   {
@@ -2608,20 +2587,20 @@
    "name": "GREAT ORMOND STREET HOSPITAL FOR CHILDREN NHS FOUNDATION TRUST",
    "region": "London",
    "type": "specialist",
-   "waiting_list": 8193,
-   "pct_within_18wk": 72.0,
-   "over_52wk": 228,
-   "over_65wk": 87,
-   "over_78wk": 22,
-   "median_weeks": 11.8,
+   "waiting_list": 8461,
+   "pct_within_18wk": 72.6,
+   "over_52wk": 244,
+   "over_65wk": 105,
+   "over_78wk": 34,
+   "median_weeks": 11.6,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 8433,
-    "pct_within_18wk": 72.1,
-    "over_52wk": 236,
-    "over_65wk": 80,
-    "over_78wk": 16,
-    "median_weeks": 10.9
+    "prev_period": "2026-08",
+    "waiting_list": 8193,
+    "pct_within_18wk": 72.0,
+    "over_52wk": 228,
+    "over_65wk": 87,
+    "over_78wk": 22,
+    "median_weeks": 11.8
    }
   },
   {
@@ -2629,20 +2608,20 @@
    "name": "ROYAL PAPWORTH HOSPITAL NHS FOUNDATION TRUST",
    "region": "East of England",
    "type": "specialist",
-   "waiting_list": 5955,
-   "pct_within_18wk": 80.6,
-   "over_52wk": 22,
+   "waiting_list": 5921,
+   "pct_within_18wk": 79.3,
+   "over_52wk": 11,
    "over_65wk": 2,
    "over_78wk": 2,
-   "median_weeks": 8.8,
+   "median_weeks": 9.3,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 5921,
-    "pct_within_18wk": 80.5,
-    "over_52wk": 37,
-    "over_65wk": 5,
+    "prev_period": "2026-08",
+    "waiting_list": 5955,
+    "pct_within_18wk": 80.6,
+    "over_52wk": 22,
+    "over_65wk": 2,
     "over_78wk": 2,
-    "median_weeks": 8.2
+    "median_weeks": 8.8
    }
   },
   {
@@ -2650,20 +2629,20 @@
    "name": "LIVERPOOL HEART AND CHEST HOSPITAL NHS FOUNDATION TRUST",
    "region": "North West",
    "type": "specialist",
-   "waiting_list": 5455,
-   "pct_within_18wk": 80.1,
-   "over_52wk": 18,
-   "over_65wk": 1,
-   "over_78wk": 1,
-   "median_weeks": 8.6,
+   "waiting_list": 5176,
+   "pct_within_18wk": 84.4,
+   "over_52wk": 17,
+   "over_65wk": 0,
+   "over_78wk": 0,
+   "median_weeks": 7.9,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 5591,
-    "pct_within_18wk": 78.1,
-    "over_52wk": 27,
-    "over_65wk": 2,
-    "over_78wk": 0,
-    "median_weeks": 8.5
+    "prev_period": "2026-08",
+    "waiting_list": 5455,
+    "pct_within_18wk": 80.1,
+    "over_52wk": 18,
+    "over_65wk": 1,
+    "over_78wk": 1,
+    "median_weeks": 8.6
    }
   },
   {
@@ -2671,37 +2650,16 @@
    "name": "THE CHRISTIE NHS FOUNDATION TRUST",
    "region": "North West",
    "type": "specialist",
-   "waiting_list": 3144,
-   "pct_within_18wk": 97.4,
+   "waiting_list": 3214,
+   "pct_within_18wk": 97.3,
    "over_52wk": 0,
    "over_65wk": 0,
    "over_78wk": 0,
    "median_weeks": 4.3,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 3368,
-    "pct_within_18wk": 97.3,
-    "over_52wk": 0,
-    "over_65wk": 0,
-    "over_78wk": 0,
-    "median_weeks": 3.8
-   }
-  },
-  {
-   "code": "RPY",
-   "name": "THE ROYAL MARSDEN NHS FOUNDATION TRUST",
-   "region": "London",
-   "type": "specialist",
-   "waiting_list": 1681,
-   "pct_within_18wk": 92.8,
-   "over_52wk": 1,
-   "over_65wk": 0,
-   "over_78wk": 0,
-   "median_weeks": 5.0,
-   "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 1719,
-    "pct_within_18wk": 93.3,
+    "prev_period": "2026-08",
+    "waiting_list": 3144,
+    "pct_within_18wk": 97.4,
     "over_52wk": 0,
     "over_65wk": 0,
     "over_78wk": 0,
@@ -2709,24 +2667,45 @@
    }
   },
   {
+   "code": "RPY",
+   "name": "THE ROYAL MARSDEN NHS FOUNDATION TRUST",
+   "region": "London",
+   "type": "specialist",
+   "waiting_list": 1706,
+   "pct_within_18wk": 92.7,
+   "over_52wk": 3,
+   "over_65wk": 1,
+   "over_78wk": 0,
+   "median_weeks": 4.6,
+   "prev": {
+    "prev_period": "2026-08",
+    "waiting_list": 1681,
+    "pct_within_18wk": 92.8,
+    "over_52wk": 1,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 5.0
+   }
+  },
+  {
    "code": "REN",
    "name": "THE CLATTERBRIDGE CANCER CENTRE NHS FOUNDATION TRUST",
    "region": "North West",
    "type": "specialist",
-   "waiting_list": 889,
-   "pct_within_18wk": 97.2,
-   "over_52wk": 0,
+   "waiting_list": 806,
+   "pct_within_18wk": 96.5,
+   "over_52wk": 1,
    "over_65wk": 0,
    "over_78wk": 0,
-   "median_weeks": 7.2,
+   "median_weeks": 6.6,
    "prev": {
-    "prev_period": "2026-07",
-    "waiting_list": 798,
-    "pct_within_18wk": 97.9,
+    "prev_period": "2026-08",
+    "waiting_list": 889,
+    "pct_within_18wk": 97.2,
     "over_52wk": 0,
     "over_65wk": 0,
     "over_78wk": 0,
-    "median_weeks": 6.4
+    "median_weeks": 7.2
    }
   }
  ],
@@ -2734,76 +2713,77 @@
   {
    "region": "East of England",
    "trust_count": 14,
-   "waiting_list": 824139,
-   "pct_within_18wk": 60.5,
-   "over_52wk": 22264,
-   "over_65wk": 4074,
-   "over_78wk": 774,
-   "median_weeks": 13.8
+   "waiting_list": 812890,
+   "pct_within_18wk": 61.1,
+   "over_52wk": 22094,
+   "over_65wk": 4409,
+   "over_78wk": 937,
+   "median_weeks": 13.7
   },
   {
    "region": "London",
    "trust_count": 21,
-   "waiting_list": 1245628,
-   "pct_within_18wk": 67.4,
-   "over_52wk": 12166,
-   "over_65wk": 1253,
-   "over_78wk": 172,
-   "median_weeks": 11.8
+   "waiting_list": 1237879,
+   "pct_within_18wk": 68.3,
+   "over_52wk": 12266,
+   "over_65wk": 1438,
+   "over_78wk": 230,
+   "median_weeks": 11.7
   },
   {
    "region": "Midlands",
-   "trust_count": 22,
-   "waiting_list": 1154994,
-   "pct_within_18wk": 62.7,
-   "over_52wk": 19276,
-   "over_65wk": 2149,
-   "over_78wk": 1153,
-   "median_weeks": 13.0
+   "trust_count": 21,
+   "waiting_list": 1066324,
+   "pct_within_18wk": 63.7,
+   "over_52wk": 17397,
+   "over_65wk": 2211,
+   "over_78wk": 1124,
+   "median_weeks": 12.9
   },
   {
    "region": "North East and Yorkshire",
    "trust_count": 21,
-   "waiting_list": 930431,
-   "pct_within_18wk": 67.1,
-   "over_52wk": 13918,
-   "over_65wk": 1218,
-   "over_78wk": 91,
-   "median_weeks": 11.6
+   "waiting_list": 929296,
+   "pct_within_18wk": 67.0,
+   "over_52wk": 14372,
+   "over_65wk": 1658,
+   "over_78wk": 145,
+   "median_weeks": 11.8
   },
   {
    "region": "North West",
    "trust_count": 23,
-   "waiting_list": 986171,
-   "pct_within_18wk": 63.5,
-   "over_52wk": 13779,
-   "over_65wk": 652,
-   "over_78wk": 21,
-   "median_weeks": 12.6
+   "waiting_list": 984805,
+   "pct_within_18wk": 64.1,
+   "over_52wk": 14493,
+   "over_65wk": 783,
+   "over_78wk": 23,
+   "median_weeks": 12.7
   },
   {
    "region": "South East",
    "trust_count": 18,
-   "waiting_list": 959937,
-   "pct_within_18wk": 61.9,
-   "over_52wk": 20496,
-   "over_65wk": 1798,
-   "over_78wk": 142,
+   "waiting_list": 957870,
+   "pct_within_18wk": 62.4,
+   "over_52wk": 20993,
+   "over_65wk": 2356,
+   "over_78wk": 161,
    "median_weeks": 13.3
   },
   {
    "region": "South West",
    "trust_count": 10,
-   "waiting_list": 545155,
-   "pct_within_18wk": 66.6,
-   "over_52wk": 6668,
-   "over_65wk": 308,
-   "over_78wk": 22,
-   "median_weeks": 11.8
+   "waiting_list": 548938,
+   "pct_within_18wk": 66.9,
+   "over_52wk": 6742,
+   "over_65wk": 326,
+   "over_78wk": 25,
+   "median_weeks": 12.0
   }
  ],
  "acute_not_reported": [
   "NORTHAMPTON GENERAL HOSPITAL NHS TRUST",
+  "NOTTINGHAM UNIVERSITY HOSPITALS NHS TRUST",
   "SHEFFIELD TEACHING HOSPITALS NHS FOUNDATION TRUST",
   "TORBAY AND SOUTH DEVON NHS FOUNDATION TRUST",
   "UNIVERSITY HOSPITALS PLYMOUTH NHS TRUST"
@@ -3750,6 +3730,41 @@
    "reporting": {
     "stopped": [
      "NORTHAMPTON GENERAL HOSPITAL NHS TRUST"
+    ],
+    "started": []
+   }
+  },
+  {
+   "period": "2026-09",
+   "waiting_list": 6538002,
+   "pct_within_18wk": 64.8,
+   "over_52wk": 108357,
+   "over_65wk": 13181,
+   "over_78wk": 2645,
+   "median_weeks": 12.5,
+   "like_for_like": {
+    "prev_period": "2026-08",
+    "trusts": 128,
+    "curr": {
+     "waiting_list": 6538002,
+     "pct_within_18wk": 64.8,
+     "over_52wk": 108357,
+     "over_65wk": 13181,
+     "over_78wk": 2645,
+     "median_weeks": 12.5
+    },
+    "prev": {
+     "waiting_list": 6560116,
+     "pct_within_18wk": 64.3,
+     "over_52wk": 106163,
+     "over_65wk": 11419,
+     "over_78wk": 2375,
+     "median_weeks": 12.5
+    }
+   },
+   "reporting": {
+    "stopped": [
+     "NOTTINGHAM UNIVERSITY HOSPITALS NHS TRUST"
     ],
     "started": []
    }
@@ -9906,6 +9921,223 @@
      }
     }
    }
+  },
+  {
+   "period": "2026-09",
+   "regions": [
+    {
+     "region": "East of England",
+     "trust_count": 14,
+     "waiting_list": 812890,
+     "pct_within_18wk": 61.1,
+     "over_52wk": 22094,
+     "over_65wk": 4409,
+     "over_78wk": 937,
+     "median_weeks": 13.7
+    },
+    {
+     "region": "London",
+     "trust_count": 21,
+     "waiting_list": 1237879,
+     "pct_within_18wk": 68.3,
+     "over_52wk": 12266,
+     "over_65wk": 1438,
+     "over_78wk": 230,
+     "median_weeks": 11.7
+    },
+    {
+     "region": "Midlands",
+     "trust_count": 21,
+     "waiting_list": 1066324,
+     "pct_within_18wk": 63.7,
+     "over_52wk": 17397,
+     "over_65wk": 2211,
+     "over_78wk": 1124,
+     "median_weeks": 12.9
+    },
+    {
+     "region": "North East and Yorkshire",
+     "trust_count": 21,
+     "waiting_list": 929296,
+     "pct_within_18wk": 67.0,
+     "over_52wk": 14372,
+     "over_65wk": 1658,
+     "over_78wk": 145,
+     "median_weeks": 11.8
+    },
+    {
+     "region": "North West",
+     "trust_count": 23,
+     "waiting_list": 984805,
+     "pct_within_18wk": 64.1,
+     "over_52wk": 14493,
+     "over_65wk": 783,
+     "over_78wk": 23,
+     "median_weeks": 12.7
+    },
+    {
+     "region": "South East",
+     "trust_count": 18,
+     "waiting_list": 957870,
+     "pct_within_18wk": 62.4,
+     "over_52wk": 20993,
+     "over_65wk": 2356,
+     "over_78wk": 161,
+     "median_weeks": 13.3
+    },
+    {
+     "region": "South West",
+     "trust_count": 10,
+     "waiting_list": 548938,
+     "pct_within_18wk": 66.9,
+     "over_52wk": 6742,
+     "over_65wk": 326,
+     "over_78wk": 25,
+     "median_weeks": 12.0
+    }
+   ],
+   "like_for_like": {
+    "East of England": {
+     "prev_period": "2026-08",
+     "trusts": 14,
+     "curr": {
+      "waiting_list": 812890,
+      "pct_within_18wk": 61.1,
+      "over_52wk": 22094,
+      "over_65wk": 4409,
+      "over_78wk": 937,
+      "median_weeks": 13.7
+     },
+     "prev": {
+      "waiting_list": 824139,
+      "pct_within_18wk": 60.5,
+      "over_52wk": 22264,
+      "over_65wk": 4074,
+      "over_78wk": 774,
+      "median_weeks": 13.8
+     }
+    },
+    "London": {
+     "prev_period": "2026-08",
+     "trusts": 21,
+     "curr": {
+      "waiting_list": 1237879,
+      "pct_within_18wk": 68.3,
+      "over_52wk": 12266,
+      "over_65wk": 1438,
+      "over_78wk": 230,
+      "median_weeks": 11.7
+     },
+     "prev": {
+      "waiting_list": 1245628,
+      "pct_within_18wk": 67.4,
+      "over_52wk": 12166,
+      "over_65wk": 1253,
+      "over_78wk": 172,
+      "median_weeks": 11.8
+     }
+    },
+    "Midlands": {
+     "prev_period": "2026-08",
+     "trusts": 21,
+     "curr": {
+      "waiting_list": 1066324,
+      "pct_within_18wk": 63.7,
+      "over_52wk": 17397,
+      "over_65wk": 2211,
+      "over_78wk": 1124,
+      "median_weeks": 12.9
+     },
+     "prev": {
+      "waiting_list": 1068655,
+      "pct_within_18wk": 62.8,
+      "over_52wk": 16872,
+      "over_65wk": 2116,
+      "over_78wk": 1153,
+      "median_weeks": 13.0
+     }
+    },
+    "North East and Yorkshire": {
+     "prev_period": "2026-08",
+     "trusts": 21,
+     "curr": {
+      "waiting_list": 929296,
+      "pct_within_18wk": 67.0,
+      "over_52wk": 14372,
+      "over_65wk": 1658,
+      "over_78wk": 145,
+      "median_weeks": 11.8
+     },
+     "prev": {
+      "waiting_list": 930431,
+      "pct_within_18wk": 67.1,
+      "over_52wk": 13918,
+      "over_65wk": 1218,
+      "over_78wk": 91,
+      "median_weeks": 11.6
+     }
+    },
+    "North West": {
+     "prev_period": "2026-08",
+     "trusts": 23,
+     "curr": {
+      "waiting_list": 984805,
+      "pct_within_18wk": 64.1,
+      "over_52wk": 14493,
+      "over_65wk": 783,
+      "over_78wk": 23,
+      "median_weeks": 12.7
+     },
+     "prev": {
+      "waiting_list": 986171,
+      "pct_within_18wk": 63.5,
+      "over_52wk": 13779,
+      "over_65wk": 652,
+      "over_78wk": 21,
+      "median_weeks": 12.6
+     }
+    },
+    "South East": {
+     "prev_period": "2026-08",
+     "trusts": 18,
+     "curr": {
+      "waiting_list": 957870,
+      "pct_within_18wk": 62.4,
+      "over_52wk": 20993,
+      "over_65wk": 2356,
+      "over_78wk": 161,
+      "median_weeks": 13.3
+     },
+     "prev": {
+      "waiting_list": 959937,
+      "pct_within_18wk": 61.9,
+      "over_52wk": 20496,
+      "over_65wk": 1798,
+      "over_78wk": 142,
+      "median_weeks": 13.3
+     }
+    },
+    "South West": {
+     "prev_period": "2026-08",
+     "trusts": 10,
+     "curr": {
+      "waiting_list": 548938,
+      "pct_within_18wk": 66.9,
+      "over_52wk": 6742,
+      "over_65wk": 326,
+      "over_78wk": 25,
+      "median_weeks": 12.0
+     },
+     "prev": {
+      "waiting_list": 545155,
+      "pct_within_18wk": 66.6,
+      "over_52wk": 6668,
+      "over_65wk": 308,
+      "over_78wk": 22,
+      "median_weeks": 11.8
+     }
+    }
+   }
   }
  ],
  "trust_history": {
@@ -10170,6 +10402,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 12.8
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 166486,
+    "pct_within_18wk": 65.0,
+    "over_52wk": 1404,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 12.7
    }
   ],
   "RAJ": [
@@ -10433,6 +10674,15 @@
     "over_65wk": 3373,
     "over_78wk": 668,
     "median_weeks": 17.8
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 162041,
+    "pct_within_18wk": 51.6,
+    "over_52wk": 13133,
+    "over_65wk": 3612,
+    "over_78wk": 814,
+    "median_weeks": 17.2
    }
   ],
   "RAL": [
@@ -10696,6 +10946,15 @@
     "over_65wk": 101,
     "over_78wk": 5,
     "median_weeks": 13.2
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 133429,
+    "pct_within_18wk": 65.7,
+    "over_52wk": 1166,
+    "over_65wk": 95,
+    "over_78wk": 9,
+    "median_weeks": 12.5
    }
   ],
   "RM3": [
@@ -10959,6 +11218,15 @@
     "over_65wk": 286,
     "over_78wk": 2,
     "median_weeks": 15.5
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 138013,
+    "pct_within_18wk": 55.1,
+    "over_52wk": 4739,
+    "over_65wk": 439,
+    "over_78wk": 4,
+    "median_weeks": 15.9
    }
   ],
   "R1H": [
@@ -11222,6 +11490,15 @@
     "over_65wk": 95,
     "over_78wk": 0,
     "median_weeks": 12.5
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 123589,
+    "pct_within_18wk": 64.6,
+    "over_52wk": 1097,
+    "over_65wk": 149,
+    "over_78wk": 0,
+    "median_weeks": 12.6
    }
   ],
   "RYR": [
@@ -11485,6 +11762,15 @@
     "over_65wk": 594,
     "over_78wk": 14,
     "median_weeks": 16.9
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 118874,
+    "pct_within_18wk": 52.0,
+    "over_52wk": 6415,
+    "over_65wk": 946,
+    "over_78wk": 14,
+    "median_weeks": 17.0
    }
   ],
   "RWE": [
@@ -11748,6 +12034,15 @@
     "over_65wk": 62,
     "over_78wk": 0,
     "median_weeks": 14.0
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 114052,
+    "pct_within_18wk": 61.5,
+    "over_52wk": 2526,
+    "over_65wk": 51,
+    "over_78wk": 0,
+    "median_weeks": 13.7
    }
   ],
   "RJ1": [
@@ -12011,6 +12306,15 @@
     "over_65wk": 163,
     "over_78wk": 66,
     "median_weeks": 11.3
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 107635,
+    "pct_within_18wk": 67.3,
+    "over_52wk": 1066,
+    "over_65wk": 162,
+    "over_78wk": 69,
+    "median_weeks": 11.6
    }
   ],
   "RTG": [
@@ -12274,6 +12578,15 @@
     "over_65wk": 66,
     "over_78wk": 6,
     "median_weeks": 13.6
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 102720,
+    "pct_within_18wk": 61.5,
+    "over_52wk": 2278,
+    "over_65wk": 98,
+    "over_78wk": 6,
+    "median_weeks": 13.3
    }
   ],
   "RDE": [
@@ -12537,6 +12850,15 @@
     "over_65wk": 21,
     "over_78wk": 9,
     "median_weeks": 13.5
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 93050,
+    "pct_within_18wk": 61.8,
+    "over_52wk": 348,
+    "over_65wk": 27,
+    "over_78wk": 22,
+    "median_weeks": 13.3
    }
   ],
   "RRK": [
@@ -12800,6 +13122,15 @@
     "over_65wk": 6,
     "over_78wk": 0,
     "median_weeks": 11.7
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 96445,
+    "pct_within_18wk": 69.0,
+    "over_52wk": 227,
+    "over_65wk": 16,
+    "over_78wk": 0,
+    "median_weeks": 11.3
    }
   ],
   "RTH": [
@@ -13063,6 +13394,15 @@
     "over_65wk": 54,
     "over_78wk": 1,
     "median_weeks": 13.3
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 89488,
+    "pct_within_18wk": 63.9,
+    "over_52wk": 1731,
+    "over_65wk": 78,
+    "over_78wk": 2,
+    "median_weeks": 12.9
    }
   ],
   "RJZ": [
@@ -13326,6 +13666,15 @@
     "over_65wk": 340,
     "over_78wk": 19,
     "median_weeks": 12.3
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 88570,
+    "pct_within_18wk": 67.6,
+    "over_52wk": 2091,
+    "over_65wk": 364,
+    "over_78wk": 28,
+    "median_weeks": 12.1
    }
   ],
   "RR8": [
@@ -13589,6 +13938,15 @@
     "over_65wk": 358,
     "over_78wk": 66,
     "median_weeks": 11.0
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 87847,
+    "pct_within_18wk": 66.4,
+    "over_52wk": 1650,
+    "over_65wk": 444,
+    "over_78wk": 101,
+    "median_weeks": 11.4
    }
   ],
   "RTD": [
@@ -13852,6 +14210,15 @@
     "over_65wk": 27,
     "over_78wk": 1,
     "median_weeks": 10.3
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 88160,
+    "pct_within_18wk": 72.6,
+    "over_52wk": 767,
+    "over_65wk": 43,
+    "over_78wk": 2,
+    "median_weeks": 10.2
    }
   ],
   "RWA": [
@@ -14115,6 +14482,15 @@
     "over_65wk": 355,
     "over_78wk": 7,
     "median_weeks": 15.6
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 86302,
+    "pct_within_18wk": 54.7,
+    "over_52wk": 3585,
+    "over_65wk": 463,
+    "over_78wk": 15,
+    "median_weeks": 15.8
    }
   ],
   "RC9": [
@@ -14378,6 +14754,15 @@
     "over_65wk": 88,
     "over_78wk": 4,
     "median_weeks": 14.4
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 86519,
+    "pct_within_18wk": 59.6,
+    "over_52wk": 1431,
+    "over_65wk": 130,
+    "over_78wk": 8,
+    "median_weeks": 14.6
    }
   ],
   "RBN": [
@@ -14639,6 +15024,15 @@
     "pct_within_18wk": 64.9,
     "over_52wk": 1809,
     "over_65wk": 39,
+    "over_78wk": 2,
+    "median_weeks": 12.1
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 86201,
+    "pct_within_18wk": 65.8,
+    "over_52wk": 1928,
+    "over_65wk": 59,
     "over_78wk": 2,
     "median_weeks": 12.1
    }
@@ -14904,6 +15298,15 @@
     "over_65wk": 1,
     "over_78wk": 0,
     "median_weeks": 10.8
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 83658,
+    "pct_within_18wk": 70.1,
+    "over_52wk": 18,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 11.2
    }
   ],
   "RVV": [
@@ -15167,6 +15570,15 @@
     "over_65wk": 291,
     "over_78wk": 33,
     "median_weeks": 15.7
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 82997,
+    "pct_within_18wk": 55.9,
+    "over_52wk": 2389,
+    "over_65wk": 337,
+    "over_78wk": 35,
+    "median_weeks": 15.6
    }
   ],
   "R1K": [
@@ -15430,6 +15842,15 @@
     "over_65wk": 2,
     "over_78wk": 0,
     "median_weeks": 11.9
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 81205,
+    "pct_within_18wk": 68.4,
+    "over_52wk": 512,
+    "over_65wk": 3,
+    "over_78wk": 0,
+    "median_weeks": 12.1
    }
   ],
   "RRV": [
@@ -15693,6 +16114,15 @@
     "over_65wk": 15,
     "over_78wk": 1,
     "median_weeks": 12.0
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 81253,
+    "pct_within_18wk": 66.7,
+    "over_52wk": 840,
+    "over_65wk": 20,
+    "over_78wk": 2,
+    "median_weeks": 11.8
    }
   ],
   "RX1": [
@@ -16219,6 +16649,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 13.9
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 72563,
+    "pct_within_18wk": 60.4,
+    "over_52wk": 488,
+    "over_65wk": 3,
+    "over_78wk": 1,
+    "median_weeks": 14.0
    }
   ],
   "RH8": [
@@ -16482,6 +16921,15 @@
     "over_65wk": 178,
     "over_78wk": 11,
     "median_weeks": 12.7
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 74461,
+    "pct_within_18wk": 63.0,
+    "over_52wk": 1852,
+    "over_65wk": 212,
+    "over_78wk": 16,
+    "median_weeks": 12.8
    }
   ],
   "RJE": [
@@ -16745,6 +17193,15 @@
     "over_65wk": 79,
     "over_78wk": 4,
     "median_weeks": 13.8
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 75301,
+    "pct_within_18wk": 61.2,
+    "over_52wk": 1977,
+    "over_65wk": 120,
+    "over_78wk": 5,
+    "median_weeks": 13.3
    }
   ],
   "RQM": [
@@ -17006,6 +17463,15 @@
     "pct_within_18wk": 69.3,
     "over_52wk": 846,
     "over_65wk": 1,
+    "over_78wk": 0,
+    "median_weeks": 11.9
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 72443,
+    "pct_within_18wk": 70.1,
+    "over_52wk": 789,
+    "over_65wk": 3,
     "over_78wk": 0,
     "median_weeks": 11.9
    }
@@ -17271,6 +17737,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 12.8
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 71509,
+    "pct_within_18wk": 64.7,
+    "over_52wk": 823,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 12.5
    }
   ],
   "RJ7": [
@@ -17534,6 +18009,15 @@
     "over_65wk": 54,
     "over_78wk": 4,
     "median_weeks": 12.6
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 71496,
+    "pct_within_18wk": 64.3,
+    "over_52wk": 905,
+    "over_65wk": 72,
+    "over_78wk": 17,
+    "median_weeks": 12.7
    }
   ],
   "RWD": [
@@ -17795,6 +18279,15 @@
     "pct_within_18wk": 63.0,
     "over_52wk": 1089,
     "over_65wk": 4,
+    "over_78wk": 0,
+    "median_weeks": 13.0
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 68466,
+    "pct_within_18wk": 64.2,
+    "over_52wk": 1478,
+    "over_65wk": 33,
     "over_78wk": 0,
     "median_weeks": 13.0
    }
@@ -18060,6 +18553,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 10.9
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 67851,
+    "pct_within_18wk": 71.0,
+    "over_52wk": 52,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 11.2
    }
   ],
   "RKB": [
@@ -18323,6 +18825,15 @@
     "over_65wk": 37,
     "over_78wk": 0,
     "median_weeks": 14.4
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 66391,
+    "pct_within_18wk": 60.8,
+    "over_52wk": 1879,
+    "over_65wk": 30,
+    "over_78wk": 0,
+    "median_weeks": 13.7
    }
   ],
   "RF4": [
@@ -18577,6 +19088,15 @@
     "over_65wk": 163,
     "over_78wk": 32,
     "median_weeks": 11.8
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 64458,
+    "pct_within_18wk": 69.7,
+    "over_52wk": 1237,
+    "over_65wk": 188,
+    "over_78wk": 26,
+    "median_weeks": 11.5
    }
   ],
   "R0D": [
@@ -18837,6 +19357,15 @@
     "waiting_list": 67260,
     "pct_within_18wk": 66.0,
     "over_52wk": 657,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 12.4
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 66984,
+    "pct_within_18wk": 67.3,
+    "over_52wk": 582,
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 12.4
@@ -19103,6 +19632,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 14.4
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 66157,
+    "pct_within_18wk": 60.6,
+    "over_52wk": 611,
+    "over_65wk": 2,
+    "over_78wk": 0,
+    "median_weeks": 14.3
    }
   ],
   "RM1": [
@@ -19366,6 +19904,15 @@
     "over_65wk": 180,
     "over_78wk": 10,
     "median_weeks": 13.2
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 62714,
+    "pct_within_18wk": 64.4,
+    "over_52wk": 1624,
+    "over_65wk": 201,
+    "over_78wk": 9,
+    "median_weeks": 12.4
    }
   ],
   "RDU": [
@@ -19629,6 +20176,15 @@
     "over_65wk": 10,
     "over_78wk": 1,
     "median_weeks": 13.2
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 69978,
+    "pct_within_18wk": 61.5,
+    "over_52wk": 1143,
+    "over_65wk": 37,
+    "over_78wk": 0,
+    "median_weeks": 13.1
    }
   ],
   "RHM": [
@@ -19892,6 +20448,15 @@
     "over_65wk": 224,
     "over_78wk": 16,
     "median_weeks": 12.4
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 64802,
+    "pct_within_18wk": 64.0,
+    "over_52wk": 1680,
+    "over_65wk": 230,
+    "over_78wk": 6,
+    "median_weeks": 12.5
    }
   ],
   "REM": [
@@ -20155,6 +20720,15 @@
     "over_65wk": 6,
     "over_78wk": 0,
     "median_weeks": 12.9
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 62794,
+    "pct_within_18wk": 63.0,
+    "over_52wk": 823,
+    "over_65wk": 13,
+    "over_78wk": 0,
+    "median_weeks": 13.1
    }
   ],
   "R0B": [
@@ -20413,6 +20987,15 @@
    {
     "period": "2026-08",
     "waiting_list": 61738,
+    "pct_within_18wk": 74.9,
+    "over_52wk": 0,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 9.6
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 60482,
     "pct_within_18wk": 74.9,
     "over_52wk": 0,
     "over_65wk": 0,
@@ -20681,6 +21264,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 14.2
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 62860,
+    "pct_within_18wk": 61.1,
+    "over_52wk": 354,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 13.9
    }
   ],
   "RGT": [
@@ -20944,6 +21536,15 @@
     "over_65wk": 53,
     "over_78wk": 8,
     "median_weeks": 11.7
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 59350,
+    "pct_within_18wk": 66.3,
+    "over_52wk": 657,
+    "over_65wk": 59,
+    "over_78wk": 14,
+    "median_weeks": 11.6
    }
   ],
   "RWP": [
@@ -21207,6 +21808,15 @@
     "over_65wk": 6,
     "over_78wk": 3,
     "median_weeks": 13.8
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 59638,
+    "pct_within_18wk": 61.8,
+    "over_52wk": 661,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 13.6
    }
   ],
   "RHU": [
@@ -21470,6 +22080,15 @@
     "over_65wk": 105,
     "over_78wk": 4,
     "median_weeks": 13.5
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 56598,
+    "pct_within_18wk": 61.2,
+    "over_52wk": 1802,
+    "over_65wk": 66,
+    "over_78wk": 1,
+    "median_weeks": 13.6
    }
   ],
   "RTR": [
@@ -21733,6 +22352,15 @@
     "over_65wk": 11,
     "over_78wk": 0,
     "median_weeks": 12.2
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 57587,
+    "pct_within_18wk": 65.8,
+    "over_52wk": 805,
+    "over_65wk": 19,
+    "over_78wk": 0,
+    "median_weeks": 12.5
    }
   ],
   "RVR": [
@@ -21996,6 +22624,15 @@
     "over_65wk": 31,
     "over_78wk": 9,
     "median_weeks": 11.9
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 57155,
+    "pct_within_18wk": 67.0,
+    "over_52wk": 569,
+    "over_65wk": 45,
+    "over_78wk": 15,
+    "median_weeks": 12.1
    }
   ],
   "RCB": [
@@ -22259,6 +22896,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 14.5
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 58327,
+    "pct_within_18wk": 57.8,
+    "over_52wk": 1294,
+    "over_65wk": 5,
+    "over_78wk": 0,
+    "median_weeks": 14.8
    }
   ],
   "RXF": [
@@ -22522,6 +23168,15 @@
     "over_65wk": 16,
     "over_78wk": 0,
     "median_weeks": 11.7
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 59118,
+    "pct_within_18wk": 65.3,
+    "over_52wk": 416,
+    "over_65wk": 27,
+    "over_78wk": 0,
+    "median_weeks": 12.1
    }
   ],
   "RXC": [
@@ -22785,6 +23440,15 @@
     "over_65wk": 1,
     "over_78wk": 0,
     "median_weeks": 11.3
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 55350,
+    "pct_within_18wk": 69.0,
+    "over_52wk": 317,
+    "over_65wk": 3,
+    "over_78wk": 2,
+    "median_weeks": 11.2
    }
   ],
   "RTK": [
@@ -23048,6 +23712,15 @@
     "over_65wk": 119,
     "over_78wk": 11,
     "median_weeks": 13.9
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 54090,
+    "pct_within_18wk": 62.4,
+    "over_52wk": 1091,
+    "over_65wk": 152,
+    "over_78wk": 24,
+    "median_weeks": 13.6
    }
   ],
   "RP5": [
@@ -23310,6 +23983,15 @@
     "over_52wk": 1553,
     "over_65wk": 210,
     "over_78wk": 13,
+    "median_weeks": 12.4
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 55832,
+    "pct_within_18wk": 64.2,
+    "over_52wk": 1473,
+    "over_65wk": 274,
+    "over_78wk": 20,
     "median_weeks": 12.4
    }
   ],
@@ -23574,6 +24256,15 @@
     "over_65wk": 67,
     "over_78wk": 2,
     "median_weeks": 12.0
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 55859,
+    "pct_within_18wk": 63.9,
+    "over_52wk": 1764,
+    "over_65wk": 58,
+    "over_78wk": 3,
+    "median_weeks": 12.2
    }
   ],
   "RXP": [
@@ -23837,6 +24528,15 @@
     "over_65wk": 66,
     "over_78wk": 1,
     "median_weeks": 12.3
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 55102,
+    "pct_within_18wk": 64.7,
+    "over_52wk": 1454,
+    "over_65wk": 121,
+    "over_78wk": 3,
+    "median_weeks": 12.1
    }
   ],
   "RTP": [
@@ -24100,6 +24800,15 @@
     "over_65wk": 186,
     "over_78wk": 35,
     "median_weeks": 12.6
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 52867,
+    "pct_within_18wk": 64.7,
+    "over_52wk": 1457,
+    "over_65wk": 275,
+    "over_78wk": 49,
+    "median_weeks": 12.5
    }
   ],
   "RWF": [
@@ -24363,6 +25072,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 11.5
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 49490,
+    "pct_within_18wk": 70.0,
+    "over_52wk": 9,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 11.2
    }
   ],
   "RN5": [
@@ -24625,6 +25343,15 @@
     "over_52wk": 1188,
     "over_65wk": 86,
     "over_78wk": 5,
+    "median_weeks": 12.8
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 50362,
+    "pct_within_18wk": 63.3,
+    "over_52wk": 872,
+    "over_65wk": 108,
+    "over_78wk": 8,
     "median_weeks": 12.8
    }
   ],
@@ -24889,6 +25616,15 @@
     "over_65wk": 1,
     "over_78wk": 0,
     "median_weeks": 12.9
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 49167,
+    "pct_within_18wk": 63.3,
+    "over_52wk": 32,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 12.7
    }
   ],
   "RXQ": [
@@ -25152,6 +25888,15 @@
     "over_65wk": 3,
     "over_78wk": 2,
     "median_weeks": 13.5
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 47031,
+    "pct_within_18wk": 64.2,
+    "over_52wk": 50,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 13.4
    }
   ],
   "RXR": [
@@ -25415,6 +26160,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 9.4
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 47124,
+    "pct_within_18wk": 72.6,
+    "over_52wk": 188,
+    "over_65wk": 1,
+    "over_78wk": 0,
+    "median_weeks": 9.3
    }
   ],
   "RWG": [
@@ -25678,6 +26432,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 12.0
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 44687,
+    "pct_within_18wk": 70.2,
+    "over_52wk": 425,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 11.9
    }
   ],
   "REF": [
@@ -25941,6 +26704,15 @@
     "over_65wk": 27,
     "over_78wk": 5,
     "median_weeks": 9.7
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 45093,
+    "pct_within_18wk": 71.8,
+    "over_52wk": 419,
+    "over_65wk": 31,
+    "over_78wk": 4,
+    "median_weeks": 10.0
    }
   ],
   "RBL": [
@@ -26204,6 +26976,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 12.0
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 43450,
+    "pct_within_18wk": 65.9,
+    "over_52wk": 242,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 11.9
    }
   ],
   "RN3": [
@@ -26467,6 +27248,15 @@
     "over_65wk": 18,
     "over_78wk": 4,
     "median_weeks": 15.0
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 42329,
+    "pct_within_18wk": 58.3,
+    "over_52wk": 921,
+    "over_65wk": 6,
+    "over_78wk": 1,
+    "median_weeks": 14.8
    }
   ],
   "RJL": [
@@ -26730,6 +27520,15 @@
     "over_65wk": 163,
     "over_78wk": 3,
     "median_weeks": 14.3
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 43343,
+    "pct_within_18wk": 58.7,
+    "over_52wk": 1622,
+    "over_65wk": 252,
+    "over_78wk": 2,
+    "median_weeks": 14.4
    }
   ],
   "RP6": [
@@ -26993,6 +27792,15 @@
     "over_65wk": 10,
     "over_78wk": 2,
     "median_weeks": 7.7
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 41919,
+    "pct_within_18wk": 85.6,
+    "over_52wk": 13,
+    "over_65wk": 3,
+    "over_78wk": 1,
+    "median_weeks": 7.4
    }
   ],
   "RD1": [
@@ -27256,6 +28064,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 11.6
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 42853,
+    "pct_within_18wk": 69.6,
+    "over_52wk": 142,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 12.2
    }
   ],
   "RXL": [
@@ -27519,6 +28336,15 @@
     "over_65wk": 203,
     "over_78wk": 4,
     "median_weeks": 14.5
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 41772,
+    "pct_within_18wk": 59.4,
+    "over_52wk": 1056,
+    "over_65wk": 194,
+    "over_78wk": 10,
+    "median_weeks": 14.1
    }
   ],
   "RNS": [
@@ -28036,6 +28862,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 9.7
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 39559,
+    "pct_within_18wk": 83.6,
+    "over_52wk": 0,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 9.6
    }
   ],
   "RQW": [
@@ -28299,6 +29134,15 @@
     "over_65wk": 54,
     "over_78wk": 36,
     "median_weeks": 12.3
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 40699,
+    "pct_within_18wk": 66.7,
+    "over_52wk": 408,
+    "over_65wk": 49,
+    "over_78wk": 25,
+    "median_weeks": 12.4
    }
   ],
   "RD8": [
@@ -28562,6 +29406,15 @@
     "over_65wk": 47,
     "over_78wk": 10,
     "median_weeks": 14.4
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 39673,
+    "pct_within_18wk": 59.1,
+    "over_52wk": 951,
+    "over_65wk": 47,
+    "over_78wk": 10,
+    "median_weeks": 14.5
    }
   ],
   "RJ6": [
@@ -28825,6 +29678,15 @@
     "over_65wk": 98,
     "over_78wk": 2,
     "median_weeks": 10.7
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 35289,
+    "pct_within_18wk": 73.1,
+    "over_52wk": 451,
+    "over_65wk": 104,
+    "over_78wk": 5,
+    "median_weeks": 10.4
    }
   ],
   "RMC": [
@@ -29088,6 +29950,15 @@
     "over_65wk": 19,
     "over_78wk": 0,
     "median_weeks": 13.3
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 37744,
+    "pct_within_18wk": 61.5,
+    "over_52wk": 451,
+    "over_65wk": 18,
+    "over_78wk": 0,
+    "median_weeks": 13.5
    }
   ],
   "RTX": [
@@ -29351,6 +30222,15 @@
     "over_65wk": 10,
     "over_78wk": 1,
     "median_weeks": 10.8
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 35859,
+    "pct_within_18wk": 69.2,
+    "over_52wk": 580,
+    "over_65wk": 15,
+    "over_78wk": 0,
+    "median_weeks": 11.0
    }
   ],
   "RNN": [
@@ -29611,6 +30491,15 @@
     "waiting_list": 35297,
     "pct_within_18wk": 65.4,
     "over_52wk": 360,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 12.3
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 35391,
+    "pct_within_18wk": 66.1,
+    "over_52wk": 325,
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 12.3
@@ -29877,6 +30766,15 @@
     "over_65wk": 2,
     "over_78wk": 0,
     "median_weeks": 14.8
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 35465,
+    "pct_within_18wk": 59.0,
+    "over_52wk": 606,
+    "over_65wk": 2,
+    "over_78wk": 0,
+    "median_weeks": 14.8
    }
   ],
   "RHW": [
@@ -30140,6 +31038,15 @@
     "over_65wk": 4,
     "over_78wk": 0,
     "median_weeks": 10.1
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 33360,
+    "pct_within_18wk": 82.7,
+    "over_52wk": 18,
+    "over_65wk": 1,
+    "over_78wk": 0,
+    "median_weeks": 9.9
    }
   ],
   "RWY": [
@@ -30403,6 +31310,15 @@
     "over_65wk": 1,
     "over_78wk": 0,
     "median_weeks": 9.6
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 35191,
+    "pct_within_18wk": 75.7,
+    "over_52wk": 23,
+    "over_65wk": 1,
+    "over_78wk": 0,
+    "median_weeks": 9.8
    }
   ],
   "RWJ": [
@@ -30664,6 +31580,15 @@
     "pct_within_18wk": 62.3,
     "over_52wk": 155,
     "over_65wk": 1,
+    "over_78wk": 0,
+    "median_weeks": 12.9
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 34143,
+    "pct_within_18wk": 62.8,
+    "over_52wk": 151,
+    "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 12.9
    }
@@ -30929,6 +31854,15 @@
     "over_65wk": 1,
     "over_78wk": 0,
     "median_weeks": 12.4
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 32766,
+    "pct_within_18wk": 64.5,
+    "over_52wk": 487,
+    "over_65wk": 2,
+    "over_78wk": 0,
+    "median_weeks": 12.4
    }
   ],
   "RGR": [
@@ -31192,6 +32126,15 @@
     "over_65wk": 65,
     "over_78wk": 9,
     "median_weeks": 12.3
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 33711,
+    "pct_within_18wk": 65.1,
+    "over_52wk": 671,
+    "over_65wk": 94,
+    "over_78wk": 13,
+    "median_weeks": 12.7
    }
   ],
   "RAS": [
@@ -31455,6 +32398,15 @@
     "over_65wk": 7,
     "over_78wk": 1,
     "median_weeks": 12.6
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 32695,
+    "pct_within_18wk": 64.9,
+    "over_52wk": 108,
+    "over_65wk": 6,
+    "over_78wk": 1,
+    "median_weeks": 12.4
    }
   ],
   "RJR": [
@@ -31718,6 +32670,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 11.4
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 31490,
+    "pct_within_18wk": 69.8,
+    "over_52wk": 109,
+    "over_65wk": 1,
+    "over_78wk": 0,
+    "median_weeks": 11.5
    }
   ],
   "RAE": [
@@ -31981,6 +32942,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 11.4
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 31159,
+    "pct_within_18wk": 69.1,
+    "over_52wk": 39,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 11.3
    }
   ],
   "RJC": [
@@ -32244,6 +33214,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 11.9
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 31719,
+    "pct_within_18wk": 66.8,
+    "over_52wk": 430,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 12.1
    }
   ],
   "RNQ": [
@@ -32507,6 +33486,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 11.9
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 31691,
+    "pct_within_18wk": 67.1,
+    "over_52wk": 108,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 12.5
    }
   ],
   "RGP": [
@@ -32770,6 +33758,15 @@
     "over_65wk": 137,
     "over_78wk": 10,
     "median_weeks": 13.6
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 30520,
+    "pct_within_18wk": 61.8,
+    "over_52wk": 645,
+    "over_65wk": 105,
+    "over_78wk": 12,
+    "median_weeks": 13.7
    }
   ],
   "RN7": [
@@ -33033,6 +34030,15 @@
     "over_65wk": 57,
     "over_78wk": 0,
     "median_weeks": 13.5
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 30017,
+    "pct_within_18wk": 63.0,
+    "over_52wk": 709,
+    "over_65wk": 65,
+    "over_78wk": 2,
+    "median_weeks": 13.1
    }
   ],
   "RNZ": [
@@ -33296,6 +34302,15 @@
     "over_65wk": 8,
     "over_78wk": 0,
     "median_weeks": 11.7
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 32846,
+    "pct_within_18wk": 70.7,
+    "over_52wk": 127,
+    "over_65wk": 3,
+    "over_78wk": 1,
+    "median_weeks": 11.6
    }
   ],
   "RFR": [
@@ -33559,6 +34574,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 11.6
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 29840,
+    "pct_within_18wk": 68.6,
+    "over_52wk": 385,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 11.9
    }
   ],
   "RBK": [
@@ -33822,6 +34846,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 10.3
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 29475,
+    "pct_within_18wk": 73.2,
+    "over_52wk": 1,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 10.1
    }
   ],
   "RLQ": [
@@ -34085,6 +35118,15 @@
     "over_65wk": 361,
     "over_78wk": 190,
     "median_weeks": 13.0
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 28001,
+    "pct_within_18wk": 61.9,
+    "over_52wk": 827,
+    "over_65wk": 402,
+    "over_78wk": 216,
+    "median_weeks": 13.8
    }
   ],
   "RFS": [
@@ -34348,6 +35390,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 12.6
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 26494,
+    "pct_within_18wk": 63.6,
+    "over_52wk": 460,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 12.8
    }
   ],
   "RQX": [
@@ -34611,6 +35662,15 @@
     "over_65wk": 1,
     "over_78wk": 0,
     "median_weeks": 9.7
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 24684,
+    "pct_within_18wk": 74.9,
+    "over_52wk": 103,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 9.3
    }
   ],
   "RCX": [
@@ -34874,6 +35934,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 12.0
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 22678,
+    "pct_within_18wk": 65.6,
+    "over_52wk": 111,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 12.4
    }
   ],
   "RVW": [
@@ -35137,6 +36206,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 11.1
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 24284,
+    "pct_within_18wk": 69.5,
+    "over_52wk": 229,
+    "over_65wk": 1,
+    "over_78wk": 0,
+    "median_weeks": 11.1
    }
   ],
   "RBD": [
@@ -35397,6 +36475,15 @@
     "waiting_list": 23100,
     "pct_within_18wk": 60.3,
     "over_52wk": 370,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 14.1
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 22624,
+    "pct_within_18wk": 60.4,
+    "over_52wk": 404,
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 14.1
@@ -35663,6 +36750,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 11.6
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 22341,
+    "pct_within_18wk": 69.2,
+    "over_52wk": 108,
+    "over_65wk": 6,
+    "over_78wk": 5,
+    "median_weeks": 11.2
    }
   ],
   "RQ3": [
@@ -35926,6 +37022,15 @@
     "over_65wk": 2,
     "over_78wk": 1,
     "median_weeks": 12.2
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 23216,
+    "pct_within_18wk": 64.8,
+    "over_52wk": 123,
+    "over_65wk": 1,
+    "over_78wk": 0,
+    "median_weeks": 12.7
    }
   ],
   "RPC": [
@@ -36189,6 +37294,15 @@
     "over_65wk": 41,
     "over_78wk": 13,
     "median_weeks": 14.3
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 22365,
+    "pct_within_18wk": 60.3,
+    "over_52wk": 257,
+    "over_65wk": 36,
+    "over_78wk": 15,
+    "median_weeks": 14.5
    }
   ],
   "RFF": [
@@ -36452,6 +37566,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 11.2
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 21108,
+    "pct_within_18wk": 69.1,
+    "over_52wk": 151,
+    "over_65wk": 2,
+    "over_78wk": 1,
+    "median_weeks": 11.4
    }
   ],
   "RCD": [
@@ -36715,6 +37838,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 10.6
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 23332,
+    "pct_within_18wk": 71.9,
+    "over_52wk": 20,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 10.3
    }
   ],
   "RLT": [
@@ -36978,6 +38110,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 12.5
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 18575,
+    "pct_within_18wk": 65.2,
+    "over_52wk": 107,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 11.9
    }
   ],
   "RBS": [
@@ -37241,6 +38382,15 @@
     "over_65wk": 4,
     "over_78wk": 0,
     "median_weeks": 12.4
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 17116,
+    "pct_within_18wk": 67.1,
+    "over_52wk": 175,
+    "over_65wk": 11,
+    "over_78wk": 1,
+    "median_weeks": 12.3
    }
   ],
   "RMP": [
@@ -37504,6 +38654,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 8.9
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 15914,
+    "pct_within_18wk": 79.3,
+    "over_52wk": 0,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 9.1
    }
   ],
   "RJN": [
@@ -37766,6 +38925,15 @@
     "over_52wk": 284,
     "over_65wk": 4,
     "over_78wk": 3,
+    "median_weeks": 13.4
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 15638,
+    "pct_within_18wk": 63.8,
+    "over_52wk": 284,
+    "over_65wk": 5,
+    "over_78wk": 4,
     "median_weeks": 13.4
    }
   ],
@@ -38030,6 +39198,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 10.4
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 14769,
+    "pct_within_18wk": 75.0,
+    "over_52wk": 39,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 9.9
    }
   ],
   "RET": [
@@ -38293,6 +39470,15 @@
     "over_65wk": 6,
     "over_78wk": 2,
     "median_weeks": 11.6
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 14703,
+    "pct_within_18wk": 67.3,
+    "over_52wk": 236,
+    "over_65wk": 3,
+    "over_78wk": 1,
+    "median_weeks": 11.1
    }
   ],
   "R1F": [
@@ -38556,6 +39742,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 11.9
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 12636,
+    "pct_within_18wk": 65.9,
+    "over_52wk": 100,
+    "over_65wk": 3,
+    "over_78wk": 0,
+    "median_weeks": 11.8
    }
   ],
   "RR7": [
@@ -38819,6 +40014,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 9.3
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 11356,
+    "pct_within_18wk": 73.9,
+    "over_52wk": 3,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 9.5
    }
   ],
   "REP": [
@@ -39082,6 +40286,15 @@
     "over_65wk": 17,
     "over_78wk": 0,
     "median_weeks": 13.2
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 11194,
+    "pct_within_18wk": 63.8,
+    "over_52wk": 85,
+    "over_65wk": 2,
+    "over_78wk": 0,
+    "median_weeks": 12.7
    }
   ],
   "RCU": [
@@ -39345,6 +40558,15 @@
     "over_65wk": 11,
     "over_78wk": 0,
     "median_weeks": 10.3
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 11207,
+    "pct_within_18wk": 71.6,
+    "over_52wk": 92,
+    "over_65wk": 6,
+    "over_78wk": 1,
+    "median_weeks": 10.6
    }
   ],
   "RAN": [
@@ -39608,6 +40830,15 @@
     "over_65wk": 3,
     "over_78wk": 0,
     "median_weeks": 8.9
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 10983,
+    "pct_within_18wk": 77.0,
+    "over_52wk": 20,
+    "over_65wk": 3,
+    "over_78wk": 1,
+    "median_weeks": 9.2
    }
   ],
   "RP4": [
@@ -39871,6 +41102,15 @@
     "over_65wk": 87,
     "over_78wk": 22,
     "median_weeks": 11.8
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 8461,
+    "pct_within_18wk": 72.6,
+    "over_52wk": 244,
+    "over_65wk": 105,
+    "over_78wk": 34,
+    "median_weeks": 11.6
    }
   ],
   "RGM": [
@@ -40134,6 +41374,15 @@
     "over_65wk": 2,
     "over_78wk": 2,
     "median_weeks": 8.8
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 5921,
+    "pct_within_18wk": 79.3,
+    "over_52wk": 11,
+    "over_65wk": 2,
+    "over_78wk": 2,
+    "median_weeks": 9.3
    }
   ],
   "RBQ": [
@@ -40397,6 +41646,15 @@
     "over_65wk": 1,
     "over_78wk": 1,
     "median_weeks": 8.6
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 5176,
+    "pct_within_18wk": 84.4,
+    "over_52wk": 17,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 7.9
    }
   ],
   "RBV": [
@@ -40656,6 +41914,15 @@
     "period": "2026-08",
     "waiting_list": 3144,
     "pct_within_18wk": 97.4,
+    "over_52wk": 0,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 4.3
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 3214,
+    "pct_within_18wk": 97.3,
     "over_52wk": 0,
     "over_65wk": 0,
     "over_78wk": 0,
@@ -40923,6 +42190,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 5.0
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 1706,
+    "pct_within_18wk": 92.7,
+    "over_52wk": 3,
+    "over_65wk": 1,
+    "over_78wk": 0,
+    "median_weeks": 4.6
    }
   ],
   "RA7": [
@@ -41186,6 +42462,15 @@
     "over_65wk": 10,
     "over_78wk": 0,
     "median_weeks": 11.1
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 98038,
+    "pct_within_18wk": 68.8,
+    "over_52wk": 479,
+    "over_65wk": 16,
+    "over_78wk": 0,
+    "median_weeks": 11.0
    }
   ],
   "RWH": [
@@ -41449,6 +42734,15 @@
     "over_65wk": 54,
     "over_78wk": 8,
     "median_weeks": 12.1
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 58764,
+    "pct_within_18wk": 64.2,
+    "over_52wk": 1191,
+    "over_65wk": 80,
+    "over_78wk": 7,
+    "median_weeks": 13.0
    }
   ],
   "RJ2": [
@@ -41711,6 +43005,15 @@
     "over_52wk": 772,
     "over_65wk": 81,
     "over_78wk": 9,
+    "median_weeks": 12.5
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 54613,
+    "pct_within_18wk": 65.9,
+    "over_52wk": 855,
+    "over_65wk": 108,
+    "over_78wk": 16,
     "median_weeks": 12.5
    }
   ],
@@ -41975,6 +43278,15 @@
     "over_65wk": 52,
     "over_78wk": 6,
     "median_weeks": 13.6
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 46337,
+    "pct_within_18wk": 61.1,
+    "over_52wk": 1046,
+    "over_65wk": 17,
+    "over_78wk": 1,
+    "median_weeks": 13.6
    }
   ],
   "RAX": [
@@ -42238,6 +43550,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 12.2
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 40297,
+    "pct_within_18wk": 68.8,
+    "over_52wk": 71,
+    "over_65wk": 1,
+    "over_78wk": 1,
+    "median_weeks": 12.1
    }
   ],
   "RXW": [
@@ -42498,6 +43819,15 @@
     "waiting_list": 38312,
     "pct_within_18wk": 68.2,
     "over_52wk": 0,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 12.1
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 38171,
+    "pct_within_18wk": 69.0,
+    "over_52wk": 4,
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 12.1
@@ -42764,6 +44094,15 @@
     "over_65wk": 1,
     "over_78wk": 0,
     "median_weeks": 12.5
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 35314,
+    "pct_within_18wk": 65.9,
+    "over_52wk": 379,
+    "over_65wk": 1,
+    "over_78wk": 0,
+    "median_weeks": 12.7
    }
   ],
   "RA2": [
@@ -43027,6 +44366,15 @@
     "over_65wk": 21,
     "over_78wk": 7,
     "median_weeks": 12.5
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 32100,
+    "pct_within_18wk": 66.5,
+    "over_52wk": 347,
+    "over_65wk": 17,
+    "over_78wk": 3,
+    "median_weeks": 12.3
    }
   ],
   "RBT": [
@@ -43290,6 +44638,15 @@
     "over_65wk": 3,
     "over_78wk": 0,
     "median_weeks": 10.6
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 31457,
+    "pct_within_18wk": 69.5,
+    "over_52wk": 245,
+    "over_65wk": 4,
+    "over_78wk": 0,
+    "median_weeks": 11.1
    }
   ],
   "RL1": [
@@ -43553,6 +44910,15 @@
     "over_65wk": 1491,
     "over_78wk": 949,
     "median_weeks": 16.0
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 22749,
+    "pct_within_18wk": 53.8,
+    "over_52wk": 2302,
+    "over_65wk": 1456,
+    "over_78wk": 897,
+    "median_weeks": 16.1
    }
   ],
   "RRJ": [
@@ -43816,6 +45182,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 12.2
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 13621,
+    "pct_within_18wk": 67.1,
+    "over_52wk": 56,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 12.5
    }
   ],
   "REN": [
@@ -44079,6 +45454,15 @@
     "over_65wk": 0,
     "over_78wk": 0,
     "median_weeks": 7.2
+   },
+   {
+    "period": "2026-09",
+    "waiting_list": 806,
+    "pct_within_18wk": 96.5,
+    "over_52wk": 1,
+    "over_65wk": 0,
+    "over_78wk": 0,
+    "median_weeks": 6.6
    }
   ],
   "RK9": [
